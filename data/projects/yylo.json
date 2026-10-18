@@ -1,0 +1,39 @@
+{
+  "id": "yylo",
+  "name": "YYLO",
+  "repository": "https://github.com/yylo-dev/yylo",
+  "description": "Orchestrate coding agents from the terminal with typed tasks, skills installs, and receipt-backed merge gates; Pi is a supported subagent.",
+  "category": "harnesses",
+  "use_cases": [
+    "use-local-agents",
+    "extend-agents"
+  ],
+  "platforms": [],
+  "hardware": [],
+  "local_mode": "local-client",
+  "compatibility": [
+    "Optional Pi coding-agent integration: yy pi runs one-shot or live sessions (ypl) with model shortcuts such as anthropic/claude and openai-codex provider models.",
+    "Installs reusable agent skills via npx skills add into .pi/skills and .claude/skills; yy ledger and yy benchmark delegate to separately installed sibling CLIs."
+  ],
+  "limitations": [
+    "Requires Node.js 20.10 or newer and Git; upstream does not document per-operating-system support.",
+    "The orchestrator itself contacts no model provider: subagents such as Pi are installed and configured separately, and provider credentials, model availability, and any local model servers remain external.",
+    "Evidence describes unreleased CLI 0.2.12; features and required companion versions may differ from the published stable package.",
+    "Advanced-mode bootstrap can create an initial commit and protected integration-owner worktree in an empty Git repository. Simple mode uses a shared checkout; fresh Simple initialization downloads agent skills by default unless --no-skills is set. Review skills before loading them."
+  ],
+  "license": {
+    "spdx": "MIT",
+    "url": "https://raw.githubusercontent.com/yylo-dev/yylo/e958c03fa2d6a3135d9583c2f0f58998f319109d/LICENSE"
+  },
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/yylo-dev/yylo/e958c03fa2d6a3135d9583c2f0f58998f319109d/README.md",
+      "note": "Upstream project definition, prerequisites, Pi subagent integration and model shortcuts, skills installation paths, and bootstrap behavior."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/yylo-dev/yylo/e958c03fa2d6a3135d9583c2f0f58998f319109d/package.json",
+      "note": "Declares the @yylo/cli npm package, MIT license, Node.js >=20.10.0 engine, and command binaries."
+    }
+  ],
+  "last_reviewed": "2026-10-18"
+}

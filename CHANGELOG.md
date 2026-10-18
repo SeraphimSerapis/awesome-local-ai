@@ -8,6 +8,7 @@ catalog PR; there is no automatic publishing or merging of these notes.
 
 ### Added
 
+- [YYLO](https://github.com/yylo-dev/yylo), a terminal orchestrator for coding agents with typed tasks, skills installs, and receipt-backed merge gates, with Pi as a supported subagent.
 - [Orkas](https://github.com/Orkas-AI/Orkas), a local-first desktop client for coordinating specialist agents with supported providers and compatible local model endpoints.
 - [DGX Spark Networking](https://github.com/christopherowen/dgx-spark-networking), RoCE collectives, NCCL profiles, and fabric diagnostics for multi-node inference.
 - [Contemplative Agent](https://github.com/shimo4228/contemplative-agent), an autonomous agent on a local Ollama model with a human approval gate for changes to its prompts.
@@ -15,6 +16,7 @@ catalog PR; there is no automatic publishing or merging of these notes.
 
 ### Updated
 
+- YYLO's entry distinguishes unreleased source from stable packages, Advanced from Simple initialization, and default skill downloads.
 - Task-based browsing now distinguishes autonomous agents from coding agents.
 - Routine health refreshes can merge after scoped-data and CI checks; flagged snapshots and project submissions still need human review.
 - Health automation waits for its dispatched CI run before merging instead of relying on bot-triggered follow-up events.
