@@ -1,0 +1,37 @@
+{
+  "id": "yap-mcp",
+  "name": "Yap MCP",
+  "repository": "https://github.com/founden-bot/yap-mcp",
+  "description": "MCP server and CLI that transcribes audio and video files on the user's computer with NVIDIA Parakeet TDT v3 (sherpa-onnx) and searches the local Yap dictation history.",
+  "category": "mcp",
+  "use_cases": [
+    "extend-agents"
+  ],
+  "platforms": [
+    "macos",
+    "windows",
+    "linux"
+  ],
+  "hardware": [
+    "cpu"
+  ],
+  "local_mode": "local",
+  "compatibility": [],
+  "limitations": [
+    "The first transcription downloads a speech model of about 670 MB.",
+    "Covers 25 European languages.",
+    "Requires Node.js 20 or newer (22.13 or newer for search_dictations).",
+    "search_dictations reads the history of the separate Yap dictation app, which is closed source and paid."
+  ],
+  "license": {
+    "spdx": "MIT",
+    "url": "https://github.com/founden-bot/yap-mcp/blob/HEAD/LICENSE"
+  },
+  "sources": [
+    {
+      "url": "https://github.com/founden-bot/yap-mcp/blob/HEAD/README.md",
+      "note": "Describes the tools, local-only processing, supported platforms, install paths and the one-time model download."
+    }
+  ],
+  "last_reviewed": "2026-10-19"
+}
