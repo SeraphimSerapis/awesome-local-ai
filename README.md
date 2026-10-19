@@ -52,7 +52,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 | Tune thermals and memory | [DGX Spark Fan Control](https://github.com/christopherowen/dgx-spark-fan-control), [DGX Spark Memory Saver](https://github.com/christopherowen/dgx-spark-memory-saver) |
 | Validate or simulate inference configurations | [Spark Tools](https://github.com/knapcio/spark-tools) |
 | Chat with a local model | [DwarfStar / ds4](https://github.com/antirez/ds4), [mlx-serve](https://github.com/ddalcu/mlx-serve), [oMLX](https://github.com/jundot/omlx), [Orkas](https://github.com/Orkas-AI/Orkas), [SparkPilot](https://github.com/ashhart/SparkPilot), [Splash](https://github.com/incoai/splash), [Strata](https://github.com/Niko1221/Strata) |
-| Add skills, extensions, or MCP tools | [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud), [Matt Pocock's skills](https://github.com/mattpocock/skills), [Oh My Pi](https://github.com/can1357/oh-my-pi), [Orkas](https://github.com/Orkas-AI/Orkas), [Pi](https://github.com/earendil-works/pi), [YYLO](https://github.com/yylo-dev/yylo) |
+| Add skills, extensions, or MCP tools | [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud), [Matt Pocock's skills](https://github.com/mattpocock/skills), [Oh My Pi](https://github.com/can1357/oh-my-pi), [Orkas](https://github.com/Orkas-AI/Orkas), [Pi](https://github.com/earendil-works/pi), [Yap MCP](https://github.com/founden-bot/yap-mcp), [YYLO](https://github.com/yylo-dev/yylo) |
 | Use optional cloud integrations | [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud) |
 
 ## Browse by category
@@ -394,9 +394,14 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 
 ### MCP servers
 
-No local-first entries yet. [Suggest a project](CONTRIBUTING.md).
-
-Cloud-dependent entries are in [Cloud integrations](#cloud-integrations).
+- [Yap MCP](https://github.com/founden-bot/yap-mcp): MCP server and CLI that transcribes audio and video files on the user's computer with NVIDIA Parakeet TDT v3 (sherpa-onnx) and searches the local Yap dictation history.
+  - Local workload. Platforms: macOS, Windows, Linux. Hardware: CPU.
+  - License: [MIT](https://github.com/founden-bot/yap-mcp/blob/HEAD/LICENSE). [Metadata and evidence](data/projects/yap-mcp.json).
+  - Documentation reviewed: 2026-10-19. Repository: not checked yet.
+  - Note: The first transcription downloads a speech model of about 670 MB.
+  - Note: Covers 25 European languages.
+  - Note: Requires Node.js 20 or newer (22.13 or newer for search\_dictations).
+  - Note: search\_dictations reads the history of the separate Yap dictation app, which is closed source and paid.
 
 ## Cloud integrations
 
