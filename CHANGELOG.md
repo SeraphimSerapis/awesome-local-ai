@@ -4,6 +4,12 @@ Changes to Awesome Local AI, not upstream software releases. Weeks start on
 Monday in UTC. Contributors update the current week's section with their
 catalog PR; there is no automatic publishing or merging of these notes.
 
+## Week of 2026-10-19
+
+### Added
+
+- [Yap MCP](https://github.com/founden-bot/yap-mcp), an MCP server and command-line tool that transcribes audio and video files locally with Parakeet through sherpa-onnx, for agents that need a transcript without a cloud speech API.
+
 ## Week of 2026-10-12
 
 ### Added
