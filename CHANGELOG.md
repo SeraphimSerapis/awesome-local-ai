@@ -4,6 +4,12 @@ Changes to Awesome Local AI, not upstream software releases. Weeks start on
 Monday in UTC. Contributors update the current week's section with their
 catalog PR; there is no automatic publishing or merging of these notes.
 
+## Week of 2026-10-19
+
+### Added
+
+- [bot-reborn](https://github.com/beasaltfish/bot-reborn), a toy-robot voice brain on your computer with a local 0.8B reflex model and configurable OpenAI-compatible STT, chat and TTS endpoints.
+
 ## Week of 2026-10-12
 
 ### Added
