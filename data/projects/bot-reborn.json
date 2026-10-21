@@ -23,7 +23,9 @@
     "Early-stage hobby project, tested end to end on one robot (a Silverlit Maze Breaker) and one Android phone; some hardware measurements are still missing.",
     "The documented reflex timing (about 200 ms per command) was measured on a Mac mini M4; other machines are not recorded.",
     "Needs soldering, an FT232H board and an Android phone with Chrome (WebUSB), plus a Chrome flag to treat the brain's plain-http LAN address as secure.",
-    "The reflex model is English only, and remote providers, when chosen, receive transcripts and need API keys that may cost money."
+    "The reflex model is English only.",
+    "With remote providers, microphone audio is uploaded as WAV to speech-to-text, conversation text goes to the chat model, and reply text goes to text-to-speech; remote providers need API keys and may cost money.",
+    "The code is MIT, but the published reflex model is licensed separately under Apache-2.0, as its model card declares."
   ],
   "license": {
     "spdx": "MIT",
@@ -37,6 +39,14 @@
     {
       "url": "https://raw.githubusercontent.com/beasaltfish/bot-reborn/1118222a1189e9407f92520a720fba8be6e27db1/server/endpoints.js",
       "note": "Each layer (stt, llm, tts, reflex) stores a base URL, and any address that matches no preset becomes a custom endpoint."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/beasaltfish/bot-reborn/1118222a1189e9407f92520a720fba8be6e27db1/core/providers/stt-openai-compat.js",
+      "note": "The OpenAI-compatible speech-to-text adapter encodes microphone PCM as WAV and uploads it to the configured endpoint."
+    },
+    {
+      "url": "https://huggingface.co/beasaltfish/robot-simple-commands-qwen3.5-0.8b/blob/bd841cf96f0dfb84ec1646c7f2b95e7be63fbdfc/README.md",
+      "note": "Model card for the reflex model, declaring the Apache-2.0 license and the Qwen/Qwen3.5-0.8B base model."
     }
   ],
   "last_reviewed": "2026-10-21"

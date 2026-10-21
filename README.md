@@ -355,7 +355,9 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: Early-stage hobby project, tested end to end on one robot (a Silverlit Maze Breaker) and one Android phone; some hardware measurements are still missing.
   - Note: The documented reflex timing (about 200 ms per command) was measured on a Mac mini M4; other machines are not recorded.
   - Note: Needs soldering, an FT232H board and an Android phone with Chrome (WebUSB), plus a Chrome flag to treat the brain's plain-http LAN address as secure.
-  - Note: The reflex model is English only, and remote providers, when chosen, receive transcripts and need API keys that may cost money.
+  - Note: The reflex model is English only.
+  - Note: With remote providers, microphone audio is uploaded as WAV to speech-to-text, conversation text goes to the chat model, and reply text goes to text-to-speech; remote providers need API keys and may cost money.
+  - Note: The code is MIT, but the published reflex model is licensed separately under Apache-2.0, as its model card declares.
 
 - [Contemplative Agent](https://github.com/shimo4228/contemplative-agent): Run an autonomous agent on a local LLM through Ollama that posts on Moltbook, logs every action, and stages changes to its own prompts for a person to adopt or reject.
   - Local client or agent. Platforms: macOS. Hardware: Apple Silicon.
