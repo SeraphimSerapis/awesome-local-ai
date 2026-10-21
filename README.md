@@ -354,7 +354,6 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Documentation reviewed: 2026-10-21. Repository: not checked yet.
   - Note: Early-stage hobby project, tested end to end on one robot (a Silverlit Maze Breaker) and one Android phone; some hardware measurements are still missing.
   - Note: The documented reflex timing (about 200 ms per command) was measured on a Mac mini M4; other machines are not recorded.
-  - Note: Local speech-to-text and text-to-speech servers have not been tested through custom endpoints yet.
   - Note: Needs soldering, an FT232H board and an Android phone with Chrome (WebUSB), plus a Chrome flag to treat the brain's plain-http LAN address as secure.
   - Note: The reflex model is English only, and remote providers, when chosen, receive transcripts and need API keys that may cost money.
 
