@@ -42,7 +42,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 | --- | --- |
 | Run a model on my hardware | [boots / ai-bootstrap](https://github.com/kindlingai/boots), [DwarfStar / ds4](https://github.com/antirez/ds4), [mentat](https://github.com/kindlingai/mentat), [mlx-serve](https://github.com/ddalcu/mlx-serve), [oMLX](https://github.com/jundot/omlx), [spark-vllm-docker](https://github.com/eugr/spark-vllm-docker), [SparkPilot](https://github.com/ashhart/SparkPilot), [sparkrun](https://github.com/spark-arena/sparkrun), [Splash](https://github.com/incoai/splash), [Sqwakie](https://github.com/alexcarney460-hue/walkie), [Strata](https://github.com/Niko1221/Strata), [TandemLLM](https://github.com/0xBakeer/TandemLLM), [TensorFold](https://github.com/ashhart/TensorFold) |
 | Connect a coding agent to a local model | [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [DwarfStar / ds4](https://github.com/antirez/ds4), [mlx-serve](https://github.com/ddalcu/mlx-serve), [Oh My Pi](https://github.com/can1357/oh-my-pi), [oMLX](https://github.com/jundot/omlx), [Pi](https://github.com/earendil-works/pi), [Splash](https://github.com/incoai/splash), [Strata](https://github.com/Niko1221/Strata), [TandemLLM](https://github.com/0xBakeer/TandemLLM), [TensorFold](https://github.com/ashhart/TensorFold), [YYLO](https://github.com/yylo-dev/yylo) |
-| Run autonomous agents with local models | [Contemplative Agent](https://github.com/shimo4228/contemplative-agent) |
+| Run autonomous agents with local models | [bot-reborn](https://github.com/beasaltfish/bot-reborn), [Contemplative Agent](https://github.com/shimo4228/contemplative-agent) |
 | Test tool-calling quality | [Inference Atlas](https://github.com/0xBakeer/inference-atlas), [Spark Bench](https://github.com/Weschera/spark-bench), [tool-eval-bench](https://github.com/SeraphimSerapis/tool-eval-bench) |
 | Compare inference speed | [Inference Atlas](https://github.com/0xBakeer/inference-atlas), [llama-benchy](https://github.com/eugr/llama-benchy), [RigMark](https://github.com/alexellis/rigmark), [Spark Bench](https://github.com/Weschera/spark-bench), [Spark Tools](https://github.com/knapcio/spark-tools), [tool-eval-bench](https://github.com/SeraphimSerapis/tool-eval-bench) |
 | Deploy or manage a cluster | [DGX Spark Networking](https://github.com/christopherowen/dgx-spark-networking), [kindling-spark-os](https://github.com/kindlingai/kindling-spark-os), [MCDMA](https://github.com/ashhart/MCDMA), [mentat](https://github.com/kindlingai/mentat), [spark-vllm-docker](https://github.com/eugr/spark-vllm-docker), [sparkrun](https://github.com/spark-arena/sparkrun), [Sqwakie](https://github.com/alexcarney460-hue/walkie) |
@@ -51,7 +51,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 | Troubleshoot my setup | [DGX Spark Networking](https://github.com/christopherowen/dgx-spark-networking), [Spark Doctor](https://github.com/joeynyc/spark-doctor) |
 | Tune thermals and memory | [DGX Spark Fan Control](https://github.com/christopherowen/dgx-spark-fan-control), [DGX Spark Memory Saver](https://github.com/christopherowen/dgx-spark-memory-saver) |
 | Validate or simulate inference configurations | [Spark Tools](https://github.com/knapcio/spark-tools) |
-| Chat with a local model | [DwarfStar / ds4](https://github.com/antirez/ds4), [mlx-serve](https://github.com/ddalcu/mlx-serve), [oMLX](https://github.com/jundot/omlx), [Orkas](https://github.com/Orkas-AI/Orkas), [SparkPilot](https://github.com/ashhart/SparkPilot), [Splash](https://github.com/incoai/splash), [Strata](https://github.com/Niko1221/Strata) |
+| Chat with a local model | [bot-reborn](https://github.com/beasaltfish/bot-reborn), [DwarfStar / ds4](https://github.com/antirez/ds4), [mlx-serve](https://github.com/ddalcu/mlx-serve), [oMLX](https://github.com/jundot/omlx), [Orkas](https://github.com/Orkas-AI/Orkas), [SparkPilot](https://github.com/ashhart/SparkPilot), [Splash](https://github.com/incoai/splash), [Strata](https://github.com/Niko1221/Strata) |
 | Add skills, extensions, or MCP tools | [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud), [Matt Pocock's skills](https://github.com/mattpocock/skills), [Oh My Pi](https://github.com/can1357/oh-my-pi), [Orkas](https://github.com/Orkas-AI/Orkas), [Pi](https://github.com/earendil-works/pi), [YYLO](https://github.com/yylo-dev/yylo) |
 | Use optional cloud integrations | [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud) |
 
@@ -347,6 +347,17 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 <a id="applications"></a>
 
 ### Applications and model management
+
+- [bot-reborn](https://github.com/beasaltfish/bot-reborn): Turn a toy robot car into a voice robot: a phone is the body, and a Node brain on your computer runs a local 0.8B reflex model plus configurable STT, chat and TTS.
+  - Local client or agent. Platforms: macOS. Hardware: Apple Silicon.
+  - License: [MIT](https://raw.githubusercontent.com/beasaltfish/bot-reborn/1118222a1189e9407f92520a720fba8be6e27db1/LICENSE). [Metadata and evidence](data/projects/bot-reborn.json).
+  - Documentation reviewed: 2026-10-21. Repository: not checked yet.
+  - Note: Early-stage hobby project, tested end to end on one robot (a Silverlit Maze Breaker) and one Android phone; some hardware measurements are still missing.
+  - Note: The documented reflex timing (about 200 ms per command) was measured on a Mac mini M4; other machines are not recorded.
+  - Note: Needs soldering, an FT232H board and an Android phone with Chrome (WebUSB), plus a Chrome flag to treat the brain's plain-http LAN address as secure.
+  - Note: The reflex model is English only.
+  - Note: With remote providers, microphone audio is uploaded as WAV to speech-to-text, conversation text goes to the chat model, and reply text goes to text-to-speech; remote providers need API keys and may cost money.
+  - Note: The code is MIT, but the published reflex model is licensed separately under Apache-2.0, as its model card declares.
 
 - [Contemplative Agent](https://github.com/shimo4228/contemplative-agent): Run an autonomous agent on a local LLM through Ollama that posts on Moltbook, logs every action, and stages changes to its own prompts for a person to adopt or reject.
   - Local client or agent. Platforms: macOS. Hardware: Apple Silicon.
