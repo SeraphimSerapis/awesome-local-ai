@@ -1,0 +1,46 @@
+{
+  "id": "talavine-code",
+  "name": "Talavine Code",
+  "repository": "https://github.com/scrossen/talavine-code",
+  "description": "C# desktop and CLI coding harness that connects tool-capable local Ollama models or supported hosted model and coding CLI backends.",
+  "category": "harnesses",
+  "use_cases": [
+    "use-local-agents"
+  ],
+  "platforms": [
+    "windows",
+    "macos"
+  ],
+  "hardware": [],
+  "local_mode": "local-client",
+  "compatibility": [
+    "Ollama with installed tool-capable models.",
+    "Supported model APIs and installed, authenticated coding CLIs are optional backends."
+  ],
+  "limitations": [
+    "Desktop builds are previews; source setup currently requires .NET 11 RC2 and Git, with additional native desktop build requirements.",
+    "Ollama and a tool-capable model are separate requirements; model hardware and memory needs depend on the selected model.",
+    "Default permission mode is auto; commands can edit files and perform external actions. A working directory is not an operating-system sandbox.",
+    "Hosted model APIs or coding CLIs need their own authentication and network access, with separate service costs and terms. Provider requests can send repository content.",
+    "Documentation does not establish an offline-operation or telemetry guarantee; ordinary conversation and workspace files are not promised encrypted at rest."
+  ],
+  "license": {
+    "spdx": "MIT",
+    "url": "https://github.com/scrossen/talavine-code/blob/9bd11df3b277f42be718f4ca1546e57e211ac811/LICENSE"
+  },
+  "sources": [
+    {
+      "url": "https://github.com/scrossen/talavine-code/blob/9bd11df3b277f42be718f4ca1546e57e211ac811/README.md",
+      "note": "Documents Ollama, tool-capable models, desktop/CLI hosts, preview status, .NET 11 RC2 setup, native Windows/macOS builds and separate provider charges."
+    },
+    {
+      "url": "https://github.com/scrossen/talavine-code/blob/9bd11df3b277f42be718f4ca1546e57e211ac811/SECURITY.md",
+      "note": "Documents command and file access, permission boundaries, provider transmission, local storage and encryption limits."
+    },
+    {
+      "url": "https://github.com/scrossen/talavine-code/blob/9bd11df3b277f42be718f4ca1546e57e211ac811/LICENSE",
+      "note": "MIT license for Talavine-owned software; third-party components retain their own terms."
+    }
+  ],
+  "last_reviewed": "2026-10-22"
+}

@@ -41,7 +41,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 | I want to... | Start here |
 | --- | --- |
 | Run a model on my hardware | [boots / ai-bootstrap](https://github.com/kindlingai/boots), [DwarfStar / ds4](https://github.com/antirez/ds4), [mentat](https://github.com/kindlingai/mentat), [mlx-serve](https://github.com/ddalcu/mlx-serve), [oMLX](https://github.com/jundot/omlx), [spark-vllm-docker](https://github.com/eugr/spark-vllm-docker), [SparkPilot](https://github.com/ashhart/SparkPilot), [sparkrun](https://github.com/spark-arena/sparkrun), [Splash](https://github.com/incoai/splash), [Sqwakie](https://github.com/alexcarney460-hue/walkie), [Strata](https://github.com/Niko1221/Strata), [TandemLLM](https://github.com/0xBakeer/TandemLLM), [TensorFold](https://github.com/ashhart/TensorFold) |
-| Connect a coding agent to a local model | [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [DwarfStar / ds4](https://github.com/antirez/ds4), [mlx-serve](https://github.com/ddalcu/mlx-serve), [Oh My Pi](https://github.com/can1357/oh-my-pi), [oMLX](https://github.com/jundot/omlx), [Pi](https://github.com/earendil-works/pi), [Splash](https://github.com/incoai/splash), [Strata](https://github.com/Niko1221/Strata), [TandemLLM](https://github.com/0xBakeer/TandemLLM), [TensorFold](https://github.com/ashhart/TensorFold), [YYLO](https://github.com/yylo-dev/yylo) |
+| Connect a coding agent to a local model | [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [DwarfStar / ds4](https://github.com/antirez/ds4), [mlx-serve](https://github.com/ddalcu/mlx-serve), [Oh My Pi](https://github.com/can1357/oh-my-pi), [oMLX](https://github.com/jundot/omlx), [Pi](https://github.com/earendil-works/pi), [Splash](https://github.com/incoai/splash), [Strata](https://github.com/Niko1221/Strata), [Talavine Code](https://github.com/scrossen/talavine-code), [TandemLLM](https://github.com/0xBakeer/TandemLLM), [TensorFold](https://github.com/ashhart/TensorFold), [YYLO](https://github.com/yylo-dev/yylo) |
 | Run autonomous agents with local models | [bot-reborn](https://github.com/beasaltfish/bot-reborn), [Contemplative Agent](https://github.com/shimo4228/contemplative-agent) |
 | Test tool-calling quality | [Inference Atlas](https://github.com/0xBakeer/inference-atlas), [Spark Bench](https://github.com/Weschera/spark-bench), [tool-eval-bench](https://github.com/SeraphimSerapis/tool-eval-bench) |
 | Compare inference speed | [Inference Atlas](https://github.com/0xBakeer/inference-atlas), [llama-benchy](https://github.com/eugr/llama-benchy), [RigMark](https://github.com/alexellis/rigmark), [Spark Bench](https://github.com/Weschera/spark-bench), [Spark Tools](https://github.com/knapcio/spark-tools), [tool-eval-bench](https://github.com/SeraphimSerapis/tool-eval-bench) |
@@ -256,6 +256,16 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Documentation reviewed: 2026-10-10. Repository checked: 2026-10-19 (reachable).
   - Last observed push: 2026-10-19. Archived: no. Disabled: no.
   - Note: Local inference needs a separate model server; endpoint-specific behavior may need configuration.
+
+- [Talavine Code](https://github.com/scrossen/talavine-code): C# desktop and CLI coding harness that connects tool-capable local Ollama models or supported hosted model and coding CLI backends.
+  - Local client or agent. Platforms: Windows, macOS. Hardware: Not recorded.
+  - License: [MIT](https://github.com/scrossen/talavine-code/blob/9bd11df3b277f42be718f4ca1546e57e211ac811/LICENSE). [Metadata and evidence](data/projects/talavine-code.json).
+  - Documentation reviewed: 2026-10-22. Repository: not checked yet.
+  - Note: Desktop builds are previews; source setup currently requires .NET 11 RC2 and Git, with additional native desktop build requirements.
+  - Note: Ollama and a tool-capable model are separate requirements; model hardware and memory needs depend on the selected model.
+  - Note: Default permission mode is auto; commands can edit files and perform external actions. A working directory is not an operating-system sandbox.
+  - Note: Hosted model APIs or coding CLIs need their own authentication and network access, with separate service costs and terms. Provider requests can send repository content.
+  - Note: Documentation does not establish an offline-operation or telemetry guarantee; ordinary conversation and workspace files are not promised encrypted at rest.
 
 - [YYLO](https://github.com/yylo-dev/yylo): Orchestrate coding agents from the terminal with typed tasks, skills installs, and receipt-backed merge gates; Pi is a supported subagent.
   - Local client or agent. Platforms: Not recorded. Hardware: Not recorded.
