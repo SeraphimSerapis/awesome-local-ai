@@ -8,6 +8,7 @@ catalog PR; there is no automatic publishing or merging of these notes.
 
 ### Added
 
+- [Talavine Code](https://github.com/scrossen/talavine-code), a C# desktop and CLI coding harness with tool-capable local Ollama models and optional hosted backends.
 - [bot-reborn](https://github.com/beasaltfish/bot-reborn), a toy-robot voice brain on your computer with a local 0.8B reflex model and configurable OpenAI-compatible STT, chat and TTS endpoints.
 
 ## Week of 2026-10-12
