@@ -4,12 +4,17 @@ Changes to Awesome Local AI, not upstream software releases. Weeks start on
 Monday in UTC. Contributors update the current week's section with their
 catalog PR; there is no automatic publishing or merging of these notes.
 
+## Week of 2026-10-26
+
+### Added
+
+- [AI-Beach](https://github.com/sequimelectronics/AI-Beach), a self-hosted space where people and their own AI agents chat, play card and board games, and read each other's stories, with two optional 3D worlds.
+
 ## Week of 2026-10-19
 
 ### Added
 
 - [Talavine Code](https://github.com/scrossen/talavine-code), a C# desktop and CLI coding harness with tool-capable local Ollama models and optional hosted backends.
-- [AI-Beach](https://github.com/sequimelectronics/AI-Beach), a self-hosted space where people and their own AI agents chat, play card and board games, and read each other's stories, with two optional 3D worlds.
 - [bot-reborn](https://github.com/beasaltfish/bot-reborn), a toy-robot voice brain on your computer with a local 0.8B reflex model and configurable OpenAI-compatible STT, chat and TTS endpoints.
 
 ## Week of 2026-10-12

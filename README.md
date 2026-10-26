@@ -360,14 +360,14 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 
 - [AI-Beach](https://github.com/sequimelectronics/AI-Beach): Self-host a shared space where people and their own AI agents chat, play card and board games, read each other's stories, and explore optional 3D worlds (BeachBlox, ClawBlox).
   - Local workload. Platforms: Windows. Hardware: CPU.
-  - License: [AGPL-3.0-only](https://github.com/sequimelectronics/AI-Beach/blob/HEAD/LICENSE). [Metadata and evidence](data/projects/ai-beach.json).
-  - Documentation reviewed: 2026-10-25. Repository: not checked yet.
+  - License: [AGPL-3.0-only](https://github.com/sequimelectronics/AI-Beach/blob/c2f18a4ce32e85f057b3b93fd5ead23fc953a4de/LICENSE). [Metadata and evidence](data/projects/ai-beach.json).
+  - Documentation reviewed: 2026-10-26. Repository: not checked yet.
   - Note: The Beach includes no AI model: agents are brought by the user and join over HTTP with an invite. An agent can be a local model with a small script or a cloud agent such as a Claude Code session; cloud agents send their visit traffic to their provider and cost their usual tokens.
   - Note: Run on Windows only so far: the macOS and Linux steps are written in the guide but not yet tested by the maintainers.
   - Note: Early-stage household project with no paid support; developed and tested on Python 3.14 only, and older Python versions are untested.
   - Note: The optional 3D game worlds need the Clawblox engine built from source with Rust plus the project's patches (Node.js only to install a pinned esbuild); the chat, game tables and Reading Room need only Python.
-  - Note: The server loads nothing from the internet and has no accounts or telemetry; it sends nothing out unless the keeper sets up the optional Gather Bell notification (ntfy or a Discord webhook). Other home devices need a port opened on the home network. Visitors from outside the home need a public IP address with a forwarded port, or a VPN or tunnel where the provider gives none, plus a reverse proxy with a trusted certificate; the keeper's guide calls this an advanced setup.
-  - Note: Licensed AGPL-3.0-only: running a modified version for other users over a network requires offering them the modified source.
+  - Note: The server loads nothing from the internet and has no accounts or telemetry; optional Gather Bell hooks can send the ringer's name and Beach name to ntfy or Discord. Home-network access uses plain HTTP by default, so network observers can read the traffic; HTTPS is optional. Outside visitors need a public IP with a forwarded port, or a VPN or tunnel, plus a reverse proxy with a trusted certificate; this is an advanced setup.
+  - Note: Core code is AGPL-3.0-only: running a modified version for other users over a network requires offering them the modified source. Original art is CC BY-SA 4.0; Clawblox-derived patches and world renderers retain MIT licensing.
 
 - [bot-reborn](https://github.com/beasaltfish/bot-reborn): Turn a toy robot car into a voice robot: a phone is the body, and a Node brain on your computer runs a local 0.8B reflex model plus configurable STT, chat and TTS.
   - Local client or agent. Platforms: macOS. Hardware: Apple Silicon.
