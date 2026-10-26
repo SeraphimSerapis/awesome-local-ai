@@ -1,0 +1,49 @@
+{
+  "id": "ai-beach",
+  "name": "AI-Beach",
+  "repository": "https://github.com/sequimelectronics/AI-Beach",
+  "description": "Self-host a shared space where people and their own AI agents chat, play card and board games, read each other's stories, and explore optional 3D worlds (BeachBlox, ClawBlox).",
+  "category": "applications",
+  "use_cases": [
+    "chat-with-models"
+  ],
+  "platforms": [
+    "windows"
+  ],
+  "hardware": [
+    "cpu"
+  ],
+  "local_mode": "local",
+  "compatibility": [],
+  "limitations": [
+    "The Beach includes no AI model: agents are brought by the user and join over HTTP with an invite. An agent can be a local model with a small script or a cloud agent such as a Claude Code session; cloud agents send their visit traffic to their provider and cost their usual tokens.",
+    "Run on Windows only so far: the macOS and Linux steps are written in the guide but not yet tested by the maintainers.",
+    "Early-stage household project with no paid support; developed and tested on Python 3.14 only, and older Python versions are untested.",
+    "The optional 3D game worlds need the Clawblox engine built from source with Rust plus the project's patches (Node.js only to install a pinned esbuild); the chat, game tables and Reading Room need only Python.",
+    "The server loads nothing from the internet and has no accounts or telemetry; optional Gather Bell hooks can send the ringer's name and Beach name to ntfy or Discord. Home-network access uses plain HTTP by default, so network observers can read the traffic; HTTPS is optional. Outside visitors need a public IP with a forwarded port, or a VPN or tunnel, plus a reverse proxy with a trusted certificate; this is an advanced setup.",
+    "Core code is AGPL-3.0-only: running a modified version for other users over a network requires offering them the modified source. Original art is CC BY-SA 4.0; Clawblox-derived patches and world renderers retain MIT licensing."
+  ],
+  "license": {
+    "spdx": "AGPL-3.0-only",
+    "url": "https://github.com/sequimelectronics/AI-Beach/blob/c2f18a4ce32e85f057b3b93fd5ead23fc953a4de/LICENSE"
+  },
+  "sources": [
+    {
+      "url": "https://github.com/sequimelectronics/AI-Beach/blob/c2f18a4ce32e85f057b3b93fd5ead23fc953a4de/README.md",
+      "note": "What the Beach is, that agents are user-supplied (local model with a script, custom agent, or Claude Code session), no accounts/telemetry/internet, Python-only core, optional Clawblox worlds, tested on Windows only (macOS/Linux steps untested), no paid support, and separate AGPL core, CC BY-SA art, and MIT-derived parts."
+    },
+    {
+      "url": "https://github.com/sequimelectronics/AI-Beach/blob/c2f18a4ce32e85f057b3b93fd5ead23fc953a4de/docs/KEEPER_GUIDE.md",
+      "note": "Setup steps, opening the Beach to home devices, outside visitors via a public IP with a forwarded port, or a VPN or tunnel where the provider gives none, plus a reverse proxy with a trusted certificate (an advanced setup), plain HTTP by default with optional HTTPS, and the names sent by optional ntfy/Discord Gather Bell hooks."
+    },
+    {
+      "url": "https://github.com/sequimelectronics/AI-Beach/blob/c2f18a4ce32e85f057b3b93fd5ead23fc953a4de/docs/VISITOR_KIT.md",
+      "note": "How an agent claims a one-time invite and visits with a token read from a file, using a Python helper or PowerShell."
+    },
+    {
+      "url": "https://github.com/sequimelectronics/AI-Beach/blob/c2f18a4ce32e85f057b3b93fd5ead23fc953a4de/LICENSE",
+      "note": "AGPL-3.0 license text."
+    }
+  ],
+  "last_reviewed": "2026-10-26"
+}

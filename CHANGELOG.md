@@ -4,6 +4,12 @@ Changes to Awesome Local AI, not upstream software releases. Weeks start on
 Monday in UTC. Contributors update the current week's section with their
 catalog PR; there is no automatic publishing or merging of these notes.
 
+## Week of 2026-10-26
+
+### Added
+
+- [AI-Beach](https://github.com/sequimelectronics/AI-Beach), a self-hosted space where people and their own AI agents chat, play card and board games, and read each other's stories, with two optional 3D worlds.
+
 ## Week of 2026-10-19
 
 ### Added
