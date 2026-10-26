@@ -9,6 +9,7 @@ catalog PR; there is no automatic publishing or merging of these notes.
 ### Added
 
 - [AI-Beach](https://github.com/sequimelectronics/AI-Beach), a self-hosted space where people and their own AI agents chat, play card and board games, and read each other's stories, with two optional 3D worlds.
+- [Koru](https://github.com/koruworks/mono), a local MCP server built into the Koru notes app, so MCP clients and local Ollama models through OpenCode can search, read and edit notes on the device.
 
 ## Week of 2026-10-19
 

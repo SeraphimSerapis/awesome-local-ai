@@ -52,7 +52,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 | Tune thermals and memory | [DGX Spark Fan Control](https://github.com/christopherowen/dgx-spark-fan-control), [DGX Spark Memory Saver](https://github.com/christopherowen/dgx-spark-memory-saver) |
 | Validate or simulate inference configurations | [Spark Tools](https://github.com/knapcio/spark-tools) |
 | Chat with a local model | [AI-Beach](https://github.com/sequimelectronics/AI-Beach), [bot-reborn](https://github.com/beasaltfish/bot-reborn), [DwarfStar / ds4](https://github.com/antirez/ds4), [mlx-serve](https://github.com/ddalcu/mlx-serve), [oMLX](https://github.com/jundot/omlx), [Orkas](https://github.com/Orkas-AI/Orkas), [SparkPilot](https://github.com/ashhart/SparkPilot), [Splash](https://github.com/incoai/splash), [Strata](https://github.com/Niko1221/Strata) |
-| Add skills, extensions, or MCP tools | [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud), [Matt Pocock's skills](https://github.com/mattpocock/skills), [Oh My Pi](https://github.com/can1357/oh-my-pi), [Orkas](https://github.com/Orkas-AI/Orkas), [Pi](https://github.com/earendil-works/pi), [YYLO](https://github.com/yylo-dev/yylo) |
+| Add skills, extensions, or MCP tools | [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud), [Koru](https://github.com/koruworks/mono), [Matt Pocock's skills](https://github.com/mattpocock/skills), [Oh My Pi](https://github.com/can1357/oh-my-pi), [Orkas](https://github.com/Orkas-AI/Orkas), [Pi](https://github.com/earendil-works/pi), [YYLO](https://github.com/yylo-dev/yylo) |
 | Use optional cloud integrations | [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud) |
 
 ## Browse by category
@@ -429,9 +429,14 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 
 ### MCP servers
 
-No local-first entries yet. [Suggest a project](CONTRIBUTING.md).
-
-Cloud-dependent entries are in [Cloud integrations](#cloud-integrations).
+- [Koru](https://github.com/koruworks/mono): Local MCP server built into the Koru notes app that lets MCP clients, including local Ollama models through OpenCode, search, read and edit notes kept on the device.
+  - Local workload. Platforms: Windows, Linux. Hardware: Not recorded.
+  - License: [MPL-2.0](https://github.com/koruworks/mono/blob/f1644c88dc6f347c606df396b2984ac899a670e9/LICENSE). [Metadata and evidence](data/projects/koru.json).
+  - Documentation reviewed: 2026-10-26. Repository: not checked yet.
+  - Note: Koru's local store must be running; the MCP bridge reads and edits the workspace through it, and edits are semantic operations rather than raw file writes.
+  - Note: Windows is the supported platform; the Linux build is a nightly preview and public macOS builds are held, so macOS needs a source build.
+  - Note: The Ollama guide uses a source build on Windows; tool-calling quality depends on the chosen model, and the guide suggests a context window of at least 64K tokens for large sessions.
+  - Note: Usage telemetry is opt-in; official builds can optionally sign in to Koru Cloud, which is off in source builds.
 
 ## Cloud integrations
 

@@ -1,0 +1,45 @@
+{
+  "id": "koru",
+  "name": "Koru",
+  "repository": "https://github.com/koruworks/mono",
+  "description": "Local MCP server built into the Koru notes app that lets MCP clients, including local Ollama models through OpenCode, search, read and edit notes kept on the device.",
+  "category": "mcp",
+  "use_cases": [
+    "extend-agents"
+  ],
+  "platforms": [
+    "windows",
+    "linux"
+  ],
+  "hardware": [],
+  "local_mode": "local",
+  "compatibility": [
+    "MCP over stdio through the bundled koru-mcp bridge, with documented setups for Claude Desktop, ChatGPT/Codex and OpenCode.",
+    "Documented OpenCode setup with a tool-capable local Ollama model as the backend."
+  ],
+  "limitations": [
+    "Koru's local store must be running; the MCP bridge reads and edits the workspace through it, and edits are semantic operations rather than raw file writes.",
+    "Windows is the supported platform; the Linux build is a nightly preview and public macOS builds are held, so macOS needs a source build.",
+    "The Ollama guide uses a source build on Windows; tool-calling quality depends on the chosen model, and the guide suggests a context window of at least 64K tokens for large sessions.",
+    "Usage telemetry is opt-in; official builds can optionally sign in to Koru Cloud, which is off in source builds."
+  ],
+  "license": {
+    "spdx": "MPL-2.0",
+    "url": "https://github.com/koruworks/mono/blob/f1644c88dc6f347c606df396b2984ac899a670e9/LICENSE"
+  },
+  "sources": [
+    {
+      "url": "https://github.com/koruworks/mono/blob/f1644c88dc6f347c606df396b2984ac899a670e9/README.md",
+      "note": "Documents the built-in MCP server, local storage, opt-in telemetry, optional Koru Cloud, MPL-2.0 license and platform status (Windows supported, Linux nightly preview, macOS builds held)."
+    },
+    {
+      "url": "https://github.com/koruworks/mono/blob/f1644c88dc6f347c606df396b2984ac899a670e9/guide/user/OLLAMA_LOCAL_MCP.md",
+      "note": "Documents connecting a local Ollama model to Koru through OpenCode with koru-mcp over stdio, and the model and context-window guidance."
+    },
+    {
+      "url": "https://github.com/koruworks/mono/blob/f1644c88dc6f347c606df396b2984ac899a670e9/crates/koru-mcp-server/MCP.md",
+      "note": "Documents the MCP tool surface for listing, searching, reading, creating and editing documents and files."
+    }
+  ],
+  "last_reviewed": "2026-10-26"
+}
