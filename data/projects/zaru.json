@@ -1,0 +1,41 @@
+{
+  "id": "zaru",
+  "name": "Zaru (zaru-cli)",
+  "repository": "https://github.com/100monkeys-ai/zaru-cli",
+  "description": "Terminal agent harness that runs model-requested tool calls behind permission prompts, loops on project validators, and logs every step to a JSONL transcript.",
+  "category": "harnesses",
+  "use_cases": [
+    "use-local-agents"
+  ],
+  "platforms": [
+    "linux"
+  ],
+  "hardware": [],
+  "local_mode": "local-client",
+  "compatibility": [
+    "Ollama server at localhost:11434 by default, with no API key.",
+    "Any OpenAI-compatible chat completions server; Google Gemini API keys are an optional hosted backend."
+  ],
+  "limitations": [
+    "Pre-alpha with no releases or packages; built from source with Rust 1.98.1 and a C compiler, and commands, files and settings can change without notice.",
+    "Built and tested on Linux only; does not build on Windows, and macOS is untested.",
+    "Not a sandbox: tool calls run with the user's permissions, and a permission prompt does not limit what an allowed call can do.",
+    "The model provider receives the task, conversation, tool descriptions and every tool result, including file contents and command output.",
+    "Ollama defaults to a 4,096-token context window; set provider.ollama.context_tokens to request more, capped by the model's reported limit."
+  ],
+  "license": {
+    "spdx": "Apache-2.0",
+    "url": "https://github.com/100monkeys-ai/zaru-cli/blob/dbe708166fe9f62c349f2d9a48c979617d354d13/LICENSE"
+  },
+  "sources": [
+    {
+      "url": "https://github.com/100monkeys-ai/zaru-cli/blob/dbe708166fe9f62c349f2d9a48c979617d354d13/README.md",
+      "note": "Documents the Ollama, OpenAI-compatible and Gemini providers, Linux-only support, pre-alpha status, permission prompts, the validator loop, the JSONL transcript, the not-a-sandbox warning and what the provider receives."
+    },
+    {
+      "url": "https://github.com/100monkeys-ai/zaru-cli/blob/dbe708166fe9f62c349f2d9a48c979617d354d13/LICENSE",
+      "note": "Apache-2.0 license."
+    }
+  ],
+  "last_reviewed": "2026-10-28"
+}
