@@ -21,7 +21,7 @@
     "Built and tested on Linux only; does not build on Windows, and macOS is untested.",
     "Not a sandbox: tool calls run with the user's permissions, and a permission prompt does not limit what an allowed call can do.",
     "The model provider receives the task, conversation, tool descriptions and every tool result, including file contents and command output.",
-    "Ollama's default context window in Zaru is 4,096 tokens unless the server reports one or the user sets it."
+    "Ollama defaults to a 4,096-token context window; set provider.ollama.context_tokens to request more, capped by the model's reported limit."
   ],
   "license": {
     "spdx": "Apache-2.0",

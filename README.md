@@ -41,7 +41,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 | I want to... | Start here |
 | --- | --- |
 | Run a model on my hardware | [boots / ai-bootstrap](https://github.com/kindlingai/boots), [DwarfStar / ds4](https://github.com/antirez/ds4), [mentat](https://github.com/kindlingai/mentat), [mlx-serve](https://github.com/ddalcu/mlx-serve), [oMLX](https://github.com/jundot/omlx), [spark-vllm-docker](https://github.com/eugr/spark-vllm-docker), [SparkPilot](https://github.com/ashhart/SparkPilot), [sparkrun](https://github.com/spark-arena/sparkrun), [Splash](https://github.com/incoai/splash), [Sqwakie](https://github.com/alexcarney460-hue/walkie), [Strata](https://github.com/Niko1221/Strata), [TandemLLM](https://github.com/0xBakeer/TandemLLM), [TensorFold](https://github.com/ashhart/TensorFold) |
-| Connect a coding agent to a local model | [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [DwarfStar / ds4](https://github.com/antirez/ds4), [mlx-serve](https://github.com/ddalcu/mlx-serve), [Oh My Pi](https://github.com/can1357/oh-my-pi), [oMLX](https://github.com/jundot/omlx), [Pi](https://github.com/earendil-works/pi), [Splash](https://github.com/incoai/splash), [Strata](https://github.com/Niko1221/Strata), [Talavine Code](https://github.com/scrossen/talavine-code), [TandemLLM](https://github.com/0xBakeer/TandemLLM), [TensorFold](https://github.com/ashhart/TensorFold), [YYLO](https://github.com/yylo-dev/yylo) |
+| Connect a coding agent to a local model | [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [DwarfStar / ds4](https://github.com/antirez/ds4), [mlx-serve](https://github.com/ddalcu/mlx-serve), [Oh My Pi](https://github.com/can1357/oh-my-pi), [oMLX](https://github.com/jundot/omlx), [Pi](https://github.com/earendil-works/pi), [Splash](https://github.com/incoai/splash), [Strata](https://github.com/Niko1221/Strata), [Talavine Code](https://github.com/scrossen/talavine-code), [TandemLLM](https://github.com/0xBakeer/TandemLLM), [TensorFold](https://github.com/ashhart/TensorFold), [YYLO](https://github.com/yylo-dev/yylo), [Zaru (zaru-cli)](https://github.com/100monkeys-ai/zaru-cli) |
 | Run autonomous agents with local models | [bot-reborn](https://github.com/beasaltfish/bot-reborn), [Contemplative Agent](https://github.com/shimo4228/contemplative-agent) |
 | Test tool-calling quality | [Inference Atlas](https://github.com/0xBakeer/inference-atlas), [Spark Bench](https://github.com/Weschera/spark-bench), [tool-eval-bench](https://github.com/SeraphimSerapis/tool-eval-bench) |
 | Compare inference speed | [Inference Atlas](https://github.com/0xBakeer/inference-atlas), [llama-benchy](https://github.com/eugr/llama-benchy), [RigMark](https://github.com/alexellis/rigmark), [Spark Bench](https://github.com/Weschera/spark-bench), [Spark Tools](https://github.com/knapcio/spark-tools), [tool-eval-bench](https://github.com/SeraphimSerapis/tool-eval-bench) |
@@ -277,6 +277,16 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: The orchestrator itself contacts no model provider: subagents such as Pi are installed and configured separately, and provider credentials, model availability, and any local model servers remain external.
   - Note: Evidence describes unreleased CLI 0.2.12; features and required companion versions may differ from the published stable package.
   - Note: Advanced-mode bootstrap can create an initial commit and protected integration-owner worktree in an empty Git repository. Simple mode uses a shared checkout; fresh Simple initialization downloads agent skills by default unless --no-skills is set. Review skills before loading them.
+
+- [Zaru (zaru-cli)](https://github.com/100monkeys-ai/zaru-cli): Terminal agent harness that runs model-requested tool calls behind permission prompts, loops on project validators, and logs every step to a JSONL transcript.
+  - Local client or agent. Platforms: Linux. Hardware: Not recorded.
+  - License: [Apache-2.0](https://github.com/100monkeys-ai/zaru-cli/blob/dbe708166fe9f62c349f2d9a48c979617d354d13/LICENSE). [Metadata and evidence](data/projects/zaru.json).
+  - Documentation reviewed: 2026-10-28. Repository: not checked yet.
+  - Note: Pre-alpha with no releases or packages; built from source with Rust 1.98.1 and a C compiler, and commands, files and settings can change without notice.
+  - Note: Built and tested on Linux only; does not build on Windows, and macOS is untested.
+  - Note: Not a sandbox: tool calls run with the user's permissions, and a permission prompt does not limit what an allowed call can do.
+  - Note: The model provider receives the task, conversation, tool descriptions and every tool result, including file contents and command output.
+  - Note: Ollama defaults to a 4,096-token context window; set provider.ollama.context\_tokens to request more, capped by the model's reported limit.
 
 <a id="evaluation"></a>
 
