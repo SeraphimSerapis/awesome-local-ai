@@ -1,0 +1,62 @@
+{
+  "id": "agent-qa",
+  "name": "agent-qa",
+  "repository": "https://github.com/vostride/agent-qa",
+  "description": "Test web and mobile apps through a local CLI/MCP server with local model endpoints, memidex memory and validated self-improvement.",
+  "category": "mcp",
+  "use_cases": [
+    "run-local-agents",
+    "extend-agents"
+  ],
+  "platforms": [],
+  "hardware": [],
+  "local_mode": "local-client",
+  "compatibility": [
+    "OpenAI-compatible Chat Completions and Anthropic-compatible Messages endpoints; upstream documents local LM Studio and Ollama configuration.",
+    "MCP over stdio or loopback HTTP for writing tests, running them and reading evidence.",
+    "Appium with UiAutomator2 for Android and XCUITest for iOS."
+  ],
+  "limitations": [
+    "Requires Node.js 24+ and a separately configured model server. Specific model, hardware and host OS combinations were not runtime-tested for this catalog.",
+    "Visual checks need an image-capable model; text-only mode omits screenshots and cannot verify visual details.",
+    "Mobile testing needs Appium and platform tooling; iOS needs macOS and Xcode. Docker is required only for hooks.",
+    "App observations go to the configured model provider. Runs and MCP tools act without approval prompts; use limited test accounts and review plugins, which have full machine access.",
+    "Released versions send usage analytics unless analytics.privacy is true, and run/dashboard update checks contact npm; local model configuration does not guarantee offline operation.",
+    "FSL-1.1-ALv2 restricts use to the license's Permitted Purpose; each version transitions to Apache-2.0 after two years."
+  ],
+  "license": {
+    "spdx": "FSL-1.1-ALv2",
+    "url": "https://github.com/vostride/agent-qa/blob/1b8a9daf46dd0ec1b2c4503d2f1c0e26b0002293/LICENSE.md"
+  },
+  "sources": [
+    {
+      "url": "https://github.com/vostride/agent-qa/blob/1b8a9daf46dd0ec1b2c4503d2f1c0e26b0002293/README.md",
+      "note": "Web/mobile testing, CLI/MCP, memidex memory, validated self-improvement and Node.js requirement."
+    },
+    {
+      "url": "https://vostride.com/docs/agent-qa/configuration/models",
+      "note": "Compatible endpoints, explicit local server examples and vision versus text-only behavior."
+    },
+    {
+      "url": "https://vostride.com/docs/agent-qa/mcp",
+      "note": "Local MCP transports and test, run, evidence and knowledge tools."
+    },
+    {
+      "url": "https://vostride.com/docs/agent-qa/quickstart",
+      "note": "Node.js 24+, model setup and optional Docker requirement for hooks."
+    },
+    {
+      "url": "https://vostride.com/docs/agent-qa/guides/mobile-testing",
+      "note": "Appium drivers, Android tooling and macOS/Xcode requirement for iOS."
+    },
+    {
+      "url": "https://vostride.com/docs/agent-qa/safety",
+      "note": "Application actions, plugin permissions, analytics opt-out and update-check network access."
+    },
+    {
+      "url": "https://vostride.com/docs/agent-qa/self-improvement",
+      "note": "Evidence-gated learning and corrections rather than changes to the agent's own code."
+    }
+  ],
+  "last_reviewed": "2026-10-31"
+}
