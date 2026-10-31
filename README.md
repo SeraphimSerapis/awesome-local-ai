@@ -42,7 +42,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 | --- | --- |
 | Run a model on my hardware | [boots / ai-bootstrap](https://github.com/kindlingai/boots), [DwarfStar / ds4](https://github.com/antirez/ds4), [mentat](https://github.com/kindlingai/mentat), [mlx-serve](https://github.com/ddalcu/mlx-serve), [oMLX](https://github.com/jundot/omlx), [spark-vllm-docker](https://github.com/eugr/spark-vllm-docker), [SparkPilot](https://github.com/ashhart/SparkPilot), [sparkrun](https://github.com/spark-arena/sparkrun), [Splash](https://github.com/incoai/splash), [Sqwakie](https://github.com/alexcarney460-hue/walkie), [Strata](https://github.com/Niko1221/Strata), [TandemLLM](https://github.com/0xBakeer/TandemLLM), [TensorFold](https://github.com/ashhart/TensorFold) |
 | Connect a coding agent to a local model | [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [DwarfStar / ds4](https://github.com/antirez/ds4), [mlx-serve](https://github.com/ddalcu/mlx-serve), [Oh My Pi](https://github.com/can1357/oh-my-pi), [oMLX](https://github.com/jundot/omlx), [Pi](https://github.com/earendil-works/pi), [Splash](https://github.com/incoai/splash), [Strata](https://github.com/Niko1221/Strata), [Talavine Code](https://github.com/scrossen/talavine-code), [TandemLLM](https://github.com/0xBakeer/TandemLLM), [TensorFold](https://github.com/ashhart/TensorFold), [YYLO](https://github.com/yylo-dev/yylo), [Zaru (zaru-cli)](https://github.com/100monkeys-ai/zaru-cli) |
-| Run autonomous agents with local models | [bot-reborn](https://github.com/beasaltfish/bot-reborn), [Contemplative Agent](https://github.com/shimo4228/contemplative-agent) |
+| Run autonomous agents with local models | [agent-qa](https://github.com/vostride/agent-qa), [bot-reborn](https://github.com/beasaltfish/bot-reborn), [Contemplative Agent](https://github.com/shimo4228/contemplative-agent) |
 | Test tool-calling quality | [Inference Atlas](https://github.com/0xBakeer/inference-atlas), [Spark Bench](https://github.com/Weschera/spark-bench), [tool-eval-bench](https://github.com/SeraphimSerapis/tool-eval-bench) |
 | Compare inference speed | [Inference Atlas](https://github.com/0xBakeer/inference-atlas), [llama-benchy](https://github.com/eugr/llama-benchy), [RigMark](https://github.com/alexellis/rigmark), [Spark Bench](https://github.com/Weschera/spark-bench), [Spark Tools](https://github.com/knapcio/spark-tools), [tool-eval-bench](https://github.com/SeraphimSerapis/tool-eval-bench) |
 | Deploy or manage a cluster | [DGX Spark Networking](https://github.com/christopherowen/dgx-spark-networking), [kindling-spark-os](https://github.com/kindlingai/kindling-spark-os), [MCDMA](https://github.com/ashhart/MCDMA), [mentat](https://github.com/kindlingai/mentat), [spark-vllm-docker](https://github.com/eugr/spark-vllm-docker), [sparkrun](https://github.com/spark-arena/sparkrun), [Sqwakie](https://github.com/alexcarney460-hue/walkie) |
@@ -52,7 +52,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 | Tune thermals and memory | [DGX Spark Fan Control](https://github.com/christopherowen/dgx-spark-fan-control), [DGX Spark Memory Saver](https://github.com/christopherowen/dgx-spark-memory-saver) |
 | Validate or simulate inference configurations | [Spark Tools](https://github.com/knapcio/spark-tools) |
 | Chat with a local model | [AI-Beach](https://github.com/sequimelectronics/AI-Beach), [bot-reborn](https://github.com/beasaltfish/bot-reborn), [DwarfStar / ds4](https://github.com/antirez/ds4), [mlx-serve](https://github.com/ddalcu/mlx-serve), [oMLX](https://github.com/jundot/omlx), [Orkas](https://github.com/Orkas-AI/Orkas), [SparkPilot](https://github.com/ashhart/SparkPilot), [Splash](https://github.com/incoai/splash), [Strata](https://github.com/Niko1221/Strata) |
-| Add skills, extensions, or MCP tools | [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud), [Matt Pocock's skills](https://github.com/mattpocock/skills), [Oh My Pi](https://github.com/can1357/oh-my-pi), [Orkas](https://github.com/Orkas-AI/Orkas), [Pi](https://github.com/earendil-works/pi), [YYLO](https://github.com/yylo-dev/yylo) |
+| Add skills, extensions, or MCP tools | [agent-qa](https://github.com/vostride/agent-qa), [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud), [Matt Pocock's skills](https://github.com/mattpocock/skills), [Oh My Pi](https://github.com/can1357/oh-my-pi), [Orkas](https://github.com/Orkas-AI/Orkas), [Pi](https://github.com/earendil-works/pi), [YYLO](https://github.com/yylo-dev/yylo) |
 | Use optional cloud integrations | [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud) |
 
 ## Browse by category
@@ -439,9 +439,16 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 
 ### MCP servers
 
-No local-first entries yet. [Suggest a project](CONTRIBUTING.md).
-
-Cloud-dependent entries are in [Cloud integrations](#cloud-integrations).
+- [agent-qa](https://github.com/vostride/agent-qa): Test web and mobile apps through a local CLI/MCP server with local model endpoints, memidex memory and validated self-improvement.
+  - Local client or agent. Platforms: Not recorded. Hardware: Not recorded.
+  - License: [FSL-1.1-ALv2](https://github.com/vostride/agent-qa/blob/1b8a9daf46dd0ec1b2c4503d2f1c0e26b0002293/LICENSE.md). [Metadata and evidence](data/projects/agent-qa.json).
+  - Documentation reviewed: 2026-10-31. Repository: not checked yet.
+  - Note: Requires Node.js 24+ and a separately configured model server. Specific model, hardware and host OS combinations were not runtime-tested for this catalog.
+  - Note: Visual checks need an image-capable model; text-only mode omits screenshots and cannot verify visual details.
+  - Note: Mobile testing needs Appium and platform tooling; iOS needs macOS and Xcode. Docker is required only for hooks.
+  - Note: App observations go to the configured model provider. Runs and MCP tools act without approval prompts; use limited test accounts and review plugins, which have full machine access.
+  - Note: Released versions send usage analytics unless analytics.privacy is true, and run/dashboard update checks contact npm; local model configuration does not guarantee offline operation.
+  - Note: FSL-1.1-ALv2 restricts use to the license's Permitted Purpose; each version transitions to Apache-2.0 after two years.
 
 ## Cloud integrations
 
