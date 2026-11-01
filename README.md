@@ -443,6 +443,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Local client or agent. Platforms: Not recorded. Hardware: Not recorded.
   - License: [FSL-1.1-ALv2](https://github.com/vostride/agent-qa/blob/1b8a9daf46dd0ec1b2c4503d2f1c0e26b0002293/LICENSE.md). [Metadata and evidence](data/projects/agent-qa.json).
   - Documentation reviewed: 2026-10-31. Repository: not checked yet.
+  - Note: Early-stage project; the pinned upstream README warns that bugs should be expected.
   - Note: Requires Node.js 24+ and a separately configured model server. Specific model, hardware and host OS combinations were not runtime-tested for this catalog.
   - Note: Visual checks need an image-capable model; text-only mode omits screenshots and cannot verify visual details.
   - Note: Mobile testing needs Appium and platform tooling; iOS needs macOS and Xcode. Docker is required only for hooks.

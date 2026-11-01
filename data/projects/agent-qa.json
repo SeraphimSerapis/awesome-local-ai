@@ -17,6 +17,7 @@
     "Appium with UiAutomator2 for Android and XCUITest for iOS."
   ],
   "limitations": [
+    "Early-stage project; the pinned upstream README warns that bugs should be expected.",
     "Requires Node.js 24+ and a separately configured model server. Specific model, hardware and host OS combinations were not runtime-tested for this catalog.",
     "Visual checks need an image-capable model; text-only mode omits screenshots and cannot verify visual details.",
     "Mobile testing needs Appium and platform tooling; iOS needs macOS and Xcode. Docker is required only for hooks.",
@@ -31,7 +32,7 @@
   "sources": [
     {
       "url": "https://github.com/vostride/agent-qa/blob/1b8a9daf46dd0ec1b2c4503d2f1c0e26b0002293/README.md",
-      "note": "Web/mobile testing, CLI/MCP, memidex memory, validated self-improvement and Node.js requirement."
+      "note": "Web/mobile testing, CLI/MCP, memidex memory, validated self-improvement, Node.js requirement and early-stage status."
     },
     {
       "url": "https://vostride.com/docs/agent-qa/configuration/models",
