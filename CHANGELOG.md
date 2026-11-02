@@ -8,6 +8,7 @@ catalog PR; there is no automatic publishing or merging of these notes.
 
 ### Added
 
+- [FadeBench](https://github.com/sequimelectronics/fadebench), a pre-registered benchmark for incremental moral drift in small local models, pairing four-decision ladders with the same final decision asked cold.
 - [agent-qa](https://github.com/vostride/agent-qa), an early-stage web and mobile testing agent with configurable local model endpoints, CLI/MCP access, memidex memory and validated self-improvement.
 - [AI-Beach](https://github.com/sequimelectronics/AI-Beach), a self-hosted space where people and their own AI agents chat, play card and board games, and read each other's stories, with two optional 3D worlds.
 - [Zaru](https://github.com/100monkeys-ai/zaru-cli), a Linux terminal agent harness for local Ollama models with permission prompts, validator loops and a JSONL transcript of every step.

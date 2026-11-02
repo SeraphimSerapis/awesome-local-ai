@@ -1,0 +1,45 @@
+{
+  "id": "fadebench",
+  "name": "FadeBench",
+  "repository": "https://github.com/sequimelectronics/fadebench",
+  "description": "Measure incremental moral drift in small local models: four-decision ladders, each paired with the same final decision asked cold, sent to a /v1/completions server.",
+  "category": "evaluation",
+  "use_cases": [
+    "evaluate-model-behavior"
+  ],
+  "platforms": [
+    "windows"
+  ],
+  "hardware": [],
+  "local_mode": "local-client",
+  "compatibility": [
+    "Calls a model server's /v1/completions endpoint (default http://127.0.0.1:8003) and renders prompts itself in gemma4, gemma4_think, chatml, phi3 or mistral chat formats."
+  ],
+  "limitations": [
+    "A research benchmark with pre-registered criteria, not a leaderboard: the runner only records what was shown and what came back; drift is scored afterwards from the logs under written rubrics in docs/SCORING_GUIDANCE_GRADIENT.md.",
+    "Published baselines cover four open models of roughly 4B to 12B parameters on low-key fantasy scenes; results on other models, sizes or settings are untested.",
+    "Item and scenario files end with a canary line that must be deleted before running; a few item files have redacted authoring notes, listed in docs/RELEASE_COPIES_20261028.md.",
+    "Needs Python 3 with the requests package and a separately running model server; the benchmark includes no model.",
+    "Run by the maintainers on Windows; other platforms are untested.",
+    "Apache-2.0 grants no rights to the FadeBench name, and modified redistributions must mark their changes, so altered items stay identifiable."
+  ],
+  "license": {
+    "spdx": "Apache-2.0",
+    "url": "https://github.com/sequimelectronics/fadebench/blob/c1c0bdf3f8758fdc990fcf4ef22a78da4e4f28b0/LICENSE"
+  },
+  "sources": [
+    {
+      "url": "https://github.com/sequimelectronics/fadebench/blob/07803ac0602be7c325457e7c37121a6608b1caca/README.md",
+      "note": "What the benchmark measures (incremental drift, paired acute controls, anti-bias controls), the runner entry point, the canary line to delete before running, the redacted item files, and the Apache-2.0 terms on the name and on marking changes."
+    },
+    {
+      "url": "https://github.com/sequimelectronics/fadebench/blob/c1c0bdf3f8758fdc990fcf4ef22a78da4e4f28b0/fadebench/runner/run_gradient.py",
+      "note": "The runner reads items and bands from files, calls a model server's /v1/completions endpoint (default http://127.0.0.1:8003), uses the requests package, records outputs without computing scores, and offers the gemma4, gemma4_think, chatml, phi3 and mistral chat formats."
+    },
+    {
+      "url": "https://doi.org/10.5281/zenodo.23846266",
+      "note": "The published paper: four small open models (about 4B to 12B), fantasy scenes, the ladder-versus-cold design and its pre-registered results."
+    }
+  ],
+  "last_reviewed": "2026-11-01"
+}
