@@ -44,6 +44,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 | Connect a coding agent to a local model | [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [DwarfStar / ds4](https://github.com/antirez/ds4), [mlx-serve](https://github.com/ddalcu/mlx-serve), [Oh My Pi](https://github.com/can1357/oh-my-pi), [oMLX](https://github.com/jundot/omlx), [Pi](https://github.com/earendil-works/pi), [Splash](https://github.com/incoai/splash), [Strata](https://github.com/Niko1221/Strata), [Talavine Code](https://github.com/scrossen/talavine-code), [TandemLLM](https://github.com/0xBakeer/TandemLLM), [TensorFold](https://github.com/ashhart/TensorFold), [YYLO](https://github.com/yylo-dev/yylo), [Zaru (zaru-cli)](https://github.com/100monkeys-ai/zaru-cli) |
 | Run autonomous agents with local models | [agent-qa](https://github.com/vostride/agent-qa), [bot-reborn](https://github.com/beasaltfish/bot-reborn), [Contemplative Agent](https://github.com/shimo4228/contemplative-agent) |
 | Test tool-calling quality | [Inference Atlas](https://github.com/0xBakeer/inference-atlas), [Spark Bench](https://github.com/Weschera/spark-bench), [tool-eval-bench](https://github.com/SeraphimSerapis/tool-eval-bench) |
+| Test model behavior and safety | [FadeBench](https://github.com/sequimelectronics/fadebench) |
 | Compare inference speed | [Inference Atlas](https://github.com/0xBakeer/inference-atlas), [llama-benchy](https://github.com/eugr/llama-benchy), [RigMark](https://github.com/alexellis/rigmark), [Spark Bench](https://github.com/Weschera/spark-bench), [Spark Tools](https://github.com/knapcio/spark-tools), [tool-eval-bench](https://github.com/SeraphimSerapis/tool-eval-bench) |
 | Deploy or manage a cluster | [DGX Spark Networking](https://github.com/christopherowen/dgx-spark-networking), [kindling-spark-os](https://github.com/kindlingai/kindling-spark-os), [MCDMA](https://github.com/ashhart/MCDMA), [mentat](https://github.com/kindlingai/mentat), [spark-vllm-docker](https://github.com/eugr/spark-vllm-docker), [sparkrun](https://github.com/spark-arena/sparkrun), [Sqwakie](https://github.com/alexcarney460-hue/walkie) |
 | Set up local AI | [boots / ai-bootstrap](https://github.com/kindlingai/boots), [kindling-spark-os](https://github.com/kindlingai/kindling-spark-os), [sparkrun](https://github.com/spark-arena/sparkrun) |
@@ -291,6 +292,17 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 <a id="evaluation"></a>
 
 ### Evaluation and benchmarking
+
+- [FadeBench](https://github.com/sequimelectronics/fadebench): Measure incremental moral drift in small local models: four-decision ladders, each paired with the same final decision asked cold, sent to a /v1/completions server.
+  - Local client or agent. Platforms: Windows. Hardware: Not recorded.
+  - License: [Apache-2.0](https://github.com/sequimelectronics/fadebench/blob/c1c0bdf3f8758fdc990fcf4ef22a78da4e4f28b0/LICENSE). [Metadata and evidence](data/projects/fadebench.json).
+  - Documentation reviewed: 2026-11-01. Repository: not checked yet.
+  - Note: A research benchmark with pre-registered criteria, not a leaderboard: the runner only records what was shown and what came back; drift is scored afterwards from the logs under written rubrics in docs/SCORING\_GUIDANCE\_GRADIENT.md.
+  - Note: The paper's baselines cover four open models of roughly 4B to 12B parameters on low-key fantasy scenes; results on other models, sizes or settings are untested.
+  - Note: Item and scenario files end with a canary line that must be deleted before running; 11 of the 71 item files have redacted authoring notes, listed in docs/RELEASE\_COPIES\_20261028.md.
+  - Note: Needs Python 3 with the requests package and a separately running model server; the benchmark includes no model.
+  - Note: Run by the maintainers on Windows; other platforms are untested.
+  - Note: Apache-2.0 grants no rights to the FadeBench name, and modified redistributions must mark their changes, so altered items stay identifiable.
 
 - [Inference Atlas](https://github.com/0xBakeer/inference-atlas): Browse community inference measurements and benchmark local model servers with configuration fingerprints, coverage maps, and install recipes.
   - Local client or agent. Platforms: Not recorded. Hardware: Not recorded.

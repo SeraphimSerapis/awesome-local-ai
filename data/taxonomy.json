@@ -16,6 +16,7 @@
     "use-local-agents": "Connect a coding agent to a local model",
     "run-local-agents": "Run autonomous agents with local models",
     "evaluate-tool-calling": "Test tool-calling quality",
+    "evaluate-model-behavior": "Test model behavior and safety",
     "benchmark-serving": "Compare inference speed",
     "manage-clusters": "Deploy or manage a cluster",
     "bootstrap-local-ai": "Set up local AI",
