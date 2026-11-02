@@ -17,8 +17,8 @@
   ],
   "limitations": [
     "A research benchmark with pre-registered criteria, not a leaderboard: the runner only records what was shown and what came back; drift is scored afterwards from the logs under written rubrics in docs/SCORING_GUIDANCE_GRADIENT.md.",
-    "Published baselines cover four open models of roughly 4B to 12B parameters on low-key fantasy scenes; results on other models, sizes or settings are untested.",
-    "Item and scenario files end with a canary line that must be deleted before running; a few item files have redacted authoring notes, listed in docs/RELEASE_COPIES_20261028.md.",
+    "The paper's baselines cover four open models of roughly 4B to 12B parameters on low-key fantasy scenes; results on other models, sizes or settings are untested.",
+    "Item and scenario files end with a canary line that must be deleted before running; 11 of the 71 item files have redacted authoring notes, listed in docs/RELEASE_COPIES_20261028.md.",
     "Needs Python 3 with the requests package and a separately running model server; the benchmark includes no model.",
     "Run by the maintainers on Windows; other platforms are untested.",
     "Apache-2.0 grants no rights to the FadeBench name, and modified redistributions must mark their changes, so altered items stay identifiable."
@@ -38,7 +38,11 @@
     },
     {
       "url": "https://doi.org/10.5281/zenodo.23846266",
-      "note": "The published paper: four small open models (about 4B to 12B), fantasy scenes, the ladder-versus-cold design and its pre-registered results."
+      "note": "The Zenodo paper (a preprint, not peer reviewed): four small open models (about 4B to 12B), fantasy scenes, the ladder-versus-cold design and its pre-registered results."
+    },
+    {
+      "url": "https://github.com/sequimelectronics/fadebench/blob/c1c0bdf3f8758fdc990fcf4ef22a78da4e4f28b0/data/figure1_runs/manifest_gradient_gd-01_d9cd714d_control_vanilla_era3_char39d76ede_bal_p6144_think_gemma-4-E4B_20260908T045927Z.json",
+      "note": "One of the Figure 1 run manifests, recording the platform the runs used: \"platform\": \"Windows-11-10.0.26200-SP0\"."
     }
   ],
   "last_reviewed": "2026-11-01"

@@ -298,8 +298,8 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - License: [Apache-2.0](https://github.com/sequimelectronics/fadebench/blob/c1c0bdf3f8758fdc990fcf4ef22a78da4e4f28b0/LICENSE). [Metadata and evidence](data/projects/fadebench.json).
   - Documentation reviewed: 2026-11-01. Repository: not checked yet.
   - Note: A research benchmark with pre-registered criteria, not a leaderboard: the runner only records what was shown and what came back; drift is scored afterwards from the logs under written rubrics in docs/SCORING\_GUIDANCE\_GRADIENT.md.
-  - Note: Published baselines cover four open models of roughly 4B to 12B parameters on low-key fantasy scenes; results on other models, sizes or settings are untested.
-  - Note: Item and scenario files end with a canary line that must be deleted before running; a few item files have redacted authoring notes, listed in docs/RELEASE\_COPIES\_20261028.md.
+  - Note: The paper's baselines cover four open models of roughly 4B to 12B parameters on low-key fantasy scenes; results on other models, sizes or settings are untested.
+  - Note: Item and scenario files end with a canary line that must be deleted before running; 11 of the 71 item files have redacted authoring notes, listed in docs/RELEASE\_COPIES\_20261028.md.
   - Note: Needs Python 3 with the requests package and a separately running model server; the benchmark includes no model.
   - Note: Run by the maintainers on Windows; other platforms are untested.
   - Note: Apache-2.0 grants no rights to the FadeBench name, and modified redistributions must mark their changes, so altered items stay identifiable.

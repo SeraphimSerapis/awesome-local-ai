@@ -4,11 +4,20 @@ Changes to Awesome Local AI, not upstream software releases. Weeks start on
 Monday in UTC. Contributors update the current week's section with their
 catalog PR; there is no automatic publishing or merging of these notes.
 
-## Week of 2026-10-26
+## Week of 2026-11-02
 
 ### Added
 
 - [FadeBench](https://github.com/sequimelectronics/fadebench), a pre-registered benchmark for incremental moral drift in small local models, pairing four-decision ladders with the same final decision asked cold.
+
+### Updated
+
+- Task-based browsing adds a behavior and safety tag.
+
+## Week of 2026-10-26
+
+### Added
+
 - [agent-qa](https://github.com/vostride/agent-qa), an early-stage web and mobile testing agent with configurable local model endpoints, CLI/MCP access, memidex memory and validated self-improvement.
 - [AI-Beach](https://github.com/sequimelectronics/AI-Beach), a self-hosted space where people and their own AI agents chat, play card and board games, and read each other's stories, with two optional 3D worlds.
 - [Zaru](https://github.com/100monkeys-ai/zaru-cli), a Linux terminal agent harness for local Ollama models with permission prompts, validator loops and a JSONL transcript of every step.
