@@ -52,8 +52,8 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 | Troubleshoot my setup | [DGX Spark Networking](https://github.com/christopherowen/dgx-spark-networking), [Spark Doctor](https://github.com/joeynyc/spark-doctor) |
 | Tune thermals and memory | [DGX Spark Fan Control](https://github.com/christopherowen/dgx-spark-fan-control), [DGX Spark Memory Saver](https://github.com/christopherowen/dgx-spark-memory-saver) |
 | Validate or simulate inference configurations | [Spark Tools](https://github.com/knapcio/spark-tools) |
-| Chat with a local model | [AI-Beach](https://github.com/sequimelectronics/AI-Beach), [bot-reborn](https://github.com/beasaltfish/bot-reborn), [DwarfStar / ds4](https://github.com/antirez/ds4), [mlx-serve](https://github.com/ddalcu/mlx-serve), [oMLX](https://github.com/jundot/omlx), [Orkas](https://github.com/Orkas-AI/Orkas), [SparkPilot](https://github.com/ashhart/SparkPilot), [Splash](https://github.com/incoai/splash), [Strata](https://github.com/Niko1221/Strata) |
-| Add skills, extensions, or MCP tools | [agent-qa](https://github.com/vostride/agent-qa), [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud), [Matt Pocock's skills](https://github.com/mattpocock/skills), [Oh My Pi](https://github.com/can1357/oh-my-pi), [Orkas](https://github.com/Orkas-AI/Orkas), [Pi](https://github.com/earendil-works/pi), [YYLO](https://github.com/yylo-dev/yylo) |
+| Chat with a local model | [AI-Beach](https://github.com/sequimelectronics/AI-Beach), [bot-reborn](https://github.com/beasaltfish/bot-reborn), [DwarfStar / ds4](https://github.com/antirez/ds4), [mlx-serve](https://github.com/ddalcu/mlx-serve), [oMLX](https://github.com/jundot/omlx), [Orkas](https://github.com/Orkas-AI/Orkas), [SparkPilot](https://github.com/ashhart/SparkPilot), [Splash](https://github.com/incoai/splash), [Strata](https://github.com/Niko1221/Strata), [ThreadShelf](https://github.com/ChrystianSchutz/ThreadShelf) |
+| Add skills, extensions, or MCP tools | [agent-qa](https://github.com/vostride/agent-qa), [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud), [Matt Pocock's skills](https://github.com/mattpocock/skills), [Oh My Pi](https://github.com/can1357/oh-my-pi), [Orkas](https://github.com/Orkas-AI/Orkas), [Pi](https://github.com/earendil-works/pi), [ThreadShelf](https://github.com/ChrystianSchutz/ThreadShelf), [YYLO](https://github.com/yylo-dev/yylo) |
 | Use optional cloud integrations | [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud) |
 
 ## Browse by category
@@ -436,6 +436,16 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: Beta testing focuses on iPhone and iPad with Nemotron Lightning; the Linux tag describes the Spark runtime.
   - Note: A source build does not establish hardware qualification; not every development recipe is approved for distribution.
   - Note: The Qwen engine adaptation includes separately licensed AGPL components.
+
+- [ThreadShelf](https://github.com/ChrystianSchutz/ThreadShelf): Index ChatGPT, Claude, Google AI Studio, OpenRouter, LM Studio and Grok exports locally for semantic and exact search, then continue old threads with local GGUF models.
+  - Local workload. Platforms: Linux, macOS, Windows. Hardware: CPU.
+  - License: [MIT](https://github.com/ChrystianSchutz/ThreadShelf/blob/f13b721561305c3b040dc701ce86553ec36c4447/LICENSE). [Metadata and evidence](data/projects/threadshelf.json).
+  - Documentation reviewed: 2026-11-05. Repository: not checked yet.
+  - Note: Single-user application: the HTTP API has no accounts or authentication and should stay on loopback unless deliberately exposed on a trusted network.
+  - Note: The local embedding model downloads once on first indexing; llama.cpp builds come from GitHub Releases and GGUF models from Hugging Face only when the user asks.
+  - Note: Optional OpenRouter generation is off-device: it sends the selected conversation history and prompt to OpenRouter and the routed provider.
+  - Note: Google AI Studio and Grok exports use undocumented formats that can change without notice.
+  - Note: Requires Node.js 20.19 or newer; installed through npm (npx threadshelf).
 
 <a id="skills"></a>
 
