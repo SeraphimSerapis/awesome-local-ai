@@ -9,6 +9,7 @@ catalog PR; there is no automatic publishing or merging of these notes.
 ### Added
 
 - [FadeBench](https://github.com/sequimelectronics/fadebench), a pre-registered benchmark for incremental moral drift in small local models, pairing four-decision ladders with the same final decision asked cold.
+- [ThreadShelf](https://github.com/ChrystianSchutz/ThreadShelf), a local archive with semantic and exact search for exported AI chats (ChatGPT, Claude, Google AI Studio, OpenRouter, LM Studio, Grok), with an MCP server and thread continuation through local llama.cpp.
 
 ### Updated
 
