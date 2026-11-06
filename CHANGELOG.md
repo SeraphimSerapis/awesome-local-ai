@@ -8,6 +8,7 @@ catalog PR; there is no automatic publishing or merging of these notes.
 
 ### Added
 
+- [BankBridge](https://github.com/bankbridge-money/bankbridge-plugin), a hosted, read-only MCP server for your own US bank accounts, listed as a cloud integration because bank data leaves the machine.
 - [FadeBench](https://github.com/sequimelectronics/fadebench), a pre-registered benchmark for incremental moral drift in small local models, pairing four-decision ladders with the same final decision asked cold.
 
 ### Updated
