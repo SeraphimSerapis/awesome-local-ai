@@ -9,6 +9,7 @@ catalog PR; there is no automatic publishing or merging of these notes.
 ### Added
 
 - [FadeBench](https://github.com/sequimelectronics/fadebench), a pre-registered benchmark for incremental moral drift in small local models, pairing four-decision ladders with the same final decision asked cold.
+- [BAXY](https://github.com/REDSOULTM/BAXY), a voice and text assistant that operates a Windows PC in English and Spanish, running its own fine-tuned Qwen3.5-4B model on a dedicated 4 GB GPU.
 
 ### Updated
 

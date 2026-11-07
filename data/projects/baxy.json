@@ -1,0 +1,51 @@
+{
+  "id": "baxy",
+  "name": "BAXY",
+  "repository": "https://github.com/REDSOULTM/BAXY",
+  "description": "Voice and text assistant that operates a Windows PC in English and Spanish, running its own fine-tuned Qwen3.5-4B model on a dedicated 4 GB GPU.",
+  "category": "applications",
+  "use_cases": [
+    "chat-with-models",
+    "run-local-agents"
+  ],
+  "platforms": [
+    "windows"
+  ],
+  "hardware": [
+    "nvidia-gpu",
+    "amd-gpu"
+  ],
+  "local_mode": "local",
+  "compatibility": [
+    "Runs its model with llama-server from llama.cpp.",
+    "Speech recognition (Parakeet) and the voice (Supertonic 3) run on sherpa-onnx."
+  ],
+  "limitations": [
+    "Early access, under active development.",
+    "Needs a dedicated GPU with 4 GB of memory; integrated graphics and CPU only are not supported.",
+    "Tested on NVIDIA cards; AMD through Vulkan is in testing, and the CUDA/Vulkan split on real AMD or Intel cards was simulated.",
+    "Installing needs internet and about 12 GB free; the download is about 5 GB.",
+    "It acts on the desktop with the user's permissions. It asks before destructive actions, sending something or closing unsaved work, and that prompt can be turned off.",
+    "Web requests, and an optional third-party model API the user connects, send data off the PC; otherwise it stays local.",
+    "The project's own code is MIT, but the voice model is under BigScience OpenRAIL-M, which is not an open source license and carries use restrictions; other components keep their own licenses."
+  ],
+  "license": {
+    "spdx": "MIT",
+    "url": "https://raw.githubusercontent.com/REDSOULTM/BAXY/6ea8a63aa0f07acdbab5d8a6bc7d68ceeeb17a95/LICENSE"
+  },
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/REDSOULTM/BAXY/6ea8a63aa0f07acdbab5d8a6bc7d68ceeeb17a95/README.md",
+      "note": "What it does, requirements, untested hardware cases, data leaving the PC, confirmation behavior and license summary."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/REDSOULTM/BAXY/6ea8a63aa0f07acdbab5d8a6bc7d68ceeeb17a95/THIRD_PARTY_NOTICES.md",
+      "note": "Third-party components and model licenses, including sherpa-onnx, llama.cpp and the Supertonic 3 voice under OpenRAIL-M."
+    },
+    {
+      "url": "https://github.com/REDSOULTM/BAXY/releases/tag/v1.3.0",
+      "note": "Reviewed release, its download size and its installer."
+    }
+  ],
+  "last_reviewed": "2026-11-06"
+}
