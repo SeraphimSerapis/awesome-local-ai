@@ -16,8 +16,8 @@
   ],
   "limitations": [
     "Hosted, closed-source server; the repository holds the client package and skill. Paid service, $5/mo per connected bank. US banks only.",
-    "With a local model the conversation stays on your machine, but balances and transactions still pass through a bank-data provider and bankbridge.money, which keeps no copy. Not an offline tool.",
-    "Read-only: no tool can move money, pay a bill or place a trade."
+    "Balances and transactions pass through a bank-data provider and BankBridge to the agent. The vendor says BankBridge does not store them. Not an offline tool.",
+    "The vendor describes the tools as read-only, with no ability to move money, pay bills or place trades."
   ],
   "license": {
     "spdx": "MIT",
@@ -33,5 +33,5 @@
       "note": "Vendor page describing how agents connect."
     }
   ],
-  "last_reviewed": "2026-11-06"
+  "last_reviewed": "2026-11-08"
 }

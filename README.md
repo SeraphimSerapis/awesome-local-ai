@@ -53,8 +53,8 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 | Tune thermals and memory | [DGX Spark Fan Control](https://github.com/christopherowen/dgx-spark-fan-control), [DGX Spark Memory Saver](https://github.com/christopherowen/dgx-spark-memory-saver) |
 | Validate or simulate inference configurations | [Spark Tools](https://github.com/knapcio/spark-tools) |
 | Chat with a local model | [AI-Beach](https://github.com/sequimelectronics/AI-Beach), [bot-reborn](https://github.com/beasaltfish/bot-reborn), [DwarfStar / ds4](https://github.com/antirez/ds4), [Kapitsa](https://github.com/nace-ai/kapitsa), [mlx-serve](https://github.com/ddalcu/mlx-serve), [oMLX](https://github.com/jundot/omlx), [Orkas](https://github.com/Orkas-AI/Orkas), [SparkPilot](https://github.com/ashhart/SparkPilot), [Splash](https://github.com/incoai/splash), [Strata](https://github.com/Niko1221/Strata) |
-| Add skills, extensions, or MCP tools | [agent-qa](https://github.com/vostride/agent-qa), [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud), [Matt Pocock's skills](https://github.com/mattpocock/skills), [Oh My Pi](https://github.com/can1357/oh-my-pi), [Orkas](https://github.com/Orkas-AI/Orkas), [Pi](https://github.com/earendil-works/pi), [YYLO](https://github.com/yylo-dev/yylo) |
-| Use optional cloud integrations | [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud) |
+| Add skills, extensions, or MCP tools | [agent-qa](https://github.com/vostride/agent-qa), [BankBridge](https://github.com/bankbridge-money/bankbridge-plugin) (cloud), [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud), [Matt Pocock's skills](https://github.com/mattpocock/skills), [Oh My Pi](https://github.com/can1357/oh-my-pi), [Orkas](https://github.com/Orkas-AI/Orkas), [Pi](https://github.com/earendil-works/pi), [YYLO](https://github.com/yylo-dev/yylo) |
+| Use optional cloud integrations | [BankBridge](https://github.com/bankbridge-money/bankbridge-plugin) (cloud), [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud) |
 
 ## Browse by category
 
@@ -478,6 +478,14 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 ## Cloud integrations
 
 These integrations connect agents to cloud services. They are not offline local AI tools.
+
+- [BankBridge](https://github.com/bankbridge-money/bankbridge-plugin): Answer questions about your own US bank, credit card and investment accounts from any MCP agent, including ones running a local model.
+  - Cloud integration. Platforms: Not recorded. Hardware: Not recorded.
+  - License: [MIT](https://raw.githubusercontent.com/bankbridge-money/bankbridge-plugin/c7fcda435eeaeee94cf4479983d646027befb467/LICENSE). [Metadata and evidence](data/projects/bankbridge.json).
+  - Documentation reviewed: 2026-11-08. Repository: not checked yet.
+  - Note: Hosted, closed-source server; the repository holds the client package and skill. Paid service, $5/mo per connected bank. US banks only.
+  - Note: Balances and transactions pass through a bank-data provider and BankBridge to the agent. The vendor says BankBridge does not store them. Not an offline tool.
+  - Note: The vendor describes the tools as read-only, with no ability to move money, pay bills or place trades.
 
 - [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp): Connect MCP-capable agents to Google Cloud management, observability, storage, and backup tools.
   - Cloud integration. Platforms: Not recorded. Hardware: Not recorded.
