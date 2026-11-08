@@ -9,6 +9,7 @@ catalog PR; there is no automatic publishing or merging of these notes.
 ### Added
 
 - [FadeBench](https://github.com/sequimelectronics/fadebench), a pre-registered benchmark for incremental moral drift in small local models, pairing four-decision ladders with the same final decision asked cold.
+- [Kapitsa](https://github.com/nace-ai/kapitsa), a native C++ inference engine for Apple Silicon on Metal kernels and the Neural Engine, with OpenAI- and Anthropic-compatible APIs and one-command coding agents.
 
 ### Updated
 
