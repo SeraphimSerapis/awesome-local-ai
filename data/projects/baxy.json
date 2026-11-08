@@ -23,29 +23,30 @@
   "limitations": [
     "Early access, under active development.",
     "Needs a dedicated GPU with 4 GB of memory; integrated graphics and CPU only are not supported.",
-    "Tested on NVIDIA cards; AMD through Vulkan is in testing, and the CUDA/Vulkan split on real AMD or Intel cards was simulated.",
-    "Installing needs internet and about 12 GB free; the download is about 5 GB.",
+    "AMD support is partly tested: version 1.3.0 ran on one AMD card, but 1.3.1 was tested with a simulated AMD card. Intel cards were not tested.",
+    "Installing needs internet and about 12 GB free; the download is about 5 GB. The installer is unsigned, and downloading from the release page was not tested end to end for 1.3.1.",
     "It acts on the desktop with the user's permissions. It asks before destructive actions, sending something or closing unsaved work, and that prompt can be turned off.",
     "Web requests, and an optional third-party model API the user connects, send data off the PC; otherwise it stays local.",
-    "The project's own code is MIT, but the voice model is under BigScience OpenRAIL-M, which is not an open source license and carries use restrictions; other components keep their own licenses."
+    "The project's own code is MIT. The voice model uses BigScience OpenRAIL-M, which restricts use; avatar media and other components have separate terms.",
+    "The maintainer reports unresolved licensing questions about the wake word model's training, including voices without written permission. Earlier releases were withdrawn; the 1.3.1 release notes describe the remaining uncertainty."
   ],
   "license": {
-    "spdx": "MIT",
-    "url": "https://raw.githubusercontent.com/REDSOULTM/BAXY/6ea8a63aa0f07acdbab5d8a6bc7d68ceeeb17a95/LICENSE"
+    "spdx": null,
+    "url": "https://raw.githubusercontent.com/REDSOULTM/BAXY/f0e66d197c6d6f970257383e766e2f63b2dc7353/LICENSE"
   },
   "sources": [
     {
-      "url": "https://raw.githubusercontent.com/REDSOULTM/BAXY/6ea8a63aa0f07acdbab5d8a6bc7d68ceeeb17a95/README.md",
+      "url": "https://raw.githubusercontent.com/REDSOULTM/BAXY/f0e66d197c6d6f970257383e766e2f63b2dc7353/README.md",
       "note": "What it does, requirements, untested hardware cases, data leaving the PC, confirmation behavior and license summary."
     },
     {
-      "url": "https://raw.githubusercontent.com/REDSOULTM/BAXY/6ea8a63aa0f07acdbab5d8a6bc7d68ceeeb17a95/THIRD_PARTY_NOTICES.md",
+      "url": "https://raw.githubusercontent.com/REDSOULTM/BAXY/f0e66d197c6d6f970257383e766e2f63b2dc7353/THIRD_PARTY_NOTICES.md",
       "note": "Third-party components and model licenses, including sherpa-onnx, llama.cpp and the Supertonic 3 voice under OpenRAIL-M."
     },
     {
-      "url": "https://github.com/REDSOULTM/BAXY/releases/tag/v1.3.0",
-      "note": "Reviewed release, its download size and its installer."
+      "url": "https://github.com/REDSOULTM/BAXY/releases/tag/v1.3.1",
+      "note": "Release download sizes, hardware testing limits, installer, and wake word licensing questions."
     }
   ],
-  "last_reviewed": "2026-11-06"
+  "last_reviewed": "2026-11-08"
 }
