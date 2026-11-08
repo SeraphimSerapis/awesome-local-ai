@@ -1,0 +1,47 @@
+{
+  "id": "threadshelf",
+  "name": "ThreadShelf",
+  "repository": "https://github.com/ChrystianSchutz/ThreadShelf",
+  "description": "Index ChatGPT, Claude, Google AI Studio, OpenRouter, LM Studio and Grok exports locally for semantic and exact search, then continue old threads with local GGUF models.",
+  "category": "applications",
+  "use_cases": [
+    "chat-with-models",
+    "extend-agents"
+  ],
+  "platforms": [
+    "linux",
+    "macos",
+    "windows"
+  ],
+  "hardware": [
+    "cpu"
+  ],
+  "local_mode": "local",
+  "compatibility": [
+    "Runs GGUF models through a managed, loopback-only llama.cpp llama-server, with guided setup of an official llama.cpp build.",
+    "Serves its GGUF models over OpenAI- and Anthropic-compatible endpoints at /v1 (chat/completions, completions, responses, messages).",
+    "Exposes archive search and full-thread reading to MCP clients through a stdio MCP server."
+  ],
+  "limitations": [
+    "Single-user application: the HTTP API has no accounts or authentication and should stay on loopback unless deliberately exposed on a trusted network.",
+    "The local embedding model downloads once on first indexing; llama.cpp builds come from GitHub Releases and GGUF models from Hugging Face only when the user asks.",
+    "Optional OpenRouter generation is off-device: it sends the selected conversation history and prompt to OpenRouter and the routed provider.",
+    "Google AI Studio, OpenRouter, LM Studio and Grok exports use undocumented formats that can change without notice.",
+    "Requires Node.js 20.19 or newer; installed through npm (npx threadshelf)."
+  ],
+  "license": {
+    "spdx": "MIT",
+    "url": "https://github.com/ChrystianSchutz/ThreadShelf/blob/f13b721561305c3b040dc701ce86553ec36c4447/LICENSE"
+  },
+  "sources": [
+    {
+      "url": "https://github.com/ChrystianSchutz/ThreadShelf/blob/f13b721561305c3b040dc701ce86553ec36c4447/README.md",
+      "note": "Supported sources, local embeddings and LanceDB storage, MCP stdio server, llama.cpp and OpenRouter generation, /v1 compatible endpoints, Windows/macOS/Linux data paths, privacy boundary, and the single-user, no-authentication limitation."
+    },
+    {
+      "url": "https://github.com/ChrystianSchutz/ThreadShelf/blob/f13b721561305c3b040dc701ce86553ec36c4447/LICENSE",
+      "note": "MIT license text."
+    }
+  ],
+  "last_reviewed": "2026-11-08"
+}
