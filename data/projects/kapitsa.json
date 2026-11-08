@@ -23,7 +23,7 @@
   ],
   "limitations": [
     "Requires Apple Silicon (M1 or newer) and macOS 14 or later; no Linux or Windows.",
-    "Memory: the README points 16-24 GB Macs at the 9b model (or 4b); larger models such as the 35B-A3B need more.",
+    "Memory: the README points 16-24 GB Macs at the 9b model (or 4b); the 35B-A3B's 4-bit build is 22.1 GB and needs a 32 GB Mac, while its 2-bit builds fit 16-24 GB Macs.",
     "Runs the models in its catalog and imported Qwen or Flint GGUFs; Flint, Clover, the text-only Nemotrons and the 35B's 16gb build read text only.",
     "Checks GitHub once a day for a new release and can update itself; KAPITSA_NO_AUTO_UPDATE=1 or kapitsa update --auto off turns this off."
   ],
