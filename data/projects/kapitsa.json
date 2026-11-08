@@ -23,6 +23,7 @@
   ],
   "limitations": [
     "Requires Apple Silicon (M1 or newer) and macOS 14 or later; no Linux or Windows.",
+    "Memory: the README points 16-24 GB Macs at the 9b model (or 4b); larger models such as the 35B-A3B need more.",
     "Runs the models in its catalog and imported Qwen or Flint GGUFs; Flint, Clover, the text-only Nemotrons and the 35B's 16gb build read text only.",
     "Checks GitHub once a day for a new release and can update itself; KAPITSA_NO_AUTO_UPDATE=1 or kapitsa update --auto off turns this off."
   ],
@@ -38,6 +39,10 @@
     {
       "url": "https://raw.githubusercontent.com/nace-ai/kapitsa/95a0a552fab5c359dd91b716e9936918d436d713/docs/usage.md",
       "note": "Automatic update check, what it sends, and how to turn it off."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/nace-ai/kapitsa/95a0a552fab5c359dd91b716e9936918d436d713/docs/architecture.md",
+      "note": "Design overview; states that Kapitsa does not use the MLX or llama.cpp runtime (native C++ on Metal kernels and the Neural Engine)."
     }
   ],
   "last_reviewed": "2026-11-08"
