@@ -26,7 +26,7 @@
     "Single-user application: the HTTP API has no accounts or authentication and should stay on loopback unless deliberately exposed on a trusted network.",
     "The local embedding model downloads once on first indexing; llama.cpp builds come from GitHub Releases and GGUF models from Hugging Face only when the user asks.",
     "Optional OpenRouter generation is off-device: it sends the selected conversation history and prompt to OpenRouter and the routed provider.",
-    "Google AI Studio and Grok exports use undocumented formats that can change without notice.",
+    "Google AI Studio, OpenRouter, LM Studio and Grok exports use undocumented formats that can change without notice.",
     "Requires Node.js 20.19 or newer; installed through npm (npx threadshelf)."
   ],
   "license": {
@@ -43,5 +43,5 @@
       "note": "MIT license text."
     }
   ],
-  "last_reviewed": "2026-11-05"
+  "last_reviewed": "2026-11-08"
 }

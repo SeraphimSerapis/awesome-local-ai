@@ -40,8 +40,8 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 
 | I want to... | Start here |
 | --- | --- |
-| Run a model on my hardware | [boots / ai-bootstrap](https://github.com/kindlingai/boots), [DwarfStar / ds4](https://github.com/antirez/ds4), [mentat](https://github.com/kindlingai/mentat), [mlx-serve](https://github.com/ddalcu/mlx-serve), [oMLX](https://github.com/jundot/omlx), [spark-vllm-docker](https://github.com/eugr/spark-vllm-docker), [SparkPilot](https://github.com/ashhart/SparkPilot), [sparkrun](https://github.com/spark-arena/sparkrun), [Splash](https://github.com/incoai/splash), [Sqwakie](https://github.com/alexcarney460-hue/walkie), [Strata](https://github.com/Niko1221/Strata), [TandemLLM](https://github.com/0xBakeer/TandemLLM), [TensorFold](https://github.com/ashhart/TensorFold) |
-| Connect a coding agent to a local model | [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [DwarfStar / ds4](https://github.com/antirez/ds4), [mlx-serve](https://github.com/ddalcu/mlx-serve), [Oh My Pi](https://github.com/can1357/oh-my-pi), [oMLX](https://github.com/jundot/omlx), [Pi](https://github.com/earendil-works/pi), [Splash](https://github.com/incoai/splash), [Strata](https://github.com/Niko1221/Strata), [Talavine Code](https://github.com/scrossen/talavine-code), [TandemLLM](https://github.com/0xBakeer/TandemLLM), [TensorFold](https://github.com/ashhart/TensorFold), [YYLO](https://github.com/yylo-dev/yylo), [Zaru (zaru-cli)](https://github.com/100monkeys-ai/zaru-cli) |
+| Run a model on my hardware | [boots / ai-bootstrap](https://github.com/kindlingai/boots), [DwarfStar / ds4](https://github.com/antirez/ds4), [Kapitsa](https://github.com/nace-ai/kapitsa), [mentat](https://github.com/kindlingai/mentat), [mlx-serve](https://github.com/ddalcu/mlx-serve), [oMLX](https://github.com/jundot/omlx), [spark-vllm-docker](https://github.com/eugr/spark-vllm-docker), [SparkPilot](https://github.com/ashhart/SparkPilot), [sparkrun](https://github.com/spark-arena/sparkrun), [Splash](https://github.com/incoai/splash), [Sqwakie](https://github.com/alexcarney460-hue/walkie), [Strata](https://github.com/Niko1221/Strata), [TandemLLM](https://github.com/0xBakeer/TandemLLM), [TensorFold](https://github.com/ashhart/TensorFold) |
+| Connect a coding agent to a local model | [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [DwarfStar / ds4](https://github.com/antirez/ds4), [Kapitsa](https://github.com/nace-ai/kapitsa), [mlx-serve](https://github.com/ddalcu/mlx-serve), [Oh My Pi](https://github.com/can1357/oh-my-pi), [oMLX](https://github.com/jundot/omlx), [Pi](https://github.com/earendil-works/pi), [Splash](https://github.com/incoai/splash), [Strata](https://github.com/Niko1221/Strata), [Talavine Code](https://github.com/scrossen/talavine-code), [TandemLLM](https://github.com/0xBakeer/TandemLLM), [TensorFold](https://github.com/ashhart/TensorFold), [YYLO](https://github.com/yylo-dev/yylo), [Zaru (zaru-cli)](https://github.com/100monkeys-ai/zaru-cli) |
 | Run autonomous agents with local models | [agent-qa](https://github.com/vostride/agent-qa), [bot-reborn](https://github.com/beasaltfish/bot-reborn), [Contemplative Agent](https://github.com/shimo4228/contemplative-agent) |
 | Test tool-calling quality | [Inference Atlas](https://github.com/0xBakeer/inference-atlas), [Spark Bench](https://github.com/Weschera/spark-bench), [tool-eval-bench](https://github.com/SeraphimSerapis/tool-eval-bench) |
 | Test model behavior and safety | [FadeBench](https://github.com/sequimelectronics/fadebench) |
@@ -52,9 +52,9 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 | Troubleshoot my setup | [DGX Spark Networking](https://github.com/christopherowen/dgx-spark-networking), [Spark Doctor](https://github.com/joeynyc/spark-doctor) |
 | Tune thermals and memory | [DGX Spark Fan Control](https://github.com/christopherowen/dgx-spark-fan-control), [DGX Spark Memory Saver](https://github.com/christopherowen/dgx-spark-memory-saver) |
 | Validate or simulate inference configurations | [Spark Tools](https://github.com/knapcio/spark-tools) |
-| Chat with a local model | [AI-Beach](https://github.com/sequimelectronics/AI-Beach), [bot-reborn](https://github.com/beasaltfish/bot-reborn), [DwarfStar / ds4](https://github.com/antirez/ds4), [mlx-serve](https://github.com/ddalcu/mlx-serve), [oMLX](https://github.com/jundot/omlx), [Orkas](https://github.com/Orkas-AI/Orkas), [SparkPilot](https://github.com/ashhart/SparkPilot), [Splash](https://github.com/incoai/splash), [Strata](https://github.com/Niko1221/Strata), [ThreadShelf](https://github.com/ChrystianSchutz/ThreadShelf) |
-| Add skills, extensions, or MCP tools | [agent-qa](https://github.com/vostride/agent-qa), [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud), [Matt Pocock's skills](https://github.com/mattpocock/skills), [Oh My Pi](https://github.com/can1357/oh-my-pi), [Orkas](https://github.com/Orkas-AI/Orkas), [Pi](https://github.com/earendil-works/pi), [ThreadShelf](https://github.com/ChrystianSchutz/ThreadShelf), [YYLO](https://github.com/yylo-dev/yylo) |
-| Use optional cloud integrations | [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud) |
+| Chat with a local model | [AI-Beach](https://github.com/sequimelectronics/AI-Beach), [bot-reborn](https://github.com/beasaltfish/bot-reborn), [DwarfStar / ds4](https://github.com/antirez/ds4), [Kapitsa](https://github.com/nace-ai/kapitsa), [mlx-serve](https://github.com/ddalcu/mlx-serve), [oMLX](https://github.com/jundot/omlx), [Orkas](https://github.com/Orkas-AI/Orkas), [SparkPilot](https://github.com/ashhart/SparkPilot), [Splash](https://github.com/incoai/splash), [Strata](https://github.com/Niko1221/Strata), [ThreadShelf](https://github.com/ChrystianSchutz/ThreadShelf) |
+| Add skills, extensions, or MCP tools | [agent-qa](https://github.com/vostride/agent-qa), [BankBridge](https://github.com/bankbridge-money/bankbridge-plugin) (cloud), [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud), [Matt Pocock's skills](https://github.com/mattpocock/skills), [Oh My Pi](https://github.com/can1357/oh-my-pi), [Orkas](https://github.com/Orkas-AI/Orkas), [Pi](https://github.com/earendil-works/pi), [ThreadShelf](https://github.com/ChrystianSchutz/ThreadShelf), [YYLO](https://github.com/yylo-dev/yylo) |
+| Use optional cloud integrations | [BankBridge](https://github.com/bankbridge-money/bankbridge-plugin) (cloud), [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud) |
 
 ## Browse by category
 
@@ -81,6 +81,15 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Last observed push: 2026-11-02. Archived: no. Disabled: no.
   - Note: Beta-quality software with fast-changing model support; uses project-produced GGUF files, not arbitrary GGUF models.
   - Note: Metal primarily targets Macs with 96 GB or more; smaller machines and larger models may need SSD streaming.
+
+- [Kapitsa](https://github.com/nace-ai/kapitsa): Serve Qwen, Nemotron, Flint and Clover models on Apple Silicon with a native C++ engine on Metal kernels and the Neural Engine, without an MLX or llama.cpp runtime.
+  - Local workload. Platforms: macOS. Hardware: Apple Silicon.
+  - License: [Apache-2.0](https://raw.githubusercontent.com/nace-ai/kapitsa/95a0a552fab5c359dd91b716e9936918d436d713/LICENSE). [Metadata and evidence](data/projects/kapitsa.json).
+  - Documentation reviewed: 2026-11-08. Repository: not checked yet.
+  - Note: Requires Apple Silicon (M1 or newer) and macOS 14 or later; no Linux or Windows.
+  - Note: Memory: the README points 16-24 GB Macs at the 9b model (or 4b); the 35B-A3B's 4-bit build is 22.1 GB and needs a 32 GB Mac, while its 2-bit builds fit 16-24 GB Macs.
+  - Note: Runs the models in its catalog and imported Qwen or Flint GGUFs; Flint, Clover, the text-only Nemotrons and the 35B's 16gb build read text only.
+  - Note: Checks GitHub once a day for a new release and can update itself; KAPITSA\_NO\_AUTO\_UPDATE=1 or kapitsa update --auto off turns this off.
 
 - [mlx-serve](https://github.com/ddalcu/mlx-serve): Serve MLX and GGUF models on Apple Silicon through a native server with a companion model-management and chat app.
   - Local workload. Platforms: macOS. Hardware: Apple Silicon.
@@ -440,11 +449,11 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 - [ThreadShelf](https://github.com/ChrystianSchutz/ThreadShelf): Index ChatGPT, Claude, Google AI Studio, OpenRouter, LM Studio and Grok exports locally for semantic and exact search, then continue old threads with local GGUF models.
   - Local workload. Platforms: Linux, macOS, Windows. Hardware: CPU.
   - License: [MIT](https://github.com/ChrystianSchutz/ThreadShelf/blob/f13b721561305c3b040dc701ce86553ec36c4447/LICENSE). [Metadata and evidence](data/projects/threadshelf.json).
-  - Documentation reviewed: 2026-11-05. Repository: not checked yet.
+  - Documentation reviewed: 2026-11-08. Repository: not checked yet.
   - Note: Single-user application: the HTTP API has no accounts or authentication and should stay on loopback unless deliberately exposed on a trusted network.
   - Note: The local embedding model downloads once on first indexing; llama.cpp builds come from GitHub Releases and GGUF models from Hugging Face only when the user asks.
   - Note: Optional OpenRouter generation is off-device: it sends the selected conversation history and prompt to OpenRouter and the routed provider.
-  - Note: Google AI Studio and Grok exports use undocumented formats that can change without notice.
+  - Note: Google AI Studio, OpenRouter, LM Studio and Grok exports use undocumented formats that can change without notice.
   - Note: Requires Node.js 20.19 or newer; installed through npm (npx threadshelf).
 
 <a id="skills"></a>
@@ -479,6 +488,14 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 ## Cloud integrations
 
 These integrations connect agents to cloud services. They are not offline local AI tools.
+
+- [BankBridge](https://github.com/bankbridge-money/bankbridge-plugin): Answer questions about your own US bank, credit card and investment accounts from any MCP agent, including ones running a local model.
+  - Cloud integration. Platforms: Not recorded. Hardware: Not recorded.
+  - License: [MIT](https://raw.githubusercontent.com/bankbridge-money/bankbridge-plugin/c7fcda435eeaeee94cf4479983d646027befb467/LICENSE). [Metadata and evidence](data/projects/bankbridge.json).
+  - Documentation reviewed: 2026-11-08. Repository: not checked yet.
+  - Note: Hosted, closed-source server; the repository holds the client package and skill. Paid service, $5/mo per connected bank. US banks only.
+  - Note: Balances and transactions pass through a bank-data provider and BankBridge to the agent. The vendor says BankBridge does not store them. Not an offline tool.
+  - Note: The vendor describes the tools as read-only, with no ability to move money, pay bills or place trades.
 
 - [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp): Connect MCP-capable agents to Google Cloud management, observability, storage, and backup tools.
   - Cloud integration. Platforms: Not recorded. Hardware: Not recorded.
