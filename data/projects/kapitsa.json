@@ -1,0 +1,44 @@
+{
+  "id": "kapitsa",
+  "name": "Kapitsa",
+  "repository": "https://github.com/nace-ai/kapitsa",
+  "description": "Serve Qwen, Nemotron, Flint and Clover models on Apple Silicon with a native C++ engine on Metal kernels and the Neural Engine, without an MLX or llama.cpp runtime.",
+  "category": "inference",
+  "use_cases": [
+    "serve-models",
+    "use-local-agents",
+    "chat-with-models"
+  ],
+  "platforms": [
+    "macos"
+  ],
+  "hardware": [
+    "apple-silicon"
+  ],
+  "local_mode": "local",
+  "compatibility": [
+    "OpenAI- and Anthropic-compatible HTTP APIs (/v1/chat/completions, /v1/messages, /v1/responses) and a chat page.",
+    "Starts opencode, Claude Code, Codex or pi on a local model with one command.",
+    "Imports Qwen or Flint GGUF files from LM Studio, Ollama or llama.cpp."
+  ],
+  "limitations": [
+    "Requires Apple Silicon (M1 or newer) and macOS 14 or later; no Linux or Windows.",
+    "Runs the models in its catalog and imported Qwen or Flint GGUFs; Flint, Clover, the text-only Nemotrons and the 35B's 16gb build read text only.",
+    "Checks GitHub once a day for a new release and can update itself; KAPITSA_NO_AUTO_UPDATE=1 or kapitsa update --auto off turns this off."
+  ],
+  "license": {
+    "spdx": "Apache-2.0",
+    "url": "https://raw.githubusercontent.com/nace-ai/kapitsa/95a0a552fab5c359dd91b716e9936918d436d713/LICENSE"
+  },
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/nace-ai/kapitsa/95a0a552fab5c359dd91b716e9936918d436d713/README.md",
+      "note": "Upstream description, requirements, supported models, APIs, agent commands and GGUF import."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/nace-ai/kapitsa/95a0a552fab5c359dd91b716e9936918d436d713/docs/usage.md",
+      "note": "Automatic update check, what it sends, and how to turn it off."
+    }
+  ],
+  "last_reviewed": "2026-11-08"
+}
