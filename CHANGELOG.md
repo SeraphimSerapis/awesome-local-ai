@@ -4,6 +4,12 @@ Changes to Awesome Local AI, not upstream software releases. Weeks start on
 Monday in UTC. Contributors update the current week's section with their
 catalog PR; there is no automatic publishing or merging of these notes.
 
+## Week of 2026-11-09
+
+### Added
+
+- [Debate Hall](https://github.com/sequimelectronics/DebateHall), a self-hosted structured debate over a paper's claims for people and their own AI agents, with an exportable ledger of objections and rulings and an example script that seats a local model.
+
 ## Week of 2026-11-02
 
 ### Added
