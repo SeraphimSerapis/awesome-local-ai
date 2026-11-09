@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: MIT
+user_agent = "OpenAI File Downloader, XaiImageApiFetch/1.0"
+exclude_all_private = true
+no_progress = true
+timeout = 30
+max_retries = 2
+retry_wait_time = 5
+max_concurrency = 2
+host_request_interval = "1s"
+host_stats = true
+
+# Check exact pinned targets without depending on GitHub's HTML renderer.
+remap = [
+    '^https://github\.com/([^/?#]+)/([^/?#]+)/blob/([0-9a-fA-F]{40})/(.+)$ https://raw.githubusercontent.com/$1/$2/$3/$4',
+    '^https://github\.com/([^/?#]+)/([^/?#]+)/commit/([0-9a-fA-F]{40})$ https://api.github.com/repos/$1/$2/commits/$3',
+]

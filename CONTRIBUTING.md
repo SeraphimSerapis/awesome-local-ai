@@ -81,6 +81,13 @@ so reviewers must inspect its report. Weekly and manual runs check the whole
 catalog and documentation; broken links fail those runs. Fix a moved link or
 record the investigation rather than deleting a useful entry after one timeout.
 
+Remote checks use [`.lychee.toml`](.lychee.toml). Pinned GitHub file links are
+checked at the same commit and path on `raw.githubusercontent.com`; commit links
+use the GitHub API. Repository links can fall back to the API using the workflow's
+read-only GitHub token. This checks that the targets exist, not that GitHub's HTML
+pages are available. Missing targets and failed API or raw-file requests still
+fail the full scan. No server-error status is accepted as success.
+
 Passing CI does not establish factual accuracy. Reviewers check:
 
 - Does the project meet the scope and have a distinct use case?
