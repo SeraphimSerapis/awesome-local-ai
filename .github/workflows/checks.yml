@@ -80,14 +80,14 @@ jobs:
         uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2
         with:
           lycheeVersion: v0.24.2
-          args: --exclude-all-private --no-progress --timeout 30 --max-retries 2 --max-concurrency 2 .catalog-links.txt
+          args: --config .lychee.toml .catalog-links.txt
           fail: false
           failIfEmpty: false
-          token: ""
+          token: ${{ github.token }}
       - name: Check all upstream and documentation links
         if: github.event_name != 'pull_request'
         uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2
         with:
           lycheeVersion: v0.24.2
-          args: --exclude-all-private --no-progress --timeout 30 --max-retries 2 --max-concurrency 2 .catalog-links.txt './**/*.md'
-          token: ""
+          args: --config .lychee.toml .catalog-links.txt './**/*.md'
+          token: ${{ github.token }}
