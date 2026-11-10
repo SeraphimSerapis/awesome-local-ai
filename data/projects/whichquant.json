@@ -1,0 +1,44 @@
+{
+  "id": "whichquant",
+  "name": "whichquant",
+  "repository": "https://github.com/ngo-binh0108/whichquant",
+  "description": "Check every GGUF quant in a Hugging Face repo against your GPU and RAM before downloading it, by reading only the file headers, and get the llama.cpp flags for each one.",
+  "category": "applications",
+  "use_cases": [
+    "validate-inference-configs"
+  ],
+  "platforms": [
+    "linux",
+    "macos",
+    "windows"
+  ],
+  "hardware": [
+    "nvidia-gpu",
+    "apple-silicon"
+  ],
+  "local_mode": "local",
+  "compatibility": [
+    "Prints llama.cpp flags for each quant; with -q, also prints llama-server and KoboldCpp commands for the selected quants."
+  ],
+  "limitations": [
+    "Weights are exact, but the compute buffer is an estimate and the KV cache follows llama.cpp's sizing rules.",
+    "GPU memory is detected only on NVIDIA and Apple Silicon; AMD and Intel users pass it with --gpu.",
+    "Checking a Hugging Face repo needs network access, and gated repos need HF_TOKEN; local GGUF files work offline.",
+    "It estimates fit and does not run or benchmark the model."
+  ],
+  "license": {
+    "spdx": "MIT",
+    "url": "https://github.com/ngo-binh0108/whichquant/blob/2c7e13a290ce8ca230abe7cc11196c895218426e/LICENSE"
+  },
+  "sources": [
+    {
+      "url": "https://github.com/ngo-binh0108/whichquant/blob/2c7e13a290ce8ca230abe7cc11196c895218426e/README.md",
+      "note": "Usage, supported hardware detection, accuracy notes and limits."
+    },
+    {
+      "url": "https://github.com/ngo-binh0108/whichquant/blob/2c7e13a290ce8ca230abe7cc11196c895218426e/.github/workflows/tests.yml",
+      "note": "Test matrix covering Linux, macOS and Windows."
+    }
+  ],
+  "last_reviewed": "2026-11-09"
+}
