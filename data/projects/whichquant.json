@@ -2,7 +2,7 @@
   "id": "whichquant",
   "name": "whichquant",
   "repository": "https://github.com/ngo-binh0108/whichquant",
-  "description": "Check every GGUF quant in a Hugging Face repo against your GPU and RAM before downloading it, by reading only the file headers, and get the llama.cpp and KoboldCpp flags for each one.",
+  "description": "Check every GGUF quant in a Hugging Face repo against your GPU and RAM before downloading it, by reading only the file headers, and get the llama.cpp flags for each one.",
   "category": "applications",
   "use_cases": [
     "validate-inference-configs"
@@ -18,7 +18,7 @@
   ],
   "local_mode": "local",
   "compatibility": [
-    "Prints llama.cpp and KoboldCpp flags for each quant."
+    "Prints llama.cpp flags for each quant; with -q, also prints llama-server and KoboldCpp commands for the selected quants."
   ],
   "limitations": [
     "Weights are exact, but the compute buffer is an estimate and the KV cache follows llama.cpp's sizing rules.",

@@ -51,7 +51,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 | Monitor my setup | [SparkDash](https://github.com/MiaAI-Lab/sparkDash) |
 | Troubleshoot my setup | [DGX Spark Networking](https://github.com/christopherowen/dgx-spark-networking), [Spark Doctor](https://github.com/joeynyc/spark-doctor) |
 | Tune thermals and memory | [DGX Spark Fan Control](https://github.com/christopherowen/dgx-spark-fan-control), [DGX Spark Memory Saver](https://github.com/christopherowen/dgx-spark-memory-saver) |
-| Validate or simulate inference configurations | [Spark Tools](https://github.com/knapcio/spark-tools) |
+| Validate or simulate inference configurations | [Spark Tools](https://github.com/knapcio/spark-tools), [whichquant](https://github.com/ngo-binh0108/whichquant) |
 | Chat with a local model | [AI-Beach](https://github.com/sequimelectronics/AI-Beach), [BAXY](https://github.com/REDSOULTM/BAXY), [bot-reborn](https://github.com/beasaltfish/bot-reborn), [DwarfStar / ds4](https://github.com/antirez/ds4), [Kapitsa](https://github.com/nace-ai/kapitsa), [mlx-serve](https://github.com/ddalcu/mlx-serve), [oMLX](https://github.com/jundot/omlx), [Orkas](https://github.com/Orkas-AI/Orkas), [SparkPilot](https://github.com/ashhart/SparkPilot), [Splash](https://github.com/incoai/splash), [Strata](https://github.com/Niko1221/Strata), [ThreadShelf](https://github.com/ChrystianSchutz/ThreadShelf) |
 | Add skills, extensions, or MCP tools | [agent-qa](https://github.com/vostride/agent-qa), [BankBridge](https://github.com/bankbridge-money/bankbridge-plugin) (cloud), [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud), [Matt Pocock's skills](https://github.com/mattpocock/skills), [Oh My Pi](https://github.com/can1357/oh-my-pi), [Orkas](https://github.com/Orkas-AI/Orkas), [Pi](https://github.com/earendil-works/pi), [ThreadShelf](https://github.com/ChrystianSchutz/ThreadShelf), [YYLO](https://github.com/yylo-dev/yylo) |
 | Use optional cloud integrations | [BankBridge](https://github.com/bankbridge-money/bankbridge-plugin) (cloud), [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud) |
@@ -484,6 +484,15 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: Optional OpenRouter generation is off-device: it sends the selected conversation history and prompt to OpenRouter and the routed provider.
   - Note: Google AI Studio, OpenRouter, LM Studio and Grok exports use undocumented formats that can change without notice.
   - Note: Requires Node.js 20.19 or newer; installed through npm (npx threadshelf).
+
+- [whichquant](https://github.com/ngo-binh0108/whichquant): Check every GGUF quant in a Hugging Face repo against your GPU and RAM before downloading it, by reading only the file headers, and get the llama.cpp flags for each one.
+  - Local workload. Platforms: Linux, macOS, Windows. Hardware: NVIDIA GPU, Apple Silicon.
+  - License: [MIT](https://github.com/ngo-binh0108/whichquant/blob/2c7e13a290ce8ca230abe7cc11196c895218426e/LICENSE). [Metadata and evidence](data/projects/whichquant.json).
+  - Documentation reviewed: 2026-11-09. Repository: not checked yet.
+  - Note: Weights are exact, but the compute buffer is an estimate and the KV cache follows llama.cpp's sizing rules.
+  - Note: GPU memory is detected only on NVIDIA and Apple Silicon; AMD and Intel users pass it with --gpu.
+  - Note: Checking a Hugging Face repo needs network access, and gated repos need HF\_TOKEN; local GGUF files work offline.
+  - Note: It estimates fit and does not run or benchmark the model.
 
 <a id="skills"></a>
 
