@@ -55,6 +55,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 | Chat with a local model | [AI-Beach](https://github.com/sequimelectronics/AI-Beach), [BAXY](https://github.com/REDSOULTM/BAXY), [bot-reborn](https://github.com/beasaltfish/bot-reborn), [DwarfStar / ds4](https://github.com/antirez/ds4), [Kapitsa](https://github.com/nace-ai/kapitsa), [mlx-serve](https://github.com/ddalcu/mlx-serve), [oMLX](https://github.com/jundot/omlx), [Orkas](https://github.com/Orkas-AI/Orkas), [SparkPilot](https://github.com/ashhart/SparkPilot), [Splash](https://github.com/incoai/splash), [Strata](https://github.com/Niko1221/Strata), [ThreadShelf](https://github.com/ChrystianSchutz/ThreadShelf) |
 | Add skills, extensions, or MCP tools | [agent-qa](https://github.com/vostride/agent-qa), [BankBridge](https://github.com/bankbridge-money/bankbridge-plugin) (cloud), [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud), [Matt Pocock's skills](https://github.com/mattpocock/skills), [Oh My Pi](https://github.com/can1357/oh-my-pi), [Orkas](https://github.com/Orkas-AI/Orkas), [Pi](https://github.com/earendil-works/pi), [ThreadShelf](https://github.com/ChrystianSchutz/ThreadShelf), [YYLO](https://github.com/yylo-dev/yylo) |
 | Use optional cloud integrations | [BankBridge](https://github.com/bankbridge-money/bankbridge-plugin) (cloud), [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud) |
+| Translate text and documents locally | [Earshot AI](https://github.com/sunchupeng/earshot-support) |
 
 ## Browse by category
 
@@ -453,6 +454,17 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: The hall listens on 127.0.0.1 only by default, and every seat except the audience signs in on the hall's own computer for now. An optional audience door opens a listener on the home network during one debate, limited to that debate's audience seats and a firewall rule for chosen devices.
   - Note: Papers are Markdown files placed in a local folder.
   - Note: Core code is AGPL-3.0-only: running a modified version for other users over a network requires offering them the modified source. Original art in docs/art is CC BY-SA 4.0.
+
+- [Earshot AI](https://github.com/sunchupeng/earshot-support): Translate text and selectable-text PDFs on an iPhone with a bundled local model, retain local history, and export a bilingual PDF.
+  - Local workload. Platforms: iOS. Hardware: Not recorded.
+  - License: [Unclear; check upstream](https://earshot.chuchu1226.chatgpt.site/terms). [Metadata and evidence](data/projects/earshot-ai.json).
+  - Documentation reviewed: 2026-11-13. Repository: not checked yet.
+  - Note: Paid, proprietary App Store app for compatible iPhones running iOS 17 or later. The linked repository provides official support documentation and public issue reporting.
+  - Note: File imports support TXT and selectable-text PDF, up to 6 MB per file, 80 PDF pages, 300 paragraphs and 30,000 extracted characters. Scanned and password-protected PDFs are unsupported, and complex original layouts are not preserved.
+  - Note: The bundled HY model license excludes use in the European Union, United Kingdom and South Korea, including travel there. The app is unavailable in those storefronts and mainland China.
+  - Note: Speech and read-aloud depend on the device, language and prepared Apple resources. Resource preparation, optional model downloads, cloud-file retrieval, sharing and backups may use a network. Text translation remains local.
+  - Note: The published TXT-to-PDF example uses development build 1.0.1(19) in an iOS 27 Simulator and retains translation errors. Physical-iPhone processing performance was not measured in that demonstration.
+  - Note: The public support repository has no declared documentation license. The app is proprietary under Apple's Standard EULA and supplemental Earshot terms, with separate model licenses. The license field is null for maintainer review.
 
 - [Orkas](https://github.com/Orkas-AI/Orkas): Open-source, local-first desktop AI workforce where Commander coordinates specialist project work, with supported own-provider API keys and compatible local model endpoints.
   - Local client or agent. Platforms: macOS, Windows, Linux. Hardware: Not recorded.
