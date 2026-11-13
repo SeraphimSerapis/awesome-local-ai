@@ -1,0 +1,47 @@
+{
+  "id": "earshot-ai",
+  "name": "Earshot AI",
+  "repository": "https://github.com/sunchupeng/earshot-support",
+  "description": "Translate text and selectable-text PDFs on an iPhone with a bundled local model, retain local history, and export a bilingual PDF.",
+  "category": "applications",
+  "use_cases": [
+    "translate-text"
+  ],
+  "platforms": [
+    "ios"
+  ],
+  "hardware": [],
+  "local_mode": "local",
+  "compatibility": [],
+  "limitations": [
+    "Paid, proprietary App Store app for compatible iPhones running iOS 17 or later. The linked repository provides official support documentation and public issue reporting.",
+    "File imports support TXT and selectable-text PDF, up to 6 MB per file, 80 PDF pages, 300 paragraphs and 30,000 extracted characters. Scanned and password-protected PDFs are unsupported, and complex original layouts are not preserved.",
+    "The bundled HY model license excludes use in the European Union, United Kingdom and South Korea, including travel there. The app is unavailable in those storefronts and mainland China.",
+    "Speech and read-aloud depend on the device, language and prepared Apple resources. Resource preparation, optional model downloads, cloud-file retrieval, sharing and backups may use a network. Text translation remains local.",
+    "The published TXT-to-PDF example uses development build 1.0.1(19) in an iOS 27 Simulator and retains translation errors. Physical-iPhone processing performance was not measured in that demonstration.",
+    "The public support repository has no declared documentation license. The app is proprietary under Apple's Standard EULA and supplemental Earshot terms, with separate model licenses. The license field is null for maintainer review."
+  ],
+  "license": {
+    "spdx": null,
+    "url": "https://earshot.chuchu1226.chatgpt.site/terms"
+  },
+  "sources": [
+    {
+      "url": "https://github.com/sunchupeng/earshot-support/blob/1f9d150f42dbb24bf6bd0abbfb3ca172138672c8/README.md",
+      "note": "Official public support repository with installation/use instructions, file workflow, issue-reporting route, purchase/iOS requirements, actual simulator outputs and model territorial restrictions."
+    },
+    {
+      "url": "https://earshot.chuchu1226.chatgpt.site/",
+      "note": "Official product documentation for iPhone/iOS support, bundled translation, local history, PDF export, Apple speech resources, purchase model and availability."
+    },
+    {
+      "url": "https://earshot.chuchu1226.chatgpt.site/demo/",
+      "note": "Actual TXT input, raw bilingual PDF and simulator recordings, including translation errors, file limits and demonstration boundaries."
+    },
+    {
+      "url": "https://earshot.chuchu1226.chatgpt.site/terms",
+      "note": "Supplemental terms identify the proprietary app's Apple Standard EULA, separate model licenses, territorial exclusions and user-triggered network operations."
+    }
+  ],
+  "last_reviewed": "2026-11-13"
+}
