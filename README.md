@@ -458,13 +458,16 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 - [Earshot AI](https://github.com/sunchupeng/earshot-support): Translate text and selectable-text PDFs on an iPhone with a bundled local model, retain local history, and export a bilingual PDF.
   - Local workload. Platforms: iOS. Hardware: Not recorded.
   - License: [Unclear; check upstream](https://earshot.chuchu1226.chatgpt.site/terms). [Metadata and evidence](data/projects/earshot-ai.json).
-  - Documentation reviewed: 2026-11-13. Repository: not checked yet.
-  - Note: Paid, proprietary App Store app for compatible iPhones running iOS 17 or later. The linked repository provides official support documentation and public issue reporting.
+  - Documentation reviewed: 2026-11-14. Repository: not checked yet.
+  - Note: Proprietary App Store app for compatible iPhones running iOS 17 or later; US$4.99 once in the US storefront as verified 14 November 2026. The linked repository provides official support documentation and public issue reporting.
   - Note: File imports support TXT and selectable-text PDF, up to 6 MB per file, 80 PDF pages, 300 paragraphs and 30,000 extracted characters. Scanned and password-protected PDFs are unsupported, and complex original layouts are not preserved.
   - Note: The bundled HY model license excludes use in the European Union, United Kingdom and South Korea, including travel there. The app is unavailable in those storefronts and mainland China.
   - Note: Speech and read-aloud depend on the device, language and prepared Apple resources. Resource preparation, optional model downloads, cloud-file retrieval, sharing and backups may use a network. Text translation remains local.
+  - Note: The published version 1.0.1 privacy policy says there is no advertising/tracking SDK, app account, automatic developer cloud sync or content-analytics upload endpoint. Release builds disable the app's speech, read-aloud and clipboard diagnostic-file routines. System/model-runtime diagnostics can still exist, and the policy says those files are not automatically sent to the developer. A complete independent crash-reporting SDK or callback audit is unavailable.
+  - Note: Optional HY-model downloads require user action and contact Hugging Face and delivery CDNs, exposing connection/request metadata such as IP address and HTTP headers; the policy says those requests exclude translation content. Apple resource preparation, cloud file/photo retrieval, chosen sharing destinations, purchases, backups/diagnostics, external links and voluntary support email can also use a network. Exports and backups can include translation content.
   - Note: The published TXT-to-PDF example uses development build 1.0.1(19) in an iOS 27 Simulator and retains translation errors. Physical-iPhone processing performance was not measured in that demonstration.
   - Note: The public support repository has no declared documentation license. The app is proprietary under Apple's Standard EULA and supplemental Earshot terms, with separate model licenses. The license field is null for maintainer review.
+  - Note: The linked product, demonstration and legal pages use the current developer chatgpt.site host; no long-term hosting commitment for those pages has been verified.
 
 - [Orkas](https://github.com/Orkas-AI/Orkas): Open-source, local-first desktop AI workforce where Commander coordinates specialist project work, with supported own-provider API keys and compatible local model endpoints.
   - Local client or agent. Platforms: macOS, Windows, Linux. Hardware: Not recorded.
