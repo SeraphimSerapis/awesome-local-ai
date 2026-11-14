@@ -26,7 +26,8 @@
     "validate-inference-configs": "Validate or simulate inference configurations",
     "chat-with-models": "Chat with a local model",
     "extend-agents": "Add skills, extensions, or MCP tools",
-    "manage-cloud": "Use optional cloud integrations"
+    "manage-cloud": "Use optional cloud integrations",
+    "translate-text": "Translate text and documents locally"
   },
   "platforms": {
     "linux": "Linux",

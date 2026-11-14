@@ -1,0 +1,54 @@
+{
+  "id": "earshot-ai",
+  "name": "Earshot AI",
+  "repository": "https://github.com/sunchupeng/earshot-support",
+  "description": "Translate text and selectable-text PDFs on an iPhone with a bundled local model, retain local history, and export a bilingual PDF.",
+  "category": "applications",
+  "use_cases": [
+    "translate-text"
+  ],
+  "platforms": [
+    "ios"
+  ],
+  "hardware": [],
+  "local_mode": "local",
+  "compatibility": [],
+  "limitations": [
+    "Proprietary App Store app for compatible iPhones running iOS 17 or later; US$4.99 once in the US storefront as verified 14 November 2026. The linked repository provides official support documentation and public issue reporting.",
+    "File imports support TXT and selectable-text PDF, up to 6 MB per file, 80 PDF pages, 300 paragraphs and 30,000 extracted characters. Scanned and password-protected PDFs are unsupported, and complex original layouts are not preserved.",
+    "The bundled HY model license excludes use in the European Union, United Kingdom and South Korea, including travel there. The app is unavailable in those storefronts and mainland China.",
+    "Speech and read-aloud depend on the device, language and prepared Apple resources. Text translation remains local.",
+    "The published version 1.0.1 privacy policy says there is no advertising/tracking SDK, app account, automatic developer cloud sync or content-analytics upload endpoint. Release builds disable the app's speech, read-aloud and clipboard diagnostic-file routines. System/model-runtime diagnostics can still exist, and the policy says those files are not automatically sent to the developer. A complete independent crash-reporting SDK or callback audit is unavailable.",
+    "Optional HY-model downloads require user action and contact Hugging Face and delivery CDNs, exposing connection/request metadata such as IP address and HTTP headers; the policy says those requests exclude translation content. Apple resource preparation, cloud file/photo retrieval, chosen sharing destinations, purchases, backups/diagnostics, external links and voluntary support email can also use a network. Exports and backups can include translation content.",
+    "The published TXT-to-PDF example uses development build 1.0.1(19) in an iOS 27 Simulator and retains translation errors. Physical-iPhone processing performance was not measured in that demonstration.",
+    "The public support repository has no declared documentation license. The app is proprietary under Apple's Standard EULA and supplemental Earshot terms, with separate model licenses. The license field is null for maintainer review.",
+    "The linked product, demonstration and legal pages use the current developer chatgpt.site host; no long-term hosting commitment for those pages has been verified."
+  ],
+  "license": {
+    "spdx": null,
+    "url": "https://earshot.chuchu1226.chatgpt.site/terms"
+  },
+  "sources": [
+    {
+      "url": "https://github.com/sunchupeng/earshot-support/blob/1f9d150f42dbb24bf6bd0abbfb3ca172138672c8/README.md",
+      "note": "Official public support repository documenting requirements, purchase, file workflow, issue reporting, actual simulator outputs and model territorial restrictions."
+    },
+    {
+      "url": "https://earshot.chuchu1226.chatgpt.site/",
+      "note": "Official product documentation for iPhone/iOS support, bundled translation, local history, PDF export, Apple speech resources, purchase model and availability."
+    },
+    {
+      "url": "https://earshot.chuchu1226.chatgpt.site/demo/",
+      "note": "Actual TXT input, raw bilingual PDF and simulator recordings, including translation errors, file limits and demonstration boundaries."
+    },
+    {
+      "url": "https://earshot.chuchu1226.chatgpt.site/terms",
+      "note": "Supplemental terms identify the proprietary app's Apple Standard EULA, separate model licenses, territorial exclusions and user-triggered network operations."
+    },
+    {
+      "url": "https://earshot.chuchu1226.chatgpt.site/privacy",
+      "note": "Published version 1.0.1 policy, updated 8 November 2026 and read 14 November 2026: local processing, declared advertising/tracking/content-analytics and diagnostic-file boundaries, user-initiated model download metadata, system/provider network paths, permissions, backups and support email. Policy declarations are not an independent runtime or SDK audit."
+    }
+  ],
+  "last_reviewed": "2026-11-14"
+}
