@@ -1,0 +1,42 @@
+{
+  "id": "vllm-windows-build",
+  "name": "vLLM Windows Build (vllm-windows-build)",
+  "repository": "https://github.com/aivrar/vllm-windows-build",
+  "description": "Install native Windows builds of vLLM with OpenAI-compatible serving on NVIDIA GPUs, without WSL, Docker, or a Linux VM.",
+  "category": "deployment",
+  "use_cases": [
+    "serve-models",
+    "bootstrap-local-ai"
+  ],
+  "platforms": [
+    "windows"
+  ],
+  "hardware": [
+    "nvidia-gpu"
+  ],
+  "local_mode": "local",
+  "compatibility": [
+    "OpenAI-compatible HTTP serving through vllm_launcher.py and the upstream OpenAI API server, including /v1/models and streaming."
+  ],
+  "limitations": [
+    "This is a community native Windows distribution; official vLLM support is Linux-only.",
+    "Requires Windows 10 21H2 or later (x64), an NVIDIA GPU with SM 7.5 or newer, at least 12 GB VRAM (24 GB recommended), at least 16 GB RAM, and a CUDA 13.0 driver (R580 or newer).",
+    "Current wheels target Python 3.13 with CUDA 13.0, or Python 3.14 with CUDA 13.2.",
+    "v0.33.0 was GPU-validated on an RTX 3090. The Windows wheel does not include native Blackwell FP4 acceleration, and that 0.33.0 release has not been run on Blackwell hardware."
+  ],
+  "license": {
+    "spdx": "MIT",
+    "url": "https://raw.githubusercontent.com/aivrar/vllm-windows-build/3974c4a568351fd2e41ff71922bd26146933c003/LICENSE"
+  },
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/aivrar/vllm-windows-build/3974c4a568351fd2e41ff71922bd26146933c003/README.md",
+      "note": "Release coverage, system requirements, tested hardware, Linux-only official support, and Windows wheel scope."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aivrar/vllm-windows-build/3974c4a568351fd2e41ff71922bd26146933c003/docs/usage.md",
+      "note": "OpenAI-compatible HTTP server modes, including vllm_launcher.py and /v1/models."
+    }
+  ],
+  "last_reviewed": "2026-11-15"
+}
