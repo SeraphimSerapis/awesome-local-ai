@@ -8,6 +8,7 @@ catalog PR; there is no automatic publishing or merging of these notes.
 
 ### Added
 
+- [CascAid](https://github.com/stevejwhite/cascaid), a local psychiatric interview practice prototype for Apple Silicon with fictional cases, optional speech and an experimental 3D character; not clinically validated.
 - [Earshot AI](https://github.com/sunchupeng/earshot-support), a paid iPhone app for local text and selectable-PDF translation, saved history and bilingual PDF export, with documented file, model-territory and speech-resource limits.
 - [whichquant](https://github.com/ngo-binh0108/whichquant), a command-line check of which GGUF quants in a Hugging Face repo fit your GPU and RAM, reading only the file headers.
 - [Debate Hall](https://github.com/sequimelectronics/DebateHall), a self-hosted structured debate over a paper's claims for people and their own AI agents, with an exportable ledger of objections and rulings and an example script that seats a local model.
