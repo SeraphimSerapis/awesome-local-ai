@@ -4,6 +4,12 @@ Changes to Awesome Local AI, not upstream software releases. Weeks start on
 Monday in UTC. Contributors update the current week's section with their
 catalog PR; there is no automatic publishing or merging of these notes.
 
+## Week of 2026-11-16
+
+### Added
+
+- [RAI](https://github.com/Classevelabs/rai), a Rust engine that runs 4-bit language models on the CPU, with one-step installers for Windows, macOS and Linux, a local chat page and API, and pinned starter models.
+
 ## Week of 2026-11-09
 
 ### Added
