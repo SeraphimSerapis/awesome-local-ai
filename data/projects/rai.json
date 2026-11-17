@@ -1,0 +1,61 @@
+{
+  "id": "rai",
+  "name": "RAI",
+  "repository": "https://github.com/Classevelabs/rai",
+  "description": "Run 4-bit language models on the CPU with a Rust engine, a local chat page and HTTP API, and one-step installers for Windows, macOS and Linux.",
+  "category": "inference",
+  "use_cases": [
+    "serve-models",
+    "chat-with-models",
+    "bootstrap-local-ai"
+  ],
+  "platforms": [
+    "linux",
+    "macos",
+    "windows"
+  ],
+  "hardware": [
+    "cpu",
+    "apple-silicon"
+  ],
+  "local_mode": "local",
+  "compatibility": [
+    "Converts Hugging Face safetensors checkpoints of Llama 2 to 3.2, Mistral 7B, Mixtral 8x7B, Qwen 2 to 3, Gemma 1 and 2, Gemma 3 270M and 1B, Phi-3 mini 4k, OLMo 2, OLMoE, TinyLlama and SmolLM to its own .raimodel format, without Python.",
+    "Serves a chat page and a JSON chat API (/api/chat, streaming at /api/chat/stream) on 127.0.0.1, and answers single prompts from the command line.",
+    "rai-get-model downloads Qwen2.5 Instruct starter models (0.5B, 1.5B, 7B) pinned to one Hugging Face commit and checked file by file against SHA-256."
+  ],
+  "limitations": [
+    "Runs only its own .raimodel format: GGUF files and pickle checkpoints such as pytorch_model.bin are not read, and checkpoints outside the listed families are refused at conversion.",
+    "Stores weights at 4 bits, with the embedding table at 8 bits.",
+    "The AVX2 fast path needs an x86-64 CPU with AVX2, FMA and F16C; other CPUs, Apple Silicon included, use a portable path.",
+    "Needs Windows 10 or 11, macOS 10.12 or later on Intel or 11 or later on Apple Silicon, or x86-64 Linux with glibc 2.28 or later; ARM Linux builds from source.",
+    "rai-get-model downloads models from Hugging Face; the rai program itself makes no network connections."
+  ],
+  "license": {
+    "spdx": "Apache-2.0",
+    "url": "https://raw.githubusercontent.com/Classevelabs/rai/02b0b95c5e2225e6ea72d5fb3289ce368cb9b7d1/LICENSE"
+  },
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/Classevelabs/rai/02b0b95c5e2225e6ea72d5fb3289ce368cb9b7d1/README.md",
+      "note": "Description, installers, starter models, system requirements and network behaviour."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Classevelabs/rai/02b0b95c5e2225e6ea72d5fb3289ce368cb9b7d1/INSTALL.md",
+      "note": "Installers and requirements per operating system, and where models are stored."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Classevelabs/rai/02b0b95c5e2225e6ea72d5fb3289ce368cb9b7d1/docs/MODELS.md",
+      "note": "Model families that convert and that are refused, formats that are not read, and the starter models' pinning."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Classevelabs/rai/02b0b95c5e2225e6ea72d5fb3289ce368cb9b7d1/docs/USING.md",
+      "note": "Chat page, chat API routes and fields, and the loopback-only listener."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Classevelabs/rai/02b0b95c5e2225e6ea72d5fb3289ce368cb9b7d1/docs/ARCHITECTURE.md",
+      "note": "4-bit linear layers and the 8-bit embedding table."
+    }
+  ],
+  "last_reviewed": "2026-11-17"
+}
