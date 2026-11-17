@@ -1,0 +1,47 @@
+{
+  "id": "off-grid-ai",
+  "name": "Off Grid AI",
+  "repository": "https://github.com/off-grid-ai/OGAD",
+  "description": "Desktop app for local chat with text and vision models, image generation, speech-to-text and text-to-speech, plus a local OpenAI-compatible API.",
+  "category": "applications",
+  "use_cases": [
+    "chat-with-models",
+    "serve-models"
+  ],
+  "platforms": [
+    "macos",
+    "windows",
+    "linux"
+  ],
+  "hardware": [
+    "apple-silicon",
+    "cpu"
+  ],
+  "local_mode": "local",
+  "compatibility": [
+    "Runs GGUF models from a built-in catalog or Hugging Face search through bundled llama.cpp, image models through stable-diffusion.cpp, transcription through whisper.cpp and speech through Kokoro.",
+    "Serves chat, vision, images, transcription, speech and embeddings on an OpenAI-compatible API at http://127.0.0.1:7878/v1 with no key, and can run as a headless gateway without the UI.",
+    "Adds Model Context Protocol servers (no auth, token or OAuth) as tools inside chat."
+  ],
+  "limitations": [
+    "Release builds cover macOS on Apple Silicon, Windows x64 and Linux x64 (Ubuntu 24.04 or newer).",
+    "Model downloads come from Hugging Face; the app checks for signed updates. Anonymous usage data and crash reports are sent only if the user turns them on.",
+    "The local API has no authentication and listens on loopback.",
+    "An optional paid Pro layer (screen memory, meetings, dictation, clipboard) lives in a separate private package; the Linux build does not include it."
+  ],
+  "license": {
+    "spdx": "AGPL-3.0-only",
+    "url": "https://github.com/off-grid-ai/OGAD/blob/312b8f45ef6afdd2bff3f7be130b4d0a23124bc8/LICENSE"
+  },
+  "sources": [
+    {
+      "url": "https://github.com/off-grid-ai/OGAD/blob/312b8f45ef6afdd2bff3f7be130b4d0a23124bc8/README.md",
+      "note": "Bundled engines, model catalog and Hugging Face search, Gateway endpoints and headless mode, MCP connectors, opt-in analytics, auto-update, supported platforms and the separate Pro package."
+    },
+    {
+      "url": "https://github.com/off-grid-ai/OGAD/blob/312b8f45ef6afdd2bff3f7be130b4d0a23124bc8/LICENSE",
+      "note": "AGPL-3.0 license text."
+    }
+  ],
+  "last_reviewed": "2026-11-17"
+}

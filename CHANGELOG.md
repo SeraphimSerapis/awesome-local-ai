@@ -4,6 +4,12 @@ Changes to Awesome Local AI, not upstream software releases. Weeks start on
 Monday in UTC. Contributors update the current week's section with their
 catalog PR; there is no automatic publishing or merging of these notes.
 
+## Week of 2026-11-16
+
+### Added
+
+- [Off Grid AI](https://github.com/off-grid-ai/OGAD), a desktop app for macOS, Windows and Linux that runs chat, vision, image generation, transcription and speech locally, with a keyless OpenAI-compatible API on loopback and an optional paid Pro layer in a separate package.
+
 ## Week of 2026-11-09
 
 ### Added
