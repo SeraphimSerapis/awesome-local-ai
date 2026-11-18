@@ -17,6 +17,8 @@ ROOT = Path(__file__).resolve().parent.parent
 START = "<!-- catalog:start -->"
 END = "<!-- catalog:end -->"
 SLUG = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*")
+DNS_LABEL = re.compile(r"[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?")
+DNS_TLD = re.compile(r"(?:[a-z]{2,63}|xn--[a-z0-9-]{1,58}[a-z0-9])")
 REPOSITORY = re.compile(
     r"https://github\.com/[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?/(?![.]{1,2}$)[A-Za-z0-9_.-]+"
 )
@@ -82,18 +84,26 @@ def url(value, field):
     except ValueError as error:
         raise CatalogError(f"{field}: {error}") from error
     require(parsed.scheme == "https" and bool(parsed.hostname), f"{field} must be an HTTPS URL")
-    require(parsed.username is None and parsed.password is None and port is None,
-            f"{field} must not contain credentials or a custom port")
     hostname = parsed.hostname
+    require(
+        parsed.username is None
+        and parsed.password is None
+        and port is None
+        and parsed.netloc.casefold() == hostname,
+        f"{field} must not contain credentials or a custom port",
+    )
     try:
         address = ipaddress.ip_address(hostname)
     except ValueError:
         labels = hostname.split(".")
-        require(len(labels) >= 2 and all(labels)
-                and not labels[-1].isdigit()
-                and hostname.casefold() != "localhost"
-                and not hostname.casefold().endswith(".localhost"),
-                f"{field} must point to public documentation")
+        require(
+            len(labels) >= 2
+            and all(DNS_LABEL.fullmatch(label) is not None for label in labels)
+            and DNS_TLD.fullmatch(labels[-1]) is not None
+            and hostname != "localhost"
+            and not hostname.endswith(".localhost"),
+            f"{field} must point to public documentation",
+        )
     else:
         require(
             address.is_global and not (
@@ -333,6 +343,7 @@ def validate_changelog_fragment(fragment):
     entry = fragment["entry"]
     text(entry, "entry")
     require(not re.match(r"^[-*+](?:\s|$)", entry), "entry must not start with a list marker")
+    require(not re.search(r"(?<!\\)!\[", entry), "entry must not contain Markdown images")
     urls = []
     for match in MARKDOWN_LINK.finditer(entry):
         label, target = match.groups()

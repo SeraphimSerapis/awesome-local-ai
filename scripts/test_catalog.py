@@ -132,11 +132,18 @@ class CatalogTests(unittest.TestCase):
 
     def test_unsafe_source_urls_fail(self):
         for value in ["http://example.com", "javascript:alert(1)", "https://user:password@example.com",
-                      "https://example.com:8443", "https://localhost/readme", "https://app.localhost/readme",
-                      "https://intranet/readme", "https://example.com./readme", "https://127.0.0.1/readme",
-                      "https://127.1/readme", "https://0177.0.0.1/readme", "https://10.0.0.1/readme",
-                      "https://172.16.0.1/readme", "https://192.168.1.1/readme",
-                      "https://169.254.169.254/latest/meta-data", "https://100.64.0.1/readme",
+                      "https://example.com:8443", "https://example.com:/readme",
+                      "https://localhost/readme", "https://app.localhost/readme",
+                      "https://app.localhos%74/readme", "https://intranet/readme",
+                      "https://example.com./readme", "https://127.0.0.1/readme",
+                      "https://127.1/readme", "https://0177.0.0.1/readme",
+                      "https://0x7f.0.0.0x1/readme", "https://127.0.0.%31/readme",
+                      "https://10.0.0.1/readme", "https://172.16.0.1/readme",
+                      "https://192.168.1.1/readme",
+                      "https://169.254.169.254/latest/meta-data",
+                      "https://0xa9.0xfe.0xa9.0xfe/latest/meta-data",
+                      "https://169.254\u3002169\u3002254/latest/meta-data",
+                      "https://100.64.0.1/readme",
                       "https://0.0.0.0/readme", "https://224.0.0.1/readme", "https://240.0.0.1/readme",
                       "https://example.com/x y", "https://example.com/)bad", "https://example.com/<script>",
                       "https://[bad"]:
@@ -392,6 +399,7 @@ class CatalogTests(unittest.TestCase):
             ("empty-label", '{"section":"Added","entry":"[](https://example.com), note."}', "link label"),
             ("unclosed-link", '{"section":"Added","entry":"[Example](https://example.com"}', "malformed Markdown link"),
             ("bare-url", '{"section":"Added","entry":"See https://example.com for details."}', "Markdown links"),
+            ("markdown-image", '{"section":"Added","entry":"![Badge](https://example.com/badge.svg) note."}', "Markdown images"),
             ("raw-html", '{"section":"Added","entry":"Note <script>alert(1)</script>."}', "raw HTML"),
         ]
         for name, raw_json, expected in invalid_fragments:

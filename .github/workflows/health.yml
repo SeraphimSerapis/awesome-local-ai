@@ -70,8 +70,9 @@ jobs:
             pr_number="$PR_NUMBER"
           fi
           if [[ -z "$pr_number" ]]; then
-            pr_number="$(gh pr list --repo "$GITHUB_REPOSITORY" --base "$DEFAULT_BRANCH" \
-              --head automation/catalog-health --state open --json number --jq '.[0].number // empty')"
+            owner="${GITHUB_REPOSITORY%%/*}"
+            pr_number="$(gh api "repos/$GITHUB_REPOSITORY/pulls?state=open&base=$DEFAULT_BRANCH&head=$owner:automation/catalog-health" \
+              --jq '[.[] | select(.user.login == "github-actions[bot]")] | .[0].number // empty')"
           fi
           if [[ -z "$pr_number" ]]; then
             echo "No open health PR to verify or merge."

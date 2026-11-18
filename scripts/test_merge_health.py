@@ -111,8 +111,7 @@ class MergePolicyTests(unittest.TestCase):
                 "Upstream links",
             },
         )
-        self.assertTrue(bool(merge_health.REQUIRED_JOBS))
-        self.assertLessEqual(merge_health.REQUIRED_JOBS, workflow_names)
+        self.assertEqual(merge_health.REQUIRED_JOBS, workflow_names - {"Upstream links"})
 
     def test_run_provenance_and_sha_are_required(self):
         for field, value in [("head_repository", {"full_name": "attacker/fork"}),
