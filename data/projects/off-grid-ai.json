@@ -31,11 +31,11 @@
   ],
   "license": {
     "spdx": "AGPL-3.0-only",
-    "url": "https://github.com/off-grid-ai/OGAD/blob/312b8f45ef6afdd2bff3f7be130b4d0a23124bc8/LICENSE"
+    "url": "https://raw.githubusercontent.com/off-grid-ai/OGAD/312b8f45ef6afdd2bff3f7be130b4d0a23124bc8/LICENSE"
   },
   "sources": [
     {
-      "url": "https://github.com/off-grid-ai/OGAD/blob/312b8f45ef6afdd2bff3f7be130b4d0a23124bc8/README.md",
+      "url": "https://raw.githubusercontent.com/off-grid-ai/OGAD/312b8f45ef6afdd2bff3f7be130b4d0a23124bc8/README.md",
       "note": "Bundled engines, model catalog and Hugging Face search, Gateway endpoints and headless mode, MCP connectors, opt-in analytics, auto-update, supported platforms and the separate Pro package."
     },
     {
@@ -45,10 +45,6 @@
     {
       "url": "https://raw.githubusercontent.com/off-grid-ai/OGAD/312b8f45ef6afdd2bff3f7be130b4d0a23124bc8/src/main/model-server.ts",
       "note": "Binds the gateway listener to GATEWAY_BIND_HOST and checks optional Bearer API keys, off by default."
-    },
-    {
-      "url": "https://github.com/off-grid-ai/OGAD/blob/312b8f45ef6afdd2bff3f7be130b4d0a23124bc8/LICENSE",
-      "note": "AGPL-3.0 license text."
     }
   ],
   "last_reviewed": "2026-11-18"

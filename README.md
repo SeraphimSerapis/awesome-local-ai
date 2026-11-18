@@ -5,7 +5,6 @@ Browse by task, or ask your agent to find tools that fit your machine and workfl
 
 Local includes personal computers and self-hosted clusters. A project can support
 cloud providers too, but its core listing must have a documented local use case.
-Optional cloud integrations live in a separate section.
 
 ## Start here
 
@@ -40,7 +39,6 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 
 ### Run a model on my hardware
 
-- [boots / ai-bootstrap](https://github.com/kindlingai/boots)
 - [DwarfStar / ds4](https://github.com/antirez/ds4)
 - [Kapitsa](https://github.com/nace-ai/kapitsa)
 - [mentat](https://github.com/kindlingai/mentat)
@@ -49,10 +47,8 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 - [oMLX](https://github.com/jundot/omlx)
 - [RAI](https://github.com/Classevelabs/rai)
 - [spark-vllm-docker](https://github.com/eugr/spark-vllm-docker)
-- [SparkPilot](https://github.com/ashhart/SparkPilot)
 - [sparkrun](https://github.com/spark-arena/sparkrun)
 - [Splash](https://github.com/incoai/splash)
-- [Sqwakie](https://github.com/alexcarney460-hue/walkie)
 - [Strata](https://github.com/Niko1221/Strata)
 - [TandemLLM](https://github.com/0xBakeer/TandemLLM)
 - [TensorFold](https://github.com/ashhart/TensorFold)
@@ -69,24 +65,18 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 - [Pi](https://github.com/earendil-works/pi)
 - [Splash](https://github.com/incoai/splash)
 - [Strata](https://github.com/Niko1221/Strata)
-- [Talavine Code](https://github.com/scrossen/talavine-code)
 - [TandemLLM](https://github.com/0xBakeer/TandemLLM)
 - [TensorFold](https://github.com/ashhart/TensorFold)
-- [YYLO](https://github.com/yylo-dev/yylo)
-- [Zaru (zaru-cli)](https://github.com/100monkeys-ai/zaru-cli)
 
 ### Run autonomous agents with local models
 
 - [agent-qa](https://github.com/vostride/agent-qa)
-- [BAXY](https://github.com/REDSOULTM/BAXY)
 - [bot-reborn](https://github.com/beasaltfish/bot-reborn)
 - [Contemplative Agent](https://github.com/shimo4228/contemplative-agent)
-- [Debate Hall](https://github.com/sequimelectronics/DebateHall)
 
 ### Test tool-calling quality
 
 - [Inference Atlas](https://github.com/0xBakeer/inference-atlas)
-- [Spark Bench](https://github.com/Weschera/spark-bench)
 - [tool-eval-bench](https://github.com/SeraphimSerapis/tool-eval-bench)
 
 ### Test model behavior and safety
@@ -97,8 +87,6 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 
 - [Inference Atlas](https://github.com/0xBakeer/inference-atlas)
 - [llama-benchy](https://github.com/eugr/llama-benchy)
-- [RigMark](https://github.com/alexellis/rigmark)
-- [Spark Bench](https://github.com/Weschera/spark-bench)
 - [Spark Tools](https://github.com/knapcio/spark-tools)
 - [tool-eval-bench](https://github.com/SeraphimSerapis/tool-eval-bench)
 
@@ -110,11 +98,9 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 - [mentat](https://github.com/kindlingai/mentat)
 - [spark-vllm-docker](https://github.com/eugr/spark-vllm-docker)
 - [sparkrun](https://github.com/spark-arena/sparkrun)
-- [Sqwakie](https://github.com/alexcarney460-hue/walkie)
 
 ### Set up local AI
 
-- [boots / ai-bootstrap](https://github.com/kindlingai/boots)
 - [kindling-spark-os](https://github.com/kindlingai/kindling-spark-os)
 - [RAI](https://github.com/Classevelabs/rai)
 - [sparkrun](https://github.com/spark-arena/sparkrun)
@@ -141,10 +127,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 
 ### Chat with a local model
 
-- [AI-Beach](https://github.com/sequimelectronics/AI-Beach)
-- [BAXY](https://github.com/REDSOULTM/BAXY)
 - [bot-reborn](https://github.com/beasaltfish/bot-reborn)
-- [CascAid](https://github.com/stevejwhite/cascaid)
 - [DwarfStar / ds4](https://github.com/antirez/ds4)
 - [Kapitsa](https://github.com/nace-ai/kapitsa)
 - [mlx-serve](https://github.com/ddalcu/mlx-serve)
@@ -152,7 +135,6 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 - [oMLX](https://github.com/jundot/omlx)
 - [Orkas](https://github.com/Orkas-AI/Orkas)
 - [RAI](https://github.com/Classevelabs/rai)
-- [SparkPilot](https://github.com/ashhart/SparkPilot)
 - [Splash](https://github.com/incoai/splash)
 - [Strata](https://github.com/Niko1221/Strata)
 - [ThreadShelf](https://github.com/ChrystianSchutz/ThreadShelf)
@@ -160,26 +142,11 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 ### Add skills, extensions, or MCP tools
 
 - [agent-qa](https://github.com/vostride/agent-qa)
-- [BankBridge](https://github.com/bankbridge-money/bankbridge-plugin) (cloud)
 - [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
-- [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud)
-- [Google Agent Skills](https://github.com/google/skills) (cloud)
-- [Matt Pocock's skills](https://github.com/mattpocock/skills)
 - [Oh My Pi](https://github.com/can1357/oh-my-pi)
 - [Orkas](https://github.com/Orkas-AI/Orkas)
 - [Pi](https://github.com/earendil-works/pi)
 - [ThreadShelf](https://github.com/ChrystianSchutz/ThreadShelf)
-- [YYLO](https://github.com/yylo-dev/yylo)
-
-### Use optional cloud integrations
-
-- [BankBridge](https://github.com/bankbridge-money/bankbridge-plugin) (cloud)
-- [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud)
-- [Google Agent Skills](https://github.com/google/skills) (cloud)
-
-### Translate text and documents locally
-
-- [Earshot AI](https://github.com/sunchupeng/earshot-support)
 
 ## Browse by category
 
@@ -193,7 +160,6 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 - [Applications and model management](#applications)
 - [Agent skills and extensions](#skills)
 - [MCP servers](#mcp)
-- [Cloud integrations](#cloud-integrations)
 
 <a id="inference"></a>
 
@@ -279,15 +245,6 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 
 ### Deployment and bootstrapping
 
-- [boots / ai-bootstrap](https://github.com/kindlingai/boots): Use a setup-focused agent to discover hardware and bootstrap local model servers with permission-based host access.
-  - Local client or agent. Platforms: Linux, macOS, Windows. Hardware: CPU, Apple Silicon, NVIDIA GPU, AMD GPU, DGX Spark / GB10.
-  - License: [Unclear; check upstream](https://github.com/kindlingai/boots). [Metadata and evidence](data/projects/boots.json).
-  - Documentation reviewed: 2026-10-10. Repository checked: 2026-11-16 (reachable).
-  - Last observed push: 2026-10-08. Archived: no. Disabled: no.
-  - Note: Windows setup uses WSL; model downloads and provisioning can need network access.
-  - Note: Can use SSH and sudo with permission; inspect the setup plan before approving host changes.
-  - Note: No explicit upstream license was found in the root or deno.json; confirm licensing before redistribution.
-
 - [spark-vllm-docker](https://github.com/eugr/spark-vllm-docker): Run vLLM in Docker on one or more DGX Spark systems with networking and distributed-inference setup scripts.
   - Local workload. Platforms: Linux. Hardware: DGX Spark / GB10.
   - License: [MIT](https://raw.githubusercontent.com/eugr/spark-vllm-docker/a4c172976a5f9f8669b356a0891bf972cae14fd4/LICENSE). [Metadata and evidence](data/projects/spark-vllm-docker.json).
@@ -331,9 +288,9 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: Does not configure hosts or supervise serving. Probe and benchmark each fabric before use; collective failures require restarting the rank group.
 
 - [MCDMA](https://github.com/ashhart/MCDMA): Configure and verify RDMA links between supported Mac and Linux hosts for distributed local inference.
-  - Local workload. Platforms: macOS, Linux. Hardware: Apple Silicon, DGX Spark / GB10, AMD GPU.
+  - Local workload. Platforms: macOS, Linux. Hardware: Apple Silicon, DGX Spark / GB10.
   - License: [Apache-2.0](https://raw.githubusercontent.com/ashhart/MCDMA/3f4f4be02dd9289ccd72b496d723660b5f181ffb/LICENSE). [Metadata and evidence](data/projects/mcdma.json).
-  - Documentation reviewed: 2026-10-10. Repository checked: 2026-11-16 (reachable).
+  - Documentation reviewed: 2026-11-18. Repository checked: 2026-11-16 (reachable).
   - Last observed push: 2026-11-01. Archived: no. Disabled: no.
   - Note: Requires qualified hardware, cables, adapters, and drivers; hardware tags do not imply every cross-platform link is validated.
   - Note: The documented Strix Halo/Mac workflow still needs physical validation.
@@ -341,21 +298,10 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 - [mentat](https://github.com/kindlingai/mentat): Manage small inference clusters and route model endpoints with a lightweight replacement for vLLM's Ray executor dependencies.
   - Local workload. Platforms: Linux. Hardware: Not recorded.
   - License: [MIT OR Apache-2.0](https://raw.githubusercontent.com/kindlingai/mentat/e9d2ce11395d1adf0bbc4b640f5bcc356e82e41b/rust/Cargo.toml). [Metadata and evidence](data/projects/mentat.json).
-  - Documentation reviewed: 2026-10-10. Repository checked: 2026-11-16 (reachable).
+  - Documentation reviewed: 2026-11-18. Repository checked: 2026-11-16 (reachable).
   - Last observed push: 2026-11-01. Archived: no. Disabled: no.
   - Note: Implements the Ray functionality used by vLLM, not the full Ray API.
-  - Note: The Rust workspace declares MIT OR Apache-2.0; no top-level license text was found, so confirm terms for other components.
-
-- [Sqwakie](https://github.com/alexcarney460-hue/walkie): Split one open-weight model across opted-in team machines with llama.cpp RPC and serve an OpenAI-compatible API on localhost; also links Claude Code and Codex agents.
-  - Local workload. Platforms: macOS, Linux. Hardware: Not recorded.
-  - License: [FSL-1.1-ALv2](https://raw.githubusercontent.com/alexcarney460-hue/walkie/89229f3352fba9402eef611ff6cc118c8a801485/LICENSE). [Metadata and evidence](data/projects/sqwakie.json).
-  - Documentation reviewed: 2026-10-17. Repository checked: 2026-11-16 (reachable).
-  - Last observed push: 2026-10-26. Archived: no. Disabled: no.
-  - Note: v0.2 pre-release. Sharing is off by default; a person on each machine must turn pooled model runs on.
-  - Note: The README does not document hardware requirements or which llama.cpp backends pooled runs use.
-  - Note: Needs a Sqwakie team: the Free plan covers up to 2 people and 4 machines; larger teams need a paid per-person plan.
-  - Note: Licensing calls home for one-time activation and, on paid plans, a daily renewal check. When no direct path exists, an encrypted relay sees connection metadata such as IP addresses.
-  - Note: Source-available license (FSL-1.1-ALv2), not OSI open source; each version becomes Apache-2.0 two years after release.
+  - Note: rust/Cargo.toml declares MIT OR Apache-2.0, while the python/ directory carries no separate license file and installs under the ray package namespace.
 
 <a id="systems"></a>
 
@@ -414,45 +360,13 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Last observed push: 2026-11-16. Archived: no. Disabled: no.
   - Note: Local inference needs a separate model server; endpoint-specific behavior may need configuration.
 
-- [Talavine Code](https://github.com/scrossen/talavine-code): C# desktop and CLI coding harness that connects tool-capable local Ollama models or supported hosted model and coding CLI backends.
-  - Local client or agent. Platforms: Windows, macOS. Hardware: Not recorded.
-  - License: [MIT](https://github.com/scrossen/talavine-code/blob/9bd11df3b277f42be718f4ca1546e57e211ac811/LICENSE). [Metadata and evidence](data/projects/talavine-code.json).
-  - Documentation reviewed: 2026-10-22. Repository checked: 2026-11-16 (reachable).
-  - Last observed push: 2026-11-06. Archived: no. Disabled: no.
-  - Note: Desktop builds are previews; source setup currently requires .NET 11 RC2 and Git, with additional native desktop build requirements.
-  - Note: Ollama and a tool-capable model are separate requirements; model hardware and memory needs depend on the selected model.
-  - Note: Default permission mode is auto; commands can edit files and perform external actions. A working directory is not an operating-system sandbox.
-  - Note: Hosted model APIs or coding CLIs need their own authentication and network access, with separate service costs and terms. Provider requests can send repository content.
-  - Note: Documentation does not establish an offline-operation or telemetry guarantee; ordinary conversation and workspace files are not promised encrypted at rest.
-
-- [YYLO](https://github.com/yylo-dev/yylo): Orchestrate coding agents from the terminal with typed tasks, skills installs, and receipt-backed merge gates; Pi is a supported subagent.
-  - Local client or agent. Platforms: Not recorded. Hardware: Not recorded.
-  - License: [MIT](https://raw.githubusercontent.com/yylo-dev/yylo/e958c03fa2d6a3135d9583c2f0f58998f319109d/LICENSE). [Metadata and evidence](data/projects/yylo.json).
-  - Documentation reviewed: 2026-10-18. Repository checked: 2026-11-16 (reachable).
-  - Last observed push: 2026-11-13. Archived: no. Disabled: no.
-  - Note: Requires Node.js 20.10 or newer and Git; upstream does not document per-operating-system support.
-  - Note: The orchestrator itself contacts no model provider: subagents such as Pi are installed and configured separately, and provider credentials, model availability, and any local model servers remain external.
-  - Note: Evidence describes unreleased CLI 0.2.12; features and required companion versions may differ from the published stable package.
-  - Note: Advanced-mode bootstrap can create an initial commit and protected integration-owner worktree in an empty Git repository. Simple mode uses a shared checkout; fresh Simple initialization downloads agent skills by default unless --no-skills is set. Review skills before loading them.
-
-- [Zaru (zaru-cli)](https://github.com/100monkeys-ai/zaru-cli): Terminal agent harness that runs model-requested tool calls behind permission prompts, loops on project validators, and logs every step to a JSONL transcript.
-  - Local client or agent. Platforms: Linux. Hardware: Not recorded.
-  - License: [Apache-2.0](https://github.com/100monkeys-ai/zaru-cli/blob/dbe708166fe9f62c349f2d9a48c979617d354d13/LICENSE). [Metadata and evidence](data/projects/zaru.json).
-  - Documentation reviewed: 2026-10-28. Repository checked: 2026-11-16 (reachable).
-  - Last observed push: 2026-10-21. Archived: no. Disabled: no.
-  - Note: Pre-alpha with no releases or packages; built from source with Rust 1.98.1 and a C compiler, and commands, files and settings can change without notice.
-  - Note: Built and tested on Linux only; does not build on Windows, and macOS is untested.
-  - Note: Not a sandbox: tool calls run with the user's permissions, and a permission prompt does not limit what an allowed call can do.
-  - Note: The model provider receives the task, conversation, tool descriptions and every tool result, including file contents and command output.
-  - Note: Ollama defaults to a 4,096-token context window; set provider.ollama.context\_tokens to request more, capped by the model's reported limit.
-
 <a id="evaluation"></a>
 
 ### Evaluation and benchmarking
 
 - [FadeBench](https://github.com/sequimelectronics/fadebench): Measure incremental moral drift in small local models: four-decision ladders, each paired with the same final decision asked cold, sent to a /v1/completions server.
   - Local client or agent. Platforms: Windows. Hardware: Not recorded.
-  - License: [Apache-2.0](https://github.com/sequimelectronics/fadebench/blob/c1c0bdf3f8758fdc990fcf4ef22a78da4e4f28b0/LICENSE). [Metadata and evidence](data/projects/fadebench.json).
+  - License: [Apache-2.0](https://raw.githubusercontent.com/sequimelectronics/fadebench/c1c0bdf3f8758fdc990fcf4ef22a78da4e4f28b0/LICENSE). [Metadata and evidence](data/projects/fadebench.json).
   - Documentation reviewed: 2026-11-01. Repository checked: 2026-11-16 (reachable).
   - Last observed push: 2026-11-09. Archived: no. Disabled: no.
   - Note: A research benchmark with pre-registered criteria, not a leaderboard: the runner only records what was shown and what came back; drift is scored afterwards from the logs under written rubrics in docs/SCORING\_GUIDANCE\_GRADIENT.md.
@@ -481,23 +395,6 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Documentation reviewed: 2026-10-10. Repository checked: 2026-11-16 (reachable).
   - Last observed push: 2026-07-10. Archived: no. Disabled: no.
   - Note: Measures serving performance, not tool-calling correctness or complete coding-agent quality.
-
-- [RigMark](https://github.com/alexellis/rigmark): Benchmark model-serving behavior with prose, code, structured output, cache tests, and concurrent requests.
-  - Local client or agent. Platforms: Not recorded. Hardware: Not recorded.
-  - License: [MIT](https://raw.githubusercontent.com/alexellis/rigmark/52c29c3fc1d741b9aef8895b23372aafa5dc6161/LICENSE). [Metadata and evidence](data/projects/rigmark.json).
-  - Documentation reviewed: 2026-10-10. Repository checked: 2026-11-16 (reachable).
-  - Last observed push: 2026-10-25. Archived: no. Disabled: no.
-  - Note: A serving benchmark, not a complete multi-turn coding-agent evaluation.
-  - Note: Comparisons need disclosed model and serving settings; different stacks do not isolate topology effects.
-
-- [Spark Bench](https://github.com/Weschera/spark-bench): Evaluate model-serving recipes with tool-use, multi-turn, coding, and throughput workloads aimed at DGX Spark operators.
-  - Local client or agent. Platforms: Not recorded. Hardware: DGX Spark / GB10.
-  - License: [Unclear; check upstream](https://raw.githubusercontent.com/Weschera/spark-bench/0a2e2afe96112020919e74d371f73d9a57640984/README.md). [Metadata and evidence](data/projects/spark-bench.json).
-  - Documentation reviewed: 2026-10-11. Repository checked: 2026-11-16 (reachable).
-  - Last observed push: 2026-10-13. Archived: no. Disabled: no.
-  - Note: Scores describe model and deployment combinations; different methodology versions are not directly comparable.
-  - Note: Includes executable-code grading; review execution isolation and resource limits before running.
-  - Note: The README declares MIT, but no license text was found; confirm licensing before redistribution.
 
 - [Spark Tools](https://github.com/knapcio/spark-tools): Check and simulate inference configurations, compiler resources, schedulers, and MoE layouts for DGX Spark.
   - Local client or agent. Platforms: macOS, Linux. Hardware: CPU, DGX Spark / GB10.
@@ -539,32 +436,6 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 
 ### Applications and model management
 
-- [AI-Beach](https://github.com/sequimelectronics/AI-Beach): Self-host a shared space where people and their own AI agents chat, play card and board games, read each other's stories, and explore optional 3D worlds (BeachBlox, ClawBlox).
-  - Local workload. Platforms: Windows. Hardware: CPU.
-  - License: [AGPL-3.0-only](https://github.com/sequimelectronics/AI-Beach/blob/c2f18a4ce32e85f057b3b93fd5ead23fc953a4de/LICENSE). [Metadata and evidence](data/projects/ai-beach.json).
-  - Documentation reviewed: 2026-10-26. Repository checked: 2026-11-16 (reachable).
-  - Last observed push: 2026-11-10. Archived: no. Disabled: no.
-  - Note: The Beach includes no AI model: agents are brought by the user and join over HTTP with an invite. An agent can be a local model with a small script or a cloud agent such as a Claude Code session; cloud agents send their visit traffic to their provider and cost their usual tokens.
-  - Note: Run on Windows only so far: the macOS and Linux steps are written in the guide but not yet tested by the maintainers.
-  - Note: Early-stage household project with no paid support; developed and tested on Python 3.14 only, and older Python versions are untested.
-  - Note: The optional 3D game worlds need the Clawblox engine built from source with Rust plus the project's patches (Node.js only to install a pinned esbuild); the chat, game tables and Reading Room need only Python.
-  - Note: The server loads nothing from the internet and has no accounts or telemetry; optional Gather Bell hooks can send the ringer's name and Beach name to ntfy or Discord. Home-network access uses plain HTTP by default, so network observers can read the traffic; HTTPS is optional. Outside visitors need a public IP with a forwarded port, or a VPN or tunnel, plus a reverse proxy with a trusted certificate; this is an advanced setup.
-  - Note: Core code is AGPL-3.0-only: running a modified version for other users over a network requires offering them the modified source. Original art is CC BY-SA 4.0; Clawblox-derived patches and world renderers retain MIT licensing.
-
-- [BAXY](https://github.com/REDSOULTM/BAXY): Voice and text assistant that operates a Windows PC in English and Spanish, running its own fine-tuned Qwen3.5-4B model on a dedicated 4 GB GPU.
-  - Local workload. Platforms: Windows. Hardware: NVIDIA GPU, AMD GPU.
-  - License: [Unclear; check upstream](https://raw.githubusercontent.com/REDSOULTM/BAXY/f0e66d197c6d6f970257383e766e2f63b2dc7353/LICENSE). [Metadata and evidence](data/projects/baxy.json).
-  - Documentation reviewed: 2026-11-08. Repository checked: 2026-11-16 (reachable).
-  - Last observed push: 2026-11-16. Archived: no. Disabled: no.
-  - Note: Early access, under active development.
-  - Note: Needs a dedicated GPU with 4 GB of memory; integrated graphics and CPU only are not supported.
-  - Note: AMD support is partly tested: version 1.3.0 ran on one AMD card, but 1.3.1 was tested with a simulated AMD card. Intel cards were not tested.
-  - Note: Installing needs internet and about 12 GB free; the download is about 5 GB. The installer is unsigned, and downloading from the release page was not tested end to end for 1.3.1.
-  - Note: It acts on the desktop with the user's permissions. It asks before destructive actions, sending something or closing unsaved work, and that prompt can be turned off.
-  - Note: Web requests, and an optional third-party model API the user connects, send data off the PC; otherwise it stays local.
-  - Note: The project's own code is MIT. The voice model uses BigScience OpenRAIL-M, which restricts use; avatar media and other components have separate terms.
-  - Note: The maintainer reports unresolved licensing questions about the wake word model's training, including voices without written permission. Earlier releases were withdrawn; the 1.3.1 release notes describe the remaining uncertainty.
-
 - [bot-reborn](https://github.com/beasaltfish/bot-reborn): Turn a toy robot car into a voice robot: a phone is the body, and a Node brain on your computer runs a local 0.8B reflex model plus configurable STT, chat and TTS.
   - Local client or agent. Platforms: macOS. Hardware: Apple Silicon.
   - License: [MIT](https://raw.githubusercontent.com/beasaltfish/bot-reborn/1118222a1189e9407f92520a720fba8be6e27db1/LICENSE). [Metadata and evidence](data/projects/bot-reborn.json).
@@ -577,18 +448,6 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: With remote providers, microphone audio is uploaded as WAV to speech-to-text, conversation text goes to the chat model, and reply text goes to text-to-speech; remote providers need API keys and may cost money.
   - Note: The code is MIT, but the published reflex model is licensed separately under Apache-2.0, as its model card declares.
 
-- [CascAid](https://github.com/stevejwhite/cascaid): Practise fictional psychiatric interviews with local language models, optional speech recognition, spoken replies, an experimental 3D character, and formative feedback.
-  - Local workload. Platforms: macOS. Hardware: Apple Silicon.
-  - License: [AGPL-3.0-only](https://github.com/stevejwhite/cascaid/blob/26261748f8278d676e90b1a9d42a8dab6035cbfa/LICENSE). [Metadata and evidence](data/projects/cascaid.json).
-  - Documentation reviewed: 2026-11-15. Repository checked: 2026-11-16 (reachable).
-  - Last observed push: 2026-11-13. Archived: no. Disabled: no.
-  - Note: Early-stage educational research proof of concept for CASC-style psychiatric interviews. Cases and automated feedback are not clinically validated; feedback is not an examination mark or clinical decision support.
-  - Note: The documented model setup requires an Apple Silicon Mac; the reported evaluation host is an Apple M4 with 16 GiB unified memory. Other platforms and smaller memory configurations are not established by these sources.
-  - Note: Requires Node.js 22 or newer, npm and uv. Initial setup downloads models and runtimes; generation, recognition and synthesis then run locally without a hosted fallback. Enable the local backends explicitly; the default model backend returns scripted stand-in replies.
-  - Note: Speech input requires browser microphone permission. Audio is not saved by default, but transcripts are logged locally; a separate consent-based evaluation recorder can retain audio when enabled.
-  - Note: The optional 3D avatar is experimental and installation requires Blender 4.5.14. The optional fine-tuned student interpreter weights are not distributed; the documented Qwen fallback remains available.
-  - Note: Code is AGPL-3.0-only; cases, data and documentation are CC-BY-4.0. Downloaded models, voices, runtimes and avatar assets have separate licenses.
-
 - [Contemplative Agent](https://github.com/shimo4228/contemplative-agent): Run an autonomous agent on a local LLM through Ollama that posts on Moltbook, logs every action, and stages changes to its own prompts for a person to adopt or reject.
   - Local client or agent. Platforms: macOS. Hardware: Apple Silicon.
   - License: [MIT](https://raw.githubusercontent.com/shimo4228/contemplative-agent/620728552019f8be5ae9cb843400592ce5cde12d/LICENSE). [Metadata and evidence](data/projects/contemplative-agent.json).
@@ -599,37 +458,9 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: Posts wait for confirmation by default, but scheduled sessions run with --auto and post without asking. The agent talks only to moltbook.com and to Ollama on localhost.
   - Note: A long-running research experiment, not a productivity tool; changes it proposes to its constitution, identity, and skills take effect only after a person adopts them.
 
-- [Debate Hall](https://github.com/sequimelectronics/DebateHall): Self-host a structured debate over a paper's claims, where people and their own AI agents take seats and each objection, answer and ruling goes into an exportable ledger.
-  - Local workload. Platforms: Windows. Hardware: CPU.
-  - License: [AGPL-3.0-only](https://github.com/sequimelectronics/DebateHall/blob/1235c2a6dc3cfa0386034a0fc7c053517d2de344/LICENSE). [Metadata and evidence](data/projects/debate-hall.json).
-  - Documentation reviewed: 2026-11-08. Repository checked: 2026-11-16 (reachable).
-  - Last observed push: 2026-11-09. Archived: no. Disabled: no.
-  - Note: The hall includes no AI model: agents are brought by the user and take a seat over HTTP with a one-time code. Cloud agents such as a Claude Code session work too; they send the paper and debate traffic to their provider and cost their usual tokens.
-  - Note: The included tools/local\_model\_seat.py lets a model on any OpenAI-style server on the same computer hold the advocate or adversary seat. It has been run once, with Phi-4-mini Q4\_K\_M on llama-server b12024, through openings, two objections, rulings and exports, with a scripted judge; other models, CPU-only runs and full-length debates are untested. The README advises binding the model server to 127.0.0.1 with an API key.
-  - Note: Run on Windows only so far: the macOS and Linux steps are written but not yet tested by the maintainers.
-  - Note: Early-stage household project with no paid support; developed and tested on Python 3.14 only, and older Python versions are untested.
-  - Note: The hall listens on 127.0.0.1 only by default, and every seat except the audience signs in on the hall's own computer for now. An optional audience door opens a listener on the home network during one debate, limited to that debate's audience seats and a firewall rule for chosen devices.
-  - Note: Papers are Markdown files placed in a local folder.
-  - Note: Core code is AGPL-3.0-only: running a modified version for other users over a network requires offering them the modified source. Original art in docs/art is CC BY-SA 4.0.
-
-- [Earshot AI](https://github.com/sunchupeng/earshot-support): Translate text and selectable-text PDFs on an iPhone with a bundled local model, retain local history, and export a bilingual PDF.
-  - Local workload. Platforms: iOS. Hardware: Not recorded.
-  - License: [Unclear; check upstream](https://earshot.chuchu1226.chatgpt.site/terms). [Metadata and evidence](data/projects/earshot-ai.json).
-  - Documentation reviewed: 2026-11-14. Repository checked: 2026-11-16 (reachable).
-  - Last observed push: 2026-11-13. Archived: no. Disabled: no.
-  - Note: Proprietary App Store app for compatible iPhones running iOS 17 or later; US$4.99 once in the US storefront as verified 14 November 2026. The linked repository provides official support documentation and public issue reporting.
-  - Note: File imports support TXT and selectable-text PDF, up to 6 MB per file, 80 PDF pages, 300 paragraphs and 30,000 extracted characters. Scanned and password-protected PDFs are unsupported, and complex original layouts are not preserved.
-  - Note: The bundled HY model license excludes use in the European Union, United Kingdom and South Korea, including travel there. The app is unavailable in those storefronts and mainland China.
-  - Note: Speech and read-aloud depend on the device, language and prepared Apple resources. Text translation remains local.
-  - Note: The published version 1.0.1 privacy policy says there is no advertising/tracking SDK, app account, automatic developer cloud sync or content-analytics upload endpoint. Release builds disable the app's speech, read-aloud and clipboard diagnostic-file routines. System/model-runtime diagnostics can still exist, and the policy says those files are not automatically sent to the developer. A complete independent crash-reporting SDK or callback audit is unavailable.
-  - Note: Optional HY-model downloads require user action and contact Hugging Face and delivery CDNs, exposing connection/request metadata such as IP address and HTTP headers; the policy says those requests exclude translation content. Apple resource preparation, cloud file/photo retrieval, chosen sharing destinations, purchases, backups/diagnostics, external links and voluntary support email can also use a network. Exports and backups can include translation content.
-  - Note: The published TXT-to-PDF example uses development build 1.0.1(19) in an iOS 27 Simulator and retains translation errors. Physical-iPhone processing performance was not measured in that demonstration.
-  - Note: The public support repository has no declared documentation license. The app is proprietary under Apple's Standard EULA and supplemental Earshot terms, with separate model licenses. The license field is null for maintainer review.
-  - Note: The linked product, demonstration and legal pages use the current developer chatgpt.site host; no long-term hosting commitment for those pages has been verified.
-
 - [Off Grid AI](https://github.com/off-grid-ai/OGAD): Desktop app for local chat with text and vision models, image generation, speech-to-text and text-to-speech, plus a local OpenAI-compatible API.
   - Local workload. Platforms: macOS, Windows, Linux. Hardware: Apple Silicon, CPU.
-  - License: [AGPL-3.0-only](https://github.com/off-grid-ai/OGAD/blob/312b8f45ef6afdd2bff3f7be130b4d0a23124bc8/LICENSE). [Metadata and evidence](data/projects/off-grid-ai.json).
+  - License: [AGPL-3.0-only](https://raw.githubusercontent.com/off-grid-ai/OGAD/312b8f45ef6afdd2bff3f7be130b4d0a23124bc8/LICENSE). [Metadata and evidence](data/projects/off-grid-ai.json).
   - Documentation reviewed: 2026-11-18. Repository: not checked yet.
   - Note: Release builds cover macOS on Apple Silicon, Windows x64 and Linux x64 (Ubuntu 24.04 or newer).
   - Note: Model downloads come from Hugging Face; the app checks for signed updates. Anonymous usage data and crash reports are sent only if the user turns them on.
@@ -638,7 +469,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 
 - [Orkas](https://github.com/Orkas-AI/Orkas): Open-source, local-first desktop AI workforce where Commander coordinates specialist project work, with supported own-provider API keys and compatible local model endpoints.
   - Local client or agent. Platforms: macOS, Windows, Linux. Hardware: Not recorded.
-  - License: [MIT](https://github.com/Orkas-AI/Orkas/blob/10e4e61b9e7549312060b9ee613c105228801181/LICENSE). [Metadata and evidence](data/projects/orkas.json).
+  - License: [MIT](https://raw.githubusercontent.com/Orkas-AI/Orkas/10e4e61b9e7549312060b9ee613c105228801181/LICENSE). [Metadata and evidence](data/projects/orkas.json).
   - Documentation reviewed: 2026-10-18. Repository checked: 2026-11-16 (reachable).
   - Last observed push: 2026-11-16. Archived: no. Disabled: no.
   - Note: Orkas is a desktop client and agent workspace, not a model inference server; a suitable model endpoint is configured separately.
@@ -647,18 +478,9 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: Remote model providers and authorized external tools require network access and can receive task data; provider usage can cost extra.
   - Note: The source build has no Orkas account layer; packaged official builds require sign-in and optional managed services have separate terms.
 
-- [SparkPilot](https://github.com/ashhart/SparkPilot): Connect Apple devices to DGX Spark for private chat, model management, and authenticated runtime access.
-  - Local client or agent. Platforms: iOS, iPadOS, Linux. Hardware: DGX Spark / GB10.
-  - License: [Apache-2.0](https://raw.githubusercontent.com/ashhart/SparkPilot/c9faa949be429da5cc5ab3579259d65aa6c3c5de/LICENSE). [Metadata and evidence](data/projects/sparkpilot.json).
-  - Documentation reviewed: 2026-10-10. Repository checked: 2026-11-16 (reachable).
-  - Last observed push: 2026-09-11. Archived: no. Disabled: no.
-  - Note: Beta testing focuses on iPhone and iPad with Nemotron Lightning; the Linux tag describes the Spark runtime.
-  - Note: A source build does not establish hardware qualification; not every development recipe is approved for distribution.
-  - Note: The Qwen engine adaptation includes separately licensed AGPL components.
-
 - [ThreadShelf](https://github.com/ChrystianSchutz/ThreadShelf): Index ChatGPT, Claude, Google AI Studio, OpenRouter, LM Studio and Grok exports locally for semantic and exact search, then continue old threads with local GGUF models.
   - Local workload. Platforms: Linux, macOS, Windows. Hardware: CPU.
-  - License: [MIT](https://github.com/ChrystianSchutz/ThreadShelf/blob/f13b721561305c3b040dc701ce86553ec36c4447/LICENSE). [Metadata and evidence](data/projects/threadshelf.json).
+  - License: [MIT](https://raw.githubusercontent.com/ChrystianSchutz/ThreadShelf/f13b721561305c3b040dc701ce86553ec36c4447/LICENSE). [Metadata and evidence](data/projects/threadshelf.json).
   - Documentation reviewed: 2026-11-08. Repository checked: 2026-11-16 (reachable).
   - Last observed push: 2026-10-28. Archived: no. Disabled: no.
   - Note: Single-user application: the HTTP API has no accounts or authentication and should stay on loopback unless deliberately exposed on a trusted network.
@@ -669,7 +491,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 
 - [whichquant](https://github.com/ngo-binh0108/whichquant): Check every GGUF quant in a Hugging Face repo against your GPU and RAM before downloading it, by reading only the file headers, and get the llama.cpp flags for each one.
   - Local workload. Platforms: Linux, macOS, Windows. Hardware: NVIDIA GPU, Apple Silicon.
-  - License: [MIT](https://github.com/ngo-binh0108/whichquant/blob/2c7e13a290ce8ca230abe7cc11196c895218426e/LICENSE). [Metadata and evidence](data/projects/whichquant.json).
+  - License: [MIT](https://raw.githubusercontent.com/ngo-binh0108/whichquant/2c7e13a290ce8ca230abe7cc11196c895218426e/LICENSE). [Metadata and evidence](data/projects/whichquant.json).
   - Documentation reviewed: 2026-11-09. Repository checked: 2026-11-16 (reachable).
   - Last observed push: 2026-11-11. Archived: no. Disabled: no.
   - Note: Weights are exact, but the compute buffer is an estimate and the KV cache follows llama.cpp's sizing rules.
@@ -681,13 +503,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 
 ### Agent skills and extensions
 
-- [Matt Pocock's skills](https://github.com/mattpocock/skills): Add reusable engineering and productivity skills for planning, requirements, implementation, and review.
-  - Local client or agent. Platforms: Not recorded. Hardware: Not recorded.
-  - License: [MIT](https://raw.githubusercontent.com/mattpocock/skills/49dd158d1076134a641b33efb035946536778336/LICENSE). [Metadata and evidence](data/projects/matt-pocock-skills.json).
-  - Documentation reviewed: 2026-10-10. Repository checked: 2026-11-16 (reachable).
-  - Last observed push: 2026-11-13. Archived: no. Disabled: no.
-  - Note: Model-agnostic skill instructions are not proof of reliable behavior with every local model.
-  - Note: Review selected skills for commands, integrations, and permissions before loading them.
+No entries yet. [Suggest a project](CONTRIBUTING.md).
 
 <a id="mcp"></a>
 
@@ -695,7 +511,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 
 - [agent-qa](https://github.com/vostride/agent-qa): Test web and mobile apps through a local CLI/MCP server with local model endpoints, memidex memory and validated self-improvement.
   - Local client or agent. Platforms: Not recorded. Hardware: Not recorded.
-  - License: [FSL-1.1-ALv2](https://github.com/vostride/agent-qa/blob/1b8a9daf46dd0ec1b2c4503d2f1c0e26b0002293/LICENSE.md). [Metadata and evidence](data/projects/agent-qa.json).
+  - License: [FSL-1.1-ALv2](https://raw.githubusercontent.com/vostride/agent-qa/1b8a9daf46dd0ec1b2c4503d2f1c0e26b0002293/LICENSE.md). [Metadata and evidence](data/projects/agent-qa.json).
   - Documentation reviewed: 2026-10-31. Repository checked: 2026-11-16 (reachable).
   - Last observed push: 2026-11-14. Archived: no. Disabled: no.
   - Note: Early-stage project; the pinned upstream README warns that bugs should be expected.
@@ -705,35 +521,6 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: App observations go to the configured model provider. Runs and MCP tools act without approval prompts; use limited test accounts and review plugins, which have full machine access.
   - Note: Released versions send usage analytics unless analytics.privacy is true, and run/dashboard update checks contact npm; local model configuration does not guarantee offline operation.
   - Note: FSL-1.1-ALv2 restricts use to the license's Permitted Purpose; each version transitions to Apache-2.0 after two years.
-
-## Cloud integrations
-
-These integrations connect agents to cloud services. They are not offline local AI tools.
-
-- [BankBridge](https://github.com/bankbridge-money/bankbridge-plugin): Answer questions about your own US bank, credit card and investment accounts from any MCP agent, including ones running a local model.
-  - Cloud integration. Platforms: Not recorded. Hardware: Not recorded.
-  - License: [MIT](https://raw.githubusercontent.com/bankbridge-money/bankbridge-plugin/c7fcda435eeaeee94cf4479983d646027befb467/LICENSE). [Metadata and evidence](data/projects/bankbridge.json).
-  - Documentation reviewed: 2026-11-08. Repository checked: 2026-11-16 (reachable).
-  - Last observed push: 2026-11-07. Archived: no. Disabled: no.
-  - Note: Hosted, closed-source server; the repository holds the client package and skill. Paid service, $5/mo per connected bank. US banks only.
-  - Note: Balances and transactions pass through a bank-data provider and BankBridge to the agent. The vendor says BankBridge does not store them. Not an offline tool.
-  - Note: The vendor describes the tools as read-only, with no ability to move money, pay bills or place trades.
-
-- [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp): Connect MCP-capable agents to Google Cloud management, observability, storage, and backup tools.
-  - Cloud integration. Platforms: Not recorded. Hardware: Not recorded.
-  - License: [Apache-2.0](https://raw.githubusercontent.com/googleapis/gcloud-mcp/238728f237ecb5f483199906b564a1767a0713f9/LICENSE). [Metadata and evidence](data/projects/gcloud-mcp.json).
-  - Documentation reviewed: 2026-10-10. Repository checked: 2026-11-16 (reachable).
-  - Last observed push: 2026-10-17. Archived: no. Disabled: no.
-  - Note: Requires Google Cloud access and credentials; tool operations can change remote resources and incur charges.
-  - Note: A locally running MCP process does not make its cloud operations offline.
-
-- [Google Agent Skills](https://github.com/google/skills): Add agent skills for Google products and technologies, including Google Cloud workflows.
-  - Cloud integration. Platforms: Not recorded. Hardware: Not recorded.
-  - License: [Apache-2.0](https://raw.githubusercontent.com/google/skills/4b940dd4b5f5759794cc257266cb8cb7524b7a66/LICENSE). [Metadata and evidence](data/projects/google-skills.json).
-  - Documentation reviewed: 2026-10-10. Repository checked: 2026-11-16 (reachable).
-  - Last observed push: 2026-11-16. Archived: no. Disabled: no.
-  - Note: Many skills require Google APIs, cloud resources, credentials, or billing; inspect each selected skill's requirements.
-  - Note: The collection is listed as an optional cloud integration, not as a guarantee that every skill requires cloud access.
 
 <!-- catalog:end -->
 

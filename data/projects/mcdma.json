@@ -13,8 +13,7 @@
   ],
   "hardware": [
     "apple-silicon",
-    "dgx-spark",
-    "amd-gpu"
+    "dgx-spark"
   ],
   "local_mode": "local",
   "compatibility": [
@@ -34,5 +33,5 @@
       "note": "Upstream description, setup, and documented requirements."
     }
   ],
-  "last_reviewed": "2026-10-10"
+  "last_reviewed": "2026-11-18"
 }

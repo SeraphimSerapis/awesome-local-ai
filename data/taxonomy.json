@@ -25,9 +25,7 @@
     "tune-systems": "Tune thermals and memory",
     "validate-inference-configs": "Validate or simulate inference configurations",
     "chat-with-models": "Chat with a local model",
-    "extend-agents": "Add skills, extensions, or MCP tools",
-    "manage-cloud": "Use optional cloud integrations",
-    "translate-text": "Translate text and documents locally"
+    "extend-agents": "Add skills, extensions, or MCP tools"
   },
   "platforms": {
     "linux": "Linux",
@@ -45,7 +43,6 @@
   },
   "local_modes": {
     "local": "Local workload",
-    "local-client": "Local client or agent",
-    "cloud-dependent": "Cloud integration"
+    "local-client": "Local client or agent"
   }
 }

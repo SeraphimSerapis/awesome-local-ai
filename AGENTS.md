@@ -7,8 +7,8 @@
 2. Read `data/taxonomy.json`, then relevant `data/projects/*.json` records. The
    README is a generated browsing view; the records contain compatibility and sources.
 3. Compare candidates using their documented requirements. Empty arrays mean
-   unknown, and hardware tags are not model-level qualification. Keep
-   `cloud-dependent` entries separate from local or offline recommendations.
+   unknown, and hardware tags are not model-level qualification. Distinguish
+   `local` workloads from `local-client` tools that still need a model endpoint.
 4. Cite upstream evidence and check current instructions before making setup
    recommendations. Report unverified combinations as unverified, not compatible.
 5. Return a short recommendation with alternatives, requirements, limitations,

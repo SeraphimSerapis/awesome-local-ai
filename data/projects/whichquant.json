@@ -28,15 +28,15 @@
   ],
   "license": {
     "spdx": "MIT",
-    "url": "https://github.com/ngo-binh0108/whichquant/blob/2c7e13a290ce8ca230abe7cc11196c895218426e/LICENSE"
+    "url": "https://raw.githubusercontent.com/ngo-binh0108/whichquant/2c7e13a290ce8ca230abe7cc11196c895218426e/LICENSE"
   },
   "sources": [
     {
-      "url": "https://github.com/ngo-binh0108/whichquant/blob/2c7e13a290ce8ca230abe7cc11196c895218426e/README.md",
+      "url": "https://raw.githubusercontent.com/ngo-binh0108/whichquant/2c7e13a290ce8ca230abe7cc11196c895218426e/README.md",
       "note": "Usage, supported hardware detection, accuracy notes and limits."
     },
     {
-      "url": "https://github.com/ngo-binh0108/whichquant/blob/2c7e13a290ce8ca230abe7cc11196c895218426e/.github/workflows/tests.yml",
+      "url": "https://raw.githubusercontent.com/ngo-binh0108/whichquant/2c7e13a290ce8ca230abe7cc11196c895218426e/.github/workflows/tests.yml",
       "note": "Test matrix covering Linux, macOS and Windows."
     }
   ],
