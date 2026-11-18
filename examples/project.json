@@ -16,12 +16,12 @@
   ],
   "license": {
     "spdx": "MIT",
-    "url": "https://github.com/example/project/blob/HEAD/LICENSE"
+    "url": "https://raw.githubusercontent.com/example/project/0123456789abcdef0123456789abcdef01234567/LICENSE"
   },
   "sources": [
     {
-      "url": "https://github.com/example/project/blob/HEAD/README.md",
-      "note": "Replace this URL and note with evidence for the entry's claims."
+      "url": "https://raw.githubusercontent.com/example/project/0123456789abcdef0123456789abcdef01234567/README.md",
+      "note": "Replace this commit-pinned URL and note with evidence for the entry's claims."
     }
   ],
   "last_reviewed": "2026-01-01"

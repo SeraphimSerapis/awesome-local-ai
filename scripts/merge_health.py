@@ -19,7 +19,6 @@ REQUIRED_JOBS = {
     "Catalog / ubuntu-latest / Python 3.11",
     "Catalog / windows-latest / Python 3.13",
     "Documentation",
-    "Upstream links",
 }
 
 

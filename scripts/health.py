@@ -65,10 +65,13 @@ def observe(repository, previous, today, fetch=github_metadata):
             catalog.validate_health_record(successful)
             record = successful
     except HTTPError as error:
-        if error.code in {404, 410, 451}:
-            record.update(status="unavailable", detail=f"HTTP {error.code}; repository may be missing, private, or restricted.")
-        else:
-            record["detail"] = f"HTTP {error.code}; check failed, not evidence that the project is gone."
+        try:
+            if error.code in {404, 410, 451}:
+                record.update(status="unavailable", detail=f"HTTP {error.code}; repository may be missing, private, or restricted.")
+            else:
+                record["detail"] = f"HTTP {error.code}; check failed, not evidence that the project is gone."
+        finally:
+            error.close()
     except (URLError, OSError, ValueError, KeyError, TypeError) as error:
         record["detail"] = f"Check failed ({type(error).__name__}); retry later."
     catalog.validate_health_record(record)

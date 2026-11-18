@@ -23,7 +23,7 @@ class CatalogTests(unittest.TestCase):
         (self.root / "data/projects").mkdir(parents=True)
         shutil.copy(catalog.ROOT / "data/taxonomy.json", self.root / "data/taxonomy.json")
         self.project = catalog.read_json(catalog.ROOT / "examples/project.json")
-        self.project["last_reviewed"] = date.today().isoformat()
+        self.project["last_reviewed"] = datetime.now(timezone.utc).date().isoformat()
         self.save()
         self.readme = f"# Fixture\n\nManual introduction.\n\n{catalog.START}\n\nOld catalog.\n\n{catalog.END}\n\nManual footer.\n"
         (self.root / "README.md").write_text(self.readme, encoding="utf-8")
@@ -121,7 +121,10 @@ class CatalogTests(unittest.TestCase):
     def test_repository_must_be_canonical(self):
         for repository in ["https://github.com/example/project/", "https://github.com/example/project.git",
                            "https://github.com/example/project#readme", "https://gitlab.com/example/project",
-                           "https://github.com/example/project?x=y"]:
+                           "https://github.com/example/project?x=y", "https://github.com/example/.",
+                           "https://github.com/example/..", "https://github.com/../project",
+                           "https://github.com/./project", "https://github.com/-bad/project",
+                           "https://github.com/bad-/project", f"https://github.com/{'a' * 40}/project"]:
             with self.subTest(repository=repository):
                 self.project["repository"] = repository
                 self.save()
@@ -129,12 +132,19 @@ class CatalogTests(unittest.TestCase):
 
     def test_unsafe_source_urls_fail(self):
         for value in ["http://example.com", "javascript:alert(1)", "https://user:password@example.com",
-                      "https://example.com:8443", "https://localhost/readme", "https://example.com/x y",
-                      "https://example.com/)bad", "https://example.com/<script>", "https://[bad"]:
+                      "https://example.com:8443", "https://localhost/readme", "https://app.localhost/readme",
+                      "https://intranet/readme", "https://example.com./readme", "https://127.0.0.1/readme",
+                      "https://127.1/readme", "https://0177.0.0.1/readme", "https://10.0.0.1/readme",
+                      "https://172.16.0.1/readme", "https://192.168.1.1/readme",
+                      "https://169.254.169.254/latest/meta-data", "https://100.64.0.1/readme",
+                      "https://0.0.0.0/readme", "https://224.0.0.1/readme", "https://240.0.0.1/readme",
+                      "https://example.com/x y", "https://example.com/)bad", "https://example.com/<script>",
+                      "https://[bad"]:
             with self.subTest(url=value):
                 self.project["sources"][0]["url"] = value
                 self.save()
                 self.assert_invalid("source.url")
+        catalog.url("https://1.1.1.1/readme", "source.url")
 
     def test_oversized_and_multiline_descriptions_fail(self):
         for description in ["a" * 181, "first\nsecond", "first\tsecond", " padded ", ""]:
@@ -144,11 +154,21 @@ class CatalogTests(unittest.TestCase):
                 self.assert_invalid("description")
 
     def test_invalid_and_future_dates_fail(self):
-        for reviewed in ["20260101", "2026-02-30", "2026-1-1", (date.today() + timedelta(days=1)).isoformat()]:
+        tomorrow_utc = (datetime.now(timezone.utc).date() + timedelta(days=1)).isoformat()
+        for reviewed in ["20260101", "2026-02-30", "2026-1-1", tomorrow_utc]:
             with self.subTest(reviewed=reviewed):
                 self.project["last_reviewed"] = reviewed
                 self.save()
                 self.assert_invalid("last_reviewed")
+        fake_utc = datetime(2026, 11, 18, 0, 30, tzinfo=timezone.utc)
+        with patch("catalog.datetime") as mocked_dt:
+            mocked_dt.now.return_value = fake_utc
+            self.project["last_reviewed"] = "2026-11-18"
+            self.save()
+            self.load()
+            self.project["last_reviewed"] = "2026-11-19"
+            self.save()
+            self.assert_invalid("last_reviewed")
 
     def test_unknown_license_needs_visible_note(self):
         self.project["license"]["spdx"] = None
@@ -161,12 +181,32 @@ class CatalogTests(unittest.TestCase):
         self.assertIn("Unclear; check upstream", catalog.catalog_markdown(taxonomy, projects))
 
     def test_spdx_expression_and_invalid_shape(self):
-        self.project["license"]["spdx"] = "MIT OR Apache-2.0"
-        self.save()
-        self.load()
-        self.project["license"]["spdx"] = "a license maybe"
-        self.save()
-        self.assert_invalid("SPDX")
+        for valid_spdx in [
+            "MIT OR Apache-2.0",
+            "Apache-2.0 WITH LLVM-exception",
+            "GPL-2.0-only WITH Classpath-exception-2.0 OR MIT",
+        ]:
+            with self.subTest(spdx=valid_spdx):
+                self.project["license"]["spdx"] = valid_spdx
+                self.save()
+                self.load()
+        for bad_spdx in [
+            "a license maybe",
+            "Unknown",
+            "PROPRIETARY",
+            "none",
+            "Custom",
+            "other",
+            "TBD",
+            "Unlicensed",
+            "NOASSERTION",
+            "MIT OR Proprietary",
+            "OR",
+        ]:
+            with self.subTest(spdx=bad_spdx):
+                self.project["license"]["spdx"] = bad_spdx
+                self.save()
+                self.assert_invalid("SPDX")
 
     def test_cloud_entry_needs_limitations(self):
         self.project["local_mode"] = "cloud-dependent"
@@ -269,18 +309,37 @@ class CatalogTests(unittest.TestCase):
             return subprocess.run(["git", *args], cwd=self.root, check=True,
                                   capture_output=True, text=True).stdout.strip()
 
-        git("init", "-q")
-        git("add", ".")
-        git("-c", "user.name=Catalog Tests", "-c", "user.email=catalog@example.invalid",
-            "-c", "commit.gpgsign=false", "commit", "-qm", "fixture")
+        def commit(message):
+            git("add", ".")
+            git("-c", "user.name=Catalog Tests", "-c", "user.email=catalog@example.invalid",
+                "-c", "commit.gpgsign=false", "commit", "-qm", message)
+
+        git("init", "-q", "-b", "main")
+        commit("fixture")
         base = git("rev-parse", "HEAD")
         self.assertEqual(catalog.changed_projects(self.root, [self.project], base), [])
+
+        git("checkout", "-qb", "feature")
         self.project["description"] = "Updated fixture."
         self.save()
-        git("add", ".")
-        git("-c", "user.name=Catalog Tests", "-c", "user.email=catalog@example.invalid",
-            "-c", "commit.gpgsign=false", "commit", "-qm", "update")
-        self.assertEqual(catalog.changed_projects(self.root, [self.project], base), [self.project])
+        commit("update feature")
+
+        git("checkout", "-q", "main")
+        unrelated = deepcopy(self.project)
+        unrelated.update(id="main-only", name="Main Only", repository="https://github.com/example/main-only")
+        self.save(unrelated)
+        commit("advance main")
+        advanced_main = git("rev-parse", "HEAD")
+
+        git("checkout", "-q", "feature")
+        self.assertEqual(catalog.changed_projects(self.root, [self.project, unrelated], advanced_main), [self.project])
+
+        git("checkout", "-q", "--orphan", "disconnected")
+        orphan = deepcopy(self.project)
+        orphan.update(id="orphan-project", name="Orphan Project", repository="https://github.com/example/orphan")
+        self.save(orphan)
+        commit("orphan commit")
+        self.assertIn(orphan, catalog.changed_projects(self.root, [self.project, orphan], base))
 
     def save_fragment(self, slug="example-project", section="Added", entry=None):
         directory = self.root / "changelog.d"
@@ -487,9 +546,13 @@ class CatalogTests(unittest.TestCase):
                     category=category,
                     use_cases=["serve-models", "chat-with-models"],
                 )
-                entry["license"]["url"] = f"https://github.com/example/{slug}/blob/HEAD/LICENSE"
-                entry["sources"] = [{"url": f"https://github.com/example/{slug}/blob/HEAD/README.md",
-                                     "note": f"Documents {name} local serving and chat."}]
+                entry["license"]["url"] = (
+                    f"https://raw.githubusercontent.com/example/{slug}/0123456789abcdef0123456789abcdef01234567/LICENSE"
+                )
+                entry["sources"] = [{
+                    "url": f"https://raw.githubusercontent.com/example/{slug}/0123456789abcdef0123456789abcdef01234567/README.md",
+                    "note": f"Documents {name} local serving and chat.",
+                }]
                 project_file = branch_root / "data/projects" / f"{slug}.json"
                 project_file.write_text(json.dumps(entry, indent=2) + "\n", encoding="utf-8")
                 fragment_payload = {

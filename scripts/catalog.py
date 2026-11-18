@@ -4,6 +4,7 @@
 
 import argparse
 from datetime import date, datetime, timedelta, timezone
+import ipaddress
 import json
 from pathlib import Path
 import re
@@ -16,7 +17,15 @@ ROOT = Path(__file__).resolve().parent.parent
 START = "<!-- catalog:start -->"
 END = "<!-- catalog:end -->"
 SLUG = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*")
-REPOSITORY = re.compile(r"https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+")
+REPOSITORY = re.compile(
+    r"https://github\.com/[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?/(?![.]{1,2}$)[A-Za-z0-9_.-]+"
+)
+SPDX_TERM = r"[A-Za-z0-9.+-]+(?: WITH [A-Za-z0-9.+-]+)?"
+SPDX_EXPRESSION = re.compile(rf"{SPDX_TERM}(?: (?:OR|AND) {SPDX_TERM})*")
+NON_SPDX_TOKENS = frozenset({
+    "and", "custom", "noassertion", "none", "or", "other",
+    "proprietary", "tbd", "unknown", "unlicensed", "with",
+})
 MARKDOWN_LINK = re.compile(r"\[((?:\\.|[^\[\]\\])*)\]\(([^)]*)\)")
 WEEK_HEADING = re.compile(r"## Week of (\d{4}-\d{2}-\d{2})")
 CHANGELOG_SECTIONS = ("Added", "Updated", "Removed")
@@ -75,8 +84,28 @@ def url(value, field):
     require(parsed.scheme == "https" and bool(parsed.hostname), f"{field} must be an HTTPS URL")
     require(parsed.username is None and parsed.password is None and port is None,
             f"{field} must not contain credentials or a custom port")
-    require(parsed.hostname not in {"localhost", "127.0.0.1", "::1"},
-            f"{field} must point to public documentation")
+    hostname = parsed.hostname
+    try:
+        address = ipaddress.ip_address(hostname)
+    except ValueError:
+        labels = hostname.split(".")
+        require(len(labels) >= 2 and all(labels)
+                and not labels[-1].isdigit()
+                and hostname.casefold() != "localhost"
+                and not hostname.casefold().endswith(".localhost"),
+                f"{field} must point to public documentation")
+    else:
+        require(
+            address.is_global and not (
+                address.is_loopback
+                or address.is_private
+                or address.is_link_local
+                or address.is_unspecified
+                or address.is_multicast
+                or address.is_reserved
+            ),
+            f"{field} must point to public documentation",
+        )
 
 
 def string_list(value, field, choices=None, nonempty=False):
@@ -130,8 +159,11 @@ def validate_project(project, path, taxonomy):
             "license must contain spdx and url")
     if license_info["spdx"] is not None:
         text(license_info["spdx"], "license.spdx", 100)
-        require(re.fullmatch(r"[A-Za-z0-9.+-]+(?: (?:OR|AND) [A-Za-z0-9.+-]+)*", license_info["spdx"]) is not None,
-                "license.spdx must be an SPDX identifier or a simple AND/OR expression")
+        require(SPDX_EXPRESSION.fullmatch(license_info["spdx"]) is not None,
+                "license.spdx must be an SPDX identifier or a simple AND/OR/WITH expression")
+        spdx_tokens = re.split(r" (?:OR|AND|WITH) ", license_info["spdx"])
+        require(all(token.casefold() not in NON_SPDX_TOKENS for token in spdx_tokens),
+                "license.spdx must be a valid SPDX identifier rather than a placeholder; use null and explain unclear licensing in limitations")
     else:
         require(any(word in note.lower() for note in project["limitations"] for word in ["license", "licensing"]),
                 "unknown licensing must be explained in limitations")
@@ -151,7 +183,7 @@ def validate_project(project, path, taxonomy):
         reviewed = date.fromisoformat(project["last_reviewed"])
     except ValueError as error:
         raise CatalogError("last_reviewed must be YYYY-MM-DD") from error
-    require(reviewed.isoformat() == project["last_reviewed"] and reviewed <= date.today(),
+    require(reviewed.isoformat() == project["last_reviewed"] and reviewed <= datetime.now(timezone.utc).date(),
             "last_reviewed must be YYYY-MM-DD and not in the future")
 
 
@@ -539,23 +571,27 @@ def catalog_urls(projects, fragments=()):
     return sorted(project_urls | fragment_urls)
 
 
-def changed_projects(root, projects, base_ref):
+def changed_paths(root, base_ref, pathspec):
     require(re.fullmatch(r"[0-9a-f]{40}", base_ref) is not None, "base-ref must be a full commit SHA")
+    merge_base = subprocess.run(
+        ["git", "merge-base", base_ref, "HEAD"],
+        cwd=root, capture_output=True, text=True,
+    )
+    diff_range = [f"{base_ref}...HEAD"] if merge_base.returncode == 0 else [base_ref, "HEAD"]
     result = subprocess.run(
-        ["git", "diff", "--name-only", "--diff-filter=ACMR", base_ref, "HEAD", "--", "data/projects/"],
+        ["git", "diff", "--name-only", "--diff-filter=ACMR", *diff_range, "--", pathspec],
         cwd=root, check=True, capture_output=True, text=True,
     )
-    changed = set(result.stdout.splitlines())
+    return set(result.stdout.splitlines())
+
+
+def changed_projects(root, projects, base_ref):
+    changed = changed_paths(root, base_ref, "data/projects/")
     return [project for project in projects if f'data/projects/{project["id"]}.json' in changed]
 
 
 def changed_changelog_fragments(root, fragments, base_ref):
-    require(re.fullmatch(r"[0-9a-f]{40}", base_ref) is not None, "base-ref must be a full commit SHA")
-    result = subprocess.run(
-        ["git", "diff", "--name-only", "--diff-filter=ACMR", base_ref, "HEAD", "--", "changelog.d/"],
-        cwd=root, check=True, capture_output=True, text=True,
-    )
-    changed = set(result.stdout.splitlines())
+    changed = changed_paths(root, base_ref, "changelog.d/")
     return [fragment for fragment in fragments if f'changelog.d/{fragment["slug"]}.json' in changed]
 
 

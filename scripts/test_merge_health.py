@@ -7,6 +7,7 @@ import io
 import json
 import os
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import tempfile
@@ -16,6 +17,69 @@ from unittest.mock import patch
 import catalog
 import health
 import merge_health
+
+
+def checks_workflow_job_names(workflow_path):
+    """Extract rendered job names from checks.yml using stdlib-only parsing."""
+    in_jobs = False
+    jobs = {}
+    current_job = None
+    in_include = False
+    current_matrix_item = None
+    for raw_line in workflow_path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.split("#", 1)[0].rstrip()
+        if not line.strip():
+            continue
+        indent = len(line) - len(line.lstrip(" "))
+        stripped = line.strip()
+        if indent == 0:
+            in_jobs = stripped == "jobs:"
+            current_job = None
+            in_include = False
+            current_matrix_item = None
+            continue
+        if not in_jobs:
+            continue
+        if indent == 2 and stripped.endswith(":"):
+            current_job = stripped[:-1]
+            jobs[current_job] = {"name": current_job, "include": []}
+            in_include = False
+            current_matrix_item = None
+            continue
+        if current_job is None:
+            continue
+        if indent == 4 and stripped.startswith("name:"):
+            jobs[current_job]["name"] = stripped.removeprefix("name:").strip().strip("\"'")
+            in_include = False
+            current_matrix_item = None
+        elif indent <= 6:
+            in_include = False
+            current_matrix_item = None
+        elif indent == 8 and stripped == "include:":
+            in_include = True
+            current_matrix_item = None
+        elif in_include and indent == 10 and stripped.startswith("- "):
+            current_matrix_item = {}
+            jobs[current_job]["include"].append(current_matrix_item)
+            key, value = stripped[2:].split(":", 1)
+            current_matrix_item[key.strip()] = value.strip().strip("\"'")
+        elif in_include and indent == 12 and current_matrix_item is not None and ":" in stripped:
+            key, value = stripped.split(":", 1)
+            current_matrix_item[key.strip()] = value.strip().strip("\"'")
+    names = set()
+    for info in jobs.values():
+        template = info["name"]
+        if info["include"]:
+            for entry in info["include"]:
+                rendered = re.sub(
+                    r"\$\{\{\s*matrix\.([A-Za-z0-9_-]+)\s*\}\}",
+                    lambda match: entry[match.group(1)],
+                    template,
+                )
+                names.add(rendered)
+        else:
+            names.add(template)
+    return names
 
 
 class MergePolicyTests(unittest.TestCase):
@@ -35,6 +99,20 @@ class MergePolicyTests(unittest.TestCase):
     def test_successful_run_and_bot_pr_are_eligible(self):
         merge_health.validate_run(self.run, self.jobs, self.repository)
         merge_health.validate_pr(self.pr, self.sha, self.repository, "main")
+
+    def test_required_jobs_match_checks_workflow_job_names(self):
+        workflow_names = checks_workflow_job_names(catalog.ROOT / ".github/workflows/checks.yml")
+        self.assertEqual(
+            workflow_names,
+            {
+                "Catalog / ubuntu-latest / Python 3.11",
+                "Catalog / windows-latest / Python 3.13",
+                "Documentation",
+                "Upstream links",
+            },
+        )
+        self.assertTrue(bool(merge_health.REQUIRED_JOBS))
+        self.assertLessEqual(merge_health.REQUIRED_JOBS, workflow_names)
 
     def test_run_provenance_and_sha_are_required(self):
         for field, value in [("head_repository", {"full_name": "attacker/fork"}),
