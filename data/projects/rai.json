@@ -55,7 +55,11 @@
     {
       "url": "https://raw.githubusercontent.com/Classevelabs/rai/02b0b95c5e2225e6ea72d5fb3289ce368cb9b7d1/docs/ARCHITECTURE.md",
       "note": "4-bit linear layers and the 8-bit embedding table."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Classevelabs/rai/02b0b95c5e2225e6ea72d5fb3289ce368cb9b7d1/docs/TROUBLESHOOTING.md",
+      "note": "x86-64 Linux release binaries, glibc 2.28 floor, and ARM Linux source builds."
     }
   ],
-  "last_reviewed": "2026-11-17"
+  "last_reviewed": "2026-11-18"
 }
