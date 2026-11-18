@@ -292,6 +292,89 @@ class CatalogTests(unittest.TestCase):
             generated,
         )
 
+    def test_health_lines_renders_divergent_and_matching_default_branch_commits(self):
+        base_observation = {
+            "repository": self.project["repository"],
+            "checked_at": self.project["last_reviewed"],
+            "status": "reachable",
+            "detail": None,
+            "last_successful_check": self.project["last_reviewed"],
+            "canonical_repository": self.project["repository"],
+            "archived": False,
+            "disabled": False,
+            "last_push": "2026-11-14T04:25:59Z",
+            "last_default_branch_commit": "2026-09-26T10:15:00Z",
+        }
+        divergent = catalog.health_lines(self.project, base_observation)
+        self.assertEqual(
+            divergent,
+            [
+                f'  - Documentation reviewed: {self.project["last_reviewed"]}. '
+                f'Repository checked: {self.project["last_reviewed"]}, reachable.',
+                "  - Default branch commit: 2026-09-26. Last observed push: 2026-11-14. Archived: no. Disabled: no.",
+            ],
+        )
+        for line in divergent:
+            for forbidden in ["(", ")", "—", "–", "--"]:
+                self.assertNotIn(forbidden, line)
+
+        matching = catalog.health_lines(
+            self.project,
+            dict(base_observation, last_default_branch_commit="2026-11-14T01:00:00Z"),
+        )
+        self.assertEqual(
+            matching[1],
+            "  - Last observed push: 2026-11-14. Archived: no. Disabled: no.",
+        )
+
+        missing_commit = catalog.health_lines(
+            self.project,
+            dict(base_observation, last_default_branch_commit=None),
+        )
+        self.assertEqual(
+            missing_commit[1],
+            "  - Last observed push: 2026-11-14. Archived: no. Disabled: no.",
+        )
+
+    def test_validate_health_record_validates_default_branch_commit_field(self):
+        valid = {
+            "repository": self.project["repository"],
+            "checked_at": self.project["last_reviewed"],
+            "status": "reachable",
+            "detail": None,
+            "last_successful_check": self.project["last_reviewed"],
+            "canonical_repository": self.project["repository"],
+            "archived": False,
+            "disabled": False,
+            "last_push": "2026-11-14T04:25:59Z",
+            "last_default_branch_commit": "2026-09-26T10:15:00Z",
+        }
+        catalog.validate_health_record(valid)
+        catalog.validate_health_record(dict(valid, last_default_branch_commit=None))
+
+        missing_key = dict(valid)
+        missing_key.pop("last_default_branch_commit")
+        with self.assertRaisesRegex(catalog.CatalogError, "missing or unexpected"):
+            catalog.validate_health_record(missing_key)
+
+        for bad_ts in ["2026-09-26", "2026-09-26T10:15:00+00:00", 123, ""]:
+            with self.subTest(bad_ts=bad_ts), self.assertRaisesRegex(catalog.CatalogError, "last_default_branch_commit"):
+                catalog.validate_health_record(dict(valid, last_default_branch_commit=bad_ts))
+
+        never_checked = dict(
+            valid,
+            status="check-failed",
+            detail="Offline.",
+            last_successful_check=None,
+            canonical_repository=None,
+            archived=None,
+            disabled=None,
+            last_push=None,
+            last_default_branch_commit="2026-09-26T10:15:00Z",
+        )
+        with self.assertRaisesRegex(catalog.CatalogError, "requires a successful observation"):
+            catalog.validate_health_record(never_checked)
+
     def test_url_output_is_deduplicated_and_sorted(self):
         _, projects = self.load()
         urls = catalog.catalog_urls(projects * 2)

@@ -7,11 +7,14 @@ The catalog records two different kinds of evidence:
 - **Repository checked:** a dated observation of public GitHub repository metadata
   in [`data/health.json`](../data/health.json). It does not update the human review date.
 
-Last observed push is GitHub's repository-level `pushed_at`, not the date of a
-release or necessarily a code change on the default branch. Recent activity does
-not establish maintenance, security, quality, or compatibility. Inactivity does
-not establish abandonment. Archived and disabled are GitHub flags, not catalog
-inclusion decisions.
+Last observed push is GitHub's repository-level `pushed_at`, which advances on
+pushes to any branch or tag, including unmerged bot branches. The collector also
+records `last_default_branch_commit` from the latest commit on the upstream
+default branch, and the generated README prints both dates whenever they differ.
+Neither timestamp establishes human documentation review, active maintenance,
+security, quality, or compatibility, and inactivity does not establish
+abandonment. Archived and disabled are GitHub flags, not catalog inclusion
+decisions.
 
 ## Snapshot format
 
@@ -29,6 +32,7 @@ fields; unknown or misspelled fields fail validation.
 | `archived` | GitHub's archived flag, or `null` before a successful check. |
 | `disabled` | GitHub's disabled flag, or `null` before a successful check. |
 | `last_push` | GitHub's `pushed_at` UTC timestamp, or `null` if none was reported or never observed. |
+| `last_default_branch_commit` | Latest commit UTC timestamp on the upstream `default_branch`, or `null` if unavailable, empty, disabled, or never observed. |
 
 `reachable` means the API returned valid public repository metadata. It does not
 mean a tool was installed or tested. `unavailable` covers HTTP 404, 410, or 451,
@@ -109,15 +113,26 @@ reports the reason in its workflow log. Failed CI or a timeout stops the workflo
 before it invokes the merge gate.
 
 The merge uses the normal GitHub merge operation without administrator bypass or
-repository-wide native auto-merge. The active `main` ruleset blocks direct
-pushes, force-pushes, and branch deletion, requires pull requests with resolved
-review threads, and requires the three catalog and documentation status checks.
-Because `GITHUB_TOKEN` cannot approve its own pull request or act as a ruleset
-bypass actor, the ruleset leaves the required approving review count at zero and
-maintainers enforce human review manually on project, script, workflow, and
-documentation pull requests. Merges made with `GITHUB_TOKEN` do not trigger
-another push workflow; verification comes from the dispatched catalog CI run
-before merging. Project submissions remain manual.
+repository-wide native auto-merge. Merges made with `GITHUB_TOKEN` do not
+trigger another push workflow; verification comes from the dispatched catalog CI
+run before merging. Project submissions remain manual.
+
+### Token and ruleset decision
+
+- **Decision.** Keep `.github/workflows/health.yml` on the built-in
+  `GITHUB_TOKEN` and keep `required_approving_review_count` at `0` in the
+  `Protect main` ruleset rather than operating a custom GitHub App.
+- **Trade-offs.** This avoids GitHub App registration and private-key rotation on
+  a solo-maintained repository where `SeraphimSerapis` is the sole collaborator
+  with merge access and cannot self-approve pull requests under
+  `required_approving_review_count: 1`. Because `github-actions[bot]` cannot
+  approve pull requests or appear in ruleset `bypass_actors`, human review on
+  project, script, workflow, and documentation pull requests stays manual while
+  `Protect main` blocks direct pushes, force-pushes, branch deletion, unresolved
+  review threads, and failing status checks.
+- **Condition to revisit.** Revisit adding a repository-scoped GitHub App in
+  `bypass_actors` and raising `required_approving_review_count` to `1` if a
+  second maintainer with merge permissions joins the repository.
 
 Review flagged repositories and failed checks before accepting a snapshot.
 Corrections or removals need a separate catalog change with upstream evidence and

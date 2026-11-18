@@ -62,7 +62,9 @@ def validate_snapshot(snapshot, projects, today):
         catalog.require(record["repository"] == project["repository"]
                         and record["status"] == "reachable" and record["checked_at"] == today
                         and record["archived"] is False and record["disabled"] is False
-                        and record["canonical_repository"].casefold() == project["repository"].casefold(),
+                        and record["canonical_repository"].casefold() == project["repository"].casefold()
+                        and (record["last_default_branch_commit"] is None
+                             or isinstance(record["last_default_branch_commit"], str)),
                         f'{project["id"]}: stale or flagged observation needs manual review')
 
 

@@ -40,6 +40,7 @@ FIELDS = {
 HEALTH_FIELDS = {
     "repository", "checked_at", "status", "detail", "last_successful_check",
     "canonical_repository", "archived", "disabled", "last_push",
+    "last_default_branch_commit",
 }
 
 
@@ -241,6 +242,16 @@ def health_date(value, field):
             f"{field} must be YYYY-MM-DD and not in the future")
 
 
+def health_timestamp(value, field):
+    text(value, field, 20)
+    try:
+        parsed = datetime.strptime(value, "%Y-%m-%dT%H:%M:%SZ")
+    except ValueError as error:
+        raise CatalogError(f"{field} must be a UTC GitHub timestamp") from error
+    require(parsed.strftime("%Y-%m-%dT%H:%M:%SZ") == value,
+            f"{field} must be a UTC GitHub timestamp")
+
+
 def validate_health_record(record):
     require(isinstance(record, dict) and set(record) == HEALTH_FIELDS,
             "health observation has missing or unexpected fields")
@@ -259,18 +270,21 @@ def validate_health_record(record):
     for field in ["archived", "disabled"]:
         require(record[field] is None or type(record[field]) is bool,
                 f"health.{field} must be a boolean or null")
-    if record["last_push"] is not None:
-        text(record["last_push"], "health.last_push", 20)
-        try:
-            parsed = datetime.strptime(record["last_push"], "%Y-%m-%dT%H:%M:%SZ")
-        except ValueError as error:
-            raise CatalogError("health.last_push must be a UTC GitHub timestamp") from error
-        require(parsed.strftime("%Y-%m-%dT%H:%M:%SZ") == record["last_push"],
-                "health.last_push must be a UTC GitHub timestamp")
+    for field in ["last_push", "last_default_branch_commit"]:
+        if record[field] is not None:
+            health_timestamp(record[field], f"health.{field}")
     successful = record["last_successful_check"]
     if successful is None:
-        require(all(record[field] is None for field in ["canonical_repository", "archived", "disabled", "last_push"]),
-                "health metadata requires a successful observation")
+        require(
+            all(
+                record[field] is None
+                for field in [
+                    "canonical_repository", "archived", "disabled",
+                    "last_push", "last_default_branch_commit",
+                ]
+            ),
+            "health metadata requires a successful observation",
+        )
     else:
         health_date(successful, "health.last_successful_check")
         require(successful <= record["checked_at"], "successful health check cannot follow the latest attempt")
@@ -307,16 +321,26 @@ def health_lines(project, observation):
     if observation is None:
         return [f"  - {reviewed} Repository: not checked yet."]
     status = observation["status"].replace("check-failed", "check failed")
-    result = [f'  - {reviewed} Repository checked: {observation["checked_at"]} ({status}).']
+    result = [f'  - {reviewed} Repository checked: {observation["checked_at"]}, {status}.']
     if observation["status"] != "reachable":
         result.append(f'  - Check note: {markdown(observation["detail"])}')
         if observation["last_successful_check"]:
             result.append(f'  - Upstream observations retained from the last successful check on {observation["last_successful_check"]}.')
     if observation["last_successful_check"]:
-        pushed = observation["last_push"][:10] if observation["last_push"] else "Not reported"
+        push_date = observation["last_push"][:10] if observation["last_push"] else None
+        pushed = push_date or "Not reported"
+        default_commit = (
+            observation["last_default_branch_commit"][:10]
+            if observation.get("last_default_branch_commit")
+            else None
+        )
         archived = "yes" if observation["archived"] else "no"
         disabled = "yes" if observation["disabled"] else "no"
-        result.append(f"  - Last observed push: {pushed}. Archived: {archived}. Disabled: {disabled}.")
+        if default_commit and default_commit != push_date:
+            activity = f"Default branch commit: {default_commit}. Last observed push: {pushed}."
+        else:
+            activity = f"Last observed push: {pushed}."
+        result.append(f"  - {activity} Archived: {archived}. Disabled: {disabled}.")
         canonical = observation["canonical_repository"]
         if canonical.casefold() != project["repository"].casefold():
             result.append(f"  - Repository redirect observed: [{markdown(canonical)}]({canonical}). Review the catalog URL.")
