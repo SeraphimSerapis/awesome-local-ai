@@ -6,6 +6,7 @@ from datetime import date, datetime, timedelta, timezone
 import io
 import json
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import tempfile
@@ -68,7 +69,9 @@ class CatalogTests(unittest.TestCase):
         for field, value in [("category", "invented"), ("local_mode", "offline"),
                              ("local_mode", "cloud-dependent"),
                              ("use_cases", ["unknown"]), ("use_cases", ["manage-cloud"]),
-                             ("use_cases", ["translate-text"]), ("platforms", ["os2"]),
+                             ("use_cases", ["translate-text"]),
+                             ("use_cases", ["evaluate-model-behavior"]),
+                             ("platforms", ["os2"]),
                              ("hardware", ["everything"])]:
             with self.subTest(field=field):
                 changed = deepcopy(self.project)
@@ -283,7 +286,94 @@ class CatalogTests(unittest.TestCase):
         taxonomy, projects = self.load()
         generated = catalog.catalog_markdown(taxonomy, projects)
         self.assertIn("Hardware: Not recorded", generated)
-        self.assertIn(r"Example \[name\] \| \<tag\>", generated)
+        self.assertIn(r"- [Example \[name\] \| \<tag\>](#project-example-project)", generated)
+        self.assertIn(
+            r'- <a id="project-example-project"></a>[Example \[name\] \| \<tag\>](https://github.com/example/project):',
+            generated,
+        )
+
+    def test_health_lines_renders_divergent_and_matching_default_branch_commits(self):
+        base_observation = {
+            "repository": self.project["repository"],
+            "checked_at": self.project["last_reviewed"],
+            "status": "reachable",
+            "detail": None,
+            "last_successful_check": self.project["last_reviewed"],
+            "canonical_repository": self.project["repository"],
+            "archived": False,
+            "disabled": False,
+            "last_push": "2026-11-14T04:25:59Z",
+            "last_default_branch_commit": "2026-09-26T10:15:00Z",
+        }
+        divergent = catalog.health_lines(self.project, base_observation)
+        self.assertEqual(
+            divergent,
+            [
+                f'  - Documentation reviewed: {self.project["last_reviewed"]}. '
+                f'Repository checked: {self.project["last_reviewed"]}, reachable.',
+                "  - Default branch commit: 2026-09-26. Last observed push: 2026-11-14. Archived: no. Disabled: no.",
+            ],
+        )
+        for line in divergent:
+            for forbidden in ["(", ")", "—", "–", "--"]:
+                self.assertNotIn(forbidden, line)
+
+        matching = catalog.health_lines(
+            self.project,
+            dict(base_observation, last_default_branch_commit="2026-11-14T01:00:00Z"),
+        )
+        self.assertEqual(
+            matching[1],
+            "  - Last observed push: 2026-11-14. Archived: no. Disabled: no.",
+        )
+
+        missing_commit = catalog.health_lines(
+            self.project,
+            dict(base_observation, last_default_branch_commit=None),
+        )
+        self.assertEqual(
+            missing_commit[1],
+            "  - Last observed push: 2026-11-14. Archived: no. Disabled: no.",
+        )
+
+    def test_validate_health_record_validates_default_branch_commit_field(self):
+        valid = {
+            "repository": self.project["repository"],
+            "checked_at": self.project["last_reviewed"],
+            "status": "reachable",
+            "detail": None,
+            "last_successful_check": self.project["last_reviewed"],
+            "canonical_repository": self.project["repository"],
+            "archived": False,
+            "disabled": False,
+            "last_push": "2026-11-14T04:25:59Z",
+            "last_default_branch_commit": "2026-09-26T10:15:00Z",
+        }
+        catalog.validate_health_record(valid)
+        catalog.validate_health_record(dict(valid, last_default_branch_commit=None))
+
+        missing_key = dict(valid)
+        missing_key.pop("last_default_branch_commit")
+        with self.assertRaisesRegex(catalog.CatalogError, "missing or unexpected"):
+            catalog.validate_health_record(missing_key)
+
+        for bad_ts in ["2026-09-26", "2026-09-26T10:15:00+00:00", 123, ""]:
+            with self.subTest(bad_ts=bad_ts), self.assertRaisesRegex(catalog.CatalogError, "last_default_branch_commit"):
+                catalog.validate_health_record(dict(valid, last_default_branch_commit=bad_ts))
+
+        never_checked = dict(
+            valid,
+            status="check-failed",
+            detail="Offline.",
+            last_successful_check=None,
+            canonical_repository=None,
+            archived=None,
+            disabled=None,
+            last_push=None,
+            last_default_branch_commit="2026-09-26T10:15:00Z",
+        )
+        with self.assertRaisesRegex(catalog.CatalogError, "requires a successful observation"):
+            catalog.validate_health_record(never_checked)
 
     def test_url_output_is_deduplicated_and_sorted(self):
         _, projects = self.load()
@@ -363,14 +453,77 @@ class CatalogTests(unittest.TestCase):
         self.save(second)
         taxonomy, projects = self.load()
         generated = catalog.catalog_markdown(taxonomy, projects)
-        task_section = generated.split("## Browse by category", 1)[0]
+        task_section, category_section = generated.split("## Browse by category", 1)
         self.assertNotIn("| I want to...", task_section)
+        self.assertNotIn("https://", task_section)
         self.assertIn(
             "### Run a model on my hardware\n\n"
-            "- [alpha project](https://github.com/example/alpha)\n"
-            "- [Example Project](https://github.com/example/project)\n",
+            "- [alpha project](#project-alpha-project)\n"
+            "- [Example Project](#project-example-project)\n",
             task_section,
         )
+        self.assertIn(
+            '- <a id="project-alpha-project"></a>[alpha project](https://github.com/example/alpha):',
+            category_section,
+        )
+        self.assertIn(
+            '- <a id="project-example-project"></a>[Example Project](https://github.com/example/project):',
+            category_section,
+        )
+
+    def test_project_anchors_are_unique_and_resolve_all_readme_fragments(self):
+        taxonomy, projects = catalog.load_catalog()
+        rendered = catalog.render_readme(catalog.ROOT, taxonomy, projects)
+        catalog_body = rendered.split(catalog.START, 1)[1].split(catalog.END, 1)[0]
+        task_section, category_section = catalog_body.split("## Browse by category", 1)
+        self.assertNotIn("https://", task_section)
+
+        for project in projects:
+            anchor = f'project-{project["id"]}'
+            escaped_name = catalog.markdown(project["name"])
+            self.assertEqual(category_section.count(f'<a id="{anchor}"></a>'), 1)
+            self.assertIn(
+                f'- <a id="{anchor}"></a>[{escaped_name}]({project["repository"]}): ',
+                category_section,
+            )
+            self.assertIn(f"- [{escaped_name}](#{anchor})", task_section)
+
+        non_fenced_lines = []
+        in_fence = False
+        for line in rendered.splitlines():
+            if line.startswith("```"):
+                in_fence = not in_fence
+                continue
+            if not in_fence:
+                non_fenced_lines.append(line)
+        non_fenced = "\n".join(non_fenced_lines)
+
+        anchor_ids = re.findall(r'<a id="([^"]+)"></a>', non_fenced)
+        self.assertEqual(len(anchor_ids), len(set(anchor_ids)))
+
+        heading_slugs = set()
+        heading_counts = {}
+        for line in non_fenced_lines:
+            match = re.match(r"^#{1,6}\s+(.+?)\s*$", line)
+            if not match:
+                continue
+            plain = re.sub(r"\\([\\`*_{}\[\]<>|])", r"\1", match.group(1))
+            plain = plain.replace("`", "")
+            slug = "".join(
+                ch if (ch.isalnum() or ch in "_-") else ("-" if ch.isspace() else "")
+                for ch in plain.lower()
+            )
+            count = heading_counts.get(slug, 0)
+            heading_counts[slug] = count + 1
+            heading_slugs.add(f"{slug}-{count}" if count else slug)
+
+        project_anchors = {f'project-{project["id"]}' for project in projects}
+        self.assertTrue(project_anchors.isdisjoint(heading_slugs))
+        valid_targets = set(anchor_ids) | heading_slugs
+        fragment_links = re.findall(r"\]\(#([^)\s]+)\)", non_fenced)
+        self.assertTrue(fragment_links)
+        for fragment in fragment_links:
+            self.assertIn(fragment, valid_targets)
 
     def test_changelog_fragment_validation_and_cli_integration(self):
         (self.root / "changelog.d").mkdir()

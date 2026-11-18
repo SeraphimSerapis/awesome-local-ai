@@ -24,12 +24,22 @@ class HealthTests(unittest.TestCase):
         self.today = datetime.now(timezone.utc).date().isoformat()
         self.yesterday = (datetime.now(timezone.utc).date() - timedelta(days=1)).isoformat()
         self.metadata = {"html_url": self.repository, "archived": False, "disabled": False,
-                         "private": False, "pushed_at": "2026-01-01T12:00:00Z"}
-        self.previous = health.observe(self.repository, None, self.yesterday, lambda _: self.metadata)
+                         "private": False, "pushed_at": "2026-01-01T12:00:00Z",
+                         "default_branch": "main", "size": 42}
+        self.commit_date = "2026-01-01T12:00:00Z"
+        self.previous = health.observe(
+            self.repository, None, self.yesterday,
+            lambda _: self.metadata, lambda _repo, _branch: self.commit_date,
+        )
 
-    def observe(self, metadata=None, previous=None):
-        return health.observe(self.repository, previous, self.today,
-                              lambda _: self.metadata if metadata is None else metadata)
+    def observe(self, metadata=None, previous=None, fetch_commit=False):
+        target = self.metadata if metadata is None else metadata
+        commit_loader = (
+            (lambda _repo, _branch: self.commit_date)
+            if fetch_commit is False
+            else fetch_commit
+        )
+        return health.observe(self.repository, previous, self.today, lambda _: target, commit_loader)
 
     def failed(self, error, previous=None):
         def fetch(_):
@@ -42,6 +52,7 @@ class HealthTests(unittest.TestCase):
         self.assertEqual(record["checked_at"], self.today)
         self.assertEqual(record["last_successful_check"], self.today)
         self.assertEqual(record["last_push"], self.metadata["pushed_at"])
+        self.assertEqual(record["last_default_branch_commit"], self.commit_date)
         self.assertIs(record["archived"], False)
         self.assertNotIn("maintained", record)
 
@@ -70,7 +81,10 @@ class HealthTests(unittest.TestCase):
                     error.close()
                 self.assertEqual(record["status"], "check-failed")
                 self.assertEqual(record["checked_at"], self.today)
-                for field in ["last_successful_check", "last_push", "canonical_repository", "archived", "disabled"]:
+                for field in [
+                    "last_successful_check", "last_push", "last_default_branch_commit",
+                    "canonical_repository", "archived", "disabled",
+                ]:
                     self.assertEqual(record[field], self.previous[field])
 
     def test_network_failures_preserve_success(self):
@@ -79,6 +93,7 @@ class HealthTests(unittest.TestCase):
                 record = self.failed(error, self.previous)
                 self.assertEqual(record["status"], "check-failed")
                 self.assertEqual(record["last_push"], self.previous["last_push"])
+                self.assertEqual(record["last_default_branch_commit"], self.previous["last_default_branch_commit"])
                 self.assertEqual(record["last_successful_check"], self.yesterday)
 
     def test_unavailable_is_not_a_claim_that_a_repository_was_deleted(self):
@@ -245,6 +260,132 @@ class HealthTests(unittest.TestCase):
                 builder.return_value.open.return_value = io.BytesIO(payload)
                 with self.assertRaises(ValueError):
                     health.github_metadata(self.repository)
+
+    def test_pushed_at_newer_than_default_branch_commit_is_recorded_separately(self):
+        stalled_main = "2026-09-26T10:15:00Z"
+        bot_branch_push = "2026-11-14T04:25:59Z"
+        record = self.observe(
+            dict(self.metadata, pushed_at=bot_branch_push),
+            fetch_commit=lambda _repo, branch: stalled_main if branch == "main" else None,
+        )
+        self.assertEqual(record["status"], "reachable")
+        self.assertEqual(record["last_push"], bot_branch_push)
+        self.assertEqual(record["last_default_branch_commit"], stalled_main)
+
+    def test_github_branch_commit_quotes_branch_and_normalizes_dates(self):
+        commit_payload = [{"commit": {"author": {"date": "2026-09-01T08:00:00Z"},
+                                      "committer": {"date": "2026-09-26T12:15:00+02:00"}}}]
+        with patch.dict(os.environ, {"GH_TOKEN": "test-token"}), patch("health.build_opener") as builder:
+            builder.return_value.open.return_value = io.BytesIO(json.dumps(commit_payload).encode())
+            observed = health.github_branch_commit(self.repository, "release/1.0")
+            self.assertEqual(observed, "2026-09-26T10:15:00Z")
+            request = builder.return_value.open.call_args.args[0]
+            self.assertEqual(
+                request.full_url,
+                "https://api.github.com/repos/example/project/commits?sha=release%2F1.0&per_page=1",
+            )
+            self.assertEqual(request.headers["Authorization"], "Bearer test-token")
+            self.assertEqual(request.headers["Accept"], "application/vnd.github+json")
+            self.assertEqual(builder.return_value.open.call_args.kwargs["timeout"], 20)
+
+        author_only = [{"commit": {"author": {"date": "2026-10-05T09:30:00Z"}, "committer": None}}]
+        with patch("health.build_opener") as builder:
+            builder.return_value.open.return_value = io.BytesIO(json.dumps(author_only).encode())
+            self.assertEqual(health.github_branch_commit(self.repository, "main"), "2026-10-05T09:30:00Z")
+
+        with patch("health.build_opener") as builder:
+            builder.return_value.open.return_value = io.BytesIO(b"[]")
+            self.assertIsNone(health.github_branch_commit(self.repository, "main"))
+
+        with patch("health.build_opener") as builder:
+            builder.return_value.open.return_value = io.BytesIO(b"{}")
+            with self.assertRaisesRegex(catalog.CatalogError, "must be an array"):
+                health.github_branch_commit(self.repository, "main")
+
+        empty_repo_error = HTTPError(
+            "https://api.github.com/repos/example/project/commits?sha=main&per_page=1", 409, "empty", {}, None
+        )
+        try:
+            with patch("health.build_opener") as builder:
+                builder.return_value.open.side_effect = empty_repo_error
+                self.assertIsNone(health.github_branch_commit(self.repository, "main"))
+        finally:
+            empty_repo_error.close()
+
+    def test_transient_commit_endpoint_errors_preserve_prior_default_branch_commit(self):
+        newer_meta = dict(self.metadata, pushed_at="2026-11-17T18:00:00Z")
+        for code in [401, 403, 404, 429, 500, 503]:
+            with self.subTest(code=code):
+                error = HTTPError("https://api.github.com/repos/example/project/commits/main", code, "failure", {}, None)
+                try:
+                    def fail_commit(_repo, _branch, exc=error):
+                        raise exc
+                    record = self.observe(newer_meta, previous=self.previous, fetch_commit=fail_commit)
+                finally:
+                    error.close()
+                self.assertEqual(record["status"], "check-failed")
+                self.assertEqual(record["last_push"], self.previous["last_push"])
+                self.assertEqual(record["last_default_branch_commit"], self.previous["last_default_branch_commit"])
+        for failure in [URLError("reset"), TimeoutError(), lambda _r, _b: "not-a-timestamp"]:
+            with self.subTest(failure=failure):
+                if isinstance(failure, Exception):
+                    def fail_loader(_repo, _branch, exc=failure):
+                        raise exc
+                else:
+                    fail_loader = failure
+                record = self.observe(newer_meta, previous=self.previous, fetch_commit=fail_loader)
+                self.assertEqual(record["status"], "check-failed")
+                self.assertEqual(record["last_default_branch_commit"], self.previous["last_default_branch_commit"])
+                self.assertNotIn("(", record["detail"])
+                self.assertNotIn(")", record["detail"])
+
+    def test_disabled_or_empty_repositories_skip_commit_lookup(self):
+        called = []
+
+        def unexpected_commit(repo, branch):
+            called.append((repo, branch))
+            return "2026-11-17T00:00:00Z"
+
+        for overrides in [
+            {"disabled": True},
+            {"pushed_at": None},
+            {"default_branch": None},
+        ]:
+            with self.subTest(overrides=overrides):
+                record = self.observe(dict(self.metadata, **overrides), fetch_commit=unexpected_commit)
+                self.assertEqual(record["status"], "reachable")
+                self.assertIsNone(record["last_default_branch_commit"])
+        self.assertEqual(called, [])
+
+        small_repo = self.observe(
+            dict(self.metadata, size=0),
+            fetch_commit=lambda _repo, _branch: "2026-11-17T00:00:00Z",
+        )
+        self.assertEqual(small_repo["status"], "reachable")
+        self.assertEqual(small_repo["last_default_branch_commit"], "2026-11-17T00:00:00Z")
+
+    def test_legacy_health_records_without_default_branch_commit_upgrade_cleanly(self):
+        legacy = dict(self.previous)
+        legacy.pop("last_default_branch_commit")
+        failed_record = self.failed(URLError("offline"), previous=legacy)
+        self.assertEqual(failed_record["status"], "check-failed")
+        self.assertIsNone(failed_record["last_default_branch_commit"])
+        self.assertEqual(failed_record["last_push"], self.previous["last_push"])
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "data").mkdir()
+            (root / "data/health.json").write_text(json.dumps({"example": legacy}), encoding="utf-8")
+            upgraded = health.load_previous_health(root, [{"id": "example", "repository": self.repository}])
+            self.assertIsNone(upgraded["example"]["last_default_branch_commit"])
+            refreshed = health.refresh(
+                [{"id": "example", "repository": self.repository}],
+                upgraded,
+                self.today,
+                lambda _: self.metadata,
+                lambda _repo, _branch: "2026-11-17T14:19:54Z",
+            )
+            self.assertEqual(refreshed["example"]["last_default_branch_commit"], "2026-11-17T14:19:54Z")
 
 
 if __name__ == "__main__":

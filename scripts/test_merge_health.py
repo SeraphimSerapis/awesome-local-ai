@@ -239,6 +239,26 @@ class MergeContentTests(unittest.TestCase):
         self.assertEqual(merge_health.validate_content(self.root, sha, self.today), self.base)
         self.assertEqual(self.git("rev-parse", "HEAD").strip(), self.base)
 
+    def test_routine_refresh_with_default_branch_commit_updates_passes_gate(self):
+        for default_commit in ["2026-09-26T10:15:00Z", "2026-11-14T04:25:59Z", None]:
+            with self.subTest(default_commit=default_commit):
+                updated_record = dict(
+                    self.record,
+                    last_push="2026-11-14T04:25:59Z",
+                    last_default_branch_commit=default_commit,
+                )
+                self.write_snapshot({self.project["id"]: updated_record})
+                sha = self.candidate()
+                self.assertEqual(merge_health.validate_content(self.root, sha, self.today), self.base)
+
+        for bad_commit in ["2026-09-26", False, 42]:
+            with self.subTest(bad_commit=bad_commit), self.assertRaises(catalog.CatalogError):
+                merge_health.validate_snapshot(
+                    {self.project["id"]: dict(self.record, last_default_branch_commit=bad_commit)},
+                    [self.project],
+                    self.today,
+                )
+
     def test_unavailable_failed_archived_disabled_redirected_and_stale_records_block(self):
         for changes in [{"status": "unavailable", "detail": "HTTP 404"},
                         {"status": "check-failed", "detail": "Timeout"},
