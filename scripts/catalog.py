@@ -219,6 +219,14 @@ def markdown(value):
     return re.sub(r"([\\`*_{}\[\]<>|])", r"\\\1", value)
 
 
+def project_anchor(project):
+    return f'project-{project["id"]}'
+
+
+def project_anchor_link(project):
+    return f'[{markdown(project["name"])}](#{project_anchor(project)})'
+
+
 def project_link(project):
     return f'[{markdown(project["name"])}]({project["repository"]})'
 
@@ -320,7 +328,7 @@ def project_lines(project, taxonomy, observation=None):
     hardware = ", ".join(taxonomy["hardware"][key] for key in project["hardware"]) or "Not recorded"
     license_name = project["license"]["spdx"] or "Unclear; check upstream"
     result = [
-        f'- {project_link(project)}: {markdown(project["description"])}',
+        f'- <a id="{project_anchor(project)}"></a>{project_link(project)}: {markdown(project["description"])}',
         f'  - {markdown(taxonomy["local_modes"][project["local_mode"]])}. Platforms: {markdown(platforms)}. Hardware: {markdown(hardware)}.',
         f'  - License: [{markdown(license_name)}]({project["license"]["url"]}). [Metadata and evidence](data/projects/{project["id"]}.json).',
     ]
@@ -532,7 +540,7 @@ def catalog_markdown(taxonomy, projects, health=None):
         if matches:
             lines.extend([f"### {markdown(label)}", ""])
             for project in matches:
-                lines.append(f"- {project_link(project)}")
+                lines.append(f"- {project_anchor_link(project)}")
             lines.append("")
     lines.extend(["## Browse by category", ""])
     for category, label in taxonomy["categories"].items():

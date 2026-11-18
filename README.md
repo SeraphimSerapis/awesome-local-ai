@@ -39,114 +39,114 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 
 ### Run a model on my hardware
 
-- [DwarfStar / ds4](https://github.com/antirez/ds4)
-- [Kapitsa](https://github.com/nace-ai/kapitsa)
-- [mentat](https://github.com/kindlingai/mentat)
-- [mlx-serve](https://github.com/ddalcu/mlx-serve)
-- [Off Grid AI](https://github.com/off-grid-ai/OGAD)
-- [oMLX](https://github.com/jundot/omlx)
-- [RAI](https://github.com/Classevelabs/rai)
-- [spark-vllm-docker](https://github.com/eugr/spark-vllm-docker)
-- [sparkrun](https://github.com/spark-arena/sparkrun)
-- [Splash](https://github.com/incoai/splash)
-- [Strata](https://github.com/Niko1221/Strata)
-- [TandemLLM](https://github.com/0xBakeer/TandemLLM)
-- [TensorFold](https://github.com/ashhart/TensorFold)
-- [vLLM Windows Build](https://github.com/aivrar/vllm-windows-build)
+- [DwarfStar / ds4](#project-dwarfstar)
+- [Kapitsa](#project-kapitsa)
+- [mentat](#project-mentat)
+- [mlx-serve](#project-mlx-serve)
+- [Off Grid AI](#project-off-grid-ai)
+- [oMLX](#project-omlx)
+- [RAI](#project-rai)
+- [spark-vllm-docker](#project-spark-vllm-docker)
+- [sparkrun](#project-sparkrun)
+- [Splash](#project-splash)
+- [Strata](#project-strata)
+- [TandemLLM](#project-tandemllm)
+- [TensorFold](#project-tensorfold)
+- [vLLM Windows Build](#project-vllm-windows-build)
 
 ### Connect a coding agent to a local model
 
-- [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
-- [DwarfStar / ds4](https://github.com/antirez/ds4)
-- [Kapitsa](https://github.com/nace-ai/kapitsa)
-- [mlx-serve](https://github.com/ddalcu/mlx-serve)
-- [Oh My Pi](https://github.com/can1357/oh-my-pi)
-- [oMLX](https://github.com/jundot/omlx)
-- [Pi](https://github.com/earendil-works/pi)
-- [Splash](https://github.com/incoai/splash)
-- [Strata](https://github.com/Niko1221/Strata)
-- [TandemLLM](https://github.com/0xBakeer/TandemLLM)
-- [TensorFold](https://github.com/ashhart/TensorFold)
+- [DeepSeek Harness](#project-deepseek-harness)
+- [DwarfStar / ds4](#project-dwarfstar)
+- [Kapitsa](#project-kapitsa)
+- [mlx-serve](#project-mlx-serve)
+- [Oh My Pi](#project-oh-my-pi)
+- [oMLX](#project-omlx)
+- [Pi](#project-pi)
+- [Splash](#project-splash)
+- [Strata](#project-strata)
+- [TandemLLM](#project-tandemllm)
+- [TensorFold](#project-tensorfold)
 
 ### Run autonomous agents with local models
 
-- [agent-qa](https://github.com/vostride/agent-qa)
-- [bot-reborn](https://github.com/beasaltfish/bot-reborn)
-- [Contemplative Agent](https://github.com/shimo4228/contemplative-agent)
+- [agent-qa](#project-agent-qa)
+- [bot-reborn](#project-bot-reborn)
+- [Contemplative Agent](#project-contemplative-agent)
 
 ### Test tool-calling quality
 
-- [Inference Atlas](https://github.com/0xBakeer/inference-atlas)
-- [tool-eval-bench](https://github.com/SeraphimSerapis/tool-eval-bench)
+- [Inference Atlas](#project-inference-atlas)
+- [tool-eval-bench](#project-tool-eval-bench)
 
 ### Test model behavior and safety
 
-- [FadeBench](https://github.com/sequimelectronics/fadebench)
+- [FadeBench](#project-fadebench)
 
 ### Compare inference speed
 
-- [Inference Atlas](https://github.com/0xBakeer/inference-atlas)
-- [llama-benchy](https://github.com/eugr/llama-benchy)
-- [Spark Tools](https://github.com/knapcio/spark-tools)
-- [tool-eval-bench](https://github.com/SeraphimSerapis/tool-eval-bench)
+- [Inference Atlas](#project-inference-atlas)
+- [llama-benchy](#project-llama-benchy)
+- [Spark Tools](#project-spark-tools)
+- [tool-eval-bench](#project-tool-eval-bench)
 
 ### Deploy or manage a cluster
 
-- [DGX Spark Networking](https://github.com/christopherowen/dgx-spark-networking)
-- [kindling-spark-os](https://github.com/kindlingai/kindling-spark-os)
-- [MCDMA](https://github.com/ashhart/MCDMA)
-- [mentat](https://github.com/kindlingai/mentat)
-- [spark-vllm-docker](https://github.com/eugr/spark-vllm-docker)
-- [sparkrun](https://github.com/spark-arena/sparkrun)
+- [DGX Spark Networking](#project-dgx-spark-networking)
+- [kindling-spark-os](#project-kindling-spark-os)
+- [MCDMA](#project-mcdma)
+- [mentat](#project-mentat)
+- [spark-vllm-docker](#project-spark-vllm-docker)
+- [sparkrun](#project-sparkrun)
 
 ### Set up local AI
 
-- [kindling-spark-os](https://github.com/kindlingai/kindling-spark-os)
-- [RAI](https://github.com/Classevelabs/rai)
-- [sparkrun](https://github.com/spark-arena/sparkrun)
-- [vLLM Windows Build](https://github.com/aivrar/vllm-windows-build)
+- [kindling-spark-os](#project-kindling-spark-os)
+- [RAI](#project-rai)
+- [sparkrun](#project-sparkrun)
+- [vLLM Windows Build](#project-vllm-windows-build)
 
 ### Monitor my setup
 
-- [SparkDash](https://github.com/MiaAI-Lab/sparkDash)
+- [SparkDash](#project-sparkdash)
 
 ### Troubleshoot my setup
 
-- [DGX Spark Networking](https://github.com/christopherowen/dgx-spark-networking)
-- [Spark Doctor](https://github.com/joeynyc/spark-doctor)
+- [DGX Spark Networking](#project-dgx-spark-networking)
+- [Spark Doctor](#project-spark-doctor)
 
 ### Tune thermals and memory
 
-- [DGX Spark Fan Control](https://github.com/christopherowen/dgx-spark-fan-control)
-- [DGX Spark Memory Saver](https://github.com/christopherowen/dgx-spark-memory-saver)
+- [DGX Spark Fan Control](#project-dgx-spark-fan-control)
+- [DGX Spark Memory Saver](#project-dgx-spark-memory-saver)
 
 ### Validate or simulate inference configurations
 
-- [Spark Tools](https://github.com/knapcio/spark-tools)
-- [whichquant](https://github.com/ngo-binh0108/whichquant)
+- [Spark Tools](#project-spark-tools)
+- [whichquant](#project-whichquant)
 
 ### Chat with a local model
 
-- [bot-reborn](https://github.com/beasaltfish/bot-reborn)
-- [DwarfStar / ds4](https://github.com/antirez/ds4)
-- [Kapitsa](https://github.com/nace-ai/kapitsa)
-- [mlx-serve](https://github.com/ddalcu/mlx-serve)
-- [Off Grid AI](https://github.com/off-grid-ai/OGAD)
-- [oMLX](https://github.com/jundot/omlx)
-- [Orkas](https://github.com/Orkas-AI/Orkas)
-- [RAI](https://github.com/Classevelabs/rai)
-- [Splash](https://github.com/incoai/splash)
-- [Strata](https://github.com/Niko1221/Strata)
-- [ThreadShelf](https://github.com/ChrystianSchutz/ThreadShelf)
+- [bot-reborn](#project-bot-reborn)
+- [DwarfStar / ds4](#project-dwarfstar)
+- [Kapitsa](#project-kapitsa)
+- [mlx-serve](#project-mlx-serve)
+- [Off Grid AI](#project-off-grid-ai)
+- [oMLX](#project-omlx)
+- [Orkas](#project-orkas)
+- [RAI](#project-rai)
+- [Splash](#project-splash)
+- [Strata](#project-strata)
+- [ThreadShelf](#project-threadshelf)
 
 ### Add skills, extensions, or MCP tools
 
-- [agent-qa](https://github.com/vostride/agent-qa)
-- [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
-- [Oh My Pi](https://github.com/can1357/oh-my-pi)
-- [Orkas](https://github.com/Orkas-AI/Orkas)
-- [Pi](https://github.com/earendil-works/pi)
-- [ThreadShelf](https://github.com/ChrystianSchutz/ThreadShelf)
+- [agent-qa](#project-agent-qa)
+- [DeepSeek Harness](#project-deepseek-harness)
+- [Oh My Pi](#project-oh-my-pi)
+- [Orkas](#project-orkas)
+- [Pi](#project-pi)
+- [ThreadShelf](#project-threadshelf)
 
 ## Browse by category
 
@@ -165,7 +165,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 
 ### Inference and serving
 
-- [DwarfStar / ds4](https://github.com/antirez/ds4): Run a focused native inference engine and coding agent for selected large models on consumer hardware.
+- <a id="project-dwarfstar"></a>[DwarfStar / ds4](https://github.com/antirez/ds4): Run a focused native inference engine and coding agent for selected large models on consumer hardware.
   - Local workload. Platforms: macOS, Linux. Hardware: Apple Silicon, NVIDIA GPU, AMD GPU, DGX Spark / GB10.
   - License: [MIT](https://raw.githubusercontent.com/antirez/ds4/fc80bd695da76ee14bcb86820bf900a5cdfda806/LICENSE). [Metadata and evidence](data/projects/dwarfstar.json).
   - Documentation reviewed: 2026-10-10. Repository checked: 2026-11-16 (reachable).
@@ -173,7 +173,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: Beta-quality software with fast-changing model support; uses project-produced GGUF files, not arbitrary GGUF models.
   - Note: Metal primarily targets Macs with 96 GB or more; smaller machines and larger models may need SSD streaming.
 
-- [Kapitsa](https://github.com/nace-ai/kapitsa): Serve Qwen, Nemotron, Flint and Clover models on Apple Silicon with a native C++ engine on Metal kernels and the Neural Engine, without an MLX or llama.cpp runtime.
+- <a id="project-kapitsa"></a>[Kapitsa](https://github.com/nace-ai/kapitsa): Serve Qwen, Nemotron, Flint and Clover models on Apple Silicon with a native C++ engine on Metal kernels and the Neural Engine, without an MLX or llama.cpp runtime.
   - Local workload. Platforms: macOS. Hardware: Apple Silicon.
   - License: [Apache-2.0](https://raw.githubusercontent.com/nace-ai/kapitsa/95a0a552fab5c359dd91b716e9936918d436d713/LICENSE). [Metadata and evidence](data/projects/kapitsa.json).
   - Documentation reviewed: 2026-11-08. Repository checked: 2026-11-16 (reachable).
@@ -183,14 +183,14 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: Runs the models in its catalog and imported Qwen or Flint GGUFs; Flint, Clover, the text-only Nemotrons and the 35B's 16gb build read text only.
   - Note: Checks GitHub once a day for a new release and can update itself; KAPITSA\_NO\_AUTO\_UPDATE=1 or kapitsa update --auto off turns this off.
 
-- [mlx-serve](https://github.com/ddalcu/mlx-serve): Serve MLX and GGUF models on Apple Silicon through a native server with a companion model-management and chat app.
+- <a id="project-mlx-serve"></a>[mlx-serve](https://github.com/ddalcu/mlx-serve): Serve MLX and GGUF models on Apple Silicon through a native server with a companion model-management and chat app.
   - Local workload. Platforms: macOS. Hardware: Apple Silicon.
   - License: [MIT](https://raw.githubusercontent.com/ddalcu/mlx-serve/1b00c65a3cdf4a60a6e64709e150b75d4ecd8b02/LICENSE). [Metadata and evidence](data/projects/mlx-serve.json).
   - Documentation reviewed: 2026-10-10. Repository checked: 2026-11-16 (reachable).
   - Last observed push: 2026-11-16. Archived: no. Disabled: no.
   - Note: Requires macOS 26.2 or newer; confirm the selected model and modality against upstream documentation.
 
-- [oMLX](https://github.com/jundot/omlx): Serve local MLX models with continuous batching, tiered memory/SSD caching, and menu-bar management.
+- <a id="project-omlx"></a>[oMLX](https://github.com/jundot/omlx): Serve local MLX models with continuous batching, tiered memory/SSD caching, and menu-bar management.
   - Local workload. Platforms: macOS. Hardware: Apple Silicon.
   - License: [Apache-2.0](https://raw.githubusercontent.com/jundot/omlx/013bc3f3a48fa9a4b7dffbfeb6cdc7c1face1c5d/LICENSE). [Metadata and evidence](data/projects/omlx.json).
   - Documentation reviewed: 2026-10-10. Repository checked: 2026-11-16 (reachable).
@@ -198,7 +198,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: Requires Apple Silicon and macOS 15 or newer; source installs require Python 3.11-3.13.
   - Note: Some model families require custom Metal kernels; use the packaged app or follow the full Xcode build requirements.
 
-- [RAI](https://github.com/Classevelabs/rai): Run 4-bit language models on the CPU with a Rust engine, a local chat page and HTTP API, and one-step installers for Windows, macOS and Linux.
+- <a id="project-rai"></a>[RAI](https://github.com/Classevelabs/rai): Run 4-bit language models on the CPU with a Rust engine, a local chat page and HTTP API, and one-step installers for Windows, macOS and Linux.
   - Local workload. Platforms: Linux, macOS, Windows. Hardware: CPU, Apple Silicon.
   - License: [Apache-2.0](https://raw.githubusercontent.com/Classevelabs/rai/02b0b95c5e2225e6ea72d5fb3289ce368cb9b7d1/LICENSE). [Metadata and evidence](data/projects/rai.json).
   - Documentation reviewed: 2026-11-18. Repository: not checked yet.
@@ -208,7 +208,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: Needs Windows 10 or 11, macOS 10.12 or later on Intel or 11 or later on Apple Silicon, or x86-64 Linux with glibc 2.28 or later; ARM Linux builds from source.
   - Note: rai-get-model downloads models from Hugging Face; the rai program itself makes no network connections.
 
-- [Splash](https://github.com/incoai/splash): Serve supported models on Apple Silicon with speculative decoding, Metal kernels, and coding-agent integrations.
+- <a id="project-splash"></a>[Splash](https://github.com/incoai/splash): Serve supported models on Apple Silicon with speculative decoding, Metal kernels, and coding-agent integrations.
   - Local workload. Platforms: macOS. Hardware: Apple Silicon.
   - License: [Apache-2.0](https://raw.githubusercontent.com/incoai/splash/8a2b42069923d483151372b615f6182c72c2b6cd/LICENSE). [Metadata and evidence](data/projects/splash.json).
   - Documentation reviewed: 2026-10-10. Repository checked: 2026-11-16 (reachable).
@@ -216,7 +216,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: Requires Apple M3 or newer and macOS 26.4 or newer; memory requirements depend on model and quantization.
   - Note: Model and draft downloads need network access on first use.
 
-- [Strata](https://github.com/Niko1221/Strata): Run supported Qwen models on Windows or Linux PCs with NVIDIA or AMD GPUs, with a local UI and model APIs.
+- <a id="project-strata"></a>[Strata](https://github.com/Niko1221/Strata): Run supported Qwen models on Windows or Linux PCs with NVIDIA or AMD GPUs, with a local UI and model APIs.
   - Local workload. Platforms: Windows, Linux. Hardware: NVIDIA GPU, AMD GPU.
   - License: [MIT](https://raw.githubusercontent.com/Niko1221/Strata/61b3fb5dd3f1e8ec09cf7e4e05208bc6d3c46406/LICENSE). [Metadata and evidence](data/projects/strata.json).
   - Documentation reviewed: 2026-10-10. Repository checked: 2026-11-16 (reachable).
@@ -224,7 +224,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: The standard setup requires a supported GPU with at least 12 GB VRAM, at least 32 GB RAM, and about 80 GB free disk.
   - Note: Model support is specific; experimental hardware paths and AMD vision support have additional limits.
 
-- [TandemLLM](https://github.com/0xBakeer/TandemLLM): Serve Qwen3.8-27B on a single DGX Spark with speculative decoding, conversation caches, and a local dashboard.
+- <a id="project-tandemllm"></a>[TandemLLM](https://github.com/0xBakeer/TandemLLM): Serve Qwen3.8-27B on a single DGX Spark with speculative decoding, conversation caches, and a local dashboard.
   - Local workload. Platforms: Linux. Hardware: DGX Spark / GB10.
   - License: [AGPL-3.0-only](https://raw.githubusercontent.com/0xBakeer/TandemLLM/c11aecaa7ba767642409ff51d90d48c79c572d3a/LICENSE). [Metadata and evidence](data/projects/tandemllm.json).
   - Documentation reviewed: 2026-10-11. Repository checked: 2026-11-16 (reachable).
@@ -233,7 +233,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: Requires the documented Python 3.11, PyTorch/CUDA, and Triton stack; run one engine per board.
   - Note: Code is AGPL-3.0-only with a separate commercial option; documentation and model artifacts have separate licenses.
 
-- [TensorFold](https://github.com/ashhart/TensorFold): Serve supported language models with a native inference engine using Metal or CUDA kernels.
+- <a id="project-tensorfold"></a>[TensorFold](https://github.com/ashhart/TensorFold): Serve supported language models with a native inference engine using Metal or CUDA kernels.
   - Local workload. Platforms: macOS, Linux. Hardware: Apple Silicon, NVIDIA GPU, DGX Spark / GB10.
   - License: [Apache-2.0](https://raw.githubusercontent.com/ashhart/TensorFold/bec00ae6961a43a9ab73c4fa9338c167b3f82851/LICENSE). [Metadata and evidence](data/projects/tensorfold.json).
   - Documentation reviewed: 2026-10-10. Repository checked: 2026-11-16 (reachable).
@@ -245,14 +245,14 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 
 ### Deployment and bootstrapping
 
-- [spark-vllm-docker](https://github.com/eugr/spark-vllm-docker): Run vLLM in Docker on one or more DGX Spark systems with networking and distributed-inference setup scripts.
+- <a id="project-spark-vllm-docker"></a>[spark-vllm-docker](https://github.com/eugr/spark-vllm-docker): Run vLLM in Docker on one or more DGX Spark systems with networking and distributed-inference setup scripts.
   - Local workload. Platforms: Linux. Hardware: DGX Spark / GB10.
   - License: [MIT](https://raw.githubusercontent.com/eugr/spark-vllm-docker/a4c172976a5f9f8669b356a0891bf972cae14fd4/LICENSE). [Metadata and evidence](data/projects/spark-vllm-docker.json).
   - Documentation reviewed: 2026-10-10. Repository checked: 2026-11-16 (reachable).
   - Last observed push: 2026-11-07. Archived: no. Disabled: no.
   - Note: Targets DGX Spark; multi-node operation depends on compatible networking and model configuration.
 
-- [sparkrun](https://github.com/spark-arena/sparkrun): Launch, manage, and stop recipe-based inference workloads on single-node or multi-node DGX Spark setups.
+- <a id="project-sparkrun"></a>[sparkrun](https://github.com/spark-arena/sparkrun): Launch, manage, and stop recipe-based inference workloads on single-node or multi-node DGX Spark setups.
   - Local workload. Platforms: Linux. Hardware: DGX Spark / GB10.
   - License: [Apache-2.0](https://raw.githubusercontent.com/spark-arena/sparkrun/b444da874923fd27228dcb98ab844c328a91752d/LICENSE). [Metadata and evidence](data/projects/sparkrun.json).
   - Documentation reviewed: 2026-10-10. Repository checked: 2026-11-16 (reachable).
@@ -261,7 +261,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: Anonymous usage telemetry is on by default; SPARKRUN\_NO\_TELEMETRY=1 disables it for one process.
   - Note: The bundled SparkRoute integration has separate AGPL licensing; check the selected channel's defaults.
 
-- [vLLM Windows Build](https://github.com/aivrar/vllm-windows-build): Install native Windows builds of vLLM with OpenAI-compatible serving on NVIDIA GPUs, without WSL, Docker, or a Linux VM.
+- <a id="project-vllm-windows-build"></a>[vLLM Windows Build](https://github.com/aivrar/vllm-windows-build): Install native Windows builds of vLLM with OpenAI-compatible serving on NVIDIA GPUs, without WSL, Docker, or a Linux VM.
   - Local workload. Platforms: Windows. Hardware: NVIDIA GPU.
   - License: [MIT](https://raw.githubusercontent.com/aivrar/vllm-windows-build/3974c4a568351fd2e41ff71922bd26146933c003/LICENSE). [Metadata and evidence](data/projects/vllm-windows-build.json).
   - Documentation reviewed: 2026-11-18. Repository: not checked yet.
@@ -276,7 +276,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 
 ### Clustering and interconnects
 
-- [DGX Spark Networking](https://github.com/christopherowen/dgx-spark-networking): RoCE collectives, patched NCCL profiles, topology discovery, and fabric probes for multi-node DGX Spark inference.
+- <a id="project-dgx-spark-networking"></a>[DGX Spark Networking](https://github.com/christopherowen/dgx-spark-networking): RoCE collectives, patched NCCL profiles, topology discovery, and fabric probes for multi-node DGX Spark inference.
   - Local workload. Platforms: Linux. Hardware: DGX Spark / GB10.
   - License: [Apache-2.0](https://raw.githubusercontent.com/christopherowen/dgx-spark-networking/f7fcc1e2937f19b6f4f3539b3fe0e43a51201110/LICENSE). [Metadata and evidence](data/projects/dgx-spark-networking.json).
   - Documentation reviewed: 2026-10-18. Repository checked: 2026-11-16 (reachable).
@@ -287,7 +287,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: No adapter ships for upstream vLLM or SGLang. Switched 2-16-node profiles are configuration paths not qualified on the author's fleet; GPU-initiated transport is not implemented.
   - Note: Does not configure hosts or supervise serving. Probe and benchmark each fabric before use; collective failures require restarting the rank group.
 
-- [MCDMA](https://github.com/ashhart/MCDMA): Configure and verify RDMA links between supported Mac and Linux hosts for distributed local inference.
+- <a id="project-mcdma"></a>[MCDMA](https://github.com/ashhart/MCDMA): Configure and verify RDMA links between supported Mac and Linux hosts for distributed local inference.
   - Local workload. Platforms: macOS, Linux. Hardware: Apple Silicon, DGX Spark / GB10.
   - License: [Apache-2.0](https://raw.githubusercontent.com/ashhart/MCDMA/3f4f4be02dd9289ccd72b496d723660b5f181ffb/LICENSE). [Metadata and evidence](data/projects/mcdma.json).
   - Documentation reviewed: 2026-11-18. Repository checked: 2026-11-16 (reachable).
@@ -295,7 +295,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: Requires qualified hardware, cables, adapters, and drivers; hardware tags do not imply every cross-platform link is validated.
   - Note: The documented Strix Halo/Mac workflow still needs physical validation.
 
-- [mentat](https://github.com/kindlingai/mentat): Manage small inference clusters and route model endpoints with a lightweight replacement for vLLM's Ray executor dependencies.
+- <a id="project-mentat"></a>[mentat](https://github.com/kindlingai/mentat): Manage small inference clusters and route model endpoints with a lightweight replacement for vLLM's Ray executor dependencies.
   - Local workload. Platforms: Linux. Hardware: Not recorded.
   - License: [MIT OR Apache-2.0](https://raw.githubusercontent.com/kindlingai/mentat/e9d2ce11395d1adf0bbc4b640f5bcc356e82e41b/rust/Cargo.toml). [Metadata and evidence](data/projects/mentat.json).
   - Documentation reviewed: 2026-11-18. Repository checked: 2026-11-16 (reachable).
@@ -307,7 +307,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 
 ### Systems
 
-- [DGX Spark Fan Control](https://github.com/christopherowen/dgx-spark-fan-control): Set minimum fan-speed floors or a temperature-based performance curve on qualified DGX Spark systems.
+- <a id="project-dgx-spark-fan-control"></a>[DGX Spark Fan Control](https://github.com/christopherowen/dgx-spark-fan-control): Set minimum fan-speed floors or a temperature-based performance curve on qualified DGX Spark systems.
   - Local workload. Platforms: Linux. Hardware: DGX Spark / GB10.
   - License: [GPL-2.0-only](https://raw.githubusercontent.com/christopherowen/dgx-spark-fan-control/deb2ea155f6698b769ff4977dea2119e3b32f460/LICENSE). [Metadata and evidence](data/projects/dgx-spark-fan-control.json).
   - Documentation reviewed: 2026-10-11. Repository checked: 2026-11-16 (reachable).
@@ -316,7 +316,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: Needs root access and a locally built/signed kernel module; Secure Boot requires certificate enrollment.
   - Note: Sets minimums, not exact fan speeds. Hard crashes can prevent restoring automatic control, and manual floors have no expiry.
 
-- [DGX Spark Memory Saver](https://github.com/christopherowen/dgx-spark-memory-saver): Reduce GPU page-table memory overhead by patching NVIDIA UVM allocation on qualified 64 KiB DGX Spark kernels.
+- <a id="project-dgx-spark-memory-saver"></a>[DGX Spark Memory Saver](https://github.com/christopherowen/dgx-spark-memory-saver): Reduce GPU page-table memory overhead by patching NVIDIA UVM allocation on qualified 64 KiB DGX Spark kernels.
   - Local workload. Platforms: Linux. Hardware: DGX Spark / GB10.
   - License: [MIT](https://raw.githubusercontent.com/christopherowen/dgx-spark-memory-saver/6f97319e7c00e5422b0afe4cabbd348211bfcb34/LICENSE). [Metadata and evidence](data/projects/dgx-spark-memory-saver.json).
   - Documentation reviewed: 2026-10-11. Repository checked: 2026-11-16 (reachable).
@@ -326,7 +326,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: Distribution is source-only; build and sign locally. Remove overrides before NVIDIA upgrades and recheck compatibility.
   - Note: Original additions are MIT-licensed; retained NVIDIA source and patches carry their own notices and terms.
 
-- [kindling-spark-os](https://github.com/kindlingai/kindling-spark-os): Boot a minimal read-only OS image beside DGX OS on NVIDIA GB10 systems for local model-serving infrastructure.
+- <a id="project-kindling-spark-os"></a>[kindling-spark-os](https://github.com/kindlingai/kindling-spark-os): Boot a minimal read-only OS image beside DGX OS on NVIDIA GB10 systems for local model-serving infrastructure.
   - Local workload. Platforms: Linux. Hardware: DGX Spark / GB10.
   - License: [AGPL-3.0-only](https://raw.githubusercontent.com/kindlingai/kindling-spark-os/099e62f29acedbdc9623d858c468a89ac2b126df/LICENSE). [Metadata and evidence](data/projects/kindling-spark-os.json).
   - Documentation reviewed: 2026-10-10. Repository checked: 2026-11-16 (reachable).
@@ -338,7 +338,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 
 ### Agent harnesses
 
-- [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness): Run a plugin-based agent harness with a web UI and configurable model-provider adapters.
+- <a id="project-deepseek-harness"></a>[DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness): Run a plugin-based agent harness with a web UI and configurable model-provider adapters.
   - Local client or agent. Platforms: Not recorded. Hardware: Not recorded.
   - License: [MIT](https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/d743267388641bc76f17c45ce8b4c231aed1d32c/LICENSE). [Metadata and evidence](data/projects/deepseek-harness.json).
   - Documentation reviewed: 2026-10-10. Repository checked: 2026-11-16 (reachable).
@@ -346,14 +346,14 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: Developer preview with compatibility-breaking changes; review the upstream safety notice.
   - Note: Self-hosted endpoints may need explicit request-compatibility settings; protocol support is not full feature certification.
 
-- [Oh My Pi](https://github.com/can1357/oh-my-pi): Use a coding-agent harness with IDE-oriented tools and configurable local model providers.
+- <a id="project-oh-my-pi"></a>[Oh My Pi](https://github.com/can1357/oh-my-pi): Use a coding-agent harness with IDE-oriented tools and configurable local model providers.
   - Local client or agent. Platforms: Linux, macOS, Windows. Hardware: Not recorded.
   - License: [MIT](https://raw.githubusercontent.com/can1357/oh-my-pi/5063baf59ec68ad3f2bff060a3ba44b0547eee15/LICENSE). [Metadata and evidence](data/projects/oh-my-pi.json).
   - Documentation reviewed: 2026-10-10. Repository checked: 2026-11-16 (reachable).
   - Last observed push: 2026-11-16. Archived: no. Disabled: no.
   - Note: A local provider still needs a separately running model server and model-specific capability checks.
 
-- [Pi](https://github.com/earendil-works/pi): Use an extensible coding-agent harness with local model connections, skills, extensions, and automation interfaces.
+- <a id="project-pi"></a>[Pi](https://github.com/earendil-works/pi): Use an extensible coding-agent harness with local model connections, skills, extensions, and automation interfaces.
   - Local client or agent. Platforms: Linux, macOS, Windows. Hardware: Not recorded.
   - License: [MIT](https://raw.githubusercontent.com/earendil-works/pi/4ac0bd8c7b96d72cb6a73226edc7c9ecaae1d14e/LICENSE). [Metadata and evidence](data/projects/pi.json).
   - Documentation reviewed: 2026-10-10. Repository checked: 2026-11-16 (reachable).
@@ -364,7 +364,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 
 ### Evaluation and benchmarking
 
-- [FadeBench](https://github.com/sequimelectronics/fadebench): Measure incremental moral drift in small local models: four-decision ladders, each paired with the same final decision asked cold, sent to a /v1/completions server.
+- <a id="project-fadebench"></a>[FadeBench](https://github.com/sequimelectronics/fadebench): Measure incremental moral drift in small local models: four-decision ladders, each paired with the same final decision asked cold, sent to a /v1/completions server.
   - Local client or agent. Platforms: Windows. Hardware: Not recorded.
   - License: [Apache-2.0](https://raw.githubusercontent.com/sequimelectronics/fadebench/c1c0bdf3f8758fdc990fcf4ef22a78da4e4f28b0/LICENSE). [Metadata and evidence](data/projects/fadebench.json).
   - Documentation reviewed: 2026-11-01. Repository checked: 2026-11-16 (reachable).
@@ -376,7 +376,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: Run by the maintainers on Windows; other platforms are untested.
   - Note: Apache-2.0 grants no rights to the FadeBench name, and modified redistributions must mark their changes, so altered items stay identifiable.
 
-- [Inference Atlas](https://github.com/0xBakeer/inference-atlas): Browse community inference measurements and benchmark local model servers with configuration fingerprints, coverage maps, and install recipes.
+- <a id="project-inference-atlas"></a>[Inference Atlas](https://github.com/0xBakeer/inference-atlas): Browse community inference measurements and benchmark local model servers with configuration fingerprints, coverage maps, and install recipes.
   - Local client or agent. Platforms: Not recorded. Hardware: Not recorded.
   - License: [MIT](https://raw.githubusercontent.com/0xBakeer/inference-atlas/b93f6281f150788d53c05600725b63f8febddd1e/LICENSE). [Metadata and evidence](data/projects/inference-atlas.json).
   - Documentation reviewed: 2026-10-11. Repository checked: 2026-11-16 (reachable).
@@ -389,14 +389,14 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: Code-execution grading runs generated code in a subprocess, not a security sandbox; avoid untrusted models on sensitive machines.
   - Note: Code is MIT licensed; registry and measurement data use CC-BY-4.0, while third-party datasets and model weights retain their own terms.
 
-- [llama-benchy](https://github.com/eugr/llama-benchy): Measure prompt-processing and token-generation speed at different context depths through a model server's API.
+- <a id="project-llama-benchy"></a>[llama-benchy](https://github.com/eugr/llama-benchy): Measure prompt-processing and token-generation speed at different context depths through a model server's API.
   - Local client or agent. Platforms: Not recorded. Hardware: Not recorded.
   - License: [MIT](https://raw.githubusercontent.com/eugr/llama-benchy/e9be344578cec17745066b220798b80a0d2686d3/LICENSE). [Metadata and evidence](data/projects/llama-benchy.json).
   - Documentation reviewed: 2026-10-10. Repository checked: 2026-11-16 (reachable).
   - Last observed push: 2026-07-10. Archived: no. Disabled: no.
   - Note: Measures serving performance, not tool-calling correctness or complete coding-agent quality.
 
-- [Spark Tools](https://github.com/knapcio/spark-tools): Check and simulate inference configurations, compiler resources, schedulers, and MoE layouts for DGX Spark.
+- <a id="project-spark-tools"></a>[Spark Tools](https://github.com/knapcio/spark-tools): Check and simulate inference configurations, compiler resources, schedulers, and MoE layouts for DGX Spark.
   - Local client or agent. Platforms: macOS, Linux. Hardware: CPU, DGX Spark / GB10.
   - License: [Apache-2.0](https://raw.githubusercontent.com/knapcio/spark-tools/6caf4757397a887983802b52f905de371465c29b/LICENSE). [Metadata and evidence](data/projects/spark-tools.json).
   - Documentation reviewed: 2026-10-11. Repository checked: 2026-11-16 (reachable).
@@ -404,7 +404,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: Most checks need no GPU; optional device validation needs a compatible GPU and toolchain.
   - Note: Simulations and static checks do not establish real throughput, GPU correctness, or model quality; timing predictions need calibration.
 
-- [tool-eval-bench](https://github.com/SeraphimSerapis/tool-eval-bench): Evaluate tool-calling quality and benchmark self-hosted model endpoints with deterministic scenarios and conversation traces.
+- <a id="project-tool-eval-bench"></a>[tool-eval-bench](https://github.com/SeraphimSerapis/tool-eval-bench): Evaluate tool-calling quality and benchmark self-hosted model endpoints with deterministic scenarios and conversation traces.
   - Local client or agent. Platforms: Not recorded. Hardware: Not recorded.
   - License: [MIT](https://raw.githubusercontent.com/SeraphimSerapis/tool-eval-bench/b60e2f00f6c44352a3680356e7c7948f777c5280/LICENSE). [Metadata and evidence](data/projects/tool-eval-bench.json).
   - Documentation reviewed: 2026-10-10. Repository checked: 2026-11-16 (reachable).
@@ -416,7 +416,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 
 ### Monitoring and diagnostics
 
-- [Spark Doctor](https://github.com/joeynyc/spark-doctor): Collect DGX Spark diagnostics and explain likely system, runtime, network, and recipe problems from local evidence.
+- <a id="project-spark-doctor"></a>[Spark Doctor](https://github.com/joeynyc/spark-doctor): Collect DGX Spark diagnostics and explain likely system, runtime, network, and recipe problems from local evidence.
   - Local workload. Platforms: Linux. Hardware: DGX Spark / GB10.
   - License: [MIT](https://raw.githubusercontent.com/joeynyc/spark-doctor/e50a14faf5fed4a9f202663451db92da34979298/LICENSE). [Metadata and evidence](data/projects/spark-doctor.json).
   - Documentation reviewed: 2026-10-10. Repository checked: 2026-11-16 (reachable).
@@ -424,7 +424,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: Read-only diagnostics, not automatic repairs; requires Python 3.11 or newer.
   - Note: Review and anonymize diagnostic reports before sharing them.
 
-- [SparkDash](https://github.com/MiaAI-Lab/sparkDash): Monitor GPU, memory, network, and local model metrics across DGX Spark and other hosts in a web dashboard.
+- <a id="project-sparkdash"></a>[SparkDash](https://github.com/MiaAI-Lab/sparkDash): Monitor GPU, memory, network, and local model metrics across DGX Spark and other hosts in a web dashboard.
   - Local workload. Platforms: Linux. Hardware: DGX Spark / GB10, NVIDIA GPU.
   - License: [Apache-2.0](https://raw.githubusercontent.com/MiaAI-Lab/sparkDash/1403c1ce79db030645c4787ca3b78529c9ea6b5b/LICENSE). [Metadata and evidence](data/projects/sparkdash.json).
   - Documentation reviewed: 2026-10-10. Repository checked: 2026-11-16 (reachable).
@@ -436,7 +436,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 
 ### Applications and model management
 
-- [bot-reborn](https://github.com/beasaltfish/bot-reborn): Turn a toy robot car into a voice robot: a phone is the body, and a Node brain on your computer runs a local 0.8B reflex model plus configurable STT, chat and TTS.
+- <a id="project-bot-reborn"></a>[bot-reborn](https://github.com/beasaltfish/bot-reborn): Turn a toy robot car into a voice robot: a phone is the body, and a Node brain on your computer runs a local 0.8B reflex model plus configurable STT, chat and TTS.
   - Local client or agent. Platforms: macOS. Hardware: Apple Silicon.
   - License: [MIT](https://raw.githubusercontent.com/beasaltfish/bot-reborn/1118222a1189e9407f92520a720fba8be6e27db1/LICENSE). [Metadata and evidence](data/projects/bot-reborn.json).
   - Documentation reviewed: 2026-10-21. Repository checked: 2026-11-16 (reachable).
@@ -448,7 +448,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: With remote providers, microphone audio is uploaded as WAV to speech-to-text, conversation text goes to the chat model, and reply text goes to text-to-speech; remote providers need API keys and may cost money.
   - Note: The code is MIT, but the published reflex model is licensed separately under Apache-2.0, as its model card declares.
 
-- [Contemplative Agent](https://github.com/shimo4228/contemplative-agent): Run an autonomous agent on a local LLM through Ollama that posts on Moltbook, logs every action, and stages changes to its own prompts for a person to adopt or reject.
+- <a id="project-contemplative-agent"></a>[Contemplative Agent](https://github.com/shimo4228/contemplative-agent): Run an autonomous agent on a local LLM through Ollama that posts on Moltbook, logs every action, and stages changes to its own prompts for a person to adopt or reject.
   - Local client or agent. Platforms: macOS. Hardware: Apple Silicon.
   - License: [MIT](https://raw.githubusercontent.com/shimo4228/contemplative-agent/620728552019f8be5ae9cb843400592ce5cde12d/LICENSE). [Metadata and evidence](data/projects/contemplative-agent.json).
   - Documentation reviewed: 2026-10-17. Repository checked: 2026-11-16 (reachable).
@@ -458,7 +458,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: Posts wait for confirmation by default, but scheduled sessions run with --auto and post without asking. The agent talks only to moltbook.com and to Ollama on localhost.
   - Note: A long-running research experiment, not a productivity tool; changes it proposes to its constitution, identity, and skills take effect only after a person adopts them.
 
-- [Off Grid AI](https://github.com/off-grid-ai/OGAD): Desktop app for local chat with text and vision models, image generation, speech-to-text and text-to-speech, plus a local OpenAI-compatible API.
+- <a id="project-off-grid-ai"></a>[Off Grid AI](https://github.com/off-grid-ai/OGAD): Desktop app for local chat with text and vision models, image generation, speech-to-text and text-to-speech, plus a local OpenAI-compatible API.
   - Local workload. Platforms: macOS, Windows, Linux. Hardware: Apple Silicon, CPU.
   - License: [AGPL-3.0-only](https://raw.githubusercontent.com/off-grid-ai/OGAD/312b8f45ef6afdd2bff3f7be130b4d0a23124bc8/LICENSE). [Metadata and evidence](data/projects/off-grid-ai.json).
   - Documentation reviewed: 2026-11-18. Repository: not checked yet.
@@ -467,7 +467,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: The gateway listens on all IPv4 interfaces. API-key authentication is optional and off by default; reachable network peers can use model routes unless authentication is enabled.
   - Note: An optional paid Pro layer (screen memory, meetings, dictation, clipboard) lives in a separate private package; the Linux build does not include it.
 
-- [Orkas](https://github.com/Orkas-AI/Orkas): Open-source, local-first desktop AI workforce where Commander coordinates specialist project work, with supported own-provider API keys and compatible local model endpoints.
+- <a id="project-orkas"></a>[Orkas](https://github.com/Orkas-AI/Orkas): Open-source, local-first desktop AI workforce where Commander coordinates specialist project work, with supported own-provider API keys and compatible local model endpoints.
   - Local client or agent. Platforms: macOS, Windows, Linux. Hardware: Not recorded.
   - License: [MIT](https://raw.githubusercontent.com/Orkas-AI/Orkas/10e4e61b9e7549312060b9ee613c105228801181/LICENSE). [Metadata and evidence](data/projects/orkas.json).
   - Documentation reviewed: 2026-10-18. Repository checked: 2026-11-16 (reachable).
@@ -478,7 +478,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: Remote model providers and authorized external tools require network access and can receive task data; provider usage can cost extra.
   - Note: The source build has no Orkas account layer; packaged official builds require sign-in and optional managed services have separate terms.
 
-- [ThreadShelf](https://github.com/ChrystianSchutz/ThreadShelf): Index ChatGPT, Claude, Google AI Studio, OpenRouter, LM Studio and Grok exports locally for semantic and exact search, then continue old threads with local GGUF models.
+- <a id="project-threadshelf"></a>[ThreadShelf](https://github.com/ChrystianSchutz/ThreadShelf): Index ChatGPT, Claude, Google AI Studio, OpenRouter, LM Studio and Grok exports locally for semantic and exact search, then continue old threads with local GGUF models.
   - Local workload. Platforms: Linux, macOS, Windows. Hardware: CPU.
   - License: [MIT](https://raw.githubusercontent.com/ChrystianSchutz/ThreadShelf/f13b721561305c3b040dc701ce86553ec36c4447/LICENSE). [Metadata and evidence](data/projects/threadshelf.json).
   - Documentation reviewed: 2026-11-08. Repository checked: 2026-11-16 (reachable).
@@ -489,7 +489,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: Google AI Studio, OpenRouter, LM Studio and Grok exports use undocumented formats that can change without notice.
   - Note: Requires Node.js 20.19 or newer; installed through npm (npx threadshelf).
 
-- [whichquant](https://github.com/ngo-binh0108/whichquant): Check every GGUF quant in a Hugging Face repo against your GPU and RAM before downloading it, by reading only the file headers, and get the llama.cpp flags for each one.
+- <a id="project-whichquant"></a>[whichquant](https://github.com/ngo-binh0108/whichquant): Check every GGUF quant in a Hugging Face repo against your GPU and RAM before downloading it, by reading only the file headers, and get the llama.cpp flags for each one.
   - Local workload. Platforms: Linux, macOS, Windows. Hardware: NVIDIA GPU, Apple Silicon.
   - License: [MIT](https://raw.githubusercontent.com/ngo-binh0108/whichquant/2c7e13a290ce8ca230abe7cc11196c895218426e/LICENSE). [Metadata and evidence](data/projects/whichquant.json).
   - Documentation reviewed: 2026-11-09. Repository checked: 2026-11-16 (reachable).
@@ -509,7 +509,7 @@ No entries yet. [Suggest a project](CONTRIBUTING.md).
 
 ### MCP servers
 
-- [agent-qa](https://github.com/vostride/agent-qa): Test web and mobile apps through a local CLI/MCP server with local model endpoints, memidex memory and validated self-improvement.
+- <a id="project-agent-qa"></a>[agent-qa](https://github.com/vostride/agent-qa): Test web and mobile apps through a local CLI/MCP server with local model endpoints, memidex memory and validated self-improvement.
   - Local client or agent. Platforms: Not recorded. Hardware: Not recorded.
   - License: [FSL-1.1-ALv2](https://raw.githubusercontent.com/vostride/agent-qa/1b8a9daf46dd0ec1b2c4503d2f1c0e26b0002293/LICENSE.md). [Metadata and evidence](data/projects/agent-qa.json).
   - Documentation reviewed: 2026-10-31. Repository checked: 2026-11-16 (reachable).
