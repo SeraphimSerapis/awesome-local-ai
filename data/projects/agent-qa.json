@@ -27,11 +27,11 @@
   ],
   "license": {
     "spdx": "FSL-1.1-ALv2",
-    "url": "https://github.com/vostride/agent-qa/blob/1b8a9daf46dd0ec1b2c4503d2f1c0e26b0002293/LICENSE.md"
+    "url": "https://raw.githubusercontent.com/vostride/agent-qa/1b8a9daf46dd0ec1b2c4503d2f1c0e26b0002293/LICENSE.md"
   },
   "sources": [
     {
-      "url": "https://github.com/vostride/agent-qa/blob/1b8a9daf46dd0ec1b2c4503d2f1c0e26b0002293/README.md",
+      "url": "https://raw.githubusercontent.com/vostride/agent-qa/1b8a9daf46dd0ec1b2c4503d2f1c0e26b0002293/README.md",
       "note": "Web/mobile testing, CLI/MCP, memidex memory, validated self-improvement, Node.js requirement and early-stage status."
     },
     {

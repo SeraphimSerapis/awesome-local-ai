@@ -28,11 +28,11 @@
   ],
   "license": {
     "spdx": "MIT",
-    "url": "https://github.com/Orkas-AI/Orkas/blob/10e4e61b9e7549312060b9ee613c105228801181/LICENSE"
+    "url": "https://raw.githubusercontent.com/Orkas-AI/Orkas/10e4e61b9e7549312060b9ee613c105228801181/LICENSE"
   },
   "sources": [
     {
-      "url": "https://github.com/Orkas-AI/Orkas/blob/10e4e61b9e7549312060b9ee613c105228801181/README.md",
+      "url": "https://raw.githubusercontent.com/Orkas-AI/Orkas/10e4e61b9e7549312060b9ee613c105228801181/README.md",
       "note": "Product definition, Commander and specialist workflows, local workspace defaults, own-provider keys, local model endpoint configuration, source startup requirements and packaged/source-build distinction."
     }
   ],

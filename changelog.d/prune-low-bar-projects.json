@@ -1,0 +1,4 @@
+{
+  "section": "Removed",
+  "entry": "Pruned 17 off-scope, unshipped, unlicensed, or cloud-only entries that failed the catalog acceptance bar, along with the retired `cloud-dependent`, `manage-cloud`, and `translate-text` taxonomy tags: `ai-beach`, `bankbridge`, `baxy`, `boots`, `cascaid`, `debate-hall`, `earshot-ai`, `gcloud-mcp`, `google-skills`, `matt-pocock-skills`, `rigmark`, `spark-bench`, `sparkpilot`, `sqwakie`, `talavine-code`, `yylo`, and `zaru`."
+}

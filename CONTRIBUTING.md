@@ -23,10 +23,8 @@ Every new submission must meet seven acceptance criteria:
    or defaulting to scripted mock replies. Entries in `local-client`, `skills`,
    and `mcp` must implement or document direct configuration for local model
    servers, local weights, or local AI hardware in their own repository. Generic
-   software prompt packs, cloud-vendor CLI wrappers, and external-CLI task
-   wrappers do not qualify. New `cloud-dependent` submissions are retired except
-   for bridges whose primary workflow connects a local model runtime to an
-   external service.
+   software prompt packs, cloud-vendor CLI wrappers, external-CLI task wrappers,
+   and cloud-only service connectors do not qualify.
 3. **Runnable distribution without mandatory cloud sign-in.** Projects must
    provide human-reproducible setup steps and ship a tagged release, published
    package, or source build on a stable toolchain. Version `0.0.0` stubs,

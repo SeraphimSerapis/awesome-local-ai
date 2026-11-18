@@ -18,7 +18,7 @@
   ],
   "limitations": [
     "Implements the Ray functionality used by vLLM, not the full Ray API.",
-    "The Rust workspace declares MIT OR Apache-2.0; no top-level license text was found, so confirm terms for other components."
+    "rust/Cargo.toml declares MIT OR Apache-2.0, while the python/ directory carries no separate license file and installs under the ray package namespace."
   ],
   "license": {
     "spdx": "MIT OR Apache-2.0",
@@ -30,9 +30,9 @@
       "note": "Upstream description, setup, and documented requirements."
     },
     {
-      "url": "https://raw.githubusercontent.com/kindlingai/mentat/e9d2ce11395d1adf0bbc4b640f5bcc356e82e41b/rust/Cargo.toml",
-      "note": "Rust workspace license declaration and package metadata."
+      "url": "https://raw.githubusercontent.com/kindlingai/mentat/e9d2ce11395d1adf0bbc4b640f5bcc356e82e41b/python/pyproject.toml",
+      "note": "Python shim package metadata installing under the ray package namespace without a separate license declaration."
     }
   ],
-  "last_reviewed": "2026-10-10"
+  "last_reviewed": "2026-11-18"
 }

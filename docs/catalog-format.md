@@ -57,10 +57,6 @@ catalog entries share it.
   weights, or local AI hardware in its own repository. Generic software prompt
   packs, cloud-vendor CLI wrappers, and external-CLI task wrappers do not
   qualify. Hosted providers may be optional.
-- `cloud-dependent`: new `cloud-dependent` submissions are retired except for
-  bridges whose primary workflow connects a local model runtime to an external
-  service. Legacy entries appear outside core categories in the cloud section
-  with explicit credential, network, and cost requirements.
 
 These modes describe the listed workflow, not a guarantee of offline operation.
 

@@ -66,7 +66,9 @@ class CatalogTests(unittest.TestCase):
 
     def test_unknown_taxonomy_values_fail(self):
         for field, value in [("category", "invented"), ("local_mode", "offline"),
-                             ("use_cases", ["unknown"]), ("platforms", ["os2"]),
+                             ("local_mode", "cloud-dependent"),
+                             ("use_cases", ["unknown"]), ("use_cases", ["manage-cloud"]),
+                             ("use_cases", ["translate-text"]), ("platforms", ["os2"]),
                              ("hardware", ["everything"])]:
             with self.subTest(field=field):
                 changed = deepcopy(self.project)
@@ -215,12 +217,6 @@ class CatalogTests(unittest.TestCase):
                 self.save()
                 self.assert_invalid("SPDX")
 
-    def test_cloud_entry_needs_limitations(self):
-        self.project["local_mode"] = "cloud-dependent"
-        self.project["limitations"] = []
-        self.save()
-        self.assert_invalid("cloud integrations must explain")
-
     def test_source_shape_and_duplicates_fail(self):
         self.project["sources"][0]["claim"] = "unexpected"
         self.save()
@@ -269,15 +265,17 @@ class CatalogTests(unittest.TestCase):
                 with self.assertRaises(catalog.CatalogError):
                     catalog.render_readme(self.root, taxonomy, projects)
 
-    def test_cloud_entries_only_appear_in_cloud_section_and_task_index(self):
-        self.project["local_mode"] = "cloud-dependent"
-        self.save()
+    def test_empty_categories_render_placeholder_with_valid_anchor(self):
         taxonomy, projects = self.load()
         generated = catalog.catalog_markdown(taxonomy, projects)
-        core = generated.split("## Browse by category", 1)[1].split("## Cloud integrations", 1)[0]
-        self.assertNotIn(self.project["repository"], core)
-        self.assertIn(self.project["repository"], generated.split("## Cloud integrations", 1)[1])
-        self.assertIn(catalog.project_link(self.project) + " (cloud)", generated)
+        self.assertNotIn("Cloud integrations", generated)
+        self.assertIn("- [Agent skills and extensions](#skills)", generated)
+        self.assertIn(
+            '<a id="skills"></a>\n\n'
+            "### Agent skills and extensions\n\n"
+            "No entries yet. [Suggest a project](CONTRIBUTING.md).\n",
+            generated,
+        )
 
     def test_unknown_hardware_and_markdown_escaping(self):
         self.project["name"] = "Example [name] | <tag>"

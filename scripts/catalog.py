@@ -138,8 +138,8 @@ def load_taxonomy(root):
         for key, label in choices.items():
             require(SLUG.fullmatch(key) is not None, f"invalid taxonomy ID: {key}")
             text(label, f"taxonomy {field}.{key}", 100)
-    require(set(taxonomy["local_modes"]) == {"local", "local-client", "cloud-dependent"},
-            "local_modes must retain the three documented meanings")
+    require(set(taxonomy["local_modes"]) == {"local", "local-client"},
+            "local_modes must retain the two documented meanings")
     return taxonomy
 
 
@@ -162,8 +162,6 @@ def validate_project(project, path, taxonomy):
         string_list(project[field], field, taxonomy[field], nonempty=field == "use_cases")
     for field in ["compatibility", "limitations"]:
         string_list(project[field], field)
-    if project["local_mode"] == "cloud-dependent":
-        require(bool(project["limitations"]), "cloud integrations must explain their cloud requirements")
     license_info = project["license"]
     require(isinstance(license_info, dict) and set(license_info) == {"spdx", "url"},
             "license must contain spdx and url")
@@ -525,8 +523,6 @@ def update_changelog(root=ROOT, week=None, fragments=None):
 
 def catalog_markdown(taxonomy, projects, health=None):
     health = {} if health is None else health
-    core = [project for project in projects if project["local_mode"] != "cloud-dependent"]
-    cloud = [project for project in projects if project["local_mode"] == "cloud-dependent"]
     lines = ["## Find tools by task", ""]
     for key, label in taxonomy["use_cases"].items():
         matches = sorted(
@@ -536,29 +532,20 @@ def catalog_markdown(taxonomy, projects, health=None):
         if matches:
             lines.extend([f"### {markdown(label)}", ""])
             for project in matches:
-                suffix = " (cloud)" if project["local_mode"] == "cloud-dependent" else ""
-                lines.append(f"- {project_link(project)}{suffix}")
+                lines.append(f"- {project_link(project)}")
             lines.append("")
     lines.extend(["## Browse by category", ""])
     for category, label in taxonomy["categories"].items():
         lines.append(f"- [{markdown(label)}](#{category})")
-    lines.extend(["- [Cloud integrations](#cloud-integrations)", ""])
+    lines.append("")
     for category, label in taxonomy["categories"].items():
         lines.extend([f'<a id="{category}"></a>', "", f"### {markdown(label)}", ""])
-        matches = [project for project in core if project["category"] == category]
+        matches = [project for project in projects if project["category"] == category]
         for project in matches:
             lines.extend(project_lines(project, taxonomy, health.get(project["id"])))
             lines.append("")
         if not matches:
-            lines.extend(["No local-first entries yet. [Suggest a project](CONTRIBUTING.md).", ""])
-            if any(project["category"] == category for project in cloud):
-                lines.extend(["Cloud-dependent entries are in [Cloud integrations](#cloud-integrations).", ""])
-    lines.extend(["## Cloud integrations", "", "These integrations connect agents to cloud services. They are not offline local AI tools.", ""])
-    for project in cloud:
-        lines.extend(project_lines(project, taxonomy, health.get(project["id"])))
-        lines.append("")
-    if not cloud:
-        lines.extend(["No entries yet.", ""])
+            lines.extend(["No entries yet. [Suggest a project](CONTRIBUTING.md).", ""])
     return "\n".join(lines).rstrip() + "\n"
 
 

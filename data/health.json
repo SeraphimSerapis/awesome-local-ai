@@ -10,50 +10,6 @@
     "repository": "https://github.com/vostride/agent-qa",
     "status": "reachable"
   },
-  "ai-beach": {
-    "archived": false,
-    "canonical_repository": "https://github.com/sequimelectronics/AI-Beach",
-    "checked_at": "2026-11-16",
-    "detail": null,
-    "disabled": false,
-    "last_push": "2026-11-10T07:47:02Z",
-    "last_successful_check": "2026-11-16",
-    "repository": "https://github.com/sequimelectronics/AI-Beach",
-    "status": "reachable"
-  },
-  "bankbridge": {
-    "archived": false,
-    "canonical_repository": "https://github.com/bankbridge-money/bankbridge-plugin",
-    "checked_at": "2026-11-16",
-    "detail": null,
-    "disabled": false,
-    "last_push": "2026-11-07T15:45:04Z",
-    "last_successful_check": "2026-11-16",
-    "repository": "https://github.com/bankbridge-money/bankbridge-plugin",
-    "status": "reachable"
-  },
-  "baxy": {
-    "archived": false,
-    "canonical_repository": "https://github.com/REDSOULTM/BAXY",
-    "checked_at": "2026-11-16",
-    "detail": null,
-    "disabled": false,
-    "last_push": "2026-11-16T05:30:16Z",
-    "last_successful_check": "2026-11-16",
-    "repository": "https://github.com/REDSOULTM/BAXY",
-    "status": "reachable"
-  },
-  "boots": {
-    "archived": false,
-    "canonical_repository": "https://github.com/kindlingai/boots",
-    "checked_at": "2026-11-16",
-    "detail": null,
-    "disabled": false,
-    "last_push": "2026-10-08T22:56:24Z",
-    "last_successful_check": "2026-11-16",
-    "repository": "https://github.com/kindlingai/boots",
-    "status": "reachable"
-  },
   "bot-reborn": {
     "archived": false,
     "canonical_repository": "https://github.com/beasaltfish/bot-reborn",
@@ -65,17 +21,6 @@
     "repository": "https://github.com/beasaltfish/bot-reborn",
     "status": "reachable"
   },
-  "cascaid": {
-    "archived": false,
-    "canonical_repository": "https://github.com/stevejwhite/cascaid",
-    "checked_at": "2026-11-16",
-    "detail": null,
-    "disabled": false,
-    "last_push": "2026-11-13T17:25:37Z",
-    "last_successful_check": "2026-11-16",
-    "repository": "https://github.com/stevejwhite/cascaid",
-    "status": "reachable"
-  },
   "contemplative-agent": {
     "archived": false,
     "canonical_repository": "https://github.com/shimo4228/contemplative-agent",
@@ -85,17 +30,6 @@
     "last_push": "2026-11-11T10:44:30Z",
     "last_successful_check": "2026-11-16",
     "repository": "https://github.com/shimo4228/contemplative-agent",
-    "status": "reachable"
-  },
-  "debate-hall": {
-    "archived": false,
-    "canonical_repository": "https://github.com/sequimelectronics/DebateHall",
-    "checked_at": "2026-11-16",
-    "detail": null,
-    "disabled": false,
-    "last_push": "2026-11-09T05:14:51Z",
-    "last_successful_check": "2026-11-16",
-    "repository": "https://github.com/sequimelectronics/DebateHall",
     "status": "reachable"
   },
   "deepseek-harness": {
@@ -153,17 +87,6 @@
     "repository": "https://github.com/antirez/ds4",
     "status": "reachable"
   },
-  "earshot-ai": {
-    "archived": false,
-    "canonical_repository": "https://github.com/sunchupeng/earshot-support",
-    "checked_at": "2026-11-16",
-    "detail": null,
-    "disabled": false,
-    "last_push": "2026-11-13T07:50:08Z",
-    "last_successful_check": "2026-11-16",
-    "repository": "https://github.com/sunchupeng/earshot-support",
-    "status": "reachable"
-  },
   "fadebench": {
     "archived": false,
     "canonical_repository": "https://github.com/sequimelectronics/fadebench",
@@ -173,28 +96,6 @@
     "last_push": "2026-11-09T21:37:19Z",
     "last_successful_check": "2026-11-16",
     "repository": "https://github.com/sequimelectronics/fadebench",
-    "status": "reachable"
-  },
-  "gcloud-mcp": {
-    "archived": false,
-    "canonical_repository": "https://github.com/googleapis/gcloud-mcp",
-    "checked_at": "2026-11-16",
-    "detail": null,
-    "disabled": false,
-    "last_push": "2026-10-17T19:03:01Z",
-    "last_successful_check": "2026-11-16",
-    "repository": "https://github.com/googleapis/gcloud-mcp",
-    "status": "reachable"
-  },
-  "google-skills": {
-    "archived": false,
-    "canonical_repository": "https://github.com/google/skills",
-    "checked_at": "2026-11-16",
-    "detail": null,
-    "disabled": false,
-    "last_push": "2026-11-16T15:44:47Z",
-    "last_successful_check": "2026-11-16",
-    "repository": "https://github.com/google/skills",
     "status": "reachable"
   },
   "inference-atlas": {
@@ -239,17 +140,6 @@
     "last_push": "2026-07-10T19:18:53Z",
     "last_successful_check": "2026-11-16",
     "repository": "https://github.com/eugr/llama-benchy",
-    "status": "reachable"
-  },
-  "matt-pocock-skills": {
-    "archived": false,
-    "canonical_repository": "https://github.com/mattpocock/skills",
-    "checked_at": "2026-11-16",
-    "detail": null,
-    "disabled": false,
-    "last_push": "2026-11-13T12:30:31Z",
-    "last_successful_check": "2026-11-16",
-    "repository": "https://github.com/mattpocock/skills",
     "status": "reachable"
   },
   "mcdma": {
@@ -329,28 +219,6 @@
     "repository": "https://github.com/earendil-works/pi",
     "status": "reachable"
   },
-  "rigmark": {
-    "archived": false,
-    "canonical_repository": "https://github.com/alexellis/rigmark",
-    "checked_at": "2026-11-16",
-    "detail": null,
-    "disabled": false,
-    "last_push": "2026-10-25T12:50:45Z",
-    "last_successful_check": "2026-11-16",
-    "repository": "https://github.com/alexellis/rigmark",
-    "status": "reachable"
-  },
-  "spark-bench": {
-    "archived": false,
-    "canonical_repository": "https://github.com/Weschera/spark-bench",
-    "checked_at": "2026-11-16",
-    "detail": null,
-    "disabled": false,
-    "last_push": "2026-10-13T03:42:25Z",
-    "last_successful_check": "2026-11-16",
-    "repository": "https://github.com/Weschera/spark-bench",
-    "status": "reachable"
-  },
   "spark-doctor": {
     "archived": false,
     "canonical_repository": "https://github.com/joeynyc/spark-doctor",
@@ -395,17 +263,6 @@
     "repository": "https://github.com/MiaAI-Lab/sparkDash",
     "status": "reachable"
   },
-  "sparkpilot": {
-    "archived": false,
-    "canonical_repository": "https://github.com/ashhart/SparkPilot",
-    "checked_at": "2026-11-16",
-    "detail": null,
-    "disabled": false,
-    "last_push": "2026-09-11T08:39:49Z",
-    "last_successful_check": "2026-11-16",
-    "repository": "https://github.com/ashhart/SparkPilot",
-    "status": "reachable"
-  },
   "sparkrun": {
     "archived": false,
     "canonical_repository": "https://github.com/spark-arena/sparkrun",
@@ -428,17 +285,6 @@
     "repository": "https://github.com/incoai/splash",
     "status": "reachable"
   },
-  "sqwakie": {
-    "archived": false,
-    "canonical_repository": "https://github.com/alexcarney460-hue/walkie",
-    "checked_at": "2026-11-16",
-    "detail": null,
-    "disabled": false,
-    "last_push": "2026-10-26T20:42:18Z",
-    "last_successful_check": "2026-11-16",
-    "repository": "https://github.com/alexcarney460-hue/walkie",
-    "status": "reachable"
-  },
   "strata": {
     "archived": false,
     "canonical_repository": "https://github.com/Niko1221/Strata",
@@ -448,17 +294,6 @@
     "last_push": "2026-11-16T08:45:12Z",
     "last_successful_check": "2026-11-16",
     "repository": "https://github.com/Niko1221/Strata",
-    "status": "reachable"
-  },
-  "talavine-code": {
-    "archived": false,
-    "canonical_repository": "https://github.com/scrossen/talavine-code",
-    "checked_at": "2026-11-16",
-    "detail": null,
-    "disabled": false,
-    "last_push": "2026-11-06T15:54:48Z",
-    "last_successful_check": "2026-11-16",
-    "repository": "https://github.com/scrossen/talavine-code",
     "status": "reachable"
   },
   "tandemllm": {
@@ -514,28 +349,6 @@
     "last_push": "2026-11-11T12:28:35Z",
     "last_successful_check": "2026-11-16",
     "repository": "https://github.com/ngo-binh0108/whichquant",
-    "status": "reachable"
-  },
-  "yylo": {
-    "archived": false,
-    "canonical_repository": "https://github.com/yylo-dev/yylo",
-    "checked_at": "2026-11-16",
-    "detail": null,
-    "disabled": false,
-    "last_push": "2026-11-13T14:36:15Z",
-    "last_successful_check": "2026-11-16",
-    "repository": "https://github.com/yylo-dev/yylo",
-    "status": "reachable"
-  },
-  "zaru": {
-    "archived": false,
-    "canonical_repository": "https://github.com/100monkeys-ai/zaru-cli",
-    "checked_at": "2026-11-16",
-    "detail": null,
-    "disabled": false,
-    "last_push": "2026-10-21T09:25:32Z",
-    "last_successful_check": "2026-11-16",
-    "repository": "https://github.com/100monkeys-ai/zaru-cli",
     "status": "reachable"
   }
 }
