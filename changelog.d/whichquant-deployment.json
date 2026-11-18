@@ -1,4 +1,0 @@
-{
-  "section": "Updated",
-  "entry": "[whichquant](https://github.com/ngo-binh0108/whichquant) moves from Applications and model management to Deployment and bootstrapping under the `bootstrap-local-ai` and `validate-inference-configs` task tags, with sources updated to its v0.2.0 vision and draft model sizing documentation."
-}

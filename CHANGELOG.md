@@ -13,6 +13,15 @@ PR, and maintainers compile fragments into weekly sections with
 - [Off Grid AI](https://github.com/off-grid-ai/OGAD), a desktop app for macOS, Windows and Linux that runs chat, vision, image generation, transcription and speech locally, with a local OpenAI-compatible gateway API, optional API-key authentication and an optional paid Pro layer in a separate package.
 - [RAI](https://github.com/Classevelabs/rai), a Rust engine that runs 4-bit language models on the CPU, with one-step installers for Windows, macOS and Linux, a local chat page and API, and pinned starter models.
 
+### Updated
+
+- [whichquant](https://github.com/ngo-binh0108/whichquant) moves from Applications and model management to Deployment and bootstrapping under the `bootstrap-local-ai` and `validate-inference-configs` task tags, with sources updated to its v0.2.0 vision and draft model sizing documentation.
+
+### Removed
+
+- Pruned 17 off-scope, unshipped, unlicensed, or cloud-only entries that failed the catalog acceptance bar, along with the retired `cloud-dependent`, `manage-cloud`, and `translate-text` taxonomy tags: `ai-beach`, `bankbridge`, `baxy`, `boots`, `cascaid`, `debate-hall`, `earshot-ai`, `gcloud-mcp`, `google-skills`, `matt-pocock-skills`, `rigmark`, `spark-bench`, `sparkpilot`, `sqwakie`, `talavine-code`, `yylo`, and `zaru`.
+- Removed 10 borderline entries that failed the catalog acceptance bar on mandatory cloud sign-in, unsandboxed host execution, boot-state or licensing gaps, unshipped releases, companion micro-repos, custom hardware soldering, or manual-only scoring, along with the retired `evaluate-model-behavior` task tag: `bot-reborn`, `dgx-spark-memory-saver`, `dgx-spark-networking`, `fadebench`, `inference-atlas`, `kindling-spark-os`, `mcdma`, `mentat`, `orkas`, and `spark-tools`.
+
 ## Week of 2026-11-09
 
 ### Added

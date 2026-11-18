@@ -111,18 +111,12 @@ def observe(repository, previous, today, fetch=github_metadata, fetch_commit=Non
                 default_branch is None or (isinstance(default_branch, str) and bool(default_branch.strip())),
                 "GitHub default_branch must be a non-empty string or null",
             )
-            size = metadata.get("size")
-            catalog.require(
-                size is None or (type(size) is int and size >= 0),
-                "GitHub repository size must be a non-negative integer",
-            )
             default_commit = None
             if (
                 fetch_commit is not None
                 and metadata.get("disabled") is False
                 and metadata.get("pushed_at") is not None
                 and default_branch is not None
-                and (size is None or size > 0)
             ):
                 default_commit = fetch_commit(repository, default_branch)
                 if default_commit is not None:

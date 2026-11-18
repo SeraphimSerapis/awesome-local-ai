@@ -348,7 +348,6 @@ class HealthTests(unittest.TestCase):
 
         for overrides in [
             {"disabled": True},
-            {"size": 0},
             {"pushed_at": None},
             {"default_branch": None},
         ]:
@@ -357,6 +356,13 @@ class HealthTests(unittest.TestCase):
                 self.assertEqual(record["status"], "reachable")
                 self.assertIsNone(record["last_default_branch_commit"])
         self.assertEqual(called, [])
+
+        small_repo = self.observe(
+            dict(self.metadata, size=0),
+            fetch_commit=lambda _repo, _branch: "2026-11-17T00:00:00Z",
+        )
+        self.assertEqual(small_repo["status"], "reachable")
+        self.assertEqual(small_repo["last_default_branch_commit"], "2026-11-17T00:00:00Z")
 
     def test_legacy_health_records_without_default_branch_commit_upgrade_cleanly(self):
         legacy = dict(self.previous)

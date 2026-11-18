@@ -19,7 +19,7 @@
   ],
   "local_mode": "local",
   "compatibility": [
-    "Prints llama.cpp flags for each quant; with -q, also prints llama-server and KoboldCpp commands for the selected quants, including optional vision projector and draft model flags."
+    "Prints llama.cpp flags for each quant, counts optional vision-projector and draft-model memory, and with -q prints llama-server and KoboldCpp commands including draft-model flags."
   ],
   "limitations": [
     "Weights are exact, but the compute buffer is an estimate and the KV cache follows llama.cpp's sizing rules.",
