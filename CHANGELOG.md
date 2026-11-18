@@ -4,11 +4,19 @@ Changes to Awesome Local AI, not upstream software releases. Weeks start on
 Monday in UTC. Contributors update the current week's section with their
 catalog PR; there is no automatic publishing or merging of these notes.
 
+## Week of 2026-11-16
+
+### Added
+
+- [vLLM Windows Build](https://github.com/aivrar/vllm-windows-build), community native Windows wheels and patches for single-GPU vLLM serving with an OpenAI-compatible API on NVIDIA GPUs, without WSL or Docker.
+- [Off Grid AI](https://github.com/off-grid-ai/OGAD), a desktop app for macOS, Windows and Linux that runs chat, vision, image generation, transcription and speech locally, with a local OpenAI-compatible gateway API, optional API-key authentication and an optional paid Pro layer in a separate package.
+- [RAI](https://github.com/Classevelabs/rai), a Rust engine that runs 4-bit language models on the CPU, with one-step installers for Windows, macOS and Linux, a local chat page and API, and pinned starter models.
+
 ## Week of 2026-11-09
 
 ### Added
 
-- [vllm-windows-build](https://github.com/aivrar/vllm-windows-build), community native Windows wheels and patches for vLLM, with OpenAI-compatible serving on NVIDIA GPUs and no WSL or Docker.
+- [CascAid](https://github.com/stevejwhite/cascaid), a local psychiatric interview practice prototype for Apple Silicon with fictional cases, optional speech and an experimental 3D character; not clinically validated.
 - [Earshot AI](https://github.com/sunchupeng/earshot-support), a paid iPhone app for local text and selectable-PDF translation, saved history and bilingual PDF export, with documented file, model-territory and speech-resource limits.
 - [whichquant](https://github.com/ngo-binh0108/whichquant), a command-line check of which GGUF quants in a Hugging Face repo fit your GPU and RAM, reading only the file headers.
 - [Debate Hall](https://github.com/sequimelectronics/DebateHall), a self-hosted structured debate over a paper's claims for people and their own AI agents, with an exportable ledger of objections and rulings and an example script that seats a local model.
