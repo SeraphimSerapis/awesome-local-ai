@@ -10,17 +10,6 @@
     "repository": "https://github.com/vostride/agent-qa",
     "status": "reachable"
   },
-  "bot-reborn": {
-    "archived": false,
-    "canonical_repository": "https://github.com/beasaltfish/bot-reborn",
-    "checked_at": "2026-11-16",
-    "detail": null,
-    "disabled": false,
-    "last_push": "2026-11-14T04:25:59Z",
-    "last_successful_check": "2026-11-16",
-    "repository": "https://github.com/beasaltfish/bot-reborn",
-    "status": "reachable"
-  },
   "contemplative-agent": {
     "archived": false,
     "canonical_repository": "https://github.com/shimo4228/contemplative-agent",
@@ -54,28 +43,6 @@
     "repository": "https://github.com/christopherowen/dgx-spark-fan-control",
     "status": "reachable"
   },
-  "dgx-spark-memory-saver": {
-    "archived": false,
-    "canonical_repository": "https://github.com/christopherowen/dgx-spark-memory-saver",
-    "checked_at": "2026-11-16",
-    "detail": null,
-    "disabled": false,
-    "last_push": "2026-10-16T14:15:33Z",
-    "last_successful_check": "2026-11-16",
-    "repository": "https://github.com/christopherowen/dgx-spark-memory-saver",
-    "status": "reachable"
-  },
-  "dgx-spark-networking": {
-    "archived": false,
-    "canonical_repository": "https://github.com/christopherowen/dgx-spark-networking",
-    "checked_at": "2026-11-16",
-    "detail": null,
-    "disabled": false,
-    "last_push": "2026-11-08T16:04:04Z",
-    "last_successful_check": "2026-11-16",
-    "repository": "https://github.com/christopherowen/dgx-spark-networking",
-    "status": "reachable"
-  },
   "dwarfstar": {
     "archived": false,
     "canonical_repository": "https://github.com/antirez/ds4",
@@ -85,28 +52,6 @@
     "last_push": "2026-11-08T09:57:40Z",
     "last_successful_check": "2026-11-16",
     "repository": "https://github.com/antirez/ds4",
-    "status": "reachable"
-  },
-  "fadebench": {
-    "archived": false,
-    "canonical_repository": "https://github.com/sequimelectronics/fadebench",
-    "checked_at": "2026-11-16",
-    "detail": null,
-    "disabled": false,
-    "last_push": "2026-11-09T21:37:19Z",
-    "last_successful_check": "2026-11-16",
-    "repository": "https://github.com/sequimelectronics/fadebench",
-    "status": "reachable"
-  },
-  "inference-atlas": {
-    "archived": false,
-    "canonical_repository": "https://github.com/0xBakeer/inference-atlas",
-    "checked_at": "2026-11-16",
-    "detail": null,
-    "disabled": false,
-    "last_push": "2026-10-19T22:55:24Z",
-    "last_successful_check": "2026-11-16",
-    "repository": "https://github.com/0xBakeer/inference-atlas",
     "status": "reachable"
   },
   "kapitsa": {
@@ -120,17 +65,6 @@
     "repository": "https://github.com/nace-ai/kapitsa",
     "status": "reachable"
   },
-  "kindling-spark-os": {
-    "archived": false,
-    "canonical_repository": "https://github.com/kindlingai/kindling-spark-os",
-    "checked_at": "2026-11-16",
-    "detail": null,
-    "disabled": false,
-    "last_push": "2026-11-12T01:47:35Z",
-    "last_successful_check": "2026-11-16",
-    "repository": "https://github.com/kindlingai/kindling-spark-os",
-    "status": "reachable"
-  },
   "llama-benchy": {
     "archived": false,
     "canonical_repository": "https://github.com/eugr/llama-benchy",
@@ -140,28 +74,6 @@
     "last_push": "2026-07-10T19:18:53Z",
     "last_successful_check": "2026-11-16",
     "repository": "https://github.com/eugr/llama-benchy",
-    "status": "reachable"
-  },
-  "mcdma": {
-    "archived": false,
-    "canonical_repository": "https://github.com/ashhart/MCDMA",
-    "checked_at": "2026-11-16",
-    "detail": null,
-    "disabled": false,
-    "last_push": "2026-11-01T13:34:55Z",
-    "last_successful_check": "2026-11-16",
-    "repository": "https://github.com/ashhart/MCDMA",
-    "status": "reachable"
-  },
-  "mentat": {
-    "archived": false,
-    "canonical_repository": "https://github.com/kindlingai/mentat",
-    "checked_at": "2026-11-16",
-    "detail": null,
-    "disabled": false,
-    "last_push": "2026-11-01T00:00:14Z",
-    "last_successful_check": "2026-11-16",
-    "repository": "https://github.com/kindlingai/mentat",
     "status": "reachable"
   },
   "mlx-serve": {
@@ -197,17 +109,6 @@
     "repository": "https://github.com/jundot/omlx",
     "status": "reachable"
   },
-  "orkas": {
-    "archived": false,
-    "canonical_repository": "https://github.com/Orkas-AI/Orkas",
-    "checked_at": "2026-11-16",
-    "detail": null,
-    "disabled": false,
-    "last_push": "2026-11-16T15:28:38Z",
-    "last_successful_check": "2026-11-16",
-    "repository": "https://github.com/Orkas-AI/Orkas",
-    "status": "reachable"
-  },
   "pi": {
     "archived": false,
     "canonical_repository": "https://github.com/earendil-works/pi",
@@ -228,17 +129,6 @@
     "last_push": "2026-10-22T07:48:43Z",
     "last_successful_check": "2026-11-16",
     "repository": "https://github.com/joeynyc/spark-doctor",
-    "status": "reachable"
-  },
-  "spark-tools": {
-    "archived": false,
-    "canonical_repository": "https://github.com/knapcio/spark-tools",
-    "checked_at": "2026-11-16",
-    "detail": null,
-    "disabled": false,
-    "last_push": "2026-10-19T11:15:10Z",
-    "last_successful_check": "2026-11-16",
-    "repository": "https://github.com/knapcio/spark-tools",
     "status": "reachable"
   },
   "spark-vllm-docker": {

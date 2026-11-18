@@ -3,8 +3,9 @@
   "name": "whichquant",
   "repository": "https://github.com/ngo-binh0108/whichquant",
   "description": "Check every GGUF quant in a Hugging Face repo against your GPU and RAM before downloading it, by reading only the file headers, and get the llama.cpp flags for each one.",
-  "category": "applications",
+  "category": "deployment",
   "use_cases": [
+    "bootstrap-local-ai",
     "validate-inference-configs"
   ],
   "platforms": [
@@ -18,7 +19,7 @@
   ],
   "local_mode": "local",
   "compatibility": [
-    "Prints llama.cpp flags for each quant; with -q, also prints llama-server and KoboldCpp commands for the selected quants."
+    "Prints llama.cpp flags for each quant; with -q, also prints llama-server and KoboldCpp commands for the selected quants, including optional vision projector and draft model flags."
   ],
   "limitations": [
     "Weights are exact, but the compute buffer is an estimate and the KV cache follows llama.cpp's sizing rules.",
@@ -28,17 +29,17 @@
   ],
   "license": {
     "spdx": "MIT",
-    "url": "https://raw.githubusercontent.com/ngo-binh0108/whichquant/2c7e13a290ce8ca230abe7cc11196c895218426e/LICENSE"
+    "url": "https://raw.githubusercontent.com/ngo-binh0108/whichquant/30bcc736095dc9ea80a6cd0f6686cb7855309226/LICENSE"
   },
   "sources": [
     {
-      "url": "https://raw.githubusercontent.com/ngo-binh0108/whichquant/2c7e13a290ce8ca230abe7cc11196c895218426e/README.md",
-      "note": "Usage, supported hardware detection, accuracy notes and limits."
+      "url": "https://raw.githubusercontent.com/ngo-binh0108/whichquant/30bcc736095dc9ea80a6cd0f6686cb7855309226/README.md",
+      "note": "Usage, supported hardware detection, vision and draft model sizing, accuracy notes, and limits."
     },
     {
-      "url": "https://raw.githubusercontent.com/ngo-binh0108/whichquant/2c7e13a290ce8ca230abe7cc11196c895218426e/.github/workflows/tests.yml",
-      "note": "Test matrix covering Linux, macOS and Windows."
+      "url": "https://raw.githubusercontent.com/ngo-binh0108/whichquant/30bcc736095dc9ea80a6cd0f6686cb7855309226/.github/workflows/tests.yml",
+      "note": "Test matrix covering Linux, macOS, and Windows."
     }
   ],
-  "last_reviewed": "2026-11-09"
+  "last_reviewed": "2026-11-18"
 }

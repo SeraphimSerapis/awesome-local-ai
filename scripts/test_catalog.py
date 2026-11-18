@@ -69,7 +69,9 @@ class CatalogTests(unittest.TestCase):
         for field, value in [("category", "invented"), ("local_mode", "offline"),
                              ("local_mode", "cloud-dependent"),
                              ("use_cases", ["unknown"]), ("use_cases", ["manage-cloud"]),
-                             ("use_cases", ["translate-text"]), ("platforms", ["os2"]),
+                             ("use_cases", ["translate-text"]),
+                             ("use_cases", ["evaluate-model-behavior"]),
+                             ("platforms", ["os2"]),
                              ("hardware", ["everything"])]:
             with self.subTest(field=field):
                 changed = deepcopy(self.project)

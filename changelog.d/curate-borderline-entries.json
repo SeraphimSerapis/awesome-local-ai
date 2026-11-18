@@ -1,0 +1,4 @@
+{
+  "section": "Removed",
+  "entry": "Removed 10 borderline entries that failed the catalog acceptance bar on mandatory cloud sign-in, unsandboxed host execution, boot-state or licensing gaps, unshipped releases, companion micro-repos, custom hardware soldering, or manual-only scoring, along with the retired `evaluate-model-behavior` task tag: `bot-reborn`, `dgx-spark-memory-saver`, `dgx-spark-networking`, `fadebench`, `inference-atlas`, `kindling-spark-os`, `mcdma`, `mentat`, `orkas`, and `spark-tools`."
+}
