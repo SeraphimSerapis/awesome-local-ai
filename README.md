@@ -38,24 +38,148 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 
 ## Find tools by task
 
-| I want to... | Start here |
-| --- | --- |
-| Run a model on my hardware | [boots / ai-bootstrap](https://github.com/kindlingai/boots), [DwarfStar / ds4](https://github.com/antirez/ds4), [Kapitsa](https://github.com/nace-ai/kapitsa), [mentat](https://github.com/kindlingai/mentat), [mlx-serve](https://github.com/ddalcu/mlx-serve), [Off Grid AI](https://github.com/off-grid-ai/OGAD), [oMLX](https://github.com/jundot/omlx), [RAI](https://github.com/Classevelabs/rai), [spark-vllm-docker](https://github.com/eugr/spark-vllm-docker), [SparkPilot](https://github.com/ashhart/SparkPilot), [sparkrun](https://github.com/spark-arena/sparkrun), [Splash](https://github.com/incoai/splash), [Sqwakie](https://github.com/alexcarney460-hue/walkie), [Strata](https://github.com/Niko1221/Strata), [TandemLLM](https://github.com/0xBakeer/TandemLLM), [TensorFold](https://github.com/ashhart/TensorFold), [vLLM Windows Build](https://github.com/aivrar/vllm-windows-build) |
-| Connect a coding agent to a local model | [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [DwarfStar / ds4](https://github.com/antirez/ds4), [Kapitsa](https://github.com/nace-ai/kapitsa), [mlx-serve](https://github.com/ddalcu/mlx-serve), [Oh My Pi](https://github.com/can1357/oh-my-pi), [oMLX](https://github.com/jundot/omlx), [Pi](https://github.com/earendil-works/pi), [Splash](https://github.com/incoai/splash), [Strata](https://github.com/Niko1221/Strata), [Talavine Code](https://github.com/scrossen/talavine-code), [TandemLLM](https://github.com/0xBakeer/TandemLLM), [TensorFold](https://github.com/ashhart/TensorFold), [YYLO](https://github.com/yylo-dev/yylo), [Zaru (zaru-cli)](https://github.com/100monkeys-ai/zaru-cli) |
-| Run autonomous agents with local models | [agent-qa](https://github.com/vostride/agent-qa), [BAXY](https://github.com/REDSOULTM/BAXY), [bot-reborn](https://github.com/beasaltfish/bot-reborn), [Contemplative Agent](https://github.com/shimo4228/contemplative-agent), [Debate Hall](https://github.com/sequimelectronics/DebateHall) |
-| Test tool-calling quality | [Inference Atlas](https://github.com/0xBakeer/inference-atlas), [Spark Bench](https://github.com/Weschera/spark-bench), [tool-eval-bench](https://github.com/SeraphimSerapis/tool-eval-bench) |
-| Test model behavior and safety | [FadeBench](https://github.com/sequimelectronics/fadebench) |
-| Compare inference speed | [Inference Atlas](https://github.com/0xBakeer/inference-atlas), [llama-benchy](https://github.com/eugr/llama-benchy), [RigMark](https://github.com/alexellis/rigmark), [Spark Bench](https://github.com/Weschera/spark-bench), [Spark Tools](https://github.com/knapcio/spark-tools), [tool-eval-bench](https://github.com/SeraphimSerapis/tool-eval-bench) |
-| Deploy or manage a cluster | [DGX Spark Networking](https://github.com/christopherowen/dgx-spark-networking), [kindling-spark-os](https://github.com/kindlingai/kindling-spark-os), [MCDMA](https://github.com/ashhart/MCDMA), [mentat](https://github.com/kindlingai/mentat), [spark-vllm-docker](https://github.com/eugr/spark-vllm-docker), [sparkrun](https://github.com/spark-arena/sparkrun), [Sqwakie](https://github.com/alexcarney460-hue/walkie) |
-| Set up local AI | [boots / ai-bootstrap](https://github.com/kindlingai/boots), [kindling-spark-os](https://github.com/kindlingai/kindling-spark-os), [RAI](https://github.com/Classevelabs/rai), [sparkrun](https://github.com/spark-arena/sparkrun), [vLLM Windows Build](https://github.com/aivrar/vllm-windows-build) |
-| Monitor my setup | [SparkDash](https://github.com/MiaAI-Lab/sparkDash) |
-| Troubleshoot my setup | [DGX Spark Networking](https://github.com/christopherowen/dgx-spark-networking), [Spark Doctor](https://github.com/joeynyc/spark-doctor) |
-| Tune thermals and memory | [DGX Spark Fan Control](https://github.com/christopherowen/dgx-spark-fan-control), [DGX Spark Memory Saver](https://github.com/christopherowen/dgx-spark-memory-saver) |
-| Validate or simulate inference configurations | [Spark Tools](https://github.com/knapcio/spark-tools), [whichquant](https://github.com/ngo-binh0108/whichquant) |
-| Chat with a local model | [AI-Beach](https://github.com/sequimelectronics/AI-Beach), [BAXY](https://github.com/REDSOULTM/BAXY), [bot-reborn](https://github.com/beasaltfish/bot-reborn), [CascAid](https://github.com/stevejwhite/cascaid), [DwarfStar / ds4](https://github.com/antirez/ds4), [Kapitsa](https://github.com/nace-ai/kapitsa), [mlx-serve](https://github.com/ddalcu/mlx-serve), [Off Grid AI](https://github.com/off-grid-ai/OGAD), [oMLX](https://github.com/jundot/omlx), [Orkas](https://github.com/Orkas-AI/Orkas), [RAI](https://github.com/Classevelabs/rai), [SparkPilot](https://github.com/ashhart/SparkPilot), [Splash](https://github.com/incoai/splash), [Strata](https://github.com/Niko1221/Strata), [ThreadShelf](https://github.com/ChrystianSchutz/ThreadShelf) |
-| Add skills, extensions, or MCP tools | [agent-qa](https://github.com/vostride/agent-qa), [BankBridge](https://github.com/bankbridge-money/bankbridge-plugin) (cloud), [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud), [Matt Pocock's skills](https://github.com/mattpocock/skills), [Oh My Pi](https://github.com/can1357/oh-my-pi), [Orkas](https://github.com/Orkas-AI/Orkas), [Pi](https://github.com/earendil-works/pi), [ThreadShelf](https://github.com/ChrystianSchutz/ThreadShelf), [YYLO](https://github.com/yylo-dev/yylo) |
-| Use optional cloud integrations | [BankBridge](https://github.com/bankbridge-money/bankbridge-plugin) (cloud), [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud), [Google Agent Skills](https://github.com/google/skills) (cloud) |
-| Translate text and documents locally | [Earshot AI](https://github.com/sunchupeng/earshot-support) |
+### Run a model on my hardware
+
+- [boots / ai-bootstrap](https://github.com/kindlingai/boots)
+- [DwarfStar / ds4](https://github.com/antirez/ds4)
+- [Kapitsa](https://github.com/nace-ai/kapitsa)
+- [mentat](https://github.com/kindlingai/mentat)
+- [mlx-serve](https://github.com/ddalcu/mlx-serve)
+- [Off Grid AI](https://github.com/off-grid-ai/OGAD)
+- [oMLX](https://github.com/jundot/omlx)
+- [RAI](https://github.com/Classevelabs/rai)
+- [spark-vllm-docker](https://github.com/eugr/spark-vllm-docker)
+- [SparkPilot](https://github.com/ashhart/SparkPilot)
+- [sparkrun](https://github.com/spark-arena/sparkrun)
+- [Splash](https://github.com/incoai/splash)
+- [Sqwakie](https://github.com/alexcarney460-hue/walkie)
+- [Strata](https://github.com/Niko1221/Strata)
+- [TandemLLM](https://github.com/0xBakeer/TandemLLM)
+- [TensorFold](https://github.com/ashhart/TensorFold)
+- [vLLM Windows Build](https://github.com/aivrar/vllm-windows-build)
+
+### Connect a coding agent to a local model
+
+- [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
+- [DwarfStar / ds4](https://github.com/antirez/ds4)
+- [Kapitsa](https://github.com/nace-ai/kapitsa)
+- [mlx-serve](https://github.com/ddalcu/mlx-serve)
+- [Oh My Pi](https://github.com/can1357/oh-my-pi)
+- [oMLX](https://github.com/jundot/omlx)
+- [Pi](https://github.com/earendil-works/pi)
+- [Splash](https://github.com/incoai/splash)
+- [Strata](https://github.com/Niko1221/Strata)
+- [Talavine Code](https://github.com/scrossen/talavine-code)
+- [TandemLLM](https://github.com/0xBakeer/TandemLLM)
+- [TensorFold](https://github.com/ashhart/TensorFold)
+- [YYLO](https://github.com/yylo-dev/yylo)
+- [Zaru (zaru-cli)](https://github.com/100monkeys-ai/zaru-cli)
+
+### Run autonomous agents with local models
+
+- [agent-qa](https://github.com/vostride/agent-qa)
+- [BAXY](https://github.com/REDSOULTM/BAXY)
+- [bot-reborn](https://github.com/beasaltfish/bot-reborn)
+- [Contemplative Agent](https://github.com/shimo4228/contemplative-agent)
+- [Debate Hall](https://github.com/sequimelectronics/DebateHall)
+
+### Test tool-calling quality
+
+- [Inference Atlas](https://github.com/0xBakeer/inference-atlas)
+- [Spark Bench](https://github.com/Weschera/spark-bench)
+- [tool-eval-bench](https://github.com/SeraphimSerapis/tool-eval-bench)
+
+### Test model behavior and safety
+
+- [FadeBench](https://github.com/sequimelectronics/fadebench)
+
+### Compare inference speed
+
+- [Inference Atlas](https://github.com/0xBakeer/inference-atlas)
+- [llama-benchy](https://github.com/eugr/llama-benchy)
+- [RigMark](https://github.com/alexellis/rigmark)
+- [Spark Bench](https://github.com/Weschera/spark-bench)
+- [Spark Tools](https://github.com/knapcio/spark-tools)
+- [tool-eval-bench](https://github.com/SeraphimSerapis/tool-eval-bench)
+
+### Deploy or manage a cluster
+
+- [DGX Spark Networking](https://github.com/christopherowen/dgx-spark-networking)
+- [kindling-spark-os](https://github.com/kindlingai/kindling-spark-os)
+- [MCDMA](https://github.com/ashhart/MCDMA)
+- [mentat](https://github.com/kindlingai/mentat)
+- [spark-vllm-docker](https://github.com/eugr/spark-vllm-docker)
+- [sparkrun](https://github.com/spark-arena/sparkrun)
+- [Sqwakie](https://github.com/alexcarney460-hue/walkie)
+
+### Set up local AI
+
+- [boots / ai-bootstrap](https://github.com/kindlingai/boots)
+- [kindling-spark-os](https://github.com/kindlingai/kindling-spark-os)
+- [RAI](https://github.com/Classevelabs/rai)
+- [sparkrun](https://github.com/spark-arena/sparkrun)
+- [vLLM Windows Build](https://github.com/aivrar/vllm-windows-build)
+
+### Monitor my setup
+
+- [SparkDash](https://github.com/MiaAI-Lab/sparkDash)
+
+### Troubleshoot my setup
+
+- [DGX Spark Networking](https://github.com/christopherowen/dgx-spark-networking)
+- [Spark Doctor](https://github.com/joeynyc/spark-doctor)
+
+### Tune thermals and memory
+
+- [DGX Spark Fan Control](https://github.com/christopherowen/dgx-spark-fan-control)
+- [DGX Spark Memory Saver](https://github.com/christopherowen/dgx-spark-memory-saver)
+
+### Validate or simulate inference configurations
+
+- [Spark Tools](https://github.com/knapcio/spark-tools)
+- [whichquant](https://github.com/ngo-binh0108/whichquant)
+
+### Chat with a local model
+
+- [AI-Beach](https://github.com/sequimelectronics/AI-Beach)
+- [BAXY](https://github.com/REDSOULTM/BAXY)
+- [bot-reborn](https://github.com/beasaltfish/bot-reborn)
+- [CascAid](https://github.com/stevejwhite/cascaid)
+- [DwarfStar / ds4](https://github.com/antirez/ds4)
+- [Kapitsa](https://github.com/nace-ai/kapitsa)
+- [mlx-serve](https://github.com/ddalcu/mlx-serve)
+- [Off Grid AI](https://github.com/off-grid-ai/OGAD)
+- [oMLX](https://github.com/jundot/omlx)
+- [Orkas](https://github.com/Orkas-AI/Orkas)
+- [RAI](https://github.com/Classevelabs/rai)
+- [SparkPilot](https://github.com/ashhart/SparkPilot)
+- [Splash](https://github.com/incoai/splash)
+- [Strata](https://github.com/Niko1221/Strata)
+- [ThreadShelf](https://github.com/ChrystianSchutz/ThreadShelf)
+
+### Add skills, extensions, or MCP tools
+
+- [agent-qa](https://github.com/vostride/agent-qa)
+- [BankBridge](https://github.com/bankbridge-money/bankbridge-plugin) (cloud)
+- [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
+- [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud)
+- [Google Agent Skills](https://github.com/google/skills) (cloud)
+- [Matt Pocock's skills](https://github.com/mattpocock/skills)
+- [Oh My Pi](https://github.com/can1357/oh-my-pi)
+- [Orkas](https://github.com/Orkas-AI/Orkas)
+- [Pi](https://github.com/earendil-works/pi)
+- [ThreadShelf](https://github.com/ChrystianSchutz/ThreadShelf)
+- [YYLO](https://github.com/yylo-dev/yylo)
+
+### Use optional cloud integrations
+
+- [BankBridge](https://github.com/bankbridge-money/bankbridge-plugin) (cloud)
+- [gcloud MCP servers](https://github.com/googleapis/gcloud-mcp) (cloud)
+- [Google Agent Skills](https://github.com/google/skills) (cloud)
+
+### Translate text and documents locally
+
+- [Earshot AI](https://github.com/sunchupeng/earshot-support)
 
 ## Browse by category
 
@@ -634,16 +758,17 @@ python3 -m unittest discover -s scripts -p 'test_*.py'
 ```
 
 PR checks cover data validation, generated output, spelling, Markdown, and local
-documentation links. Remote links in changed project records get an advisory check;
-weekly checks cover all upstream links. See [the contribution guide](CONTRIBUTING.md)
-for review criteria and local lint commands.
+documentation links. Remote links in changed project records and changelog
+fragments get an advisory check; weekly checks cover all upstream links. See
+[the contribution guide](CONTRIBUTING.md) for review criteria and local lint
+commands.
 
 A separate weekly [health workflow](.github/workflows/health.yml) opens or updates
 a reviewable PR for repository observations. It does not change documentation
 review dates or remove projects. Routine health refreshes can merge automatically
 after the [health safety gate](docs/maintenance.md#automatic-merging-of-routine-refreshes)
 and CI pass; flagged refreshes and project submissions need human review.
-Contributors record catalog changes in the [weekly changelog](CHANGELOG.md);
+Contributors add fragments in `changelog.d/` for the [weekly changelog](CHANGELOG.md);
 routine health snapshots are not new catalog entries or upstream release notes.
 
 ## License

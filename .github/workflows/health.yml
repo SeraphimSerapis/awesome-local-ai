@@ -56,13 +56,28 @@ jobs:
             Failed checks retain prior observations; they do not establish that a project is gone.
             Documentation-review dates and curated project records are unchanged.
             No upstream code was installed or run, and no entries were removed.
-            Routine refreshes merge after the health safety gate and all catalog CI jobs pass.
+            Routine refreshes merge after the health safety gate and required catalog and documentation CI jobs pass.
             Flagged observations or other changes stay open for manual review.
       - name: Run catalog CI and merge a routine refresh
-        if: steps.pr.outputs.pull-request-operation == 'created' || steps.pr.outputs.pull-request-operation == 'updated'
         env:
           GH_TOKEN: ${{ github.token }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          PR_OPERATION: ${{ steps.pr.outputs.pull-request-operation }}
+          PR_NUMBER: ${{ steps.pr.outputs.pull-request-number }}
         run: |
+          pr_number=""
+          if [[ "$PR_OPERATION" == "created" || "$PR_OPERATION" == "updated" ]]; then
+            pr_number="$PR_NUMBER"
+          fi
+          if [[ -z "$pr_number" ]]; then
+            owner="${GITHUB_REPOSITORY%%/*}"
+            pr_number="$(gh api "repos/$GITHUB_REPOSITORY/pulls?state=open&base=$DEFAULT_BRANCH&head=$owner:automation/catalog-health" \
+              --jq '[.[] | select(.user.login == "github-actions[bot]")] | .[0].number // empty')"
+          fi
+          if [[ -z "$pr_number" ]]; then
+            echo "No open health PR to verify or merge."
+            exit 0
+          fi
           run_id="$(gh api --method POST "repos/$GITHUB_REPOSITORY/actions/workflows/checks.yml/dispatches" \
             -f ref=automation/catalog-health -F return_run_details=true --jq '.workflow_run_id')"
           [[ "$run_id" =~ ^[0-9]+$ ]] || { echo "Missing CI run ID; leaving PR for review."; exit 1; }

@@ -75,12 +75,12 @@ jobs:
       - name: Collect all project links
         if: github.event_name != 'pull_request'
         run: python scripts/catalog.py links > .catalog-links.txt
-      - name: Check changed upstream links (advisory)
+      - name: Check changed upstream and documentation links (advisory)
         if: github.event_name == 'pull_request'
         uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2
         with:
           lycheeVersion: v0.24.2
-          args: --config .lychee.toml .catalog-links.txt
+          args: --config .lychee.toml .catalog-links.txt './**/*.md'
           fail: false
           failIfEmpty: false
           token: ${{ github.token }}
@@ -90,4 +90,5 @@ jobs:
         with:
           lycheeVersion: v0.24.2
           args: --config .lychee.toml .catalog-links.txt './**/*.md'
+          fail: ${{ github.ref != 'refs/heads/automation/catalog-health' }}
           token: ${{ github.token }}

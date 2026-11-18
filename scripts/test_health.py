@@ -64,7 +64,10 @@ class HealthTests(unittest.TestCase):
         for code in [401, 403, 429, 500, 503]:
             with self.subTest(code=code):
                 error = HTTPError("https://api.github.com/repos/example/project", code, "failure", {}, None)
-                record = self.failed(error, self.previous)
+                try:
+                    record = self.failed(error, self.previous)
+                finally:
+                    error.close()
                 self.assertEqual(record["status"], "check-failed")
                 self.assertEqual(record["checked_at"], self.today)
                 for field in ["last_successful_check", "last_push", "canonical_repository", "archived", "disabled"]:
@@ -82,7 +85,10 @@ class HealthTests(unittest.TestCase):
         for code in [404, 410, 451]:
             with self.subTest(code=code):
                 error = HTTPError("https://api.github.com/repos/example/project", code, "missing", {}, None)
-                record = self.failed(error, self.previous)
+                try:
+                    record = self.failed(error, self.previous)
+                finally:
+                    error.close()
                 self.assertEqual(record["status"], "unavailable")
                 self.assertIn("may be", record["detail"])
                 self.assertEqual(record["last_successful_check"], self.yesterday)

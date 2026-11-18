@@ -11,6 +11,5 @@ host_stats = true
 
 # Check exact pinned targets without depending on GitHub's HTML renderer.
 remap = [
-    '^https://github\.com/([^/?#]+)/([^/?#]+)/blob/([0-9a-fA-F]{40})/(.+)$ https://raw.githubusercontent.com/$1/$2/$3/$4',
-    '^https://github\.com/([^/?#]+)/([^/?#]+)/commit/([0-9a-fA-F]{40})$ https://api.github.com/repos/$1/$2/commits/$3',
+    '^https://github\.com/([^/?#]+)/([^/?#]+)/blob/([0-9a-fA-F]{40})/([^?#]+)(?:[?#].*)?$ https://raw.githubusercontent.com/$1/$2/$3/$4',
 ]
