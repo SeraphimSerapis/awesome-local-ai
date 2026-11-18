@@ -20,13 +20,13 @@
   "local_mode": "local",
   "compatibility": [
     "Runs GGUF models from a built-in catalog or Hugging Face search through bundled llama.cpp, image models through stable-diffusion.cpp, transcription through whisper.cpp and speech through Kokoro.",
-    "Serves chat, vision, images, transcription, speech and embeddings on an OpenAI-compatible API at http://127.0.0.1:7878/v1 with no key, and can run as a headless gateway without the UI.",
+    "Serves chat, vision, images, transcription, speech and embeddings on an OpenAI-compatible API at http://127.0.0.1:7878/v1 with no key by default, and can run as a headless gateway without the UI.",
     "Adds Model Context Protocol servers (no auth, token or OAuth) as tools inside chat."
   ],
   "limitations": [
     "Release builds cover macOS on Apple Silicon, Windows x64 and Linux x64 (Ubuntu 24.04 or newer).",
     "Model downloads come from Hugging Face; the app checks for signed updates. Anonymous usage data and crash reports are sent only if the user turns them on.",
-    "The local API has no authentication and listens on loopback.",
+    "The gateway listens on all IPv4 interfaces. API-key authentication is optional and off by default; reachable network peers can use model routes unless authentication is enabled.",
     "An optional paid Pro layer (screen memory, meetings, dictation, clipboard) lives in a separate private package; the Linux build does not include it."
   ],
   "license": {
@@ -39,9 +39,17 @@
       "note": "Bundled engines, model catalog and Hugging Face search, Gateway endpoints and headless mode, MCP connectors, opt-in analytics, auto-update, supported platforms and the separate Pro package."
     },
     {
+      "url": "https://raw.githubusercontent.com/off-grid-ai/OGAD/312b8f45ef6afdd2bff3f7be130b4d0a23124bc8/src/shared/ports.ts",
+      "note": "Defines GATEWAY_BIND_HOST as 0.0.0.0 on port 7878 and GATEWAY_HOST as 127.0.0.1 for local client URLs."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/off-grid-ai/OGAD/312b8f45ef6afdd2bff3f7be130b4d0a23124bc8/src/main/model-server.ts",
+      "note": "Binds the gateway listener to GATEWAY_BIND_HOST and checks optional Bearer API keys, off by default."
+    },
+    {
       "url": "https://github.com/off-grid-ai/OGAD/blob/312b8f45ef6afdd2bff3f7be130b4d0a23124bc8/LICENSE",
       "note": "AGPL-3.0 license text."
     }
   ],
-  "last_reviewed": "2026-11-17"
+  "last_reviewed": "2026-11-18"
 }

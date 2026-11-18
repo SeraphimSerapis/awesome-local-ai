@@ -485,10 +485,10 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 - [Off Grid AI](https://github.com/off-grid-ai/OGAD): Desktop app for local chat with text and vision models, image generation, speech-to-text and text-to-speech, plus a local OpenAI-compatible API.
   - Local workload. Platforms: macOS, Windows, Linux. Hardware: Apple Silicon, CPU.
   - License: [AGPL-3.0-only](https://github.com/off-grid-ai/OGAD/blob/312b8f45ef6afdd2bff3f7be130b4d0a23124bc8/LICENSE). [Metadata and evidence](data/projects/off-grid-ai.json).
-  - Documentation reviewed: 2026-11-17. Repository: not checked yet.
+  - Documentation reviewed: 2026-11-18. Repository: not checked yet.
   - Note: Release builds cover macOS on Apple Silicon, Windows x64 and Linux x64 (Ubuntu 24.04 or newer).
   - Note: Model downloads come from Hugging Face; the app checks for signed updates. Anonymous usage data and crash reports are sent only if the user turns them on.
-  - Note: The local API has no authentication and listens on loopback.
+  - Note: The gateway listens on all IPv4 interfaces. API-key authentication is optional and off by default; reachable network peers can use model routes unless authentication is enabled.
   - Note: An optional paid Pro layer (screen memory, meetings, dictation, clipboard) lives in a separate private package; the Linux build does not include it.
 
 - [Orkas](https://github.com/Orkas-AI/Orkas): Open-source, local-first desktop AI workforce where Commander coordinates specialist project work, with supported own-provider API keys and compatible local model endpoints.
