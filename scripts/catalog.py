@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: MIT
-"""Validate the catalog and generate its README sections. Python 3.11+, no dependencies."""
+"""Validate the catalog, compile changelog fragments, and generate README sections. Python 3.11+, no dependencies."""
 
 import argparse
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 import json
 from pathlib import Path
 import re
 import subprocess
 import sys
+import tempfile
 from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -16,6 +17,10 @@ START = "<!-- catalog:start -->"
 END = "<!-- catalog:end -->"
 SLUG = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*")
 REPOSITORY = re.compile(r"https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+")
+MARKDOWN_LINK = re.compile(r"\[((?:\\.|[^\[\]\\])*)\]\(([^)]*)\)")
+WEEK_HEADING = re.compile(r"## Week of (\d{4}-\d{2}-\d{2})")
+CHANGELOG_SECTIONS = ("Added", "Updated", "Removed")
+CHANGELOG_FIELDS = {"section", "entry"}
 FIELDS = {
     "id", "name", "repository", "description", "category", "use_cases",
     "platforms", "hardware", "local_mode", "compatibility", "limitations",
@@ -285,18 +290,213 @@ def project_lines(project, taxonomy, observation=None):
     return result
 
 
+def validate_changelog_fragment(fragment):
+    require(isinstance(fragment, dict), "changelog fragment must be an object")
+    require(set(fragment) == CHANGELOG_FIELDS,
+            f"missing fields: {sorted(CHANGELOG_FIELDS - set(fragment))}; "
+            f"unexpected fields: {sorted(set(fragment) - CHANGELOG_FIELDS)}")
+    text(fragment["section"], "section", 20)
+    require(fragment["section"] in CHANGELOG_SECTIONS,
+            f"section must be one of {', '.join(CHANGELOG_SECTIONS)}")
+    entry = fragment["entry"]
+    text(entry, "entry")
+    require(not re.match(r"^[-*+](?:\s|$)", entry), "entry must not start with a list marker")
+    urls = []
+    for match in MARKDOWN_LINK.finditer(entry):
+        label, target = match.groups()
+        text(label, "entry link label", 100)
+        url(target, "entry link")
+        urls.append(target)
+    remainder = MARKDOWN_LINK.sub("", entry)
+    require("](" not in remainder, "entry contains a malformed Markdown link")
+    require(not re.search(r"(?:https?|javascript|data|file):", remainder, re.IGNORECASE),
+            "entry URLs must use [label](https://...) Markdown links")
+    require("<" not in remainder and ">" not in remainder,
+            "entry must not contain raw HTML or autolinks")
+    return sorted(set(urls))
+
+
+def load_changelog_fragments(root=ROOT):
+    directory = root / "changelog.d"
+    if not directory.exists():
+        return []
+    require(directory.is_dir(), "changelog.d must be a directory")
+    fragments = []
+    seen = set()
+    for path in sorted(directory.iterdir()):
+        if path.name == ".gitkeep":
+            require(path.is_file(), "changelog.d/.gitkeep must be a regular file")
+            continue
+        require(path.is_file() and path.suffix == ".json",
+                f"changelog.d/{path.name}: changelog fragments must be .json files")
+        require(len(path.stem) <= 80 and SLUG.fullmatch(path.stem) is not None,
+                f"changelog.d/{path.name}: filename must be a lowercase hyphenated slug")
+        try:
+            raw = read_json(path)
+            urls = validate_changelog_fragment(raw)
+            key = (raw["section"], raw["entry"].casefold())
+            require(key not in seen, f"duplicate changelog entry: {raw['entry']}")
+            seen.add(key)
+        except CatalogError as error:
+            raise CatalogError(f"changelog.d/{path.name}: {error}") from error
+        fragments.append({
+            "slug": path.stem,
+            "path": path,
+            "section": raw["section"],
+            "entry": raw["entry"],
+            "urls": urls,
+        })
+    return fragments
+
+
+def current_utc_monday():
+    today = datetime.now(timezone.utc).date()
+    return (today - timedelta(days=today.weekday())).isoformat()
+
+
+def parse_week(value):
+    text(value, "week", 10)
+    try:
+        parsed = date.fromisoformat(value)
+    except ValueError as error:
+        raise CatalogError("week must be YYYY-MM-DD") from error
+    require(parsed.isoformat() == value and parsed.weekday() == 0,
+            "week must be a Monday in YYYY-MM-DD form")
+    return value
+
+
+def parse_week_sections(lines, week_label):
+    sections = {name: [] for name in CHANGELOG_SECTIONS}
+    seen_sections = set()
+    current = None
+    for raw_line in lines:
+        if not raw_line.strip():
+            continue
+        if raw_line.startswith("### "):
+            heading = raw_line[4:]
+            require(heading in CHANGELOG_SECTIONS,
+                    f"Week of {week_label}: unknown changelog subsection: {heading}")
+            require(heading not in seen_sections,
+                    f"Week of {week_label}: duplicate changelog subsection: {heading}")
+            seen_sections.add(heading)
+            current = heading
+            continue
+        require(current is not None and raw_line.startswith("- "),
+                f"Week of {week_label}: unexpected line outside bullet list: {raw_line}")
+        sections[current].append(raw_line)
+    for name in seen_sections:
+        require(bool(sections[name]), f"Week of {week_label}: empty subsection: {name}")
+    return sections
+
+
+def compile_changelog(changelog_text, fragments, week):
+    week = parse_week(week)
+    preamble = []
+    week_blocks = []
+    seen_weeks = set()
+    current_week = None
+    current_lines = []
+    for line in changelog_text.splitlines():
+        if line.startswith("## "):
+            match = WEEK_HEADING.fullmatch(line)
+            require(match is not None, f"unexpected changelog heading: {line}")
+            heading_week = parse_week(match.group(1))
+            require(heading_week not in seen_weeks, f"duplicate changelog week: {heading_week}")
+            seen_weeks.add(heading_week)
+            if current_week is not None:
+                week_blocks.append((current_week, current_lines))
+            current_week = heading_week
+            current_lines = []
+        elif current_week is None:
+            preamble.append(line)
+        else:
+            current_lines.append(line)
+    if current_week is not None:
+        week_blocks.append((current_week, current_lines))
+    preamble_text = "\n".join(preamble).strip()
+    require(preamble_text.startswith("# "), "CHANGELOG.md must start with a top-level heading")
+    if not fragments:
+        return changelog_text
+    existing = {name: [] for name in CHANGELOG_SECTIONS}
+    target_index = None
+    for index, (block_week, block_lines) in enumerate(week_blocks):
+        if block_week == week:
+            existing = parse_week_sections(block_lines, week)
+            target_index = index
+            break
+    rendered_sections = [f"## Week of {week}"]
+    for section in CHANGELOG_SECTIONS:
+        bullets = list(existing[section])
+        seen_bullets = {bullet.casefold() for bullet in bullets}
+        incoming = sorted(
+            (f'- {fragment["entry"]}' for fragment in fragments if fragment["section"] == section),
+            key=lambda item: (item.casefold(), item),
+        )
+        for bullet in incoming:
+            if bullet.casefold() not in seen_bullets:
+                bullets.append(bullet)
+                seen_bullets.add(bullet.casefold())
+        if bullets:
+            rendered_sections.append(f"### {section}\n\n" + "\n".join(bullets))
+    target_block = "\n\n".join(rendered_sections)
+    rendered_blocks = []
+    inserted = False
+    for index, (block_week, block_lines) in enumerate(week_blocks):
+        if index == target_index:
+            rendered_blocks.append(target_block)
+            inserted = True
+        else:
+            if target_index is None and not inserted and block_week < week:
+                rendered_blocks.append(target_block)
+                inserted = True
+            body = "\n".join(block_lines).strip()
+            require(bool(body), f"Week of {block_week}: week section must not be empty")
+            rendered_blocks.append(f"## Week of {block_week}\n\n{body}")
+    if not inserted:
+        rendered_blocks.append(target_block)
+    return preamble_text + "\n\n" + "\n\n".join(rendered_blocks) + "\n"
+
+
+def update_changelog(root=ROOT, week=None, fragments=None):
+    week = current_utc_monday() if week is None else parse_week(week)
+    fragments = load_changelog_fragments(root) if fragments is None else fragments
+    changelog_path = root / "CHANGELOG.md"
+    require(changelog_path.is_file(), "CHANGELOG.md is missing")
+    original = changelog_path.read_text(encoding="utf-8")
+    compiled = compile_changelog(original, fragments, week)
+    if not fragments:
+        return 0, week
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=root, delete=False) as output:
+            temporary = Path(output.name)
+            output.write(compiled)
+        temporary.replace(changelog_path)
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
+    for fragment in fragments:
+        fragment["path"].unlink()
+    return len(fragments), week
+
+
 def catalog_markdown(taxonomy, projects, health=None):
     health = {} if health is None else health
     core = [project for project in projects if project["local_mode"] != "cloud-dependent"]
     cloud = [project for project in projects if project["local_mode"] == "cloud-dependent"]
-    lines = ["## Find tools by task", "", "| I want to... | Start here |", "| --- | --- |"]
+    lines = ["## Find tools by task", ""]
     for key, label in taxonomy["use_cases"].items():
-        matches = [project for project in projects if key in project["use_cases"]]
+        matches = sorted(
+            (project for project in projects if key in project["use_cases"]),
+            key=lambda project: (project["name"].casefold(), project["id"]),
+        )
         if matches:
-            links = [project_link(project) + (" (cloud)" if project["local_mode"] == "cloud-dependent" else "")
-                     for project in matches]
-            lines.append(f'| {markdown(label)} | {", ".join(links)} |')
-    lines.extend(["", "## Browse by category", ""])
+            lines.extend([f"### {markdown(label)}", ""])
+            for project in matches:
+                suffix = " (cloud)" if project["local_mode"] == "cloud-dependent" else ""
+                lines.append(f"- {project_link(project)}{suffix}")
+            lines.append("")
+    lines.extend(["## Browse by category", ""])
     for category, label in taxonomy["categories"].items():
         lines.append(f"- [{markdown(label)}](#{category})")
     lines.extend(["- [Cloud integrations](#cloud-integrations)", ""])
@@ -330,11 +530,13 @@ def render_readme(root, taxonomy, projects):
     return before + START + "\n\n" + catalog_markdown(taxonomy, projects, health) + "\n" + END + after
 
 
-def catalog_urls(projects):
-    return sorted({value for project in projects for value in [
+def catalog_urls(projects, fragments=()):
+    project_urls = {value for project in projects for value in [
         project["repository"], project["license"]["url"],
         *(source["url"] for source in project["sources"]),
-    ]})
+    ]}
+    fragment_urls = {value for fragment in fragments for value in fragment["urls"]}
+    return sorted(project_urls | fragment_urls)
 
 
 def changed_projects(root, projects, base_ref):
@@ -347,24 +549,44 @@ def changed_projects(root, projects, base_ref):
     return [project for project in projects if f'data/projects/{project["id"]}.json' in changed]
 
 
+def changed_changelog_fragments(root, fragments, base_ref):
+    require(re.fullmatch(r"[0-9a-f]{40}", base_ref) is not None, "base-ref must be a full commit SHA")
+    result = subprocess.run(
+        ["git", "diff", "--name-only", "--diff-filter=ACMR", base_ref, "HEAD", "--", "changelog.d/"],
+        cwd=root, check=True, capture_output=True, text=True,
+    )
+    changed = set(result.stdout.splitlines())
+    return [fragment for fragment in fragments if f'changelog.d/{fragment["slug"]}.json' in changed]
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
-    commands.add_parser("validate", help="Check all project records and taxonomy")
+    commands.add_parser("validate", help="Check all project records, changelog fragments, and taxonomy")
     commands.add_parser("render", help="Update generated README sections")
-    commands.add_parser("check", help="Check records and README generation without writing")
+    commands.add_parser("check", help="Check records, changelog fragments, and README generation without writing")
+    changelog = commands.add_parser("changelog", help="Compile changelog.d fragments into CHANGELOG.md")
+    changelog.add_argument("--week", help="Target Monday-starting UTC week in YYYY-MM-DD form")
     links = commands.add_parser("links", help="Print unique upstream URLs for a link checker")
-    links.add_argument("--base-ref", help="Limit URLs to project records changed since this commit SHA")
+    links.add_argument("--base-ref", help="Limit URLs to project records and changelog fragments changed since this commit SHA")
     args = parser.parse_args()
     try:
         taxonomy, projects = load_catalog(ROOT)
         load_health(ROOT, projects)
+        fragments = load_changelog_fragments(ROOT)
         if args.command == "links":
-            selected = changed_projects(ROOT, projects, args.base_ref) if args.base_ref else projects
-            for value in catalog_urls(selected):
+            selected_projects = changed_projects(ROOT, projects, args.base_ref) if args.base_ref else projects
+            selected_fragments = changed_changelog_fragments(ROOT, fragments, args.base_ref) if args.base_ref else fragments
+            for value in catalog_urls(selected_projects, selected_fragments):
                 print(value)
         elif args.command == "validate":
-            print(f"Validated {len(projects)} projects.")
+            print(f"Validated {len(projects)} projects and {len(fragments)} changelog fragments.")
+        elif args.command == "changelog":
+            count, week = update_changelog(ROOT, args.week, fragments)
+            if count:
+                print(f"Compiled {count} changelog fragments into Week of {week}.")
+            else:
+                print("No changelog fragments to compile.")
         else:
             generated = render_readme(ROOT, taxonomy, projects)
             if args.command == "render":
@@ -373,7 +595,7 @@ def main():
             else:
                 require(generated == (ROOT / "README.md").read_text(encoding="utf-8"),
                         "README is stale; run python3 scripts/catalog.py render")
-                print(f"Validated {len(projects)} projects; README is up to date.")
+                print(f"Validated {len(projects)} projects and {len(fragments)} changelog fragments; README is up to date.")
     except (CatalogError, OSError, subprocess.CalledProcessError) as error:
         print(f"Error: {error}", file=sys.stderr)
         return 1

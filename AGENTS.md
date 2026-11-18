@@ -27,13 +27,15 @@ For additions, corrections, licensing exceptions, or inclusion decisions, read
 preserve evidence and record an actual documentation-review date. Add taxonomy
 IDs only when existing ones do not describe the workflow.
 
-Record catalog changes in the current Monday-starting UTC week in `CHANGELOG.md`.
+Record catalog changes as a fragment in `changelog.d/<slug>.json` and leave
+`CHANGELOG.md` untouched on pull request branches. Maintainers compile fragments
+into `CHANGELOG.md` with `python3 scripts/catalog.py changelog`.
 For repository health work, read `docs/maintenance.md`. Keep automated observations
 in `data/health.json` separate from `last_reviewed`; neither a successful check
 nor a recent push establishes documentation review, compatibility, or maintenance.
 Investigate failed, unavailable, archived, disabled, or redirected repositories;
 do not automatically change records or remove entries. Health-only refreshes do
-not need changelog notes.
+not need changelog fragments.
 
 Run `python3 scripts/catalog.py render` after changing data. Before handoff, run
 `python3 scripts/catalog.py check` and

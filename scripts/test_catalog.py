@@ -2,7 +2,7 @@
 """Catalog validation, rendering, and contribution-flow regression tests."""
 
 from copy import deepcopy
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 import io
 import json
 from pathlib import Path
@@ -281,6 +281,271 @@ class CatalogTests(unittest.TestCase):
         git("-c", "user.name=Catalog Tests", "-c", "user.email=catalog@example.invalid",
             "-c", "commit.gpgsign=false", "commit", "-qm", "update")
         self.assertEqual(catalog.changed_projects(self.root, [self.project], base), [self.project])
+
+    def save_fragment(self, slug="example-project", section="Added", entry=None):
+        directory = self.root / "changelog.d"
+        directory.mkdir(exist_ok=True)
+        payload = {
+            "section": section,
+            "entry": entry if entry is not None else "[Example Project](https://github.com/example/project), a fixture entry.",
+        }
+        path = directory / f"{slug}.json"
+        path.write_text(json.dumps(payload), encoding="utf-8")
+        return path
+
+    def test_task_index_renders_multiline_sorted_bullets(self):
+        second = deepcopy(self.project)
+        second.update(id="alpha-project", name="alpha project", repository="https://github.com/example/alpha")
+        self.save(second)
+        taxonomy, projects = self.load()
+        generated = catalog.catalog_markdown(taxonomy, projects)
+        task_section = generated.split("## Browse by category", 1)[0]
+        self.assertNotIn("| I want to...", task_section)
+        self.assertIn(
+            "### Run a model on my hardware\n\n"
+            "- [alpha project](https://github.com/example/alpha)\n"
+            "- [Example Project](https://github.com/example/project)\n",
+            task_section,
+        )
+
+    def test_changelog_fragment_validation_and_cli_integration(self):
+        (self.root / "changelog.d").mkdir()
+        (self.root / "changelog.d/.gitkeep").write_text("", encoding="utf-8")
+        self.save_fragment("valid-link")
+        self.save_fragment("valid-prose", section="Updated", entry="Task-based browsing lists one project per line.")
+        self.assertEqual(self.cli("render")[0], 0)
+        self.assertEqual(self.cli("validate")[0], 0)
+        self.assertEqual(self.cli("check")[0], 0)
+
+        invalid_fragments = [
+            ("non-object", "[]", "must be an object"),
+            ("dup-keys", '{"section":"Added","section":"Updated","entry":"Valid prose."}', "duplicate JSON key"),
+            ("bad-fields", '{"section":"Added","entry":"Valid prose.","extra":1}', "unexpected fields"),
+            ("bad-section", '{"section":"Fixed","entry":"Valid prose."}', "section must be one of"),
+            ("leading-bullet", '{"section":"Added","entry":"- [Example](https://example.com), note."}', "list marker"),
+            ("padded", '{"section":"Added","entry":" padded "}', "surrounding whitespace"),
+            ("control", '{"section":"Added","entry":"line1\\nline2"}', "control characters"),
+            ("http-url", '{"section":"Added","entry":"[Example](http://example.com), note."}', "HTTPS URL"),
+            ("js-url", '{"section":"Added","entry":"[Example](javascript:alert(1)), note."}', "unsafe URL|HTTPS URL"),
+            ("cred-url", '{"section":"Added","entry":"[Example](https://u:p@example.com), note."}', "credentials"),
+            ("local-url", '{"section":"Added","entry":"[Example](https://localhost/doc), note."}', "public documentation"),
+            ("space-url", '{"section":"Added","entry":"[Example](https://example.com/a b), note."}', "unsafe URL"),
+            ("empty-label", '{"section":"Added","entry":"[](https://example.com), note."}', "link label"),
+            ("unclosed-link", '{"section":"Added","entry":"[Example](https://example.com"}', "malformed Markdown link"),
+            ("bare-url", '{"section":"Added","entry":"See https://example.com for details."}', "Markdown links"),
+            ("raw-html", '{"section":"Added","entry":"Note <script>alert(1)</script>."}', "raw HTML"),
+        ]
+        for name, raw_json, expected in invalid_fragments:
+            with self.subTest(case=name):
+                bad = self.root / "changelog.d/bad-fragment.json"
+                bad.write_text(raw_json, encoding="utf-8")
+                for subcommand in ["validate", "check"]:
+                    code, message = self.cli(subcommand)
+                    self.assertEqual(code, 1)
+                    self.assertRegex(message, expected)
+                bad.unlink()
+
+        for bad_filename in ["MixedCase.json", "under_score.json", "note.md"]:
+            with self.subTest(filename=bad_filename):
+                bad = self.root / "changelog.d" / bad_filename
+                bad.write_text('{"section":"Updated","entry":"Valid prose."}', encoding="utf-8")
+                code, message = self.cli("validate")
+                self.assertEqual(code, 1)
+                self.assertIn(bad_filename, message)
+                bad.unlink()
+
+        duplicate = self.save_fragment("duplicate-prose", section="Updated",
+                                       entry="task-based browsing lists one project per line.")
+        code, message = self.cli("validate")
+        self.assertEqual(code, 1)
+        self.assertIn("duplicate changelog entry", message)
+        duplicate.unlink()
+
+    @unittest.skipUnless(shutil.which("git"), "Git is needed for changed-fragment link extraction test")
+    def test_links_extracts_all_and_changed_changelog_fragment_urls(self):
+        def git(*args):
+            return subprocess.run(["git", *args], cwd=self.root, check=True,
+                                  capture_output=True, text=True).stdout.strip()
+
+        old_url = "https://github.com/example/older-fragment"
+        new_url = "https://github.com/example/newer-fragment"
+        self.save_fragment("older", entry=f"[Older]({old_url}), earlier note.")
+        self.assertEqual(self.cli("render")[0], 0)
+        git("init", "-q")
+        git("add", ".")
+        git("-c", "user.name=Catalog Tests", "-c", "user.email=catalog@example.invalid",
+            "-c", "commit.gpgsign=false", "commit", "-qm", "base")
+        base = git("rev-parse", "HEAD")
+
+        self.save_fragment("newer", entry=f"[Newer]({new_url}), new note.")
+        git("add", ".")
+        git("-c", "user.name=Catalog Tests", "-c", "user.email=catalog@example.invalid",
+            "-c", "commit.gpgsign=false", "commit", "-qm", "add fragment")
+
+        code, all_urls = self.cli("links")
+        self.assertEqual(code, 0)
+        self.assertIn(old_url, all_urls.splitlines())
+        self.assertIn(new_url, all_urls.splitlines())
+
+        code, changed_urls = self.cli("links", "--base-ref", base)
+        self.assertEqual(code, 0)
+        self.assertEqual(changed_urls.splitlines(), [new_url])
+
+    def test_changelog_compilation_merges_sorts_and_deletes_fragments(self):
+        changelog_path = self.root / "CHANGELOG.md"
+        initial = (
+            "# Weekly catalog changelog\n\n"
+            "Intro paragraph.\n\n"
+            "## Week of 2026-11-09\n\n"
+            "### Added\n\n"
+            "- [Zeta](https://github.com/example/zeta), existing entry.\n\n"
+            "### Removed\n\n"
+            "- [Old](https://github.com/example/old), retired upstream.\n"
+        )
+        changelog_path.write_text(initial, encoding="utf-8")
+
+        # Absent or empty changelog.d is a clean no-op.
+        self.assertEqual(self.cli("changelog", "--week", "2026-11-16")[0], 0)
+        self.assertEqual(changelog_path.read_text(encoding="utf-8"), initial)
+
+        (self.root / "changelog.d").mkdir()
+        (self.root / "changelog.d/.gitkeep").write_text("", encoding="utf-8")
+        self.assertEqual(self.cli("changelog", "--week", "2026-11-16")[0], 0)
+        self.assertEqual(changelog_path.read_text(encoding="utf-8"), initial)
+
+        # Non-Monday and malformed weeks fail without consuming fragments.
+        frag_b = self.save_fragment("bravo", section="Added", entry="[Bravo](https://github.com/example/bravo), second.")
+        for bad_week in ["2026-11-18", "2026-02-30", "bad"]:
+            with self.subTest(week=bad_week):
+                code, _ = self.cli("changelog", "--week", bad_week)
+                self.assertEqual(code, 1)
+                self.assertTrue(frag_b.exists())
+                self.assertEqual(changelog_path.read_text(encoding="utf-8"), initial)
+
+        # Compile into existing week: preserves Zeta order, sorts new Added case-insensitively,
+        # and inserts Updated in canonical Added -> Updated -> Removed order.
+        self.save_fragment("alpha", section="Added", entry="[alpha](https://github.com/example/alpha), first.")
+        self.save_fragment("note", section="Updated", entry="Clarified hardware requirements.")
+        self.assertEqual(self.cli("changelog", "--week", "2026-11-09")[0], 0)
+        self.assertEqual(list((self.root / "changelog.d").iterdir()), [self.root / "changelog.d/.gitkeep"])
+        merged_existing = changelog_path.read_text(encoding="utf-8")
+        self.assertIn(
+            "## Week of 2026-11-09\n\n"
+            "### Added\n\n"
+            "- [Zeta](https://github.com/example/zeta), existing entry.\n"
+            "- [alpha](https://github.com/example/alpha), first.\n"
+            "- [Bravo](https://github.com/example/bravo), second.\n\n"
+            "### Updated\n\n"
+            "- Clarified hardware requirements.\n\n"
+            "### Removed\n\n"
+            "- [Old](https://github.com/example/old), retired upstream.\n",
+            merged_existing,
+        )
+
+        # Compile into a newer week via default current UTC Monday (mocked to Wednesday 2026-11-18).
+        self.save_fragment("delta", section="Added", entry="[Delta](https://github.com/example/delta), new tool.")
+        fake_now = datetime(2026, 11, 18, 12, 0, tzinfo=timezone.utc)
+        with patch("catalog.datetime") as mocked_dt:
+            mocked_dt.now.return_value = fake_now
+            self.assertEqual(self.cli("changelog")[0], 0)
+        compiled_new = changelog_path.read_text(encoding="utf-8")
+        self.assertLess(compiled_new.index("## Week of 2026-11-16"), compiled_new.index("## Week of 2026-11-09"))
+        self.assertIn("## Week of 2026-11-16\n\n### Added\n\n- [Delta](https://github.com/example/delta), new tool.\n",
+                      compiled_new)
+
+    @unittest.skipUnless(shutil.which("git"), "Git is needed for 3-way merge-file proof")
+    def test_three_concurrent_prs_sharing_hotspots_merge_cleanly_and_pass_check(self):
+        shutil.rmtree(self.root / "data/projects")
+        shutil.copytree(catalog.ROOT / "data/projects", self.root / "data/projects")
+        shutil.copy(catalog.ROOT / "data/health.json", self.root / "data/health.json")
+        shutil.copy(catalog.ROOT / "CHANGELOG.md", self.root / "CHANGELOG.md")
+        shutil.copy(catalog.ROOT / "README.md", self.root / "README.md")
+        (self.root / "changelog.d").mkdir()
+        (self.root / "changelog.d/.gitkeep").write_text("", encoding="utf-8")
+        self.assertEqual(self.cli("render")[0], 0)
+        base_readme = (self.root / "README.md").read_text(encoding="utf-8")
+
+        submissions = [
+            ("arbor-serve", "Arbor Serve", "inference"),
+            ("nimbus-chat", "Nimbus Chat", "deployment"),
+            ("zephyr-local", "Zephyr Local", "applications"),
+        ]
+        branch_readmes = []
+        branch_projects = []
+        branch_fragments = []
+
+        for slug, name, category in submissions:
+            with tempfile.TemporaryDirectory() as branch_dir:
+                branch_root = Path(branch_dir)
+                shutil.copytree(self.root, branch_root, dirs_exist_ok=True)
+                entry = deepcopy(self.project)
+                entry.update(
+                    id=slug,
+                    name=name,
+                    repository=f"https://github.com/example/{slug}",
+                    description=f"Run and chat with models locally through {name}.",
+                    category=category,
+                    use_cases=["serve-models", "chat-with-models"],
+                )
+                entry["license"]["url"] = f"https://github.com/example/{slug}/blob/HEAD/LICENSE"
+                entry["sources"] = [{"url": f"https://github.com/example/{slug}/blob/HEAD/README.md",
+                                     "note": f"Documents {name} local serving and chat."}]
+                project_file = branch_root / "data/projects" / f"{slug}.json"
+                project_file.write_text(json.dumps(entry, indent=2) + "\n", encoding="utf-8")
+                fragment_payload = {
+                    "section": "Added",
+                    "entry": f"[{name}](https://github.com/example/{slug}), local serving and chat.",
+                }
+                fragment_file = branch_root / "changelog.d" / f"{slug}.json"
+                fragment_file.write_text(json.dumps(fragment_payload, indent=2) + "\n", encoding="utf-8")
+
+                output = io.StringIO()
+                with patch.object(catalog, "ROOT", branch_root), patch("sys.argv", ["catalog.py", "render"]), \
+                        patch("sys.stdout", output), patch("sys.stderr", output):
+                    self.assertEqual(catalog.main(), 0)
+                branch_readmes.append((branch_root / "README.md").read_text(encoding="utf-8"))
+                branch_projects.append((slug, project_file.read_text(encoding="utf-8")))
+                branch_fragments.append((slug, fragment_file.read_text(encoding="utf-8")))
+
+        with tempfile.TemporaryDirectory() as merge_dir:
+            merge_path = Path(merge_dir)
+            base_file = merge_path / "base.md"
+            current_file = merge_path / "current.md"
+            other_file = merge_path / "other.md"
+            base_file.write_text(base_readme, encoding="utf-8", newline="\n")
+            current_file.write_text(branch_readmes[0], encoding="utf-8", newline="\n")
+
+            for next_readme in branch_readmes[1:]:
+                other_file.write_text(next_readme, encoding="utf-8", newline="\n")
+                result = subprocess.run(
+                    ["git", "merge-file", str(current_file), str(base_file), str(other_file)],
+                    capture_output=True, text=True,
+                )
+                self.assertEqual(result.returncode, 0, msg=result.stderr)
+                merged_text = current_file.read_text(encoding="utf-8")
+                for marker in ["<<<<<<<", "=======", ">>>>>>>"]:
+                    self.assertNotIn(marker, merged_text)
+
+            final_merged_readme = current_file.read_text(encoding="utf-8")
+
+        for slug, content in branch_projects:
+            (self.root / "data/projects" / f"{slug}.json").write_text(content, encoding="utf-8")
+        for slug, content in branch_fragments:
+            (self.root / "changelog.d" / f"{slug}.json").write_text(content, encoding="utf-8")
+        (self.root / "README.md").write_text(final_merged_readme, encoding="utf-8")
+
+        # Verify byte-for-byte README match and full check WITHOUT re-rendering.
+        taxonomy, projects = self.load()
+        self.assertEqual(final_merged_readme, catalog.render_readme(self.root, taxonomy, projects))
+        code, message = self.cli("check")
+        self.assertEqual(code, 0, msg=message)
+
+        # Verify compiling all 3 fragments into CHANGELOG.md succeeds cleanly.
+        self.assertEqual(self.cli("changelog", "--week", "2026-11-16")[0], 0)
+        compiled = (self.root / "CHANGELOG.md").read_text(encoding="utf-8")
+        for _, name, _ in submissions:
+            self.assertIn(f"- [{name}](https://github.com/example/", compiled)
+        self.assertEqual(list((self.root / "changelog.d").iterdir()), [self.root / "changelog.d/.gitkeep"])
 
 
 if __name__ == "__main__":

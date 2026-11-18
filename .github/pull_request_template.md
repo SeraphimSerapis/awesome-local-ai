@@ -20,6 +20,6 @@ Self-submissions are welcome; disclose the connection here.
 - [ ] I read [CONTRIBUTING.md](../CONTRIBUTING.md).
 - [ ] I edited the source record and included evidence and an actual review date.
 - [ ] I recorded the upstream license or explained uncertainty for maintainer review.
-- [ ] I added a weekly changelog note for catalog changes (not required for health-only refreshes).
+- [ ] I added a changelog fragment in `changelog.d/` for catalog changes. Health-only refreshes skip this step.
 - [ ] I regenerated the README and ran catalog checks and tests, or explained why I could not.
 - [ ] I agree to the contributor licensing terms in CONTRIBUTING.md.

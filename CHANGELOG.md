@@ -1,8 +1,9 @@
 # Weekly catalog changelog
 
 Changes to Awesome Local AI, not upstream software releases. Weeks start on
-Monday in UTC. Contributors update the current week's section with their
-catalog PR; there is no automatic publishing or merging of these notes.
+Monday in UTC. Contributors add a fragment in `changelog.d/` with their catalog
+PR, and maintainers compile fragments into weekly sections with
+`python3 scripts/catalog.py changelog`.
 
 ## Week of 2026-11-16
 

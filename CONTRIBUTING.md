@@ -36,10 +36,21 @@ Listings are not endorsements, security audits, or runtime certifications.
    repository URL. Pick IDs from [`data/taxonomy.json`](data/taxonomy.json).
 3. Read the upstream documentation. Include source URLs and a note explaining
    what each source supports. Record the date you actually reviewed those sources.
-4. Add a short note to the current Monday-starting UTC week in
-   [`CHANGELOG.md`](CHANGELOG.md), under Added, Updated, or Removed. Create the
-   week's `## Week of YYYY-MM-DD` heading at the top when needed. Describe catalog
-   changes, not upstream releases; explain removals. Omit empty subsections.
+4. Add a changelog fragment at `changelog.d/<slug>.json` with `section` set to
+   `Added`, `Updated`, or `Removed` and a single-line `entry` without a leading
+   bullet:
+
+   ```json
+   {
+     "section": "Added",
+     "entry": "[Example Project](https://github.com/example/project), short summary of what it does locally."
+   }
+   ```
+
+   Describe catalog changes, not upstream releases, and explain removals. Leave
+   [`CHANGELOG.md`](CHANGELOG.md) untouched in your pull request so parallel
+   branches do not conflict. Maintainers compile fragments into weekly sections
+   with `python3 scripts/catalog.py changelog`.
 5. Run these commands with Python 3.11 or newer:
 
    ```sh
@@ -49,8 +60,9 @@ Listings are not endorsements, security audits, or runtime certifications.
    python3 -m unittest discover -s scripts -p 'test_*.py'
    ```
 
-6. Open a PR with the record, changelog, and generated README changes. Explain the use case,
-   evidence, and any limits in the PR template. Flag ownership or affiliation.
+6. Open a PR with the record, changelog fragment, and generated README changes.
+   Explain the use case, evidence, and any limits in the PR template. Flag
+   ownership or affiliation.
 
 The scripts use only Python's standard library. The format reference is in
 [`docs/catalog-format.md`](docs/catalog-format.md). Edit catalog records rather
@@ -75,11 +87,12 @@ The CI versions of Typos and Lychee are pinned in
 CI locally. Add a technical word to `.typos.toml` only if it is correct; do not
 ignore an entire document to silence a typo.
 
-Remote URLs from changed project records get an advisory PR check. Timeouts,
-authentication requirements, and rate limits can make working links look broken,
-so reviewers must inspect its report. Weekly and manual runs check the whole
-catalog and documentation; broken links fail those runs. Fix a moved link or
-record the investigation rather than deleting a useful entry after one timeout.
+Remote URLs from changed project records and changelog fragments get an advisory
+PR check. Timeouts, authentication requirements, and rate limits can make working
+links look broken, so reviewers must inspect its report. Weekly and manual runs
+check the whole catalog and documentation; broken links fail those runs. Fix a
+moved link or record the investigation rather than deleting a useful entry after
+one timeout.
 
 Remote checks use [`.lychee.toml`](.lychee.toml). Pinned GitHub file links are
 checked at the same commit and path on `raw.githubusercontent.com`; commit links
@@ -115,9 +128,9 @@ refreshes can merge automatically under the [health safety gate](docs/maintenanc
 Review unavailable, archived, disabled, and redirected repositories before merging.
 Investigate failed checks instead of treating them as deletion or abandonment.
 If an entry needs a correction or removal, make a separate reviewed catalog
-change with evidence and a changelog note. Routine health-only PRs do not need
-changelog notes. See [maintenance](docs/maintenance.md) for fields, local refresh
-commands, and workflow permissions.
+change with evidence and a changelog fragment. Routine health-only PRs do not
+need changelog fragments. See [maintenance](docs/maintenance.md) for fields,
+local refresh commands, and workflow permissions.
 
 ## Contributor licensing
 

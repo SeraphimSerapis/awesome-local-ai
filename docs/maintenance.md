@@ -113,6 +113,8 @@ comes from the catalog CI run before merging. Project submissions remain manual.
 
 Review flagged repositories and failed checks before accepting a snapshot.
 Corrections or removals need a separate catalog change with upstream evidence and
-a [weekly changelog](../CHANGELOG.md) note. Changelog sections start on Monday in
-UTC and describe catalog changes, not upstream releases. Routine health-only PRs
-do not need a changelog note.
+a `changelog.d/<slug>.json` fragment. Maintainers compile fragments into the
+[weekly changelog](../CHANGELOG.md) with `python3 scripts/catalog.py changelog`,
+using Monday-starting UTC weeks that describe catalog changes rather than
+upstream releases. Routine health-only PRs skip changelog fragments so the
+automatic merge gate stays limited to `data/health.json` and `README.md`.

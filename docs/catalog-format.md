@@ -71,3 +71,27 @@ The catalog's own license never grants permission to reuse upstream code or mode
 An advertised OpenAI-compatible API is not proof that a specific agent's tool
 calling, structured output, reasoning controls, or streaming work correctly.
 Record named harness integrations only when upstream explicitly documents them.
+
+## Changelog fragments
+
+Each catalog change adds a JSON object in `changelog.d/<slug>.json` instead of
+editing [`CHANGELOG.md`](../CHANGELOG.md) directly on a pull request branch. The
+filename stem must be a lowercase hyphenated slug of at most 80 characters.
+
+| Field | Meaning |
+| --- | --- |
+| `section` | One of `Added`, `Updated`, or `Removed`. |
+| `entry` | Single-line Markdown note of at most 600 characters without a leading list marker, starting with `[Project](https://...)` or plain prose. |
+
+Fragment files reject duplicate JSON keys, unknown fields, surrounding
+whitespace, control characters, raw HTML, and bare URLs. Every Markdown link in
+`entry` must use a public HTTPS URL without credentials or a custom port.
+`catalog.py validate` and `catalog.py check` validate all fragments, and
+`catalog.py links` includes their URLs for link checking.
+
+Maintainers compile fragments into [`CHANGELOG.md`](../CHANGELOG.md) by running
+`python3 scripts/catalog.py changelog`, or
+`python3 scripts/catalog.py changelog --week YYYY-MM-DD` for a specific Monday
+in UTC. The command writes subsections in `Added`, `Updated`, `Removed` order,
+omits empty subsections, preserves existing bullets in a target week, sorts new
+bullets without regard to case, and deletes the consumed `.json` fragment files.
