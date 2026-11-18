@@ -9,6 +9,7 @@ catalog PR; there is no automatic publishing or merging of these notes.
 ### Added
 
 - [Off Grid AI](https://github.com/off-grid-ai/OGAD), a desktop app for macOS, Windows and Linux that runs chat, vision, image generation, transcription and speech locally, with a local OpenAI-compatible gateway API, optional API-key authentication and an optional paid Pro layer in a separate package.
+- [RAI](https://github.com/Classevelabs/rai), a Rust engine that runs 4-bit language models on the CPU, with one-step installers for Windows, macOS and Linux, a local chat page and API, and pinned starter models.
 
 ## Week of 2026-11-09
 
