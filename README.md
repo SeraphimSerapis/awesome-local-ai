@@ -124,6 +124,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 ### Add skills, extensions, or MCP tools
 
 - [agent-qa](#project-agent-qa)
+- [ClickHouse Loom](#project-clickhouse-loom)
 - [DeepSeek Harness](#project-deepseek-harness)
 - [Oh My Pi](#project-oh-my-pi)
 - [Pi](#project-pi)
@@ -406,6 +407,16 @@ No entries yet. [Suggest a project](CONTRIBUTING.md).
   - Note: App observations go to the configured model provider. Runs and MCP tools act without approval prompts; use limited test accounts and review plugins, which have full machine access.
   - Note: Released versions send usage analytics unless analytics.privacy is true, and run/dashboard update checks contact npm; local model configuration does not guarantee offline operation.
   - Note: FSL-1.1-ALv2 restricts use to the license's Permitted Purpose; each version transitions to Apache-2.0 after two years.
+
+- <a id="project-clickhouse-loom"></a>[ClickHouse Loom](https://github.com/ClickHouse/loom): Self-hosted MCP server for shared agent memory, cited document retrieval and code intelligence, with local embedding and LLM options.
+  - Local client or agent. Platforms: Not recorded. Hardware: Not recorded.
+  - License: [Apache-2.0](https://raw.githubusercontent.com/ClickHouse/loom/08eeb3d82c0c2176cdb3c103db4505565a60788c/LICENSE). [Metadata and evidence](data/projects/clickhouse-loom.json).
+  - Documentation reviewed: 2026-11-19. Repository: not checked yet.
+  - Note: Preview evidence is pinned to v1.3.0-rc.1; final 1.3.0 is not published. This entry has not qualified a local-model runtime or any OS or hardware target.
+  - Note: Self-hosted deployment needs Docker containers or a Kubernetes cluster. The documented Windows route needs WSL 2; platform and hardware tags are omitted because physical target tests are not established for this entry.
+  - Note: The released-image configuration carries a CPU embedder and uses a development placeholder LLM. A source checkout defaults to fake embedding and LLM providers; configure real providers for meaningful semantic search, extraction and generated answers.
+  - Note: Local LLM jobs require a separately installed Ollama or llama.cpp server and model. Model context, memory and latency requirements vary; local-model quality and hardware suitability are unmeasured here.
+  - Note: Local providers do not guarantee offline operation or private client behavior. Hosted provider overrides, independently configured coding clients and optional trace exports can send processed data elsewhere.
 
 <!-- catalog:end -->
 

@@ -1,0 +1,4 @@
+{
+  "section": "Added",
+  "entry": "[ClickHouse Loom](https://github.com/ClickHouse/loom), a self-hosted MCP server for shared agent memory, cited document retrieval and code intelligence, with documented local model configuration and preview limitations."
+}
