@@ -661,6 +661,8 @@ class CatalogTests(unittest.TestCase):
         )
 
         # Compile into a newer week via default current UTC Monday (mocked to Wednesday 2026-11-18).
+        self.project["last_reviewed"] = "2026-11-18"
+        self.save()
         self.save_fragment("delta", section="Added", entry="[Delta](https://github.com/example/delta), new tool.")
         fake_now = datetime(2026, 11, 18, 12, 0, tzinfo=timezone.utc)
         with patch("catalog.datetime") as mocked_dt:
