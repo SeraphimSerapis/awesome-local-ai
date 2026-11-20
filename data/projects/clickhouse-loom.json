@@ -1,0 +1,64 @@
+{
+  "id": "clickhouse-loom",
+  "name": "ClickHouse Loom",
+  "repository": "https://github.com/ClickHouse/loom",
+  "description": "Self-hosted MCP server for shared agent memory, cited document retrieval and code intelligence, with local embedding and LLM options.",
+  "category": "mcp",
+  "use_cases": [
+    "extend-agents"
+  ],
+  "platforms": [],
+  "hardware": [],
+  "local_mode": "local-client",
+  "compatibility": [
+    "MCP over Streamable HTTP.",
+    "LLM jobs on Ollama or llama.cpp llama-server using the OpenAI chat-completions format.",
+    "Claude Code and Codex plugins."
+  ],
+  "limitations": [
+    "Preview evidence is pinned to v1.3.0-rc.1; final 1.3.0 is not published. This entry has not qualified a local-model runtime or any OS or hardware target.",
+    "Self-hosted deployment needs Docker containers or a Kubernetes cluster. The documented Windows route needs WSL 2; platform and hardware tags are omitted because physical target tests are not established for this entry.",
+    "The released-image configuration carries a CPU embedder and uses a development placeholder LLM. A source checkout defaults to fake embedding and LLM providers; configure real providers for meaningful semantic search, extraction and generated answers.",
+    "Local LLM jobs require a separately installed Ollama or llama.cpp server and model. Model context, memory and latency requirements vary; local-model quality and hardware suitability are unmeasured here.",
+    "Local providers do not guarantee offline operation or private client behavior. Hosted provider overrides, independently configured coding clients and optional trace exports can send processed data elsewhere."
+  ],
+  "license": {
+    "spdx": "Apache-2.0",
+    "url": "https://raw.githubusercontent.com/ClickHouse/loom/08eeb3d82c0c2176cdb3c103db4505565a60788c/LICENSE"
+  },
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/ClickHouse/loom/08eeb3d82c0c2176cdb3c103db4505565a60788c/README.md",
+      "note": "Shared memory, document search, code intelligence, self-hosted deployment and coding-agent integrations."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ClickHouse/loom/08eeb3d82c0c2176cdb3c103db4505565a60788c/docs/getting-started/quickstart.md",
+      "note": "Docker and source-build setup, Python and Compose prerequisites, bundled-image local embeddings versus checkout fake defaults, and documented WSL 2 requirements; these are not physical target tests."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ClickHouse/loom/08eeb3d82c0c2176cdb3c103db4505565a60788c/docs/getting-started/models-and-keys.md",
+      "note": "Local Ollama and llama.cpp configuration, model/context and extraction limits, independent client providers and per-job hosted overrides; no local-model benchmark is claimed."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ClickHouse/loom/08eeb3d82c0c2176cdb3c103db4505565a60788c/docs/features/integrations/mcp-clients.md",
+      "note": "Streamable HTTP MCP endpoint and documented Claude Code and Codex plugins."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ClickHouse/loom/08eeb3d82c0c2176cdb3c103db4505565a60788c/docs/use-cases/document-search.md",
+      "note": "Document retrieval with source citations; the calling agent or model writes the answer."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ClickHouse/loom/08eeb3d82c0c2176cdb3c103db4505565a60788c/docs/operations/kubernetes.md",
+      "note": "Self-hosted Kubernetes deployment with the Helm chart."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ClickHouse/loom/08eeb3d82c0c2176cdb3c103db4505565a60788c/docs/features/integrations/clickstack.md",
+      "note": "Default local telemetry storage and optional export to a configured OTLP endpoint."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ClickHouse/loom/08eeb3d82c0c2176cdb3c103db4505565a60788c/docs/features/integrations/langfuse.md",
+      "note": "Optional trace export to a separately configured service."
+    }
+  ],
+  "last_reviewed": "2026-11-19"
+}
