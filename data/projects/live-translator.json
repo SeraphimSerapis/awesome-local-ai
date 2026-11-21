@@ -1,0 +1,43 @@
+{
+  "id": "live-translator",
+  "name": "Live Translator",
+  "repository": "https://github.com/umutcetinkaya/live-translator",
+  "description": "Mac menu bar app that shows live translated subtitles for any system audio, translating on-device with TranslateGemma through MLX and optionally reading them aloud.",
+  "category": "applications",
+  "use_cases": [
+    "serve-models"
+  ],
+  "platforms": [
+    "macos"
+  ],
+  "hardware": [
+    "apple-silicon"
+  ],
+  "local_mode": "local",
+  "compatibility": [
+    "Runs TranslateGemma 4B (4-bit or 8-bit, chosen by memory) or an opt-in 12B 4-bit model through mlx-lm; models download from Hugging Face on first use.",
+    "Captures system audio with ScreenCaptureKit and transcribes it with Apple speech recognition; speech output uses the built-in macOS voices or Piper.",
+    "OpenAI, Gemini and Anthropic providers are optional and need the user's own API key."
+  ],
+  "limitations": [
+    "The free on-device mode needs Apple Silicon and macOS 14 or newer; Intel Macs need a cloud API key.",
+    "Apple speech recognition runs on-device only for languages whose dictation model is installed; other languages use Apple's servers.",
+    "The first run downloads 2.2 to 6.7 GB of model weights, which follow the Gemma Terms of Use.",
+    "Needs the Screen and System Audio Recording permission."
+  ],
+  "license": {
+    "spdx": "MIT",
+    "url": "https://raw.githubusercontent.com/umutcetinkaya/live-translator/2708f8dd81f014fa811e4d98abdbf863efed2356/LICENSE"
+  },
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/umutcetinkaya/live-translator/2708f8dd81f014fa811e4d98abdbf863efed2356/README.md",
+      "note": "On-device model tiers and download sizes, Apple Silicon and macOS 14 requirement, speech recognition privacy behaviour, permissions, optional cloud providers and voices."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/umutcetinkaya/live-translator/2708f8dd81f014fa811e4d98abdbf863efed2356/src/local_models.py",
+      "note": "Model tiers, Hugging Face repositories and the memory-based default choice."
+    }
+  ],
+  "last_reviewed": "2026-11-21"
+}

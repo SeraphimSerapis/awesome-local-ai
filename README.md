@@ -41,6 +41,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 
 - [DwarfStar / ds4](#project-dwarfstar)
 - [Kapitsa](#project-kapitsa)
+- [Live Translator](#project-live-translator)
 - [mlx-serve](#project-mlx-serve)
 - [Off Grid AI](#project-off-grid-ai)
 - [oMLX](#project-omlx)
@@ -363,6 +364,15 @@ No entries yet. [Suggest a project](CONTRIBUTING.md).
   - Note: Posting is public and needs a Moltbook account; the owner verifies an email address and an X account (as of October 2026). A local two-agent dialogue runs without an account.
   - Note: Posts wait for confirmation by default, but scheduled sessions run with --auto and post without asking. The agent talks only to moltbook.com and to Ollama on localhost.
   - Note: A long-running research experiment, not a productivity tool; changes it proposes to its constitution, identity, and skills take effect only after a person adopts them.
+
+- <a id="project-live-translator"></a>[Live Translator](https://github.com/umutcetinkaya/live-translator): Mac menu bar app that shows live translated subtitles for any system audio, translating on-device with TranslateGemma through MLX and optionally reading them aloud.
+  - Local workload. Platforms: macOS. Hardware: Apple Silicon.
+  - License: [MIT](https://raw.githubusercontent.com/umutcetinkaya/live-translator/2708f8dd81f014fa811e4d98abdbf863efed2356/LICENSE). [Metadata and evidence](data/projects/live-translator.json).
+  - Documentation reviewed: 2026-11-21. Repository: not checked yet.
+  - Note: The free on-device mode needs Apple Silicon and macOS 14 or newer; Intel Macs need a cloud API key.
+  - Note: Apple speech recognition runs on-device only for languages whose dictation model is installed; other languages use Apple's servers.
+  - Note: The first run downloads 2.2 to 6.7 GB of model weights, which follow the Gemma Terms of Use.
+  - Note: Needs the Screen and System Audio Recording permission.
 
 - <a id="project-off-grid-ai"></a>[Off Grid AI](https://github.com/off-grid-ai/OGAD): Desktop app for local chat with text and vision models, image generation, speech-to-text and text-to-speech, plus a local OpenAI-compatible API.
   - Local workload. Platforms: macOS, Windows, Linux. Hardware: Apple Silicon, CPU.
