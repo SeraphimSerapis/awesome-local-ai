@@ -1,8 +1,8 @@
 {
   "id": "tandemllm",
-  "name": "TandemLLM",
-  "repository": "https://github.com/0xBakeer/TandemLLM",
-  "description": "Serve Qwen3.8-27B on a single DGX Spark with speculative decoding, conversation caches, and a local dashboard.",
+  "name": "TandemEngine (TandemLLM)",
+  "repository": "https://github.com/TandemLLM/TandemEngine",
+  "description": "Serve supported LLMs on a single DGX Spark with speculative decoding, conversation caches, and an OpenAI-compatible API.",
   "category": "inference",
   "use_cases": [
     "serve-models",
@@ -16,22 +16,22 @@
   ],
   "local_mode": "local",
   "compatibility": [
-    "OpenAI-compatible model API with tool calls and structured output; documented opencode connection."
+    "OpenAI-compatible model API with tool calls and structured output; documented TandemApp and opencode client paths."
   ],
   "limitations": [
-    "Currently qualified for one DGX Spark and Qwen3.8-27B; other CUDA GPUs are best effort.",
-    "Requires the documented Python 3.11, PyTorch/CUDA, and Triton stack; run one engine per board.",
-    "Code is AGPL-3.0-only with a separate commercial option; documentation and model artifacts have separate licenses."
+    "Qualified for one DGX Spark (GB10) serving one supported model at a time; other CUDA GPUs are best effort.",
+    "Requires the documented Linux, Python 3.11, PyTorch 2.13/CUDA 13.0, and Triton stack; run one engine per board and set an admin password before exposing the port.",
+    "The web dashboard and chat UI moved to TandemApp; engine code is AGPL-3.0-only with a commercial option, while docs and model weights carry separate licenses."
   ],
   "license": {
     "spdx": "AGPL-3.0-only",
-    "url": "https://raw.githubusercontent.com/0xBakeer/TandemLLM/c11aecaa7ba767642409ff51d90d48c79c572d3a/LICENSE"
+    "url": "https://raw.githubusercontent.com/TandemLLM/TandemEngine/da76b01a499d8014d57bf16721d5354dc6d67350/LICENSE"
   },
   "sources": [
     {
-      "url": "https://raw.githubusercontent.com/0xBakeer/TandemLLM/c11aecaa7ba767642409ff51d90d48c79c572d3a/README.md",
-      "note": "Documents the listed workflow, requirements, compatibility, and limitations."
+      "url": "https://raw.githubusercontent.com/TandemLLM/TandemEngine/da76b01a499d8014d57bf16721d5354dc6d67350/README.md",
+      "note": "Documents the renamed repository, supported models, requirements, compatibility, and limitations."
     }
   ],
-  "last_reviewed": "2026-10-11"
+  "last_reviewed": "2026-11-24"
 }
