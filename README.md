@@ -50,7 +50,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 - [sparkrun](#project-sparkrun)
 - [Splash](#project-splash)
 - [Strata](#project-strata)
-- [TandemLLM](#project-tandemllm)
+- [TandemEngine (TandemLLM)](#project-tandemllm)
 - [TensorFold](#project-tensorfold)
 - [vLLM Windows Build](#project-vllm-windows-build)
 
@@ -65,7 +65,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 - [Pi](#project-pi)
 - [Splash](#project-splash)
 - [Strata](#project-strata)
-- [TandemLLM](#project-tandemllm)
+- [TandemEngine (TandemLLM)](#project-tandemllm)
 - [TensorFold](#project-tensorfold)
 
 ### Run autonomous agents with local models
@@ -208,14 +208,13 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
   - Note: The standard setup requires a supported GPU with at least 12 GB VRAM, at least 32 GB RAM, and about 80 GB free disk.
   - Note: Model support is specific; experimental hardware paths and AMD vision support have additional limits.
 
-- <a id="project-tandemllm"></a>[TandemLLM](https://github.com/0xBakeer/TandemLLM): Serve Qwen3.8-27B on a single DGX Spark with speculative decoding, conversation caches, and a local dashboard.
+- <a id="project-tandemllm"></a>[TandemEngine (TandemLLM)](https://github.com/TandemLLM/TandemEngine): Serve supported LLMs on a single DGX Spark with speculative decoding, conversation caches, and an OpenAI-compatible API.
   - Local workload. Platforms: Linux. Hardware: DGX Spark / GB10.
-  - License: [AGPL-3.0-only](https://raw.githubusercontent.com/0xBakeer/TandemLLM/c11aecaa7ba767642409ff51d90d48c79c572d3a/LICENSE). [Metadata and evidence](data/projects/tandemllm.json).
-  - Documentation reviewed: 2026-10-11. Repository checked: 2026-11-18, reachable.
-  - Default branch commit: 2026-11-10. Last observed push: 2026-11-12. Archived: no. Disabled: no.
-  - Note: Currently qualified for one DGX Spark and Qwen3.8-27B; other CUDA GPUs are best effort.
-  - Note: Requires the documented Python 3.11, PyTorch/CUDA, and Triton stack; run one engine per board.
-  - Note: Code is AGPL-3.0-only with a separate commercial option; documentation and model artifacts have separate licenses.
+  - License: [AGPL-3.0-only](https://raw.githubusercontent.com/TandemLLM/TandemEngine/da76b01a499d8014d57bf16721d5354dc6d67350/LICENSE). [Metadata and evidence](data/projects/tandemllm.json).
+  - Documentation reviewed: 2026-11-24. Repository: not checked yet.
+  - Note: Qualified for one DGX Spark (GB10) serving one supported model at a time; other CUDA GPUs are best effort.
+  - Note: Requires the documented Linux, Python 3.11, PyTorch 2.13/CUDA 13.0, and Triton stack; run one engine per board and set an admin password before exposing the port.
+  - Note: The web dashboard and chat UI moved to TandemApp; engine code is AGPL-3.0-only with a commercial option, while docs and model weights carry separate licenses.
 
 - <a id="project-tensorfold"></a>[TensorFold](https://github.com/ashhart/TensorFold): Serve supported language models with a native inference engine using Metal or CUDA kernels.
   - Local workload. Platforms: macOS, Linux. Hardware: Apple Silicon, NVIDIA GPU, DGX Spark / GB10.
