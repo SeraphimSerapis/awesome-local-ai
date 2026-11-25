@@ -1,0 +1,47 @@
+{
+  "id": "voxtmini",
+  "name": "VoxtMini",
+  "repository": "https://github.com/hehehai/VoxtMini",
+  "description": "macOS voice input: press a shortcut in any app, speak, and local Qwen3-ASR models on MLX (Whisper experimental) type, translate or rewrite the text at your cursor.",
+  "category": "applications",
+  "use_cases": [
+    "serve-models"
+  ],
+  "platforms": [
+    "macos"
+  ],
+  "hardware": [
+    "apple-silicon"
+  ],
+  "local_mode": "local",
+  "compatibility": [
+    "Speech runs locally with Qwen3-ASR on MLX, with Whisper (experimental: no live text, not yet run on a Mac with VoxtMini) or with Apple Speech; clean-up, translation and rewriting use local language models such as Qwen3.5 and Hy-MT2.",
+    "A remote service (OpenAI, Gemini, Anthropic, DeepSeek and others) or Ollama and LM Studio on the same Mac can be chosen per feature instead of the local default."
+  ],
+  "limitations": [
+    "Needs macOS 15 or later on Apple silicon; 16 GB of memory is recommended for the recommended models.",
+    "Beta software; models download on first use from Hugging Face. Whisper is experimental, and Apple Speech and Apple Intelligence have not yet been checked on real hardware.",
+    "Needs the Microphone permission, and Accessibility to type into other apps.",
+    "No account and no analytics. Installed builds check actnow.dev once a day for updates (/updates/voxtmini) and poll actnow.dev/api/voxtmini/notifications at launch and every six hours for announcements, sending only the app language and version (VOXTMINI_ANNOUNCEMENTS_URL=\"\" turns this off); feedback and diagnostics are sent to actnow.dev only when the user sends them from the feedback window.",
+    "Official builds bundle React Bits Sound Lab cue sounds (MIT + Commons Clause v1.0, from a private library, not under Apache-2.0); builds from source play macOS system sounds instead."
+  ],
+  "license": {
+    "spdx": "Apache-2.0",
+    "url": "https://raw.githubusercontent.com/hehehai/VoxtMini/50cb2cc85169aea88032185db2917e91e3d04bdd/LICENSE"
+  },
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/hehehai/VoxtMini/50cb2cc85169aea88032185db2917e91e3d04bdd/README.md",
+      "note": "Features, local, Apple and optional remote model choices, macOS 15 and Apple silicon requirement, beta status, release downloads and privacy behaviour."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/hehehai/VoxtMini/50cb2cc85169aea88032185db2917e91e3d04bdd/docs/how-it-works.md",
+      "note": "How recording, recognition, language-model clean-up and insertion work, and which models run locally."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/hehehai/VoxtMini/50cb2cc85169aea88032185db2917e91e3d04bdd/NOTICE",
+      "note": "Third-party notices, including the React Bits Sound Lab cue sounds in official builds and their licence."
+    }
+  ],
+  "last_reviewed": "2026-11-25"
+}

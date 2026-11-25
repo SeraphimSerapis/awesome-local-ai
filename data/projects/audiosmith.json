@@ -1,0 +1,45 @@
+{
+  "id": "audiosmith",
+  "name": "AudioSmith",
+  "repository": "https://github.com/hehehai/AudioSmith",
+  "description": "macOS voice studio that runs text to speech, voice cloning, audiobooks, dubbing and transcription on the Mac's GPU with MLX, with a local OpenAI-compatible API and MCP server.",
+  "category": "applications",
+  "use_cases": [
+    "serve-models",
+    "extend-agents"
+  ],
+  "platforms": [
+    "macos"
+  ],
+  "hardware": [
+    "apple-silicon"
+  ],
+  "local_mode": "local",
+  "compatibility": [
+    "Runs Qwen3-TTS, Kokoro, Chatterbox, VoxCPM2, Qwen3-ASR, Whisper and other models with MLX on Apple silicon, without Python.",
+    "Serves an OpenAI-compatible speech and transcription API on 127.0.0.1:3901/v1 and an MCP server over HTTP and stdio."
+  ],
+  "limitations": [
+    "Needs macOS 15 or later on Apple silicon; 8 GB of memory runs the Fast pack and 24 GB the Quality pack, with 1.3 to 17 GB of model downloads.",
+    "Beta software.",
+    "Model weights keep their own licences; OmniVoice is CC BY-NC 4.0 (non-commercial) and the app asks before downloading it.",
+    "Generated audio carries an AudioSeal watermark by default; the optional phone agent uses the user's own Twilio account.",
+    "Microphone and Accessibility permissions are asked only for recording and dictation. Official builds check actnow.dev once a day for software updates and, when the user downloads them, fetch ffmpeg and yt-dlp from github.com or mirror.actnow.dev; feedback is sent to actnow.dev only when the user sends it.",
+    "Official builds add dictation sounds from a private library that is not under the AGPL; builds from source use system sounds instead."
+  ],
+  "license": {
+    "spdx": "AGPL-3.0-only",
+    "url": "https://raw.githubusercontent.com/hehehai/AudioSmith/4e52f9102efa57b03feadbfb1bf7ce4937835884/LICENSE"
+  },
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/hehehai/AudioSmith/4e52f9102efa57b03feadbfb1bf7ce4937835884/README.md",
+      "note": "Features, model list with licences, memory and disk requirements, measured speeds, MCP and API overview, release downloads and privacy behaviour."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/hehehai/AudioSmith/4e52f9102efa57b03feadbfb1bf7ce4937835884/docs/local-api.md",
+      "note": "Local OpenAI-compatible API endpoints and MCP server transports."
+    }
+  ],
+  "last_reviewed": "2026-11-25"
+}
