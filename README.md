@@ -39,6 +39,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 
 ### Run a model on my hardware
 
+- [AudioSmith](#project-audiosmith)
 - [DwarfStar / ds4](#project-dwarfstar)
 - [Kapitsa](#project-kapitsa)
 - [Live Translator](#project-live-translator)
@@ -53,6 +54,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 - [TandemEngine (TandemLLM)](#project-tandemllm)
 - [TensorFold](#project-tensorfold)
 - [vLLM Windows Build](#project-vllm-windows-build)
+- [VoxtMini](#project-voxtmini)
 
 ### Connect a coding agent to a local model
 
@@ -125,6 +127,7 @@ inactivity does not prove abandonment. See [maintenance](docs/maintenance.md).
 ### Add skills, extensions, or MCP tools
 
 - [agent-qa](#project-agent-qa)
+- [AudioSmith](#project-audiosmith)
 - [ClickHouse Loom](#project-clickhouse-loom)
 - [DeepSeek Harness](#project-deepseek-harness)
 - [Oh My Pi](#project-oh-my-pi)
@@ -355,6 +358,17 @@ No entries yet. [Suggest a project](CONTRIBUTING.md).
 
 ### Applications and model management
 
+- <a id="project-audiosmith"></a>[AudioSmith](https://github.com/hehehai/AudioSmith): macOS voice studio that runs text to speech, voice cloning, audiobooks, dubbing and transcription on the Mac's GPU with MLX, with a local OpenAI-compatible API and MCP server.
+  - Local workload. Platforms: macOS. Hardware: Apple Silicon.
+  - License: [AGPL-3.0-only](https://raw.githubusercontent.com/hehehai/AudioSmith/4e52f9102efa57b03feadbfb1bf7ce4937835884/LICENSE). [Metadata and evidence](data/projects/audiosmith.json).
+  - Documentation reviewed: 2026-11-25. Repository: not checked yet.
+  - Note: Needs macOS 15 or later on Apple silicon; 8 GB of memory runs the Fast pack and 24 GB the Quality pack, with 1.3 to 17 GB of model downloads.
+  - Note: Beta software.
+  - Note: Model weights keep their own licences; OmniVoice is CC BY-NC 4.0 (non-commercial) and the app asks before downloading it.
+  - Note: Generated audio carries an AudioSeal watermark by default; the optional phone agent uses the user's own Twilio account.
+  - Note: Microphone and Accessibility permissions are asked only for recording and dictation; feedback is sent to actnow.dev only when the user sends it.
+  - Note: Official builds add dictation sounds from a private library that is not under the AGPL; builds from source use system sounds instead.
+
 - <a id="project-contemplative-agent"></a>[Contemplative Agent](https://github.com/shimo4228/contemplative-agent): Run an autonomous agent on a local LLM through Ollama that posts on Moltbook, logs every action, and stages changes to its own prompts for a person to adopt or reject.
   - Local client or agent. Platforms: macOS. Hardware: Apple Silicon.
   - License: [MIT](https://raw.githubusercontent.com/shimo4228/contemplative-agent/620728552019f8be5ae9cb843400592ce5cde12d/LICENSE). [Metadata and evidence](data/projects/contemplative-agent.json).
@@ -395,6 +409,15 @@ No entries yet. [Suggest a project](CONTRIBUTING.md).
   - Note: Optional OpenRouter generation is off-device: it sends the selected conversation history and prompt to OpenRouter and the routed provider.
   - Note: Google AI Studio, OpenRouter, LM Studio and Grok exports use undocumented formats that can change without notice.
   - Note: Requires Node.js 20.19 or newer; installed through npm (npx threadshelf).
+
+- <a id="project-voxtmini"></a>[VoxtMini](https://github.com/hehehai/VoxtMini): macOS voice input: press a shortcut in any app, speak, and local Qwen3-ASR or Whisper models on MLX type, translate or rewrite the text at your cursor.
+  - Local workload. Platforms: macOS. Hardware: Apple Silicon.
+  - License: [Apache-2.0](https://raw.githubusercontent.com/hehehai/VoxtMini/50cb2cc85169aea88032185db2917e91e3d04bdd/LICENSE). [Metadata and evidence](data/projects/voxtmini.json).
+  - Documentation reviewed: 2026-11-25. Repository: not checked yet.
+  - Note: Needs macOS 15 or later on Apple silicon; 16 GB of memory is recommended for the recommended models.
+  - Note: Beta software; models download on first use from Hugging Face.
+  - Note: Needs the Microphone permission, and Accessibility to type into other apps.
+  - Note: No account and no analytics; feedback and diagnostics are sent to actnow.dev only when the user sends them from the feedback window.
 
 <a id="skills"></a>
 

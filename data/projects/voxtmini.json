@@ -1,0 +1,42 @@
+{
+  "id": "voxtmini",
+  "name": "VoxtMini",
+  "repository": "https://github.com/hehehai/VoxtMini",
+  "description": "macOS voice input: press a shortcut in any app, speak, and local Qwen3-ASR or Whisper models on MLX type, translate or rewrite the text at your cursor.",
+  "category": "applications",
+  "use_cases": [
+    "serve-models"
+  ],
+  "platforms": [
+    "macos"
+  ],
+  "hardware": [
+    "apple-silicon"
+  ],
+  "local_mode": "local",
+  "compatibility": [
+    "Speech runs locally with Qwen3-ASR or Whisper on MLX, or with Apple Speech; clean-up, translation and rewriting use local language models such as Qwen3.5 and Hy-MT2.",
+    "A remote service (OpenAI, Gemini, Anthropic, DeepSeek and others) or Ollama and LM Studio on the same Mac can be chosen per feature instead of the local default."
+  ],
+  "limitations": [
+    "Needs macOS 15 or later on Apple silicon; 16 GB of memory is recommended for the recommended models.",
+    "Beta software; models download on first use from Hugging Face.",
+    "Needs the Microphone permission, and Accessibility to type into other apps.",
+    "No account and no analytics; feedback and diagnostics are sent to actnow.dev only when the user sends them from the feedback window."
+  ],
+  "license": {
+    "spdx": "Apache-2.0",
+    "url": "https://raw.githubusercontent.com/hehehai/VoxtMini/50cb2cc85169aea88032185db2917e91e3d04bdd/LICENSE"
+  },
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/hehehai/VoxtMini/50cb2cc85169aea88032185db2917e91e3d04bdd/README.md",
+      "note": "Features, local, Apple and optional remote model choices, macOS 15 and Apple silicon requirement, beta status, release downloads and privacy behaviour."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/hehehai/VoxtMini/50cb2cc85169aea88032185db2917e91e3d04bdd/docs/how-it-works.md",
+      "note": "How recording, recognition, language-model clean-up and insertion work, and which models run locally."
+    }
+  ],
+  "last_reviewed": "2026-11-25"
+}
