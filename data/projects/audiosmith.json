@@ -24,7 +24,7 @@
     "Beta software.",
     "Model weights keep their own licences; OmniVoice is CC BY-NC 4.0 (non-commercial) and the app asks before downloading it.",
     "Generated audio carries an AudioSeal watermark by default; the optional phone agent uses the user's own Twilio account.",
-    "Microphone and Accessibility permissions are asked only for recording and dictation; feedback is sent to actnow.dev only when the user sends it.",
+    "Microphone and Accessibility permissions are asked only for recording and dictation. Official builds check actnow.dev once a day for software updates and, when the user downloads them, fetch ffmpeg and yt-dlp from github.com or mirror.actnow.dev; feedback is sent to actnow.dev only when the user sends it.",
     "Official builds add dictation sounds from a private library that is not under the AGPL; builds from source use system sounds instead."
   ],
   "license": {

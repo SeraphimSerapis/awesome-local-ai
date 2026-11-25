@@ -366,7 +366,7 @@ No entries yet. [Suggest a project](CONTRIBUTING.md).
   - Note: Beta software.
   - Note: Model weights keep their own licences; OmniVoice is CC BY-NC 4.0 (non-commercial) and the app asks before downloading it.
   - Note: Generated audio carries an AudioSeal watermark by default; the optional phone agent uses the user's own Twilio account.
-  - Note: Microphone and Accessibility permissions are asked only for recording and dictation; feedback is sent to actnow.dev only when the user sends it.
+  - Note: Microphone and Accessibility permissions are asked only for recording and dictation. Official builds check actnow.dev once a day for software updates and, when the user downloads them, fetch ffmpeg and yt-dlp from github.com or mirror.actnow.dev; feedback is sent to actnow.dev only when the user sends it.
   - Note: Official builds add dictation sounds from a private library that is not under the AGPL; builds from source use system sounds instead.
 
 - <a id="project-contemplative-agent"></a>[Contemplative Agent](https://github.com/shimo4228/contemplative-agent): Run an autonomous agent on a local LLM through Ollama that posts on Moltbook, logs every action, and stages changes to its own prompts for a person to adopt or reject.
@@ -410,14 +410,15 @@ No entries yet. [Suggest a project](CONTRIBUTING.md).
   - Note: Google AI Studio, OpenRouter, LM Studio and Grok exports use undocumented formats that can change without notice.
   - Note: Requires Node.js 20.19 or newer; installed through npm (npx threadshelf).
 
-- <a id="project-voxtmini"></a>[VoxtMini](https://github.com/hehehai/VoxtMini): macOS voice input: press a shortcut in any app, speak, and local Qwen3-ASR or Whisper models on MLX type, translate or rewrite the text at your cursor.
+- <a id="project-voxtmini"></a>[VoxtMini](https://github.com/hehehai/VoxtMini): macOS voice input: press a shortcut in any app, speak, and local Qwen3-ASR models on MLX (Whisper experimental) type, translate or rewrite the text at your cursor.
   - Local workload. Platforms: macOS. Hardware: Apple Silicon.
   - License: [Apache-2.0](https://raw.githubusercontent.com/hehehai/VoxtMini/50cb2cc85169aea88032185db2917e91e3d04bdd/LICENSE). [Metadata and evidence](data/projects/voxtmini.json).
   - Documentation reviewed: 2026-11-25. Repository: not checked yet.
   - Note: Needs macOS 15 or later on Apple silicon; 16 GB of memory is recommended for the recommended models.
-  - Note: Beta software; models download on first use from Hugging Face.
+  - Note: Beta software; models download on first use from Hugging Face. Whisper is experimental, and Apple Speech and Apple Intelligence have not yet been checked on real hardware.
   - Note: Needs the Microphone permission, and Accessibility to type into other apps.
-  - Note: No account and no analytics; feedback and diagnostics are sent to actnow.dev only when the user sends them from the feedback window.
+  - Note: No account and no analytics. Installed builds check actnow.dev once a day for updates (/updates/voxtmini) and poll actnow.dev/api/voxtmini/notifications at launch and every six hours for announcements, sending only the app language and version (VOXTMINI\_ANNOUNCEMENTS\_URL="" turns this off); feedback and diagnostics are sent to actnow.dev only when the user sends them from the feedback window.
+  - Note: Official builds bundle React Bits Sound Lab cue sounds (MIT + Commons Clause v1.0, from a private library, not under Apache-2.0); builds from source play macOS system sounds instead.
 
 <a id="skills"></a>
 
