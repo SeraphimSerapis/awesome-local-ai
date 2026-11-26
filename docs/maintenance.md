@@ -10,11 +10,16 @@ The catalog records two different kinds of evidence:
 Last observed push is GitHub's repository-level `pushed_at`, which advances on
 pushes to any branch or tag, including unmerged bot branches. The collector also
 records `last_default_branch_commit` from the latest commit on the upstream
-default branch, and the generated README prints both dates whenever they differ.
-Neither timestamp establishes human documentation review, active maintenance,
-security, quality, or compatibility, and inactivity does not establish
-abandonment. Archived and disabled are GitHub flags, not catalog inclusion
-decisions.
+default branch. The generated README shows the default-branch commit date in the
+category table (falling back to `last_push` if absent), prints both dates in the
+category notes block whenever they differ, and surfaces abnormal flags
+(`Not checked yet`, `Unavailable`, `Check failed`, `Archived`, `Disabled`,
+`Redirected`) visibly without repeating healthy boilerplate. The generated
+[`data/catalog.json`](../data/catalog.json) embeds each project's matching
+`health` object alongside computed `health_flags`. Neither timestamp establishes
+human documentation review, active maintenance, security, quality, or
+compatibility, and inactivity does not establish abandonment. Archived and
+disabled are GitHub flags, not catalog inclusion decisions.
 
 ## Snapshot format
 
@@ -23,7 +28,7 @@ fields; unknown or misspelled fields fail validation.
 
 | Field | Meaning |
 | --- | --- |
-| `repository` | The catalog URL that was requested. Observations for a different URL or removed ID are not used. |
+| `repository` | The catalog URL that was requested. `catalog.py` rejects unknown or removed project IDs and URL mismatches in `data/health.json`; missing entries remain allowed until the next refresh, and `health.py` prunes stale entries during refreshes. |
 | `checked_at` | Latest check-attempt date, `YYYY-MM-DD` in UTC. |
 | `status` | `reachable`, `unavailable`, or `check-failed`; defined below. |
 | `detail` | A short failure explanation, or `null` after success. |
@@ -52,9 +57,18 @@ through GitHub's REST API, not upstream source code or setup commands:
 ```sh
 python3 scripts/health.py
 python3 scripts/catalog.py render
-python3 scripts/catalog.py check
-python3 -m unittest discover -s scripts -p 'test_*.py'
+python3 scripts/catalog.py verify
 ```
+
+Pass `--summary-file <path>` to `scripts/health.py` to write a concise Markdown
+summary of status counts, flagged entries, newly observed or removed IDs, and
+informational >90-day quiet projects. `catalog.py render` regenerates both
+`README.md` and `data/catalog.json`. Use `python3 scripts/catalog.py status` for
+an offline hygiene dashboard, `python3 scripts/audit.py` for offline or live
+GitHub compliance checks, and
+`python3 scripts/catalog.py remove <id>... --reason "..."` to remove an entry
+along with its `data/health.json` key, `Removed` changelog fragment, and
+regenerated outputs.
 
 Python 3.11+ and its standard library are sufficient. `GH_TOKEN` or `GITHUB_TOKEN`
 can supply an existing GitHub token for API rate limits; never commit credentials.
@@ -66,16 +80,18 @@ The collector updates attempt dates even when checks fail and returns success
 after writing a valid snapshot; inspect its status counts and PR diff. Invalid
 catalog/snapshot data or a failed file write stops the refresh. The snapshot is
 replaced only after a complete write. Changed or removed catalog URLs do not
-inherit unrelated observations.
+inherit unrelated observations, and `health.py` prunes removed or repointed keys
+from `data/health.json`.
 
 ## Weekly workflow
 
 [`health.yml`](../.github/workflows/health.yml) runs on Mondays at 07:43 UTC or by
 manual dispatch on the default branch. Scheduled runs can be delayed by GitHub.
-It uses pinned actions and proposes only `data/health.json` and the generated
-README on `automation/catalog-health`. It opens or updates a PR and dispatches
-catalog CI. It never removes entries or edits `last_reviewed`. The existing
-weekly upstream-link check remains separate.
+It uses pinned actions, generates a structured PR summary via
+`scripts/health.py --summary-file`, and proposes only `data/health.json`,
+`data/catalog.json`, and the generated `README.md` on `automation/catalog-health`.
+It opens or updates a PR and dispatches catalog CI. It never removes entries or
+edits `last_reviewed`. The existing weekly upstream-link check remains separate.
 
 The bot uses `GITHUB_TOKEN` with contents and pull-request write permissions to
 publish its branch and PR. Repository settings must permit Actions to create
@@ -99,9 +115,11 @@ which GitHub suppresses for bot-triggered activity. It merges only when:
   with success. `Upstream links` runs in advisory mode on
   `automation/catalog-health` so unrelated third-party timeouts do not block
   routine repository snapshots.
-- The head includes the current default branch and changes only `data/health.json`
-  and the generated README. The README must exactly match regeneration from the
-  trusted default-branch code, catalog, and manual README sections.
+- The head includes the current default branch and changes only `data/health.json`,
+  `data/catalog.json`, and the generated `README.md` (all `100644` regular files,
+  with `data/health.json` changed). Both `README.md` and `data/catalog.json` must
+  exactly match regeneration from the trusted default-branch code, catalog, and
+  manual README sections.
 - The snapshot covers every catalog entry with a successful check dated today in
   UTC, no archived or disabled repositories, and no redirects.
 
@@ -137,7 +155,9 @@ run before merging. Project submissions remain manual.
 Review flagged repositories and failed checks before accepting a snapshot.
 Corrections or removals need a separate catalog change with upstream evidence and
 a `changelog.d/<slug>.json` fragment. Maintainers compile fragments into the
-[weekly changelog](../CHANGELOG.md) with `python3 scripts/catalog.py changelog`,
-using Monday-starting UTC weeks that describe catalog changes rather than
-upstream releases. Routine health-only PRs skip changelog fragments so the
-automatic merge gate stays limited to `data/health.json` and `README.md`.
+[weekly changelog](../CHANGELOG.md) with
+`python3 scripts/catalog.py changelog --by-commit-date` (or `--week YYYY-MM-DD`,
+with `--dry-run` to preview), using Monday-starting UTC weeks that describe
+catalog changes rather than upstream releases. Routine health-only PRs skip
+changelog fragments so the automatic merge gate stays limited to
+`data/health.json`, `data/catalog.json`, and `README.md`.

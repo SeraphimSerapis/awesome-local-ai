@@ -21,7 +21,6 @@
     "bootstrap-local-ai": "Set up local AI",
     "monitor-systems": "Monitor my setup",
     "diagnose-systems": "Troubleshoot my setup",
-    "tune-systems": "Tune thermals and memory",
     "validate-inference-configs": "Validate or simulate inference configurations",
     "chat-with-models": "Chat with a local model",
     "extend-agents": "Add skills, extensions, or MCP tools"
@@ -29,9 +28,7 @@
   "platforms": {
     "linux": "Linux",
     "macos": "macOS",
-    "windows": "Windows",
-    "ios": "iOS",
-    "ipados": "iPadOS"
+    "windows": "Windows"
   },
   "hardware": {
     "apple-silicon": "Apple Silicon",

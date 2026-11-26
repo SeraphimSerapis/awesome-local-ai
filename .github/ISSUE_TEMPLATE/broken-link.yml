@@ -1,0 +1,46 @@
+name: Broken link or stale entry
+description: Report a broken URL, repository redirect, archive, license change, or factual drift in an existing catalog entry.
+title: "[entry] "
+labels: ["catalog-maintenance"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to report broken links, moved or archived repositories, upstream license changes, or outdated claims.
+        Pull requests with commit-pinned evidence are welcome; see `CONTRIBUTING.md`.
+  - type: input
+    id: project_id
+    attributes:
+      label: Catalog project ID
+      description: Lowercase slug from `data/projects/<id>.json`.
+      placeholder: example-project
+    validations:
+      required: true
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: Issue type
+      options:
+        - Broken or 404 link
+        - Repository renamed or redirected
+        - Repository archived, disabled, or unmaintained
+        - Upstream license changed
+        - Factual or compatibility drift
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: affected_urls
+    attributes:
+      label: Affected URL(s)
+      description: Paste the broken, redirected, or outdated URLs from the project record or README.
+      placeholder: https://github.com/owner/repo
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Details and upstream evidence
+      description: Explain what changed and link to the current upstream commit, release, or documentation.
+    validations:
+      required: true

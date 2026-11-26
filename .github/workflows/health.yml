@@ -33,8 +33,8 @@ jobs:
       - name: Observe public repository metadata
         env:
           GH_TOKEN: ${{ github.token }}
-        run: python scripts/health.py
-      - name: Generate and validate the browsing view
+        run: python scripts/health.py --summary-file "${{ runner.temp }}/health-pr-summary.md"
+      - name: Generate and validate catalog outputs
         run: |
           python scripts/catalog.py render
           python scripts/catalog.py check
@@ -46,18 +46,11 @@ jobs:
           branch: automation/catalog-health
           add-paths: |
             data/health.json
+            data/catalog.json
             README.md
           commit-message: "chore: refresh repository health observations"
           title: "Refresh weekly repository health observations"
-          body: |
-            Refresh public GitHub repository observations and the generated README.
-
-            Review unavailable, archived, disabled, or redirected repositories.
-            Failed checks retain prior observations; they do not establish that a project is gone.
-            Documentation-review dates and curated project records are unchanged.
-            No upstream code was installed or run, and no entries were removed.
-            Routine refreshes merge after the health safety gate and required catalog and documentation CI jobs pass.
-            Flagged observations or other changes stay open for manual review.
+          body-path: ${{ runner.temp }}/health-pr-summary.md
       - name: Run catalog CI and merge a routine refresh
         env:
           GH_TOKEN: ${{ github.token }}

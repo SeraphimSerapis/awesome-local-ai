@@ -187,6 +187,27 @@ class MergePolicyTests(unittest.TestCase):
                 self.assertEqual(result, 1)
                 self.assertFalse(any(call.args[:3] == ("gh", "pr", "merge") for call in calls))
 
+    def test_main_surfaces_subprocess_stderr_on_merge_failure(self):
+        event = {"repository": {"default_branch": "main"}}
+        jobs = {"total_count": len(self.jobs), "jobs": self.jobs}
+        responses = [self.run, jobs, [self.pr], {"object": {"sha": "base"}}, deepcopy(self.pr)]
+        merge_error = subprocess.CalledProcessError(
+            1, ["gh", "pr", "merge"], output="", stderr="GraphQL: Protected branch ruleset blocked merge\n"
+        )
+        stderr = io.StringIO()
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "event.json"
+            path.write_text(json.dumps(event), encoding="utf-8")
+            with patch.dict(os.environ, {"GITHUB_REPOSITORY": self.repository, "GITHUB_EVENT_PATH": str(path),
+                                         "HEALTH_CI_RUN_ID": "123"}), \
+                    patch("merge_health.api", side_effect=responses), \
+                    patch("merge_health.validate_content", return_value="base"), \
+                    patch("merge_health.command", side_effect=["", merge_error]), \
+                    patch("sys.stdout", io.StringIO()), patch("sys.stderr", stderr):
+                result = merge_health.main()
+        self.assertEqual(result, 1)
+        self.assertIn("Protected branch ruleset blocked merge", stderr.getvalue())
+
 
 @unittest.skipUnless(shutil.which("git"), "Git is needed for merge-gate integration tests")
 class MergeContentTests(unittest.TestCase):
@@ -207,6 +228,7 @@ class MergeContentTests(unittest.TestCase):
         self.record = health.observe(self.project["repository"], None, self.today, lambda _: metadata)
         self.snapshot = {self.project["id"]: self.record}
         self.readme = self.root / "README.md"
+        self.index = self.root / catalog.CATALOG_INDEX
         self.readme.write_text(f"# Fixture\n\nManual text.\n\n{catalog.START}\n\n{catalog.END}\n", encoding="utf-8")
         self.write_snapshot({self.project["id"]: dict(self.record, checked_at=self.yesterday,
                                                     last_successful_check=self.yesterday)})
@@ -226,6 +248,7 @@ class MergeContentTests(unittest.TestCase):
         health.write_snapshot(self.root / "data/health.json", snapshot)
         taxonomy, projects = catalog.load_catalog(self.root)
         self.readme.write_text(catalog.render_readme(self.root, taxonomy, projects), encoding="utf-8")
+        self.index.write_text(catalog.render_catalog_json(self.root, taxonomy, projects), encoding="utf-8")
 
     def candidate(self):
         self.commit("refresh")
@@ -298,6 +321,58 @@ class MergeContentTests(unittest.TestCase):
                 sha = self.candidate()
                 with self.assertRaisesRegex(catalog.CatalogError, "README differs"):
                     merge_health.validate_content(self.root, sha, self.today)
+
+    def test_validate_snapshot_reports_specific_reasons_across_all_projects(self):
+        second = deepcopy(self.project)
+        second.update(id="second-project", name="Second Project", repository="https://github.com/example/second")
+        snapshot = {
+            self.project["id"]: dict(
+                self.record,
+                archived=True,
+                canonical_repository="https://github.com/example/renamed",
+            ),
+            second["id"]: dict(
+                self.record,
+                repository=second["repository"],
+                canonical_repository=second["repository"],
+                status="unavailable",
+                detail="HTTP 404",
+                checked_at=self.yesterday,
+                last_successful_check=self.yesterday,
+            ),
+        }
+        with self.assertRaises(catalog.CatalogError) as ctx:
+            merge_health.validate_snapshot(snapshot, [self.project, second], self.today)
+        message = str(ctx.exception)
+        self.assertIn("example-project:", message)
+        self.assertIn("archived=True", message)
+        self.assertIn("redirected to https://github.com/example/renamed", message)
+        self.assertIn("second-project:", message)
+        self.assertIn("status=unavailable (HTTP 404)", message)
+        self.assertIn(f"stale check date {self.yesterday}", message)
+
+    def test_tampered_executable_and_deleted_catalog_index_block(self):
+        self.write_snapshot(self.snapshot)
+        self.index.write_text(self.index.read_text(encoding="utf-8") + "\n", encoding="utf-8")
+        sha = self.candidate()
+        with self.assertRaisesRegex(catalog.CatalogError, "data/catalog.json differs"):
+            merge_health.validate_content(self.root, sha, self.today)
+
+        self.write_snapshot(self.snapshot)
+        self.git("add", ".")
+        self.git("update-index", "--chmod=+x", catalog.CATALOG_INDEX)
+        self.git("-c", "user.name=Health tests", "-c", "user.email=tests@example.invalid",
+                 "-c", "commit.gpgsign=false", "commit", "-qm", "executable catalog index")
+        sha = self.git("rev-parse", "HEAD").strip()
+        self.git("checkout", "--force", "--detach", self.base)
+        with self.assertRaisesRegex(catalog.CatalogError, "regular non-executable"):
+            merge_health.validate_content(self.root, sha, self.today)
+
+        self.write_snapshot(self.snapshot)
+        self.index.unlink()
+        sha = self.candidate()
+        with self.assertRaisesRegex(catalog.CatalogError, "regular non-executable"):
+            merge_health.validate_content(self.root, sha, self.today)
 
     def test_deleted_snapshot_and_executable_readme_block(self):
         self.write_snapshot(self.snapshot)

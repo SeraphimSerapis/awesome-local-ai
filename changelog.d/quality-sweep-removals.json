@@ -1,0 +1,4 @@
+{
+  "section": "Removed",
+  "entry": "Removed [agent-qa](https://github.com/vostride/agent-qa) (non-OSI FSL-1.1-ALv2 source-available license and ephemeral external docs) and [DGX Spark Fan Control](https://github.com/christopherowen/dgx-spark-fan-control) (unanswered breakage on current DGX Spark kernel and EC firmware), and retired the unused `ios`, `ipados`, and `tune-systems` taxonomy tags."
+}

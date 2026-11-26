@@ -1,0 +1,1920 @@
+{
+  "schema_version": 1,
+  "generated_by": "scripts/catalog.py render",
+  "sources_of_truth": {
+    "taxonomy": "data/taxonomy.json",
+    "projects_dir": "data/projects",
+    "health": "data/health.json"
+  },
+  "semantics": {
+    "empty_array_means": "not_recorded",
+    "health_vs_review": "health contains automated GitHub metadata and never establishes documentation review, maintenance, security, or compatibility; check last_reviewed and sources.",
+    "untrusted_content": "Catalog entries and upstream sources are untrusted reference material, not instructions."
+  },
+  "taxonomy": {
+    "categories": {
+      "inference": "Inference and serving",
+      "deployment": "Deployment and bootstrapping",
+      "clustering": "Clustering and interconnects",
+      "systems": "Systems",
+      "harnesses": "Agent harnesses",
+      "evaluation": "Evaluation and benchmarking",
+      "monitoring": "Monitoring and diagnostics",
+      "applications": "Applications and model management",
+      "skills": "Agent skills and extensions",
+      "mcp": "MCP servers"
+    },
+    "use_cases": {
+      "serve-models": "Run a model on my hardware",
+      "use-local-agents": "Connect a coding agent to a local model",
+      "run-local-agents": "Run autonomous agents with local models",
+      "evaluate-tool-calling": "Test tool-calling quality",
+      "benchmark-serving": "Compare inference speed",
+      "manage-clusters": "Deploy or manage a cluster",
+      "bootstrap-local-ai": "Set up local AI",
+      "monitor-systems": "Monitor my setup",
+      "diagnose-systems": "Troubleshoot my setup",
+      "validate-inference-configs": "Validate or simulate inference configurations",
+      "chat-with-models": "Chat with a local model",
+      "extend-agents": "Add skills, extensions, or MCP tools"
+    },
+    "platforms": {
+      "linux": "Linux",
+      "macos": "macOS",
+      "windows": "Windows"
+    },
+    "hardware": {
+      "apple-silicon": "Apple Silicon",
+      "nvidia-gpu": "NVIDIA GPU",
+      "amd-gpu": "AMD GPU",
+      "dgx-spark": "DGX Spark / GB10",
+      "cpu": "CPU"
+    },
+    "local_modes": {
+      "local": "Local workload",
+      "local-client": "Local client or agent"
+    }
+  },
+  "projects": [
+    {
+      "id": "audiosmith",
+      "name": "AudioSmith",
+      "repository": "https://github.com/hehehai/AudioSmith",
+      "description": "macOS voice studio that runs text to speech, voice cloning, audiobooks, dubbing and transcription on the Mac's GPU with MLX, with a local OpenAI-compatible API and MCP server.",
+      "category": "applications",
+      "use_cases": [
+        "serve-models",
+        "extend-agents"
+      ],
+      "platforms": [
+        "macos"
+      ],
+      "hardware": [
+        "apple-silicon"
+      ],
+      "local_mode": "local",
+      "compatibility": [
+        "Runs Qwen3-TTS, Kokoro, Chatterbox, VoxCPM2, Qwen3-ASR, Whisper and other models with MLX on Apple silicon, without Python.",
+        "Serves an OpenAI-compatible speech and transcription API on 127.0.0.1:3901/v1 and an MCP server over HTTP and stdio."
+      ],
+      "limitations": [
+        "Needs macOS 15 or later on Apple silicon; 8 GB of memory runs the Fast pack and 24 GB the Quality pack, with 1.3 to 17 GB of model downloads.",
+        "Beta software.",
+        "Model weights keep their own licences; OmniVoice is CC BY-NC 4.0 (non-commercial) and the app asks before downloading it.",
+        "Generated audio carries an AudioSeal watermark by default; the optional phone agent uses the user's own Twilio account.",
+        "Microphone and Accessibility permissions are asked only for recording and dictation. Official builds check actnow.dev once a day for software updates and, when the user downloads them, fetch ffmpeg and yt-dlp from github.com or mirror.actnow.dev; feedback is sent to actnow.dev only when the user sends it.",
+        "Official builds add dictation sounds from a private library that is not under the AGPL; builds from source use system sounds instead."
+      ],
+      "license": {
+        "spdx": "AGPL-3.0-only",
+        "url": "https://raw.githubusercontent.com/hehehai/AudioSmith/4e52f9102efa57b03feadbfb1bf7ce4937835884/LICENSE"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/hehehai/AudioSmith/4e52f9102efa57b03feadbfb1bf7ce4937835884/README.md",
+          "note": "Features, model list with licences, memory and disk requirements, measured speeds, MCP and API overview, release downloads and privacy behaviour."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/hehehai/AudioSmith/4e52f9102efa57b03feadbfb1bf7ce4937835884/docs/local-api.md",
+          "note": "Local OpenAI-compatible API endpoints and MCP server transports."
+        }
+      ],
+      "last_reviewed": "2026-11-25",
+      "record_path": "data/projects/audiosmith.json",
+      "labels": {
+        "category": "Applications and model management",
+        "local_mode": "Local workload",
+        "use_cases": [
+          "Run a model on my hardware",
+          "Add skills, extensions, or MCP tools"
+        ],
+        "platforms": [
+          "macOS"
+        ],
+        "hardware": [
+          "Apple Silicon"
+        ]
+      },
+      "health": {
+        "checked_at": "2026-11-26",
+        "status": "reachable",
+        "detail": null,
+        "last_successful_check": "2026-11-26",
+        "canonical_repository": "https://github.com/hehehai/AudioSmith",
+        "archived": false,
+        "disabled": false,
+        "last_push": "2026-11-23T18:32:27Z",
+        "last_default_branch_commit": "2026-11-23T18:32:25Z"
+      },
+      "health_flags": []
+    },
+    {
+      "id": "clickhouse-loom",
+      "name": "ClickHouse Loom",
+      "repository": "https://github.com/ClickHouse/loom",
+      "description": "Self-hosted MCP server for shared agent memory, cited document retrieval and code intelligence, with local embedding and LLM options.",
+      "category": "mcp",
+      "use_cases": [
+        "extend-agents"
+      ],
+      "platforms": [],
+      "hardware": [],
+      "local_mode": "local-client",
+      "compatibility": [
+        "MCP over Streamable HTTP (plus mcp-remote bridge for stdio-only clients).",
+        "LLM jobs on Ollama, llama.cpp llama-server, or other OpenAI chat-completions endpoints via LOOM_LLM_PROVIDER=local, alongside the released image's bundled CPU embedder.",
+        "Claude Code and Codex plugins, plus MCP setup helpers for Cursor, VS Code, Cline, Windsurf, Zed, Gemini CLI and OpenCode."
+      ],
+      "limitations": [
+        "Released as v1.3.0 (evidence pinned to main at commit 06544c04). This entry has not qualified a local-model runtime or any OS or hardware target; upstream notes that prompts and thresholds are tuned on hosted models and no published benchmark covers a local model.",
+        "Self-hosted deployment needs Docker with Compose (WSL 2 on Windows) or a Kubernetes cluster via the Helm chart; platform and hardware tags are omitted because physical target tests are not established for this entry.",
+        "The released Docker image carries a local bge-small CPU embedder and defaults to a fake-echo-1 placeholder LLM unless the interactive installer detects Ollama or LOOM_LOCAL_MODELS=ollama is set. A source checkout defaults to fake embedding and LLM providers.",
+        "Local LLM jobs require a separately installed Ollama or llama.cpp server with a large context window (upstream recommends OLLAMA_CONTEXT_LENGTH=32768 for extraction). The local preset disables the capture verifier, conflict resolver and entity extraction to protect small local models.",
+        "Local providers do not guarantee offline operation or private client behavior. Hosted provider overrides, independently configured coding clients and optional ClickStack OTLP or Langfuse trace exports can send processed data elsewhere."
+      ],
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://raw.githubusercontent.com/ClickHouse/loom/06544c04c9466a8d9f9c7c40f27fa30063f55792/LICENSE"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/ClickHouse/loom/06544c04c9466a8d9f9c7c40f27fa30063f55792/README.md",
+          "note": "Shared memory, document search, code intelligence, self-hosted deployment and coding-agent integrations."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/ClickHouse/loom/06544c04c9466a8d9f9c7c40f27fa30063f55792/docs/getting-started/quickstart.md",
+          "note": "Released Docker installer, Compose and WSL 2 prerequisites, bundled local bge-small embedder versus fake LLM default, interactive Ollama detection, and source checkout defaults."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/ClickHouse/loom/06544c04c9466a8d9f9c7c40f27fa30063f55792/docs/getting-started/models-and-keys.md",
+          "note": "Local Ollama and llama.cpp configuration, context window and local-preset trade-offs, unbenchmarked local quality caveat, and per-job hosted overrides."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/ClickHouse/loom/06544c04c9466a8d9f9c7c40f27fa30063f55792/docs/features/integrations/mcp-clients.md",
+          "note": "Streamable HTTP MCP endpoint, mcp-remote stdio bridge, Claude Code and Codex plugins, and loom install client helpers."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/ClickHouse/loom/06544c04c9466a8d9f9c7c40f27fa30063f55792/docs/use-cases/document-search.md",
+          "note": "Document retrieval with source citations; the calling agent or model writes the answer."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/ClickHouse/loom/06544c04c9466a8d9f9c7c40f27fa30063f55792/docs/operations/kubernetes.md",
+          "note": "Self-hosted Kubernetes deployment with the Helm chart."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/ClickHouse/loom/06544c04c9466a8d9f9c7c40f27fa30063f55792/docs/features/integrations/clickstack.md",
+          "note": "Default local ClickHouse telemetry storage and optional export to a configured OTLP endpoint."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/ClickHouse/loom/06544c04c9466a8d9f9c7c40f27fa30063f55792/docs/features/integrations/langfuse.md",
+          "note": "Optional trace export to a separately configured Langfuse service."
+        }
+      ],
+      "last_reviewed": "2026-11-26",
+      "record_path": "data/projects/clickhouse-loom.json",
+      "labels": {
+        "category": "MCP servers",
+        "local_mode": "Local client or agent",
+        "use_cases": [
+          "Add skills, extensions, or MCP tools"
+        ],
+        "platforms": [],
+        "hardware": []
+      },
+      "health": {
+        "checked_at": "2026-11-26",
+        "status": "reachable",
+        "detail": null,
+        "last_successful_check": "2026-11-26",
+        "canonical_repository": "https://github.com/ClickHouse/loom",
+        "archived": false,
+        "disabled": false,
+        "last_push": "2026-11-26T04:17:14Z",
+        "last_default_branch_commit": "2026-11-26T04:17:12Z"
+      },
+      "health_flags": []
+    },
+    {
+      "id": "contemplative-agent",
+      "name": "Contemplative Agent",
+      "repository": "https://github.com/shimo4228/contemplative-agent",
+      "description": "Run an autonomous agent on a local LLM through Ollama that posts on Moltbook, logs every action, and stages changes to its own prompts for a person to adopt or reject.",
+      "category": "applications",
+      "use_cases": [
+        "run-local-agents"
+      ],
+      "platforms": [
+        "macos"
+      ],
+      "hardware": [
+        "apple-silicon"
+      ],
+      "local_mode": "local-client",
+      "compatibility": [
+        "Ollama on localhost for generation (Gemma 4 E4B by default, or another local chat model) and embeddings (nomic-embed-text)."
+      ],
+      "limitations": [
+        "Needs a separately installed Ollama and about 10 GB of disk for the models; the documented tested setup is an Apple Silicon Mac with 16 GB of memory.",
+        "Posting is public and needs a Moltbook account; the owner verifies an email address and an X account (as of October 2026). A local two-agent dialogue runs without an account.",
+        "Posts wait for confirmation by default, but scheduled sessions run with --auto and post without asking. The agent talks only to moltbook.com and to Ollama on localhost.",
+        "A long-running research experiment, not a productivity tool; changes it proposes to its constitution, identity, and skills take effect only after a person adopts them."
+      ],
+      "license": {
+        "spdx": "MIT",
+        "url": "https://raw.githubusercontent.com/shimo4228/contemplative-agent/620728552019f8be5ae9cb843400592ce5cde12d/LICENSE"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/shimo4228/contemplative-agent/620728552019f8be5ae9cb843400592ce5cde12d/README.md",
+          "note": "Upstream description, Quick Start (Ollama models, disk, tested hardware), account requirements for Moltbook, autonomy levels, and network scope."
+        }
+      ],
+      "last_reviewed": "2026-10-17",
+      "record_path": "data/projects/contemplative-agent.json",
+      "labels": {
+        "category": "Applications and model management",
+        "local_mode": "Local client or agent",
+        "use_cases": [
+          "Run autonomous agents with local models"
+        ],
+        "platforms": [
+          "macOS"
+        ],
+        "hardware": [
+          "Apple Silicon"
+        ]
+      },
+      "health": {
+        "checked_at": "2026-11-26",
+        "status": "reachable",
+        "detail": null,
+        "last_successful_check": "2026-11-26",
+        "canonical_repository": "https://github.com/shimo4228/contemplative-agent",
+        "archived": false,
+        "disabled": false,
+        "last_push": "2026-11-25T11:07:04Z",
+        "last_default_branch_commit": "2026-11-25T11:07:03Z"
+      },
+      "health_flags": []
+    },
+    {
+      "id": "deepseek-harness",
+      "name": "DeepSeek Harness",
+      "repository": "https://github.com/deepseek-ai/deepseek-harness",
+      "description": "Run a plugin-based agent harness with a web UI and configurable model-provider adapters.",
+      "category": "harnesses",
+      "use_cases": [
+        "use-local-agents",
+        "extend-agents"
+      ],
+      "platforms": [],
+      "hardware": [],
+      "local_mode": "local-client",
+      "compatibility": [
+        "Custom self-hosted model APIs using OpenAI Chat Completions, Responses, or Anthropic Messages."
+      ],
+      "limitations": [
+        "Developer preview with compatibility-breaking changes; review the upstream safety notice.",
+        "Self-hosted endpoints may need explicit request-compatibility settings; protocol support is not full feature certification."
+      ],
+      "license": {
+        "spdx": "MIT",
+        "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/d743267388641bc76f17c45ce8b4c231aed1d32c/LICENSE"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/d743267388641bc76f17c45ce8b4c231aed1d32c/README.md",
+          "note": "Upstream description, setup, and documented requirements."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/d743267388641bc76f17c45ce8b4c231aed1d32c/docs/user/guide/providers.md",
+          "note": "Documents self-hosted custom model APIs and request-compatibility settings."
+        }
+      ],
+      "last_reviewed": "2026-10-10",
+      "record_path": "data/projects/deepseek-harness.json",
+      "labels": {
+        "category": "Agent harnesses",
+        "local_mode": "Local client or agent",
+        "use_cases": [
+          "Connect a coding agent to a local model",
+          "Add skills, extensions, or MCP tools"
+        ],
+        "platforms": [],
+        "hardware": []
+      },
+      "health": {
+        "checked_at": "2026-11-26",
+        "status": "reachable",
+        "detail": null,
+        "last_successful_check": "2026-11-26",
+        "canonical_repository": "https://github.com/deepseek-ai/deepseek-harness",
+        "archived": false,
+        "disabled": false,
+        "last_push": "2026-11-22T11:00:05Z",
+        "last_default_branch_commit": "2026-11-22T08:50:28Z"
+      },
+      "health_flags": []
+    },
+    {
+      "id": "dwarfstar",
+      "name": "DwarfStar / ds4",
+      "repository": "https://github.com/antirez/ds4",
+      "description": "Run a focused native inference engine and coding agent for selected large models on consumer hardware.",
+      "category": "inference",
+      "use_cases": [
+        "serve-models",
+        "use-local-agents",
+        "chat-with-models"
+      ],
+      "platforms": [
+        "macos",
+        "linux"
+      ],
+      "hardware": [
+        "apple-silicon",
+        "nvidia-gpu",
+        "amd-gpu",
+        "dgx-spark"
+      ],
+      "local_mode": "local",
+      "compatibility": [
+        "Metal, CUDA, and ROCm backends; native coding agent and HTTP server.",
+        "OpenAI-style Chat Completions, Responses, and Completions; Anthropic-style Messages."
+      ],
+      "limitations": [
+        "Beta-quality software with fast-changing model support; uses project-produced GGUF files, not arbitrary GGUF models.",
+        "Metal primarily targets Macs with 96 GB or more; smaller machines and larger models may need SSD streaming."
+      ],
+      "license": {
+        "spdx": "MIT",
+        "url": "https://raw.githubusercontent.com/antirez/ds4/fc80bd695da76ee14bcb86820bf900a5cdfda806/LICENSE"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/antirez/ds4/fc80bd695da76ee14bcb86820bf900a5cdfda806/README.md",
+          "note": "Upstream description, setup, and documented requirements."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/antirez/ds4/fc80bd695da76ee14bcb86820bf900a5cdfda806/docs/SERVER.md",
+          "note": "Documents serving endpoints, streaming, tool calls, and session limits."
+        }
+      ],
+      "last_reviewed": "2026-10-10",
+      "record_path": "data/projects/dwarfstar.json",
+      "labels": {
+        "category": "Inference and serving",
+        "local_mode": "Local workload",
+        "use_cases": [
+          "Run a model on my hardware",
+          "Connect a coding agent to a local model",
+          "Chat with a local model"
+        ],
+        "platforms": [
+          "macOS",
+          "Linux"
+        ],
+        "hardware": [
+          "Apple Silicon",
+          "NVIDIA GPU",
+          "AMD GPU",
+          "DGX Spark / GB10"
+        ]
+      },
+      "health": {
+        "checked_at": "2026-11-26",
+        "status": "reachable",
+        "detail": null,
+        "last_successful_check": "2026-11-26",
+        "canonical_repository": "https://github.com/antirez/ds4",
+        "archived": false,
+        "disabled": false,
+        "last_push": "2026-11-08T09:57:40Z",
+        "last_default_branch_commit": "2026-11-03T15:55:02Z"
+      },
+      "health_flags": []
+    },
+    {
+      "id": "kapitsa",
+      "name": "Kapitsa",
+      "repository": "https://github.com/nace-ai/kapitsa",
+      "description": "Serve Qwen, Nemotron, Flint and Clover models on Apple Silicon with a native C++ engine on Metal kernels and the Neural Engine, without an MLX or llama.cpp runtime.",
+      "category": "inference",
+      "use_cases": [
+        "serve-models",
+        "use-local-agents",
+        "chat-with-models"
+      ],
+      "platforms": [
+        "macos"
+      ],
+      "hardware": [
+        "apple-silicon"
+      ],
+      "local_mode": "local",
+      "compatibility": [
+        "OpenAI- and Anthropic-compatible HTTP APIs (/v1/chat/completions, /v1/messages, /v1/responses) and a chat page.",
+        "Starts opencode, Claude Code, Codex or pi on a local model with one command.",
+        "Imports Qwen or Flint GGUF files from LM Studio, Ollama or llama.cpp."
+      ],
+      "limitations": [
+        "Requires Apple Silicon (M1 or newer) and macOS 14 or later; no Linux or Windows.",
+        "Memory: the README points 16-24 GB Macs at the 9b model (or 4b); the 35B-A3B's 4-bit build is 22.1 GB and needs a 32 GB Mac, while its 2-bit builds fit 16-24 GB Macs.",
+        "Runs the models in its catalog and imported Qwen or Flint GGUFs; Flint, Clover, the text-only Nemotrons and the 35B's 16gb build read text only.",
+        "Checks GitHub once a day for a new release and can update itself; KAPITSA_NO_AUTO_UPDATE=1 or kapitsa update --auto off turns this off."
+      ],
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://raw.githubusercontent.com/nace-ai/kapitsa/95a0a552fab5c359dd91b716e9936918d436d713/LICENSE"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/nace-ai/kapitsa/95a0a552fab5c359dd91b716e9936918d436d713/README.md",
+          "note": "Upstream description, requirements, supported models, APIs, agent commands and GGUF import."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/nace-ai/kapitsa/95a0a552fab5c359dd91b716e9936918d436d713/docs/usage.md",
+          "note": "Automatic update check, what it sends, and how to turn it off."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/nace-ai/kapitsa/95a0a552fab5c359dd91b716e9936918d436d713/docs/architecture.md",
+          "note": "Design overview; states that Kapitsa does not use the MLX or llama.cpp runtime (native C++ on Metal kernels and the Neural Engine)."
+        }
+      ],
+      "last_reviewed": "2026-11-08",
+      "record_path": "data/projects/kapitsa.json",
+      "labels": {
+        "category": "Inference and serving",
+        "local_mode": "Local workload",
+        "use_cases": [
+          "Run a model on my hardware",
+          "Connect a coding agent to a local model",
+          "Chat with a local model"
+        ],
+        "platforms": [
+          "macOS"
+        ],
+        "hardware": [
+          "Apple Silicon"
+        ]
+      },
+      "health": {
+        "checked_at": "2026-11-26",
+        "status": "reachable",
+        "detail": null,
+        "last_successful_check": "2026-11-26",
+        "canonical_repository": "https://github.com/nace-ai/kapitsa",
+        "archived": false,
+        "disabled": false,
+        "last_push": "2026-11-25T09:00:10Z",
+        "last_default_branch_commit": "2026-11-25T09:00:06Z"
+      },
+      "health_flags": []
+    },
+    {
+      "id": "live-translator",
+      "name": "Live Translator",
+      "repository": "https://github.com/umutcetinkaya/live-translator",
+      "description": "Mac menu bar app that shows live translated subtitles for any system audio, translating on-device with TranslateGemma through MLX and optionally reading them aloud.",
+      "category": "applications",
+      "use_cases": [
+        "serve-models"
+      ],
+      "platforms": [
+        "macos"
+      ],
+      "hardware": [
+        "apple-silicon"
+      ],
+      "local_mode": "local",
+      "compatibility": [
+        "Runs TranslateGemma 4B (4-bit or 8-bit, chosen by memory) or an opt-in 12B 4-bit model through mlx-lm; models download from Hugging Face on first use.",
+        "Captures system audio with ScreenCaptureKit and transcribes it with Apple speech recognition; speech output uses the built-in macOS voices or Piper.",
+        "OpenAI, Gemini and Anthropic providers are optional and need the user's own API key."
+      ],
+      "limitations": [
+        "The free on-device mode needs Apple Silicon and macOS 14 or newer; Intel Macs need a cloud API key.",
+        "Apple speech recognition runs on-device only for languages whose dictation model is installed; other languages use Apple's servers.",
+        "The first run downloads 2.2 to 6.7 GB of model weights, which follow the Gemma Terms of Use.",
+        "Needs the Screen and System Audio Recording permission."
+      ],
+      "license": {
+        "spdx": "MIT",
+        "url": "https://raw.githubusercontent.com/umutcetinkaya/live-translator/2708f8dd81f014fa811e4d98abdbf863efed2356/LICENSE"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/umutcetinkaya/live-translator/2708f8dd81f014fa811e4d98abdbf863efed2356/README.md",
+          "note": "On-device model tiers and download sizes, Apple Silicon and macOS 14 requirement, speech recognition privacy behaviour, permissions, optional cloud providers and voices."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/umutcetinkaya/live-translator/2708f8dd81f014fa811e4d98abdbf863efed2356/src/local_models.py",
+          "note": "Model tiers, Hugging Face repositories and the memory-based default choice."
+        }
+      ],
+      "last_reviewed": "2026-11-21",
+      "record_path": "data/projects/live-translator.json",
+      "labels": {
+        "category": "Applications and model management",
+        "local_mode": "Local workload",
+        "use_cases": [
+          "Run a model on my hardware"
+        ],
+        "platforms": [
+          "macOS"
+        ],
+        "hardware": [
+          "Apple Silicon"
+        ]
+      },
+      "health": {
+        "checked_at": "2026-11-26",
+        "status": "reachable",
+        "detail": null,
+        "last_successful_check": "2026-11-26",
+        "canonical_repository": "https://github.com/umutcetinkaya/live-translator",
+        "archived": false,
+        "disabled": false,
+        "last_push": "2026-11-21T12:30:51Z",
+        "last_default_branch_commit": "2026-11-21T12:30:46Z"
+      },
+      "health_flags": []
+    },
+    {
+      "id": "llama-benchy",
+      "name": "llama-benchy",
+      "repository": "https://github.com/eugr/llama-benchy",
+      "description": "Measure prompt-processing and token-generation speed at different context depths through a model server's API.",
+      "category": "evaluation",
+      "use_cases": [
+        "benchmark-serving"
+      ],
+      "platforms": [],
+      "hardware": [],
+      "local_mode": "local-client",
+      "compatibility": [
+        "OpenAI-compatible /v1/chat/completions endpoints."
+      ],
+      "limitations": [
+        "Measures serving performance, not tool-calling correctness or complete coding-agent quality."
+      ],
+      "license": {
+        "spdx": "MIT",
+        "url": "https://raw.githubusercontent.com/eugr/llama-benchy/e9be344578cec17745066b220798b80a0d2686d3/LICENSE"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/eugr/llama-benchy/e9be344578cec17745066b220798b80a0d2686d3/README.md",
+          "note": "Upstream description, setup, and documented requirements."
+        }
+      ],
+      "last_reviewed": "2026-10-10",
+      "record_path": "data/projects/llama-benchy.json",
+      "labels": {
+        "category": "Evaluation and benchmarking",
+        "local_mode": "Local client or agent",
+        "use_cases": [
+          "Compare inference speed"
+        ],
+        "platforms": [],
+        "hardware": []
+      },
+      "health": {
+        "checked_at": "2026-11-26",
+        "status": "reachable",
+        "detail": null,
+        "last_successful_check": "2026-11-26",
+        "canonical_repository": "https://github.com/eugr/llama-benchy",
+        "archived": false,
+        "disabled": false,
+        "last_push": "2026-07-10T19:18:53Z",
+        "last_default_branch_commit": "2026-07-10T19:18:40Z"
+      },
+      "health_flags": []
+    },
+    {
+      "id": "mlx-serve",
+      "name": "mlx-serve",
+      "repository": "https://github.com/ddalcu/mlx-serve",
+      "description": "Serve MLX and GGUF models on Apple Silicon through a native server with a companion model-management and chat app.",
+      "category": "inference",
+      "use_cases": [
+        "serve-models",
+        "use-local-agents",
+        "chat-with-models"
+      ],
+      "platforms": [
+        "macos"
+      ],
+      "hardware": [
+        "apple-silicon"
+      ],
+      "local_mode": "local",
+      "compatibility": [
+        "OpenAI- and Anthropic-compatible HTTP APIs; companion app with agent mode and MCP tools."
+      ],
+      "limitations": [
+        "Requires macOS 26.2 or newer; confirm the selected model and modality against upstream documentation."
+      ],
+      "license": {
+        "spdx": "MIT",
+        "url": "https://raw.githubusercontent.com/ddalcu/mlx-serve/1b00c65a3cdf4a60a6e64709e150b75d4ecd8b02/LICENSE"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/ddalcu/mlx-serve/1b00c65a3cdf4a60a6e64709e150b75d4ecd8b02/README.md",
+          "note": "Upstream description, setup, and documented requirements."
+        }
+      ],
+      "last_reviewed": "2026-10-10",
+      "record_path": "data/projects/mlx-serve.json",
+      "labels": {
+        "category": "Inference and serving",
+        "local_mode": "Local workload",
+        "use_cases": [
+          "Run a model on my hardware",
+          "Connect a coding agent to a local model",
+          "Chat with a local model"
+        ],
+        "platforms": [
+          "macOS"
+        ],
+        "hardware": [
+          "Apple Silicon"
+        ]
+      },
+      "health": {
+        "checked_at": "2026-11-26",
+        "status": "reachable",
+        "detail": null,
+        "last_successful_check": "2026-11-26",
+        "canonical_repository": "https://github.com/ddalcu/mlx-serve",
+        "archived": false,
+        "disabled": false,
+        "last_push": "2026-11-26T00:04:16Z",
+        "last_default_branch_commit": "2026-11-26T00:04:15Z"
+      },
+      "health_flags": []
+    },
+    {
+      "id": "off-grid-ai",
+      "name": "Off Grid AI",
+      "repository": "https://github.com/off-grid-ai/OGAD",
+      "description": "Desktop app for local chat with text and vision models, image generation, speech-to-text and text-to-speech, plus a local OpenAI-compatible API.",
+      "category": "applications",
+      "use_cases": [
+        "chat-with-models",
+        "serve-models"
+      ],
+      "platforms": [
+        "macos",
+        "windows",
+        "linux"
+      ],
+      "hardware": [
+        "apple-silicon",
+        "cpu"
+      ],
+      "local_mode": "local",
+      "compatibility": [
+        "Runs GGUF models from a built-in catalog or Hugging Face search through bundled llama.cpp, image models through stable-diffusion.cpp, transcription through whisper.cpp and speech through Kokoro.",
+        "Serves chat, vision, images, transcription, speech and embeddings on an OpenAI-compatible API at http://127.0.0.1:7878/v1 with no key by default, and can run as a headless gateway without the UI.",
+        "Adds Model Context Protocol servers (no auth, token or OAuth) as tools inside chat."
+      ],
+      "limitations": [
+        "Release builds cover macOS on Apple Silicon, Windows x64 and Linux x64 (Ubuntu 24.04 or newer).",
+        "Model downloads come from Hugging Face; the app checks for signed updates. Anonymous usage data and crash reports are sent only if the user turns them on.",
+        "The gateway listens on all IPv4 interfaces. API-key authentication is optional and off by default; reachable network peers can use model routes unless authentication is enabled.",
+        "An optional paid Pro layer (screen memory, meetings, dictation, clipboard) lives in a separate private package; the Linux build does not include it."
+      ],
+      "license": {
+        "spdx": "AGPL-3.0-only",
+        "url": "https://raw.githubusercontent.com/off-grid-ai/OGAD/312b8f45ef6afdd2bff3f7be130b4d0a23124bc8/LICENSE"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/off-grid-ai/OGAD/312b8f45ef6afdd2bff3f7be130b4d0a23124bc8/README.md",
+          "note": "Bundled engines, model catalog and Hugging Face search, Gateway endpoints and headless mode, MCP connectors, opt-in analytics, auto-update, supported platforms and the separate Pro package."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/off-grid-ai/OGAD/312b8f45ef6afdd2bff3f7be130b4d0a23124bc8/src/shared/ports.ts",
+          "note": "Defines GATEWAY_BIND_HOST as 0.0.0.0 on port 7878 and GATEWAY_HOST as 127.0.0.1 for local client URLs."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/off-grid-ai/OGAD/312b8f45ef6afdd2bff3f7be130b4d0a23124bc8/src/main/model-server.ts",
+          "note": "Binds the gateway listener to GATEWAY_BIND_HOST and checks optional Bearer API keys, off by default."
+        }
+      ],
+      "last_reviewed": "2026-11-18",
+      "record_path": "data/projects/off-grid-ai.json",
+      "labels": {
+        "category": "Applications and model management",
+        "local_mode": "Local workload",
+        "use_cases": [
+          "Chat with a local model",
+          "Run a model on my hardware"
+        ],
+        "platforms": [
+          "macOS",
+          "Windows",
+          "Linux"
+        ],
+        "hardware": [
+          "Apple Silicon",
+          "CPU"
+        ]
+      },
+      "health": {
+        "checked_at": "2026-11-26",
+        "status": "reachable",
+        "detail": null,
+        "last_successful_check": "2026-11-26",
+        "canonical_repository": "https://github.com/off-grid-ai/OGAD",
+        "archived": false,
+        "disabled": false,
+        "last_push": "2026-11-25T16:56:33Z",
+        "last_default_branch_commit": "2026-11-25T12:14:36Z"
+      },
+      "health_flags": []
+    },
+    {
+      "id": "oh-my-pi",
+      "name": "Oh My Pi",
+      "repository": "https://github.com/can1357/oh-my-pi",
+      "description": "Use a coding-agent harness with IDE-oriented tools and configurable local model providers.",
+      "category": "harnesses",
+      "use_cases": [
+        "use-local-agents",
+        "extend-agents"
+      ],
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "hardware": [],
+      "local_mode": "local-client",
+      "compatibility": [
+        "Local Ollama, LM Studio, llama.cpp, and vLLM endpoints; custom OpenAI-compatible providers."
+      ],
+      "limitations": [
+        "A local provider still needs a separately running model server and model-specific capability checks."
+      ],
+      "license": {
+        "spdx": "MIT",
+        "url": "https://raw.githubusercontent.com/can1357/oh-my-pi/5063baf59ec68ad3f2bff060a3ba44b0547eee15/LICENSE"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/can1357/oh-my-pi/5063baf59ec68ad3f2bff060a3ba44b0547eee15/README.md",
+          "note": "Upstream description, setup, and documented requirements."
+        }
+      ],
+      "last_reviewed": "2026-10-10",
+      "record_path": "data/projects/oh-my-pi.json",
+      "labels": {
+        "category": "Agent harnesses",
+        "local_mode": "Local client or agent",
+        "use_cases": [
+          "Connect a coding agent to a local model",
+          "Add skills, extensions, or MCP tools"
+        ],
+        "platforms": [
+          "Linux",
+          "macOS",
+          "Windows"
+        ],
+        "hardware": []
+      },
+      "health": {
+        "checked_at": "2026-11-26",
+        "status": "reachable",
+        "detail": null,
+        "last_successful_check": "2026-11-26",
+        "canonical_repository": "https://github.com/can1357/oh-my-pi",
+        "archived": false,
+        "disabled": false,
+        "last_push": "2026-11-26T04:15:10Z",
+        "last_default_branch_commit": "2026-11-26T00:17:41Z"
+      },
+      "health_flags": []
+    },
+    {
+      "id": "omlx",
+      "name": "oMLX",
+      "repository": "https://github.com/jundot/omlx",
+      "description": "Serve local MLX models with continuous batching, tiered memory/SSD caching, and menu-bar management.",
+      "category": "inference",
+      "use_cases": [
+        "serve-models",
+        "use-local-agents",
+        "chat-with-models"
+      ],
+      "platforms": [
+        "macos"
+      ],
+      "hardware": [
+        "apple-silicon"
+      ],
+      "local_mode": "local",
+      "compatibility": [
+        "MLX model serving; optional MCP support."
+      ],
+      "limitations": [
+        "Requires Apple Silicon and macOS 15 or newer; source installs require Python 3.11-3.13.",
+        "Some model families require custom Metal kernels; use the packaged app or follow the full Xcode build requirements."
+      ],
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://raw.githubusercontent.com/jundot/omlx/013bc3f3a48fa9a4b7dffbfeb6cdc7c1face1c5d/LICENSE"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/jundot/omlx/013bc3f3a48fa9a4b7dffbfeb6cdc7c1face1c5d/README.md",
+          "note": "Upstream description, setup, and documented requirements."
+        }
+      ],
+      "last_reviewed": "2026-10-10",
+      "record_path": "data/projects/omlx.json",
+      "labels": {
+        "category": "Inference and serving",
+        "local_mode": "Local workload",
+        "use_cases": [
+          "Run a model on my hardware",
+          "Connect a coding agent to a local model",
+          "Chat with a local model"
+        ],
+        "platforms": [
+          "macOS"
+        ],
+        "hardware": [
+          "Apple Silicon"
+        ]
+      },
+      "health": {
+        "checked_at": "2026-11-26",
+        "status": "reachable",
+        "detail": null,
+        "last_successful_check": "2026-11-26",
+        "canonical_repository": "https://github.com/jundot/omlx",
+        "archived": false,
+        "disabled": false,
+        "last_push": "2026-11-26T04:14:22Z",
+        "last_default_branch_commit": "2026-11-26T04:14:22Z"
+      },
+      "health_flags": []
+    },
+    {
+      "id": "pi",
+      "name": "Pi",
+      "repository": "https://github.com/earendil-works/pi",
+      "description": "Use an extensible coding-agent harness with local model connections, skills, extensions, and automation interfaces.",
+      "category": "harnesses",
+      "use_cases": [
+        "use-local-agents",
+        "extend-agents"
+      ],
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "hardware": [],
+      "local_mode": "local-client",
+      "compatibility": [
+        "llama.cpp router; custom OpenAI-, Anthropic-, or Google-compatible endpoints; skills and extensions."
+      ],
+      "limitations": [
+        "Local inference needs a separate model server; endpoint-specific behavior may need configuration."
+      ],
+      "license": {
+        "spdx": "MIT",
+        "url": "https://raw.githubusercontent.com/earendil-works/pi/4ac0bd8c7b96d72cb6a73226edc7c9ecaae1d14e/LICENSE"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/earendil-works/pi/4ac0bd8c7b96d72cb6a73226edc7c9ecaae1d14e/README.md",
+          "note": "Upstream description, setup, and documented requirements."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/earendil-works/pi/4ac0bd8c7b96d72cb6a73226edc7c9ecaae1d14e/packages/coding-agent/docs/models.md",
+          "note": "Documents local models and custom compatible endpoints."
+        }
+      ],
+      "last_reviewed": "2026-10-10",
+      "record_path": "data/projects/pi.json",
+      "labels": {
+        "category": "Agent harnesses",
+        "local_mode": "Local client or agent",
+        "use_cases": [
+          "Connect a coding agent to a local model",
+          "Add skills, extensions, or MCP tools"
+        ],
+        "platforms": [
+          "Linux",
+          "macOS",
+          "Windows"
+        ],
+        "hardware": []
+      },
+      "health": {
+        "checked_at": "2026-11-26",
+        "status": "reachable",
+        "detail": null,
+        "last_successful_check": "2026-11-26",
+        "canonical_repository": "https://github.com/earendil-works/pi",
+        "archived": false,
+        "disabled": false,
+        "last_push": "2026-11-26T02:41:18Z",
+        "last_default_branch_commit": "2026-11-26T02:40:06Z"
+      },
+      "health_flags": []
+    },
+    {
+      "id": "rai",
+      "name": "RAI",
+      "repository": "https://github.com/Classevelabs/rai",
+      "description": "Run 4-bit language models on the CPU with a Rust engine, a local chat page and HTTP API, and one-step installers for Windows, macOS and Linux.",
+      "category": "inference",
+      "use_cases": [
+        "serve-models",
+        "chat-with-models",
+        "bootstrap-local-ai"
+      ],
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "hardware": [
+        "cpu",
+        "apple-silicon"
+      ],
+      "local_mode": "local",
+      "compatibility": [
+        "Converts Hugging Face safetensors checkpoints of Llama 2 to 3.2, Mistral 7B, Mixtral 8x7B, Qwen 2 to 3, Gemma 1 and 2, Gemma 3 270M and 1B, Phi-3 mini 4k, OLMo 2, OLMoE, TinyLlama and SmolLM to its own .raimodel format, without Python.",
+        "Serves a chat page and a JSON chat API (/api/chat, streaming at /api/chat/stream) on 127.0.0.1, and answers single prompts from the command line.",
+        "rai-get-model downloads Qwen2.5 Instruct starter models (0.5B, 1.5B, 7B) pinned to one Hugging Face commit and checked file by file against SHA-256."
+      ],
+      "limitations": [
+        "Runs only its own .raimodel format: GGUF files and pickle checkpoints such as pytorch_model.bin are not read, and checkpoints outside the listed families are refused at conversion.",
+        "Stores weights at 4 bits, with the embedding table at 8 bits.",
+        "The AVX2 fast path needs an x86-64 CPU with AVX2, FMA and F16C; other CPUs, Apple Silicon included, use a portable path.",
+        "Needs Windows 10 or 11, macOS 10.12 or later on Intel or 11 or later on Apple Silicon, or x86-64 Linux with glibc 2.28 or later; ARM Linux builds from source.",
+        "rai-get-model downloads models from Hugging Face; the rai program itself makes no network connections."
+      ],
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://raw.githubusercontent.com/Classevelabs/rai/02b0b95c5e2225e6ea72d5fb3289ce368cb9b7d1/LICENSE"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/Classevelabs/rai/02b0b95c5e2225e6ea72d5fb3289ce368cb9b7d1/README.md",
+          "note": "Description, installers, starter models, system requirements and network behaviour."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Classevelabs/rai/02b0b95c5e2225e6ea72d5fb3289ce368cb9b7d1/INSTALL.md",
+          "note": "Installers and requirements per operating system, and where models are stored."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Classevelabs/rai/02b0b95c5e2225e6ea72d5fb3289ce368cb9b7d1/docs/MODELS.md",
+          "note": "Model families that convert and that are refused, formats that are not read, and the starter models' pinning."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Classevelabs/rai/02b0b95c5e2225e6ea72d5fb3289ce368cb9b7d1/docs/USING.md",
+          "note": "Chat page, chat API routes and fields, and the loopback-only listener."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Classevelabs/rai/02b0b95c5e2225e6ea72d5fb3289ce368cb9b7d1/docs/ARCHITECTURE.md",
+          "note": "4-bit linear layers and the 8-bit embedding table."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Classevelabs/rai/02b0b95c5e2225e6ea72d5fb3289ce368cb9b7d1/docs/TROUBLESHOOTING.md",
+          "note": "x86-64 Linux release binaries, glibc 2.28 floor, and ARM Linux source builds."
+        }
+      ],
+      "last_reviewed": "2026-11-18",
+      "record_path": "data/projects/rai.json",
+      "labels": {
+        "category": "Inference and serving",
+        "local_mode": "Local workload",
+        "use_cases": [
+          "Run a model on my hardware",
+          "Chat with a local model",
+          "Set up local AI"
+        ],
+        "platforms": [
+          "Linux",
+          "macOS",
+          "Windows"
+        ],
+        "hardware": [
+          "CPU",
+          "Apple Silicon"
+        ]
+      },
+      "health": {
+        "checked_at": "2026-11-26",
+        "status": "reachable",
+        "detail": null,
+        "last_successful_check": "2026-11-26",
+        "canonical_repository": "https://github.com/Classevelabs/rai",
+        "archived": false,
+        "disabled": false,
+        "last_push": "2026-11-17T14:23:00Z",
+        "last_default_branch_commit": "2026-11-17T14:19:54Z"
+      },
+      "health_flags": []
+    },
+    {
+      "id": "spark-doctor",
+      "name": "Spark Doctor",
+      "repository": "https://github.com/joeynyc/spark-doctor",
+      "description": "Collect DGX Spark diagnostics and explain likely system, runtime, network, and recipe problems from local evidence.",
+      "category": "monitoring",
+      "use_cases": [
+        "diagnose-systems"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "hardware": [
+        "dgx-spark"
+      ],
+      "local_mode": "local",
+      "compatibility": [
+        "DGX Spark system and Docker diagnostics; JSON and Markdown reports."
+      ],
+      "limitations": [
+        "Read-only diagnostics, not automatic repairs; requires Python 3.11 or newer.",
+        "Review and anonymize diagnostic reports before sharing them."
+      ],
+      "license": {
+        "spdx": "MIT",
+        "url": "https://raw.githubusercontent.com/joeynyc/spark-doctor/e50a14faf5fed4a9f202663451db92da34979298/LICENSE"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/joeynyc/spark-doctor/e50a14faf5fed4a9f202663451db92da34979298/README.md",
+          "note": "Upstream description, setup, and documented requirements."
+        }
+      ],
+      "last_reviewed": "2026-10-10",
+      "record_path": "data/projects/spark-doctor.json",
+      "labels": {
+        "category": "Monitoring and diagnostics",
+        "local_mode": "Local workload",
+        "use_cases": [
+          "Troubleshoot my setup"
+        ],
+        "platforms": [
+          "Linux"
+        ],
+        "hardware": [
+          "DGX Spark / GB10"
+        ]
+      },
+      "health": {
+        "checked_at": "2026-11-26",
+        "status": "reachable",
+        "detail": null,
+        "last_successful_check": "2026-11-26",
+        "canonical_repository": "https://github.com/joeynyc/spark-doctor",
+        "archived": false,
+        "disabled": false,
+        "last_push": "2026-11-18T04:51:28Z",
+        "last_default_branch_commit": "2026-11-18T04:51:26Z"
+      },
+      "health_flags": []
+    },
+    {
+      "id": "spark-vllm-docker",
+      "name": "spark-vllm-docker",
+      "repository": "https://github.com/eugr/spark-vllm-docker",
+      "description": "Run vLLM in Docker on one or more DGX Spark systems with networking and distributed-inference setup scripts.",
+      "category": "deployment",
+      "use_cases": [
+        "serve-models",
+        "manage-clusters"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "hardware": [
+        "dgx-spark"
+      ],
+      "local_mode": "local",
+      "compatibility": [
+        "vLLM; Ray or native PyTorch distributed execution; NCCL/RDMA."
+      ],
+      "limitations": [
+        "Targets DGX Spark; multi-node operation depends on compatible networking and model configuration."
+      ],
+      "license": {
+        "spdx": "MIT",
+        "url": "https://raw.githubusercontent.com/eugr/spark-vllm-docker/a4c172976a5f9f8669b356a0891bf972cae14fd4/LICENSE"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/eugr/spark-vllm-docker/a4c172976a5f9f8669b356a0891bf972cae14fd4/README.md",
+          "note": "Upstream description, setup, and documented requirements."
+        }
+      ],
+      "last_reviewed": "2026-10-10",
+      "record_path": "data/projects/spark-vllm-docker.json",
+      "labels": {
+        "category": "Deployment and bootstrapping",
+        "local_mode": "Local workload",
+        "use_cases": [
+          "Run a model on my hardware",
+          "Deploy or manage a cluster"
+        ],
+        "platforms": [
+          "Linux"
+        ],
+        "hardware": [
+          "DGX Spark / GB10"
+        ]
+      },
+      "health": {
+        "checked_at": "2026-11-26",
+        "status": "reachable",
+        "detail": null,
+        "last_successful_check": "2026-11-26",
+        "canonical_repository": "https://github.com/eugr/spark-vllm-docker",
+        "archived": false,
+        "disabled": false,
+        "last_push": "2026-11-25T14:37:17Z",
+        "last_default_branch_commit": "2026-11-25T10:41:04Z"
+      },
+      "health_flags": []
+    },
+    {
+      "id": "sparkdash",
+      "name": "SparkDash",
+      "repository": "https://github.com/MiaAI-Lab/sparkDash",
+      "description": "Monitor GPU, memory, network, and local model metrics across DGX Spark and other hosts in a web dashboard.",
+      "category": "monitoring",
+      "use_cases": [
+        "monitor-systems"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "hardware": [
+        "dgx-spark",
+        "nvidia-gpu"
+      ],
+      "local_mode": "local",
+      "compatibility": [
+        "SSH collectors for Linux, macOS, and Windows hosts; HTTP probes for local model servers."
+      ],
+      "limitations": [
+        "The dashboard runs on Linux; monitored hosts may use other operating systems.",
+        "Remote monitoring needs SSH access; review authentication before exposing the dashboard."
+      ],
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://raw.githubusercontent.com/MiaAI-Lab/sparkDash/1403c1ce79db030645c4787ca3b78529c9ea6b5b/LICENSE"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/MiaAI-Lab/sparkDash/1403c1ce79db030645c4787ca3b78529c9ea6b5b/README.md",
+          "note": "Upstream description, setup, and documented requirements."
+        }
+      ],
+      "last_reviewed": "2026-10-10",
+      "record_path": "data/projects/sparkdash.json",
+      "labels": {
+        "category": "Monitoring and diagnostics",
+        "local_mode": "Local workload",
+        "use_cases": [
+          "Monitor my setup"
+        ],
+        "platforms": [
+          "Linux"
+        ],
+        "hardware": [
+          "DGX Spark / GB10",
+          "NVIDIA GPU"
+        ]
+      },
+      "health": {
+        "checked_at": "2026-11-26",
+        "status": "reachable",
+        "detail": null,
+        "last_successful_check": "2026-11-26",
+        "canonical_repository": "https://github.com/MiaAI-Lab/sparkDash",
+        "archived": false,
+        "disabled": false,
+        "last_push": "2026-11-25T23:55:43Z",
+        "last_default_branch_commit": "2026-11-25T23:54:24Z"
+      },
+      "health_flags": []
+    },
+    {
+      "id": "sparkrun",
+      "name": "sparkrun",
+      "repository": "https://github.com/spark-arena/sparkrun",
+      "description": "Launch, manage, and stop recipe-based inference workloads on single-node or multi-node DGX Spark setups.",
+      "category": "deployment",
+      "use_cases": [
+        "serve-models",
+        "manage-clusters",
+        "bootstrap-local-ai"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "hardware": [
+        "dgx-spark"
+      ],
+      "local_mode": "local",
+      "compatibility": [
+        "vLLM, SGLang, and llama.cpp recipes; SSH-based node management and InfiniBand/RDMA tensor parallelism.",
+        "Bundled LiteLLM proxy gateway by default across stable, beta, and alpha channels; optional external plugin integrations such as SparkRoute and ColdSnap."
+      ],
+      "limitations": [
+        "Guided setup configures SSH mesh, ConnectX-7 NICs, sudoers, and earlyoom, and sparkrun update refreshes managed plugins and recipe registries unless --no-update-plugins is passed; review recipes and permissions before running.",
+        "Anonymous usage telemetry to telemetry.sparkrun.dev is enabled by default; disable persistently with sparkrun setup telemetry --disable or for one process with SPARKRUN_NO_TELEMETRY=1.",
+        "SparkRoute and ColdSnap are not bundled and are installed separately as external plugins with their own upstream repositories and licenses; OCI Relay remains bundled."
+      ],
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://raw.githubusercontent.com/spark-arena/sparkrun/593e3920ca2f74b8aa1cd59446ccbc4eeb307307/LICENSE"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/spark-arena/sparkrun/593e3920ca2f74b8aa1cd59446ccbc4eeb307307/README.md",
+          "note": "Documents multi-runtime DGX Spark recipes, guided setup permissions, update channels, and anonymous telemetry defaults and opt-out."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/spark-arena/sparkrun/593e3920ca2f74b8aa1cd59446ccbc4eeb307307/docs/SPARKROUTE.md",
+          "note": "Confirms LiteLLM is the default proxy gateway and SparkRoute and ColdSnap are separately installed external plugins rather than bundled components."
+        }
+      ],
+      "last_reviewed": "2026-11-26",
+      "record_path": "data/projects/sparkrun.json",
+      "labels": {
+        "category": "Deployment and bootstrapping",
+        "local_mode": "Local workload",
+        "use_cases": [
+          "Run a model on my hardware",
+          "Deploy or manage a cluster",
+          "Set up local AI"
+        ],
+        "platforms": [
+          "Linux"
+        ],
+        "hardware": [
+          "DGX Spark / GB10"
+        ]
+      },
+      "health": {
+        "checked_at": "2026-11-26",
+        "status": "reachable",
+        "detail": null,
+        "last_successful_check": "2026-11-26",
+        "canonical_repository": "https://github.com/spark-arena/sparkrun",
+        "archived": false,
+        "disabled": false,
+        "last_push": "2026-11-25T04:33:01Z",
+        "last_default_branch_commit": "2026-10-26T02:38:14Z"
+      },
+      "health_flags": []
+    },
+    {
+      "id": "splash",
+      "name": "Splash",
+      "repository": "https://github.com/incoai/splash",
+      "description": "Serve supported models on Apple Silicon with speculative decoding, Metal kernels, and coding-agent integrations.",
+      "category": "inference",
+      "use_cases": [
+        "serve-models",
+        "use-local-agents",
+        "chat-with-models"
+      ],
+      "platforms": [
+        "macos"
+      ],
+      "hardware": [
+        "apple-silicon"
+      ],
+      "local_mode": "local",
+      "compatibility": [
+        "OpenAI Chat Completions, Responses, and Completions; Anthropic Messages; documented Pi launch command."
+      ],
+      "limitations": [
+        "Requires Apple M3 or newer and macOS 26.4 or newer; memory requirements depend on model and quantization.",
+        "Model and draft downloads need network access on first use."
+      ],
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://raw.githubusercontent.com/incoai/splash/8a2b42069923d483151372b615f6182c72c2b6cd/LICENSE"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/incoai/splash/8a2b42069923d483151372b615f6182c72c2b6cd/README.md",
+          "note": "Upstream description, setup, and documented requirements."
+        }
+      ],
+      "last_reviewed": "2026-10-10",
+      "record_path": "data/projects/splash.json",
+      "labels": {
+        "category": "Inference and serving",
+        "local_mode": "Local workload",
+        "use_cases": [
+          "Run a model on my hardware",
+          "Connect a coding agent to a local model",
+          "Chat with a local model"
+        ],
+        "platforms": [
+          "macOS"
+        ],
+        "hardware": [
+          "Apple Silicon"
+        ]
+      },
+      "health": {
+        "checked_at": "2026-11-26",
+        "status": "reachable",
+        "detail": null,
+        "last_successful_check": "2026-11-26",
+        "canonical_repository": "https://github.com/incoai/splash",
+        "archived": false,
+        "disabled": false,
+        "last_push": "2026-11-25T12:11:17Z",
+        "last_default_branch_commit": "2026-11-25T01:28:00Z"
+      },
+      "health_flags": []
+    },
+    {
+      "id": "strata",
+      "name": "Strata",
+      "repository": "https://github.com/Niko1221/Strata",
+      "description": "Run supported Qwen models on Windows or Linux PCs with NVIDIA or AMD GPUs, with a local UI and model APIs.",
+      "category": "inference",
+      "use_cases": [
+        "serve-models",
+        "use-local-agents",
+        "chat-with-models"
+      ],
+      "platforms": [
+        "windows",
+        "linux"
+      ],
+      "hardware": [
+        "nvidia-gpu",
+        "amd-gpu"
+      ],
+      "local_mode": "local",
+      "compatibility": [
+        "OpenAI-compatible API, Anthropic Messages, OpenAI Responses, and a setup MCP server."
+      ],
+      "limitations": [
+        "The standard setup requires a supported GPU with at least 12 GB VRAM, at least 32 GB RAM, and about 80 GB free disk.",
+        "Model support is specific; experimental hardware paths and AMD vision support have additional limits."
+      ],
+      "license": {
+        "spdx": "MIT",
+        "url": "https://raw.githubusercontent.com/Niko1221/Strata/61b3fb5dd3f1e8ec09cf7e4e05208bc6d3c46406/LICENSE"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/Niko1221/Strata/61b3fb5dd3f1e8ec09cf7e4e05208bc6d3c46406/README.md",
+          "note": "Upstream description, setup, and documented requirements."
+        }
+      ],
+      "last_reviewed": "2026-10-10",
+      "record_path": "data/projects/strata.json",
+      "labels": {
+        "category": "Inference and serving",
+        "local_mode": "Local workload",
+        "use_cases": [
+          "Run a model on my hardware",
+          "Connect a coding agent to a local model",
+          "Chat with a local model"
+        ],
+        "platforms": [
+          "Windows",
+          "Linux"
+        ],
+        "hardware": [
+          "NVIDIA GPU",
+          "AMD GPU"
+        ]
+      },
+      "health": {
+        "checked_at": "2026-11-26",
+        "status": "reachable",
+        "detail": null,
+        "last_successful_check": "2026-11-26",
+        "canonical_repository": "https://github.com/Niko1221/Strata",
+        "archived": false,
+        "disabled": false,
+        "last_push": "2026-11-25T23:18:31Z",
+        "last_default_branch_commit": "2026-11-25T22:59:41Z"
+      },
+      "health_flags": []
+    },
+    {
+      "id": "tandemllm",
+      "name": "TandemEngine (TandemLLM)",
+      "repository": "https://github.com/TandemLLM/TandemEngine",
+      "description": "Serve supported LLMs on a single DGX Spark with speculative decoding, conversation caches, and an OpenAI-compatible API.",
+      "category": "inference",
+      "use_cases": [
+        "serve-models",
+        "use-local-agents"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "hardware": [
+        "dgx-spark"
+      ],
+      "local_mode": "local",
+      "compatibility": [
+        "OpenAI-compatible model API with tool calls and structured output; documented TandemApp and opencode client paths."
+      ],
+      "limitations": [
+        "Qualified for one DGX Spark (GB10) serving one supported model at a time; other CUDA GPUs are best effort.",
+        "Requires the documented Linux, Python 3.11, PyTorch 2.13/CUDA 13.0, and Triton stack; run one engine per board and set an admin password before exposing the port.",
+        "The web dashboard and chat UI moved to TandemApp; engine code is AGPL-3.0-only with a commercial option, while docs and model weights carry separate licenses."
+      ],
+      "license": {
+        "spdx": "AGPL-3.0-only",
+        "url": "https://raw.githubusercontent.com/TandemLLM/TandemEngine/da76b01a499d8014d57bf16721d5354dc6d67350/LICENSE"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/TandemLLM/TandemEngine/da76b01a499d8014d57bf16721d5354dc6d67350/README.md",
+          "note": "Documents the renamed repository, supported models, requirements, compatibility, and limitations."
+        }
+      ],
+      "last_reviewed": "2026-11-24",
+      "record_path": "data/projects/tandemllm.json",
+      "labels": {
+        "category": "Inference and serving",
+        "local_mode": "Local workload",
+        "use_cases": [
+          "Run a model on my hardware",
+          "Connect a coding agent to a local model"
+        ],
+        "platforms": [
+          "Linux"
+        ],
+        "hardware": [
+          "DGX Spark / GB10"
+        ]
+      },
+      "health": {
+        "checked_at": "2026-11-26",
+        "status": "reachable",
+        "detail": null,
+        "last_successful_check": "2026-11-26",
+        "canonical_repository": "https://github.com/TandemLLM/TandemEngine",
+        "archived": false,
+        "disabled": false,
+        "last_push": "2026-11-24T11:18:50Z",
+        "last_default_branch_commit": "2026-11-24T09:46:53Z"
+      },
+      "health_flags": []
+    },
+    {
+      "id": "tensorfold",
+      "name": "TensorFold",
+      "repository": "https://github.com/ashhart/TensorFold",
+      "description": "Serve supported language models with a native inference engine using Metal or CUDA kernels.",
+      "category": "inference",
+      "use_cases": [
+        "serve-models",
+        "use-local-agents"
+      ],
+      "platforms": [
+        "macos",
+        "linux"
+      ],
+      "hardware": [
+        "apple-silicon",
+        "nvidia-gpu",
+        "dgx-spark"
+      ],
+      "local_mode": "local",
+      "compatibility": [
+        "OpenAI Chat Completions, Completions, and Responses; Anthropic Messages."
+      ],
+      "limitations": [
+        "Model, checkpoint format, and hardware qualification are specific to each release; consult the qualification table.",
+        "Experimental Living Weights modifies checkpoint files; teach a copy and keep the original."
+      ],
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://raw.githubusercontent.com/ashhart/TensorFold/bec00ae6961a43a9ab73c4fa9338c167b3f82851/LICENSE"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/ashhart/TensorFold/bec00ae6961a43a9ab73c4fa9338c167b3f82851/README.md",
+          "note": "Upstream description, setup, and documented requirements."
+        }
+      ],
+      "last_reviewed": "2026-10-10",
+      "record_path": "data/projects/tensorfold.json",
+      "labels": {
+        "category": "Inference and serving",
+        "local_mode": "Local workload",
+        "use_cases": [
+          "Run a model on my hardware",
+          "Connect a coding agent to a local model"
+        ],
+        "platforms": [
+          "macOS",
+          "Linux"
+        ],
+        "hardware": [
+          "Apple Silicon",
+          "NVIDIA GPU",
+          "DGX Spark / GB10"
+        ]
+      },
+      "health": {
+        "checked_at": "2026-11-26",
+        "status": "reachable",
+        "detail": null,
+        "last_successful_check": "2026-11-26",
+        "canonical_repository": "https://github.com/ashhart/TensorFold",
+        "archived": false,
+        "disabled": false,
+        "last_push": "2026-11-26T04:28:04Z",
+        "last_default_branch_commit": "2026-11-26T04:27:49Z"
+      },
+      "health_flags": []
+    },
+    {
+      "id": "threadshelf",
+      "name": "ThreadShelf",
+      "repository": "https://github.com/ChrystianSchutz/ThreadShelf",
+      "description": "Index ChatGPT, Claude, Google AI Studio, OpenRouter, LM Studio and Grok exports locally for semantic and exact search, then continue old threads with local GGUF models.",
+      "category": "applications",
+      "use_cases": [
+        "chat-with-models",
+        "extend-agents"
+      ],
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "hardware": [
+        "cpu"
+      ],
+      "local_mode": "local",
+      "compatibility": [
+        "Runs GGUF models through a managed, loopback-only llama.cpp llama-server, with guided setup of an official llama.cpp build.",
+        "Serves its GGUF models over OpenAI- and Anthropic-compatible endpoints at /v1 (chat/completions, completions, responses, messages).",
+        "Exposes archive search and full-thread reading to MCP clients through a stdio MCP server."
+      ],
+      "limitations": [
+        "Single-user application: the HTTP API has no accounts or authentication and should stay on loopback unless deliberately exposed on a trusted network.",
+        "The local embedding model downloads once on first indexing; llama.cpp builds come from GitHub Releases and GGUF models from Hugging Face only when the user asks.",
+        "Optional OpenRouter generation is off-device: it sends the selected conversation history and prompt to OpenRouter and the routed provider.",
+        "Google AI Studio, OpenRouter, LM Studio and Grok exports use undocumented formats that can change without notice.",
+        "Requires Node.js 20.19 or newer; installed through npm (npx threadshelf)."
+      ],
+      "license": {
+        "spdx": "MIT",
+        "url": "https://raw.githubusercontent.com/ChrystianSchutz/ThreadShelf/f13b721561305c3b040dc701ce86553ec36c4447/LICENSE"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/ChrystianSchutz/ThreadShelf/f13b721561305c3b040dc701ce86553ec36c4447/README.md",
+          "note": "Supported sources, local embeddings and LanceDB storage, MCP stdio server, llama.cpp and OpenRouter generation, /v1 compatible endpoints, Windows/macOS/Linux data paths, privacy boundary, and the single-user, no-authentication limitation."
+        }
+      ],
+      "last_reviewed": "2026-11-08",
+      "record_path": "data/projects/threadshelf.json",
+      "labels": {
+        "category": "Applications and model management",
+        "local_mode": "Local workload",
+        "use_cases": [
+          "Chat with a local model",
+          "Add skills, extensions, or MCP tools"
+        ],
+        "platforms": [
+          "Linux",
+          "macOS",
+          "Windows"
+        ],
+        "hardware": [
+          "CPU"
+        ]
+      },
+      "health": {
+        "checked_at": "2026-11-26",
+        "status": "reachable",
+        "detail": null,
+        "last_successful_check": "2026-11-26",
+        "canonical_repository": "https://github.com/ChrystianSchutz/ThreadShelf",
+        "archived": false,
+        "disabled": false,
+        "last_push": "2026-10-28T20:57:26Z",
+        "last_default_branch_commit": "2026-10-28T20:57:26Z"
+      },
+      "health_flags": []
+    },
+    {
+      "id": "tool-eval-bench",
+      "name": "tool-eval-bench",
+      "repository": "https://github.com/SeraphimSerapis/tool-eval-bench",
+      "description": "Evaluate tool-calling quality and benchmark self-hosted model endpoints with deterministic scenarios and conversation traces.",
+      "category": "evaluation",
+      "use_cases": [
+        "evaluate-tool-calling",
+        "benchmark-serving"
+      ],
+      "platforms": [],
+      "hardware": [],
+      "local_mode": "local-client",
+      "compatibility": [
+        "OpenAI-compatible Chat Completions endpoints; additional hosted-provider adapters.",
+        "Python 3.11 or newer; optional Docker deployment."
+      ],
+      "limitations": [
+        "Tests assistant conversations with mock tools, not full agent systems or multi-agent handoffs.",
+        "Difficulty tiers are author estimates; localization coverage is German-focused."
+      ],
+      "license": {
+        "spdx": "MIT",
+        "url": "https://raw.githubusercontent.com/SeraphimSerapis/tool-eval-bench/b60e2f00f6c44352a3680356e7c7948f777c5280/LICENSE"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/SeraphimSerapis/tool-eval-bench/b60e2f00f6c44352a3680356e7c7948f777c5280/README.md",
+          "note": "Upstream description, setup, and documented requirements."
+        }
+      ],
+      "last_reviewed": "2026-10-10",
+      "record_path": "data/projects/tool-eval-bench.json",
+      "labels": {
+        "category": "Evaluation and benchmarking",
+        "local_mode": "Local client or agent",
+        "use_cases": [
+          "Test tool-calling quality",
+          "Compare inference speed"
+        ],
+        "platforms": [],
+        "hardware": []
+      },
+      "health": {
+        "checked_at": "2026-11-26",
+        "status": "reachable",
+        "detail": null,
+        "last_successful_check": "2026-11-26",
+        "canonical_repository": "https://github.com/SeraphimSerapis/tool-eval-bench",
+        "archived": false,
+        "disabled": false,
+        "last_push": "2026-11-25T18:09:00Z",
+        "last_default_branch_commit": "2026-11-25T18:08:57Z"
+      },
+      "health_flags": []
+    },
+    {
+      "id": "vllm-windows-build",
+      "name": "vLLM Windows Build",
+      "repository": "https://github.com/aivrar/vllm-windows-build",
+      "description": "Install native Windows builds of vLLM with OpenAI-compatible serving on NVIDIA GPUs, without WSL, Docker, or a Linux VM.",
+      "category": "deployment",
+      "use_cases": [
+        "serve-models",
+        "bootstrap-local-ai"
+      ],
+      "platforms": [
+        "windows"
+      ],
+      "hardware": [
+        "nvidia-gpu"
+      ],
+      "local_mode": "local",
+      "compatibility": [
+        "OpenAI-compatible HTTP serving through vllm_launcher.py and the upstream OpenAI API server, including /v1/models and streaming."
+      ],
+      "limitations": [
+        "This is a community native Windows distribution; official vLLM support is Linux-only.",
+        "Windows builds run on a single GPU per process because PyTorch on Windows lacks NCCL, so multi-GPU setups require separate vLLM instances per GPU with external load balancing.",
+        "Requires Windows 10 21H2 or later (x64), an NVIDIA GPU with SM 7.5 or newer, at least 12 GB VRAM (24 GB recommended), at least 16 GB RAM, and a CUDA 13.0 driver (R580 or newer).",
+        "Current wheels target Python 3.13 with CUDA 13.0 or Python 3.14 with CUDA 13.2. The R580 or newer driver requirement applies to the Python 3.13 CUDA 13.0 wheel, while upstream does not document a minimum driver for the Python 3.14 CUDA 13.2 wheel.",
+        "v0.33.0 was GPU-validated on an RTX 3090. The Windows wheel does not include native Blackwell FP4 acceleration, and that 0.33.0 release has not been run on Blackwell hardware.",
+        "The six bundled Multi-TurboQuant KV cache methods run on a PyTorch fallback at around 0.73 tok/s on the tested 14B RTX 3090 setup. The four upstream TurboQuant variants use fused Triton kernels."
+      ],
+      "license": {
+        "spdx": "MIT",
+        "url": "https://raw.githubusercontent.com/aivrar/vllm-windows-build/3974c4a568351fd2e41ff71922bd26146933c003/LICENSE"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/aivrar/vllm-windows-build/3974c4a568351fd2e41ff71922bd26146933c003/README.md",
+          "note": "Release coverage, system requirements, tested hardware, Linux-only official support, single-GPU and Multi-TurboQuant fallback limitations, and Windows wheel scope."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/aivrar/vllm-windows-build/3974c4a568351fd2e41ff71922bd26146933c003/docs/usage.md",
+          "note": "OpenAI-compatible HTTP server modes, including vllm_launcher.py and /v1/models, and multi-GPU multi-server setup."
+        }
+      ],
+      "last_reviewed": "2026-11-18",
+      "record_path": "data/projects/vllm-windows-build.json",
+      "labels": {
+        "category": "Deployment and bootstrapping",
+        "local_mode": "Local workload",
+        "use_cases": [
+          "Run a model on my hardware",
+          "Set up local AI"
+        ],
+        "platforms": [
+          "Windows"
+        ],
+        "hardware": [
+          "NVIDIA GPU"
+        ]
+      },
+      "health": {
+        "checked_at": "2026-11-26",
+        "status": "reachable",
+        "detail": null,
+        "last_successful_check": "2026-11-26",
+        "canonical_repository": "https://github.com/aivrar/vllm-windows-build",
+        "archived": false,
+        "disabled": false,
+        "last_push": "2026-11-19T12:51:46Z",
+        "last_default_branch_commit": "2026-11-19T12:51:33Z"
+      },
+      "health_flags": []
+    },
+    {
+      "id": "voxtmini",
+      "name": "VoxtMini",
+      "repository": "https://github.com/hehehai/VoxtMini",
+      "description": "macOS voice input: press a shortcut in any app, speak, and local Qwen3-ASR models on MLX (Whisper experimental) type, translate or rewrite the text at your cursor.",
+      "category": "applications",
+      "use_cases": [
+        "serve-models"
+      ],
+      "platforms": [
+        "macos"
+      ],
+      "hardware": [
+        "apple-silicon"
+      ],
+      "local_mode": "local",
+      "compatibility": [
+        "Speech runs locally with Qwen3-ASR on MLX, with Whisper (experimental: no live text, not yet run on a Mac with VoxtMini) or with Apple Speech; clean-up, translation and rewriting use local language models such as Qwen3.5 and Hy-MT2.",
+        "A remote service (OpenAI, Gemini, Anthropic, DeepSeek and others) or Ollama and LM Studio on the same Mac can be chosen per feature instead of the local default."
+      ],
+      "limitations": [
+        "Needs macOS 15 or later on Apple silicon; 16 GB of memory is recommended for the recommended models.",
+        "Beta software; models download on first use from Hugging Face. Whisper is experimental, and Apple Speech and Apple Intelligence have not yet been checked on real hardware.",
+        "Needs the Microphone permission, and Accessibility to type into other apps.",
+        "No account and no analytics. Installed builds check actnow.dev once a day for updates (/updates/voxtmini) and poll actnow.dev/api/voxtmini/notifications at launch and every six hours for announcements, sending only the app language and version (VOXTMINI_ANNOUNCEMENTS_URL=\"\" turns this off); feedback and diagnostics are sent to actnow.dev only when the user sends them from the feedback window.",
+        "Official builds bundle React Bits Sound Lab cue sounds (MIT + Commons Clause v1.0, from a private library, not under Apache-2.0); builds from source play macOS system sounds instead."
+      ],
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://raw.githubusercontent.com/hehehai/VoxtMini/50cb2cc85169aea88032185db2917e91e3d04bdd/LICENSE"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/hehehai/VoxtMini/50cb2cc85169aea88032185db2917e91e3d04bdd/README.md",
+          "note": "Features, local, Apple and optional remote model choices, macOS 15 and Apple silicon requirement, beta status, release downloads and privacy behaviour."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/hehehai/VoxtMini/50cb2cc85169aea88032185db2917e91e3d04bdd/docs/how-it-works.md",
+          "note": "How recording, recognition, language-model clean-up and insertion work, and which models run locally."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/hehehai/VoxtMini/50cb2cc85169aea88032185db2917e91e3d04bdd/NOTICE",
+          "note": "Third-party notices, including the React Bits Sound Lab cue sounds in official builds and their licence."
+        }
+      ],
+      "last_reviewed": "2026-11-25",
+      "record_path": "data/projects/voxtmini.json",
+      "labels": {
+        "category": "Applications and model management",
+        "local_mode": "Local workload",
+        "use_cases": [
+          "Run a model on my hardware"
+        ],
+        "platforms": [
+          "macOS"
+        ],
+        "hardware": [
+          "Apple Silicon"
+        ]
+      },
+      "health": {
+        "checked_at": "2026-11-26",
+        "status": "reachable",
+        "detail": null,
+        "last_successful_check": "2026-11-26",
+        "canonical_repository": "https://github.com/hehehai/VoxtMini",
+        "archived": false,
+        "disabled": false,
+        "last_push": "2026-11-26T00:43:01Z",
+        "last_default_branch_commit": "2026-11-26T00:38:21Z"
+      },
+      "health_flags": []
+    },
+    {
+      "id": "whichquant",
+      "name": "whichquant",
+      "repository": "https://github.com/ngo-binh0108/whichquant",
+      "description": "Check every GGUF quant in a Hugging Face repo against your GPU and RAM before downloading it, by reading only the file headers, and get the llama.cpp flags for each one.",
+      "category": "deployment",
+      "use_cases": [
+        "bootstrap-local-ai",
+        "validate-inference-configs"
+      ],
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "hardware": [],
+      "local_mode": "local-client",
+      "compatibility": [
+        "Prints llama.cpp flags for each quant, counts optional vision-projector and draft-model memory, and with -q prints llama-server and KoboldCpp commands including draft-model flags.",
+        "Pure Python 3.9+ standard-library CLI with zero runtime dependencies; reads local GGUF files or remote Hugging Face GGUF headers over HTTP range requests."
+      ],
+      "limitations": [
+        "Weights are exact, but the compute buffer is an estimate and the KV cache follows llama.cpp's sizing rules; it estimates fit and does not run or benchmark the model.",
+        "Hardware tags are omitted because CI tests only CPU environments with explicit --gpu/--ram flags; auto-detection reads nvidia-smi on NVIDIA GPUs and macOS unified-memory defaults on Apple Silicon, while AMD and Intel users pass --gpu.",
+        "Checking a Hugging Face repo needs network access, and gated repos need HF_TOKEN; local GGUF files work offline.",
+        "Currently distributed as a Git source install (version 0.2.0 in pyproject.toml) with no tagged GitHub release or PyPI package yet."
+      ],
+      "license": {
+        "spdx": "MIT",
+        "url": "https://raw.githubusercontent.com/ngo-binh0108/whichquant/5e1d9b09cabbf7fee09877b42d0c7775ab3c7f6d/LICENSE"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/ngo-binh0108/whichquant/5e1d9b09cabbf7fee09877b42d0c7775ab3c7f6d/README.md",
+          "note": "Usage, GGUF header inspection, vision and draft model sizing, llama-server and KoboldCpp output, accuracy notes, and Git source install."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/ngo-binh0108/whichquant/5e1d9b09cabbf7fee09877b42d0c7775ab3c7f6d/.github/workflows/tests.yml",
+          "note": "CI test matrix covering Linux, macOS, and Windows on Python 3.9 and 3.13."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/ngo-binh0108/whichquant/5e1d9b09cabbf7fee09877b42d0c7775ab3c7f6d/src/whichquant/hardware.py",
+          "note": "Hardware detection logic using nvidia-smi, macOS arm64 unified-memory defaults, and OS RAM queries."
+        }
+      ],
+      "last_reviewed": "2026-11-26",
+      "record_path": "data/projects/whichquant.json",
+      "labels": {
+        "category": "Deployment and bootstrapping",
+        "local_mode": "Local client or agent",
+        "use_cases": [
+          "Set up local AI",
+          "Validate or simulate inference configurations"
+        ],
+        "platforms": [
+          "Linux",
+          "macOS",
+          "Windows"
+        ],
+        "hardware": []
+      },
+      "health": {
+        "checked_at": "2026-11-26",
+        "status": "reachable",
+        "detail": null,
+        "last_successful_check": "2026-11-26",
+        "canonical_repository": "https://github.com/ngo-binh0108/whichquant",
+        "archived": false,
+        "disabled": false,
+        "last_push": "2026-11-19T06:38:16Z",
+        "last_default_branch_commit": "2026-11-19T06:38:13Z"
+      },
+      "health_flags": []
+    }
+  ]
+}

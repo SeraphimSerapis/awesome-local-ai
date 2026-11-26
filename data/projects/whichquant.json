@@ -13,33 +13,35 @@
     "macos",
     "windows"
   ],
-  "hardware": [
-    "nvidia-gpu",
-    "apple-silicon"
-  ],
-  "local_mode": "local",
+  "hardware": [],
+  "local_mode": "local-client",
   "compatibility": [
-    "Prints llama.cpp flags for each quant, counts optional vision-projector and draft-model memory, and with -q prints llama-server and KoboldCpp commands including draft-model flags."
+    "Prints llama.cpp flags for each quant, counts optional vision-projector and draft-model memory, and with -q prints llama-server and KoboldCpp commands including draft-model flags.",
+    "Pure Python 3.9+ standard-library CLI with zero runtime dependencies; reads local GGUF files or remote Hugging Face GGUF headers over HTTP range requests."
   ],
   "limitations": [
-    "Weights are exact, but the compute buffer is an estimate and the KV cache follows llama.cpp's sizing rules.",
-    "GPU memory is detected only on NVIDIA and Apple Silicon; AMD and Intel users pass it with --gpu.",
+    "Weights are exact, but the compute buffer is an estimate and the KV cache follows llama.cpp's sizing rules; it estimates fit and does not run or benchmark the model.",
+    "Hardware tags are omitted because CI tests only CPU environments with explicit --gpu/--ram flags; auto-detection reads nvidia-smi on NVIDIA GPUs and macOS unified-memory defaults on Apple Silicon, while AMD and Intel users pass --gpu.",
     "Checking a Hugging Face repo needs network access, and gated repos need HF_TOKEN; local GGUF files work offline.",
-    "It estimates fit and does not run or benchmark the model."
+    "Currently distributed as a Git source install (version 0.2.0 in pyproject.toml) with no tagged GitHub release or PyPI package yet."
   ],
   "license": {
     "spdx": "MIT",
-    "url": "https://raw.githubusercontent.com/ngo-binh0108/whichquant/30bcc736095dc9ea80a6cd0f6686cb7855309226/LICENSE"
+    "url": "https://raw.githubusercontent.com/ngo-binh0108/whichquant/5e1d9b09cabbf7fee09877b42d0c7775ab3c7f6d/LICENSE"
   },
   "sources": [
     {
-      "url": "https://raw.githubusercontent.com/ngo-binh0108/whichquant/30bcc736095dc9ea80a6cd0f6686cb7855309226/README.md",
-      "note": "Usage, supported hardware detection, vision and draft model sizing, accuracy notes, and limits."
+      "url": "https://raw.githubusercontent.com/ngo-binh0108/whichquant/5e1d9b09cabbf7fee09877b42d0c7775ab3c7f6d/README.md",
+      "note": "Usage, GGUF header inspection, vision and draft model sizing, llama-server and KoboldCpp output, accuracy notes, and Git source install."
     },
     {
-      "url": "https://raw.githubusercontent.com/ngo-binh0108/whichquant/30bcc736095dc9ea80a6cd0f6686cb7855309226/.github/workflows/tests.yml",
-      "note": "Test matrix covering Linux, macOS, and Windows."
+      "url": "https://raw.githubusercontent.com/ngo-binh0108/whichquant/5e1d9b09cabbf7fee09877b42d0c7775ab3c7f6d/.github/workflows/tests.yml",
+      "note": "CI test matrix covering Linux, macOS, and Windows on Python 3.9 and 3.13."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ngo-binh0108/whichquant/5e1d9b09cabbf7fee09877b42d0c7775ab3c7f6d/src/whichquant/hardware.py",
+      "note": "Hardware detection logic using nvidia-smi, macOS arm64 unified-memory defaults, and OS RAM queries."
     }
   ],
-  "last_reviewed": "2026-11-18"
+  "last_reviewed": "2026-11-26"
 }
