@@ -6,7 +6,7 @@ badge, or a paid listing.
 
 ## What belongs here
 
-A core entry must help people run, use, evaluate, or maintain AI on their own
+Every entry must help people run, use, evaluate, or maintain AI on their own
 hardware. Local machines and self-hosted clusters both count. Skills and MCP
 servers belong when they support that workflow; a local process alone does not
 make a cloud service a local AI tool.
@@ -37,10 +37,11 @@ Every new submission must meet seven acceptance criteria:
    excluding same-day or single-weekend code drops.
 5. **Top-level OSI-approved license and clean provenance.** Repositories must
    carry a top-level OSI-approved `LICENSE` or `COPYING` file covering all
-   first-party code directories, with clean dataset and weight provenance. New
-   submissions cannot use `license.spdx` set to `null`, subdirectory-only
-   license claims, or seat-capped commercial source-available licenses in core
-   categories.
+   first-party code directories, with clean dataset and weight provenance. Every
+   entry must declare a non-deprecated OSI-approved SPDX license identifier or
+   `AND`/`OR`/`WITH` expression; `license.spdx` cannot be `null`,
+   subdirectory-only, or a non-OSI source-available license such as FSL, BUSL,
+   or SSPL.
 6. **Companion-repo consolidation, tested tags, and shared taxonomy IDs.**
    Single-author or single-board micro-utilities and host scripts belong in one
    consolidated entry unless each repository ships independent releases, CI, and
@@ -48,15 +49,17 @@ Every new submission must meet seven acceptance criteria:
    tested targets, and add a new taxonomy ID only when at least two qualifying
    entries share it.
 7. **Commit-pinned raw evidence and safe benchmark defaults.** GitHub file
-   evidence and `license.url` must use 40-hex commit-pinned
-   `raw.githubusercontent.com` URLs, and `sources` must not duplicate
-   `license.url`. Back core claims with repository-pinned files rather than
-   ephemeral external pages, and require code-running benchmarks to sandbox
-   execution or gate host execution behind an explicit opt-in flag.
+   evidence and `license.url` must use lowercase 40-hex commit-pinned
+   `raw.githubusercontent.com` URLs without query strings, fragments, or path
+   traversal; `sources` must include at least one canonical repository-pinned
+   raw file and must not duplicate `license.url`. Back core claims with
+   repository-pinned files rather than ephemeral external pages, and require
+   code-running benchmarks to sandbox execution or gate host execution behind an
+   explicit opt-in flag.
 
 Projects must also state visible preview caveats, model restrictions, telemetry,
-permissions, and any other limits that affect a user's decision. Listings are
-not endorsements, security audits, or runtime certifications.
+permissions, and any other limits in a nonempty `limitations` array. Listings
+are not endorsements, security audits, or runtime certifications.
 
 ## Add or update an entry
 
@@ -66,13 +69,13 @@ not endorsements, security audits, or runtime certifications.
    repository URL. Pick existing IDs from
    [`data/taxonomy.json`](data/taxonomy.json) unless at least two qualifying
    entries share a new taxonomy ID.
-3. Read the upstream documentation. Include 40-hex commit-pinned
+3. Read the upstream documentation. Include lowercase 40-hex commit-pinned
    `raw.githubusercontent.com` URLs for GitHub files and a note explaining what
    each source supports without repeating `license.url` in `sources`. Record the
    UTC date you actually reviewed those sources.
 4. Add a changelog fragment at `changelog.d/<slug>.json` with `section` set to
    `Added`, `Updated`, or `Removed` and a single-line `entry` without a leading
-   bullet:
+   bullet, numbered list marker, or heading:
 
    ```json
    {
@@ -84,37 +87,55 @@ not endorsements, security audits, or runtime certifications.
    Describe catalog changes, not upstream releases, and explain removals. Leave
    [`CHANGELOG.md`](CHANGELOG.md) untouched in your pull request so parallel
    branches do not conflict. Maintainers compile fragments into weekly sections
-   with `python3 scripts/catalog.py changelog`.
+   with `python3 scripts/catalog.py changelog --by-commit-date` (or
+   `--week YYYY-MM-DD`, with `--dry-run` to preview). To remove an entry cleanly
+   while pruning `data/health.json`, writing a `Removed` fragment, and
+   re-rendering outputs, use `python3 scripts/catalog.py remove <id>... --reason "..."`.
 5. Run these commands with Python 3.11 or newer:
 
    ```sh
    python3 scripts/catalog.py validate
    python3 scripts/catalog.py render
    python3 scripts/catalog.py check
-   python3 -m unittest discover -s scripts -p 'test_*.py'
+   python3 scripts/catalog.py verify
    ```
 
-6. Open a PR with the record, changelog fragment, and generated README changes.
-   Explain the use case, evidence, and any limits in the PR template. Flag
-   ownership or affiliation.
+   `catalog.py render` updates both `README.md` and `data/catalog.json`.
+   `catalog.py verify` runs `catalog.py check`, unit tests, and any available
+   local linters (`markdownlint-cli2`, `typos`, `lychee`). You can also inspect
+   catalog hygiene with `python3 scripts/catalog.py status` and run offline or
+   live GitHub compliance checks with `python3 scripts/audit.py`.
+6. Open a PR with the record, changelog fragment, generated `README.md`, and
+   generated `data/catalog.json` changes. Explain the use case, evidence, and
+   any limits in the PR template. Flag ownership or affiliation.
 
 The scripts use only Python's standard library. The format reference is in
 [`docs/catalog-format.md`](docs/catalog-format.md). Edit catalog records rather
-than the README's generated block. Changes outside that block are fine.
+than `data/catalog.json` or the README's generated block. Manual README changes
+outside that block are fine.
 
 If you cannot run the commands, submit the record and say so. A maintainer can
 help with generation and checks before merge.
 
 ## Checks and review
 
-CI runs the catalog checks, tests, Markdown linting, spelling, and offline link
-checks. For the other checks locally:
+CI runs the catalog checks (including `catalog.py check --base-ref <base-sha>`
+on pull requests to verify newly added taxonomy IDs have at least two entries),
+unit tests, Markdown linting, spelling, and offline link checks. For the
+external documentation checks locally:
 
 ```sh
 npx --yes markdownlint-cli2@0.18.1
 typos
 lychee --offline --include-fragments './**/*.md'
 ```
+
+You can run the combined local verification flow with
+`python3 scripts/catalog.py verify` (pass `--strict` to fail if optional tools
+are missing, or `--skip-external` to run Python checks only) or `make verify`.
+For PR triage against live GitHub criteria (14-day commit history, root
+`LICENSE`/`NOTICE`, release tags, pinned SHA drift, staleness, and companion-repo
+adoption signals), run `python3 scripts/audit.py --base-ref <base-sha>`.
 
 The CI versions of Typos and Lychee are pinned in
 [the workflow](.github/workflows/checks.yml). Install those versions when matching
@@ -160,11 +181,16 @@ pull requests.
 
 Set `last_reviewed` only after reading the cited upstream sources. A repository
 check or recent push is not a documentation review. Automated observations live
-in `data/health.json`, not in project records; contributors adding an entry do
-not need to fetch or edit that snapshot.
+in `data/health.json`, not in project records. Contributors adding a new entry
+do not need to fetch or edit `data/health.json`, but removing an entry or
+changing its `repository` URL requires removing the stale key from
+`data/health.json` (which `catalog.py remove` handles automatically) because
+validation rejects orphaned or mismatched health entries.
 
-The weekly health workflow proposes snapshot and README updates in a PR. Routine
-refreshes can merge automatically under the [health safety gate](docs/maintenance.md#automatic-merging-of-routine-refreshes).
+The weekly health workflow proposes `data/health.json`, `data/catalog.json`, and
+`README.md` updates in a PR with a generated status summary. Routine refreshes
+can merge automatically under the
+[health safety gate](docs/maintenance.md#automatic-merging-of-routine-refreshes).
 Review unavailable, archived, disabled, and redirected repositories before merging.
 Investigate failed checks instead of treating them as deletion or abandonment.
 If an entry needs a correction or removal, make a separate reviewed catalog

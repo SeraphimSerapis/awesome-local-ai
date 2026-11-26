@@ -8,14 +8,19 @@ import json
 import os
 from pathlib import Path
 import shutil
+import sys
 import tempfile
 import unittest
 from unittest.mock import patch
 from urllib.error import HTTPError, URLError
 from urllib.request import Request
 
-import catalog
-import health
+SCRIPT_DIR = str(Path(__file__).resolve().parent)
+if SCRIPT_DIR not in sys.path:
+    sys.path.insert(0, SCRIPT_DIR)
+
+import catalog  # noqa: E402
+import health  # noqa: E402
 
 
 class HealthTests(unittest.TestCase):
@@ -67,9 +72,21 @@ class HealthTests(unittest.TestCase):
         record = self.observe(dict(self.metadata, html_url=canonical))
         self.assertEqual(record["repository"], self.repository)
         self.assertEqual(record["canonical_repository"], canonical)
-        rendered = "\n".join(catalog.health_lines({"repository": self.repository, "last_reviewed": self.yesterday}, record))
-        self.assertIn("Repository redirect observed", rendered)
-        self.assertIn(canonical, rendered)
+        project = {
+            "id": "example",
+            "name": "Example",
+            "repository": self.repository,
+            "last_reviewed": self.yesterday,
+            "compatibility": [],
+            "limitations": ["Example limit."],
+        }
+        self.assertEqual(catalog.health_flags(project, record), ["redirected"])
+        alert = catalog.category_alert_line(project, record)
+        self.assertIn("Repository redirect observed", alert)
+        self.assertIn(canonical, alert)
+        detail = "\n".join(catalog.project_detail_lines(project, record))
+        self.assertIn("Redirected to", detail)
+        self.assertIn(canonical, detail)
 
     def test_rate_limits_auth_failures_and_server_errors_preserve_success(self):
         for code in [401, 403, 429, 500, 503]:
@@ -139,15 +156,34 @@ class HealthTests(unittest.TestCase):
         record = self.failed(URLError("offline"))
         self.assertIsNone(record["last_successful_check"])
         self.assertIsNone(record["archived"])
-        rendered = "\n".join(catalog.health_lines({"repository": self.repository, "last_reviewed": self.yesterday}, record))
+        project = {
+            "id": "example",
+            "name": "Example",
+            "repository": self.repository,
+            "last_reviewed": self.yesterday,
+            "compatibility": [],
+            "limitations": ["Example limit."],
+        }
+        rendered = "\n".join(catalog.project_detail_lines(project, record))
         self.assertIn("check failed", rendered)
-        self.assertNotIn("Archived:", rendered)
+        self.assertNotIn("Archived", rendered)
+        self.assertNotIn("Metadata retained", rendered)
 
     def test_failed_check_renders_prior_observations_as_retained(self):
         record = self.failed(URLError("offline"), self.previous)
-        rendered = "\n".join(catalog.health_lines({"repository": self.repository, "last_reviewed": self.yesterday}, record))
-        self.assertIn("retained from the last successful check on " + self.yesterday, rendered)
-        self.assertIn("Last observed push", rendered)
+        project = {
+            "id": "example",
+            "name": "Example",
+            "repository": self.repository,
+            "last_reviewed": self.yesterday,
+            "compatibility": [],
+            "limitations": ["Example limit."],
+        }
+        alert = catalog.category_alert_line(project, record)
+        self.assertIn("Prior metadata retained from " + self.yesterday, alert)
+        rendered = "\n".join(catalog.project_detail_lines(project, record))
+        self.assertIn("Metadata retained from " + self.yesterday, rendered)
+        self.assertIn("last commit 2026-01-01", rendered)
 
     def test_snapshot_validator_rejects_bad_types_dates_and_states(self):
         for field, value in [("status", []), ("checked_at", "20260101"), ("archived", 1),
@@ -171,15 +207,35 @@ class HealthTests(unittest.TestCase):
             (root / "data").mkdir()
             path = root / "data/health.json"
             path.write_text(json.dumps({"example": self.previous, "removed": self.previous}), encoding="utf-8")
-            self.assertEqual(catalog.load_health(root, [{"id": "example", "repository": self.repository}]),
-                             {"example": self.previous})
-            self.assertEqual(catalog.load_health(root, [{"id": "example", "repository": "https://github.com/new/repo"}]), {})
+            current, removed = health.load_previous_health_with_removed(
+                root, [{"id": "example", "repository": self.repository}]
+            )
+            self.assertEqual(current, {"example": self.previous})
+            self.assertEqual(removed, ["removed"])
+            self.assertEqual(
+                health.load_previous_health(root, [{"id": "example", "repository": self.repository}]),
+                {"example": self.previous},
+            )
+            repointed, repointed_removed = health.load_previous_health_with_removed(
+                root, [{"id": "example", "repository": "https://github.com/new/repo"}]
+            )
+            self.assertEqual(repointed, {})
+            self.assertEqual(repointed_removed, ["example", "removed"])
 
     def test_missing_snapshot_is_allowed_for_new_entries(self):
         with tempfile.TemporaryDirectory() as directory:
             self.assertEqual(catalog.load_health(Path(directory), []), {})
-        rendered = "\n".join(catalog.health_lines({"last_reviewed": self.yesterday}, None))
-        self.assertIn("not checked yet", rendered)
+        project = {
+            "id": "example",
+            "name": "Example",
+            "repository": self.repository,
+            "last_reviewed": self.yesterday,
+            "compatibility": [],
+            "limitations": ["Example limit."],
+        }
+        rendered = "\n".join(catalog.project_detail_lines(project, None))
+        self.assertIn("repository not checked yet", rendered)
+        self.assertIn("**Not checked yet**", catalog.table_activity_cell(project, None))
 
     def test_refresh_prunes_removed_projects_and_does_not_mutate_inputs(self):
         projects = [{"id": "example", "repository": self.repository}]
@@ -206,6 +262,7 @@ class HealthTests(unittest.TestCase):
             root = Path(directory)
             (root / "data/projects").mkdir(parents=True)
             shutil.copy(catalog.ROOT / "data/taxonomy.json", root / "data/taxonomy.json")
+            (root / "CHANGELOG.md").write_text("# Weekly catalog changelog\n", encoding="utf-8")
             project = catalog.read_json(catalog.ROOT / "examples/project.json")
             project.update(repository=self.repository, last_reviewed=self.yesterday)
             project_path = root / "data/projects" / (project["id"] + ".json")
@@ -213,7 +270,7 @@ class HealthTests(unittest.TestCase):
             readme = root / "README.md"
             readme.write_text(f"# Fixture\n\n{catalog.START}\n\n{catalog.END}\n", encoding="utf-8")
             taxonomy, projects = catalog.load_catalog(root)
-            readme.write_text(catalog.render_readme(root, taxonomy, projects), encoding="utf-8")
+            catalog.render_outputs(root, taxonomy, projects)
             snapshot = {project["id"]: self.observe()}
             health.write_snapshot(root / "data/health.json", snapshot)
             output = io.StringIO()
@@ -222,11 +279,15 @@ class HealthTests(unittest.TestCase):
                 self.assertEqual(catalog.main(), 1)
             self.assertIn("README is stale", output.getvalue())
             rendered = catalog.render_readme(root, taxonomy, projects)
-            self.assertIn("Documentation reviewed: " + self.yesterday, rendered)
-            self.assertIn("Last observed push: 2026-01-01", rendered)
-            readme.write_text(rendered, encoding="utf-8")
+            self.assertIn("reviewed " + self.yesterday, rendered)
+            self.assertIn("2026-01-01", rendered)
+            catalog.render_outputs(root, taxonomy, projects)
             self.assertEqual(catalog.render_readme(root, taxonomy, projects), rendered)
             self.assertEqual(catalog.read_json(project_path), project)
+            ok_output = io.StringIO()
+            with patch.object(catalog, "ROOT", root), patch("sys.argv", ["catalog.py", "check"]), \
+                    patch("sys.stdout", ok_output), patch("sys.stderr", ok_output):
+                self.assertEqual(catalog.main(), 0, ok_output.getvalue())
             snapshot[project["id"]]["archived"] = "false"
             health.write_snapshot(root / "data/health.json", snapshot)
             with patch.object(catalog, "ROOT", root), patch("sys.argv", ["catalog.py", "check"]), \
@@ -386,6 +447,160 @@ class HealthTests(unittest.TestCase):
                 lambda _repo, _branch: "2026-11-17T14:19:54Z",
             )
             self.assertEqual(refreshed["example"]["last_default_branch_commit"], "2026-11-17T14:19:54Z")
+
+    def test_render_summary_routine_with_newly_observed_removed_and_quiet(self):
+        today = "2026-11-26"
+        projects = [
+            {"id": "active-tool", "repository": "https://github.com/example/active"},
+            {"id": "new-tool", "repository": "https://github.com/example/new"},
+            {"id": "quiet-tool", "repository": "https://github.com/example/quiet"},
+        ]
+        previous = {
+            "active-tool": {
+                "repository": "https://github.com/example/active",
+                "checked_at": "2026-11-20",
+                "status": "reachable",
+                "detail": None,
+                "last_successful_check": "2026-11-20",
+                "canonical_repository": "https://github.com/example/active",
+                "archived": False,
+                "disabled": False,
+                "last_push": "2026-11-20T00:00:00Z",
+                "last_default_branch_commit": "2026-11-20T00:00:00Z",
+            },
+            "quiet-tool": {
+                "repository": "https://github.com/example/quiet",
+                "checked_at": "2026-11-20",
+                "status": "reachable",
+                "detail": None,
+                "last_successful_check": "2026-11-20",
+                "canonical_repository": "https://github.com/example/quiet",
+                "archived": False,
+                "disabled": False,
+                "last_push": "2026-07-10T19:18:53Z",
+                "last_default_branch_commit": "2026-07-10T19:18:40Z",
+            },
+        }
+        observations = {
+            "active-tool": dict(previous["active-tool"], checked_at=today, last_successful_check=today),
+            "new-tool": {
+                "repository": "https://github.com/example/new",
+                "checked_at": today,
+                "status": "reachable",
+                "detail": None,
+                "last_successful_check": today,
+                "canonical_repository": "https://github.com/example/new",
+                "archived": False,
+                "disabled": False,
+                "last_push": "2026-11-25T10:00:00Z",
+                "last_default_branch_commit": "2026-11-25T10:00:00Z",
+            },
+            "quiet-tool": dict(previous["quiet-tool"], checked_at=today, last_successful_check=today),
+        }
+        summary = health.render_summary(
+            projects, previous, observations, today, removed_ids=["old-tool"], quiet_days=90
+        )
+        self.assertIn("## Snapshot summary (2026-11-26)", summary)
+        self.assertIn("Checked: 3 repositories (3 reachable, 0 unavailable, 0 check-failed)", summary)
+        self.assertIn("Flagged for manual review: 0", summary)
+        self.assertIn("Newly observed: 1 (`new-tool`)", summary)
+        self.assertIn("Removed from snapshot: 1 (`old-tool`)", summary)
+        self.assertNotIn("### Flagged entries requiring manual review", summary)
+        self.assertIn("### Quiet repositories (more than 90 days since last default-branch commit)", summary)
+        self.assertIn("| `quiet-tool` | 2026-07-10 | 139 |", summary)
+        self.assertIn("`data/health.json`, `data/catalog.json`, and `README.md`", summary)
+        self.assertNotIn("\u2014", summary)
+
+    def test_render_summary_lists_exact_reasons_for_flagged_entries(self):
+        today = "2026-11-26"
+        projects = [
+            {"id": "archived-tool", "repository": "https://github.com/example/archived"},
+            {"id": "gone-tool", "repository": "https://github.com/example/gone"},
+            {"id": "moved-tool", "repository": "https://github.com/example/old-name"},
+        ]
+        observations = {
+            "archived-tool": {
+                "repository": "https://github.com/example/archived",
+                "checked_at": today,
+                "status": "reachable",
+                "detail": None,
+                "last_successful_check": today,
+                "canonical_repository": "https://github.com/example/archived",
+                "archived": True,
+                "disabled": True,
+                "last_push": "2026-11-01T00:00:00Z",
+                "last_default_branch_commit": "2026-11-01T00:00:00Z",
+            },
+            "gone-tool": {
+                "repository": "https://github.com/example/gone",
+                "checked_at": today,
+                "status": "unavailable",
+                "detail": "HTTP 404; repository may be missing, private, or restricted.",
+                "last_successful_check": None,
+                "canonical_repository": None,
+                "archived": None,
+                "disabled": None,
+                "last_push": None,
+                "last_default_branch_commit": None,
+            },
+            "moved-tool": {
+                "repository": "https://github.com/example/old-name",
+                "checked_at": today,
+                "status": "reachable",
+                "detail": None,
+                "last_successful_check": today,
+                "canonical_repository": "https://github.com/example/new-name",
+                "archived": False,
+                "disabled": False,
+                "last_push": "2026-11-24T00:00:00Z",
+                "last_default_branch_commit": "2026-11-24T00:00:00Z",
+            },
+        }
+        summary = health.render_summary(projects, {}, observations, today)
+        self.assertIn("Flagged for manual review: 3", summary)
+        self.assertIn("### Flagged entries requiring manual review", summary)
+        self.assertIn("| `archived-tool` | reachable | archived; disabled |", summary)
+        self.assertIn("| `gone-tool` | unavailable | unavailable (HTTP 404; repository may be missing, private, or restricted.) |", summary)
+        self.assertIn("| `moved-tool` | reachable | redirected to https://github.com/example/new-name |", summary)
+
+    def test_cli_summary_file_writes_pr_body(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "data/projects").mkdir(parents=True)
+            shutil.copy(catalog.ROOT / "data/taxonomy.json", root / "data/taxonomy.json")
+            project = catalog.read_json(catalog.ROOT / "examples/project.json")
+            project.update(repository=self.repository, last_reviewed=self.yesterday)
+            (root / "data/projects" / (project["id"] + ".json")).write_text(
+                json.dumps(project), encoding="utf-8"
+            )
+            (root / "data/health.json").write_text(
+                json.dumps({"stale-removed": self.previous}), encoding="utf-8"
+            )
+            summary_path = root / "out/health-summary.md"
+            output = io.StringIO()
+
+            real_refresh = health.refresh
+
+            def fake_refresh(projects_arg, previous_arg, today_arg):
+                return real_refresh(
+                    projects_arg,
+                    previous_arg,
+                    today_arg,
+                    lambda _: self.metadata,
+                    lambda _r, _b: self.commit_date,
+                )
+
+            with patch.object(catalog, "ROOT", root), \
+                    patch.object(health, "refresh", side_effect=fake_refresh), \
+                    patch("sys.argv", ["health.py", "--summary-file", str(summary_path)]), \
+                    patch("sys.stdout", output), patch("sys.stderr", output):
+                code = health.main()
+            self.assertEqual(code, 0, output.getvalue())
+            self.assertTrue(summary_path.is_file())
+            body = summary_path.read_text(encoding="utf-8")
+            self.assertIn("Newly observed: 1 (`example-project`)", body)
+            self.assertIn("Removed from snapshot: 1 (`stale-removed`)", body)
+            self.assertIn("`data/health.json`, `data/catalog.json`, and `README.md`", body)
 
 
 if __name__ == "__main__":

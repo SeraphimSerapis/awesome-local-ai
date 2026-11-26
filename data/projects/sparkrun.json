@@ -17,22 +17,27 @@
   ],
   "local_mode": "local",
   "compatibility": [
-    "vLLM, SGLang, and llama.cpp recipes; SSH-based node management."
+    "vLLM, SGLang, and llama.cpp recipes; SSH-based node management and InfiniBand/RDMA tensor parallelism.",
+    "Bundled LiteLLM proxy gateway by default across stable, beta, and alpha channels; optional external plugin integrations such as SparkRoute and ColdSnap."
   ],
   "limitations": [
-    "Setup can change SSH, sudoers, and host services; review the recipe and requested permissions.",
-    "Anonymous usage telemetry is on by default; SPARKRUN_NO_TELEMETRY=1 disables it for one process.",
-    "The bundled SparkRoute integration has separate AGPL licensing; check the selected channel's defaults."
+    "Guided setup configures SSH mesh, ConnectX-7 NICs, sudoers, and earlyoom, and sparkrun update refreshes managed plugins and recipe registries unless --no-update-plugins is passed; review recipes and permissions before running.",
+    "Anonymous usage telemetry to telemetry.sparkrun.dev is enabled by default; disable persistently with sparkrun setup telemetry --disable or for one process with SPARKRUN_NO_TELEMETRY=1.",
+    "SparkRoute and ColdSnap are not bundled and are installed separately as external plugins with their own upstream repositories and licenses; OCI Relay remains bundled."
   ],
   "license": {
     "spdx": "Apache-2.0",
-    "url": "https://raw.githubusercontent.com/spark-arena/sparkrun/b444da874923fd27228dcb98ab844c328a91752d/LICENSE"
+    "url": "https://raw.githubusercontent.com/spark-arena/sparkrun/593e3920ca2f74b8aa1cd59446ccbc4eeb307307/LICENSE"
   },
   "sources": [
     {
-      "url": "https://raw.githubusercontent.com/spark-arena/sparkrun/b444da874923fd27228dcb98ab844c328a91752d/README.md",
-      "note": "Upstream description, setup, and documented requirements."
+      "url": "https://raw.githubusercontent.com/spark-arena/sparkrun/593e3920ca2f74b8aa1cd59446ccbc4eeb307307/README.md",
+      "note": "Documents multi-runtime DGX Spark recipes, guided setup permissions, update channels, and anonymous telemetry defaults and opt-out."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/spark-arena/sparkrun/593e3920ca2f74b8aa1cd59446ccbc4eeb307307/docs/SPARKROUTE.md",
+      "note": "Confirms LiteLLM is the default proxy gateway and SparkRoute and ColdSnap are separately installed external plugins rather than bundled components."
     }
   ],
-  "last_reviewed": "2026-10-10"
+  "last_reviewed": "2026-11-26"
 }

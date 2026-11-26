@@ -1,0 +1,4 @@
+{
+  "section": "Updated",
+  "entry": "Refreshed commit-pinned evidence and fixed factual drift for [ClickHouse Loom](https://github.com/ClickHouse/loom) (published v1.3.0 release and local Ollama preset), [sparkrun](https://github.com/spark-arena/sparkrun) (SparkRoute moved to an optional external plugin with LiteLLM default), and [whichquant](https://github.com/ngo-binh0108/whichquant) (cleared unverified hardware tags, switched local_mode to local-client, and noted source-only distribution)."
+}

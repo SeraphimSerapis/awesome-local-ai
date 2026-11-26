@@ -1,0 +1,55 @@
+name: Project suggestion
+description: Suggest an open-source local AI tool for review when you cannot open a pull request.
+title: "[suggestion] "
+labels: ["project-suggestion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Pull requests are the fastest way to add an entry; see `CONTRIBUTING.md` for all seven acceptance criteria.
+        If you cannot open a PR, fill out the details below so a maintainer or contributor can review the project.
+  - type: input
+    id: project_name
+    attributes:
+      label: Project name
+      placeholder: Example Project
+    validations:
+      required: true
+  - type: input
+    id: repository
+    attributes:
+      label: Canonical GitHub repository URL
+      description: Must be a public `https://github.com/owner/repo` URL with working open-source code and at least 14 days of commit history.
+      placeholder: https://github.com/owner/repo
+    validations:
+      required: true
+  - type: input
+    id: license_spdx
+    attributes:
+      label: Top-level OSI-approved license (SPDX)
+      description: Must match a top-level `LICENSE` or `COPYING` file in the repository root.
+      placeholder: MIT or Apache-2.0
+    validations:
+      required: true
+  - type: textarea
+    id: local_workflow
+    attributes:
+      label: Local AI workflow
+      description: What does this help someone run, use, evaluate, or maintain on their own hardware?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence_and_limits
+    attributes:
+      label: Upstream evidence and known limitations
+      description: Link to upstream docs or releases, and list hardware/OS requirements, preview status, telemetry, update checks, or model licensing caveats.
+    validations:
+      required: true
+  - type: input
+    id: affiliation
+    attributes:
+      label: Affiliation
+      description: Do you maintain, work on, or have a commercial connection to this project? Self-submissions are welcome.
+      placeholder: Independent user / Maintainer / Contributor
+    validations:
+      required: true

@@ -15,6 +15,7 @@ import catalog
 
 
 BRANCH = "automation/catalog-health"
+ALLOWED_PATHS = {"data/health.json", catalog.CATALOG_INDEX, "README.md"}
 REQUIRED_JOBS = {
     "Catalog / ubuntu-latest / Python 3.11",
     "Catalog / windows-latest / Python 3.13",
@@ -23,7 +24,9 @@ REQUIRED_JOBS = {
 
 
 def command(*args, root=catalog.ROOT):
-    return subprocess.run(args, cwd=root, check=True, capture_output=True, text=True).stdout
+    return subprocess.run(
+        args, cwd=root, check=True, capture_output=True, text=True, encoding="utf-8"
+    ).stdout
 
 
 def api(repository, path):
@@ -56,25 +59,43 @@ def validate_pr(pr, sha, repository, default_branch):
 def validate_snapshot(snapshot, projects, today):
     catalog.require(isinstance(snapshot, dict) and set(snapshot) == {p["id"] for p in projects},
                     "snapshot must cover exactly the current catalog")
+    issues = []
     for project in projects:
-        record = snapshot[project["id"]]
+        pid = project["id"]
+        record = snapshot[pid]
         catalog.validate_health_record(record)
-        catalog.require(record["repository"] == project["repository"]
-                        and record["status"] == "reachable" and record["checked_at"] == today
-                        and record["archived"] is False and record["disabled"] is False
-                        and record["canonical_repository"].casefold() == project["repository"].casefold()
-                        and (record["last_default_branch_commit"] is None
-                             or isinstance(record["last_default_branch_commit"], str)),
-                        f'{project["id"]}: stale or flagged observation needs manual review')
+        reasons = []
+        if record["repository"] != project["repository"]:
+            reasons.append(f'repository mismatch ({record["repository"]})')
+        if record["status"] != "reachable":
+            detail = record.get("detail") or "no detail"
+            reasons.append(f'status={record["status"]} ({detail})')
+        if record["checked_at"] != today:
+            reasons.append(f'stale check date {record["checked_at"]} (expected {today})')
+        if record["archived"] is not False:
+            reasons.append(f'archived={record["archived"]}')
+        if record["disabled"] is not False:
+            reasons.append(f'disabled={record["disabled"]}')
+        canonical = record["canonical_repository"]
+        if canonical is None or canonical.casefold() != project["repository"].casefold():
+            reasons.append(f"redirected to {canonical}")
+        if not (record["last_default_branch_commit"] is None
+                or isinstance(record["last_default_branch_commit"], str)):
+            reasons.append("invalid last_default_branch_commit")
+        if reasons:
+            issues.append(f'{pid}: {", ".join(reasons)}')
+    catalog.require(not issues, "flagged or stale observations need manual review: " + "; ".join(issues))
 
 
 def validate_content(root, sha, today):
     base = command("git", "rev-parse", "HEAD", root=root).strip()
     command("git", "merge-base", "--is-ancestor", base, sha, root=root)
     changed = set(command("git", "diff", "--name-only", "--no-renames", base, sha, root=root).splitlines())
-    catalog.require("data/health.json" in changed and changed <= {"data/health.json", "README.md"},
-                    "changes extend beyond the health snapshot and generated README")
-    for path in ["data/health.json", "README.md"]:
+    catalog.require(
+        "data/health.json" in changed and changed <= ALLOWED_PATHS,
+        "changes extend beyond the health snapshot, generated catalog index, and generated README",
+    )
+    for path in sorted(ALLOWED_PATHS):
         entry = command("git", "ls-tree", sha, "--", path, root=root)
         catalog.require(entry.startswith("100644 blob "), f"{path} must be a regular non-executable file")
     snapshot_text = command("git", "show", f"{sha}:data/health.json", root=root)
@@ -87,9 +108,12 @@ def validate_content(root, sha, today):
         (staging / "data").mkdir()
         (staging / "data/health.json").write_text(snapshot_text, encoding="utf-8")
         (staging / "README.md").write_text((root / "README.md").read_text(encoding="utf-8"), encoding="utf-8")
-        expected = catalog.render_readme(staging, taxonomy, projects)
-    actual = command("git", "show", f"{sha}:README.md", root=root)
-    catalog.require(actual == expected, "README differs from trusted regeneration")
+        expected_readme = catalog.render_readme(staging, taxonomy, projects)
+        expected_index = catalog.render_catalog_json(staging, taxonomy, projects)
+    actual_readme = command("git", "show", f"{sha}:README.md", root=root)
+    catalog.require(actual_readme == expected_readme, "README differs from trusted regeneration")
+    actual_index = command("git", "show", f"{sha}:{catalog.CATALOG_INDEX}", root=root)
+    catalog.require(actual_index == expected_index, "data/catalog.json differs from trusted regeneration")
     return base
 
 
@@ -119,7 +143,12 @@ def main():
         command("gh", "pr", "merge", str(pr["number"]), "--repo", repository,
                 "--merge", "--match-head-commit", sha)
         print(f'Merged routine health PR #{pr["number"]} at {sha}.')
-    except (catalog.CatalogError, OSError, ValueError, KeyError, TypeError, subprocess.CalledProcessError) as error:
+    except subprocess.CalledProcessError as error:
+        detail = (error.stderr or error.stdout or "").strip()[:500]
+        suffix = f": {detail}" if detail else ""
+        print(f"Health PR left for manual review: {error}{suffix}", file=sys.stderr)
+        return 1
+    except (catalog.CatalogError, OSError, ValueError, KeyError, TypeError) as error:
         print(f"Health PR left for manual review: {error}", file=sys.stderr)
         return 1
     return 0
